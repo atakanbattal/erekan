@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SSS — EREKAN</title>
+<link rel="stylesheet" href="assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.12), transparent 60%); }
+  .page-hero-inner { position: relative; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(48px, 8vw, 136px); line-height: .88; letter-spacing: -.04em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 .arc { color: var(--arc-2); }
+
+  .faq-wrap { padding: 80px 0 120px; background: var(--ink-0); }
+  .faq-layout { display: grid; grid-template-columns: 280px 1fr; gap: 64px; }
+  @media (max-width: 900px) { .faq-layout { grid-template-columns: 1fr; gap: 32px; } }
+
+  .faq-side { position: sticky; top: calc(var(--nav-h) + 32px); align-self: start; }
+  .faq-side h4 { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--ink-4); }
+  .faq-nav { display: flex; flex-direction: column; }
+  .faq-nav a {
+    padding: 12px 0;
+    font-family: var(--ff-display);
+    font-size: 14px;
+    color: var(--steel-2);
+    border-bottom: 1px solid var(--ink-3);
+    display: grid;
+    grid-template-columns: 30px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    transition: color .2s ease;
+  }
+  .faq-nav a:hover { color: var(--bone); }
+  .faq-nav a .num { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); }
+  .faq-nav a .cnt { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); }
+
+  .faq-group { margin-bottom: 80px; }
+  .faq-group:last-child { margin-bottom: 0; }
+  .faq-group-head {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    align-items: end;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--ink-4);
+    margin-bottom: 8px;
+  }
+  .faq-group-head .gn { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); letter-spacing: .15em; }
+  .faq-group-head h2 {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.2vw, 42px);
+    letter-spacing: -.025em;
+    color: var(--bone);
+    line-height: 1;
+  }
+
+  details.q {
+    border-bottom: 1px solid var(--ink-4);
+    padding: 24px 0;
+    transition: background .2s ease;
+  }
+  details.q[open] { padding-bottom: 32px; }
+  details.q > summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 60px 1fr 40px;
+    gap: 20px;
+    align-items: start;
+  }
+  details.q > summary::-webkit-details-marker { display: none; }
+  details.q .num {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--steel-1);
+    letter-spacing: .1em;
+    padding-top: 6px;
+  }
+  details.q h3 {
+    font-family: var(--ff-display);
+    font-weight: 600;
+    font-size: clamp(17px, 1.6vw, 21px);
+    letter-spacing: -.015em;
+    color: var(--bone);
+    line-height: 1.3;
+  }
+  details.q:hover h3 { color: var(--arc-2); }
+  details.q[open] h3 { color: var(--arc-2); }
+  details.q .tog {
+    width: 32px; height: 32px;
+    border: 1px solid var(--ink-4);
+    display: grid;
+    place-items: center;
+    color: var(--steel-2);
+    font-family: var(--ff-mono);
+    font-size: 18px;
+    transition: all .2s ease;
+  }
+  details.q:hover .tog { border-color: var(--arc-2); color: var(--arc-2); }
+  details.q[open] .tog { background: var(--arc-2); border-color: var(--arc-2); color: var(--ink-0); }
+  details.q[open] .tog::before { content: '−'; }
+  details.q:not([open]) .tog::before { content: '+'; }
+
+  details.q .a {
+    margin-top: 20px;
+    margin-left: 80px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--steel-3);
+    max-width: 70ch;
+  }
+  details.q .a p + p { margin-top: 14px; }
+  details.q .a strong { color: var(--bone); font-weight: 600; }
+  details.q .a ul { list-style: none; padding: 0; margin: 14px 0; }
+  details.q .a ul li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    border-bottom: 1px dashed var(--ink-3);
+  }
+  details.q .a ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--arc-2);
+    font-family: var(--ff-mono);
+  }
+  details.q .a .inline-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    background: var(--ink-2);
+    color: var(--arc-2);
+    letter-spacing: .08em;
+    border: 1px solid var(--ink-4);
+    margin: 0 2px;
+  }
+
+  /* Bottom CTA */
+  .help-cta { padding: 100px 0; background: var(--ink-1); border-top: 1px solid var(--ink-4); }
+  .help-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+  @media (max-width: 900px) { .help-grid { grid-template-columns: 1fr; } }
+  .help-cta h2 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(32px, 4vw, 56px); letter-spacing: -.025em; color: var(--bone); line-height: 1; margin-bottom: 20px; }
+  .help-cta h2 .arc { color: var(--arc-2); }
+  .help-cta p { font-size: 16px; line-height: 1.55; color: var(--steel-3); max-width: 52ch; }
+  .help-actions { display: flex; flex-direction: column; gap: 1px; background: var(--ink-4); border: 1px solid var(--ink-4); }
+  .help-action {
+    background: var(--ink-0);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+    transition: background .2s ease;
+  }
+  .help-action:hover { background: var(--ink-2); }
+  .help-action .ttl { font-family: var(--ff-display); font-weight: 600; font-size: 16px; color: var(--bone); }
+  .help-action .sub { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-2); margin-top: 6px; letter-spacing: .05em; }
+  .help-action .arr { font-family: var(--ff-mono); font-size: 20px; color: var(--arc-2); }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">EREKAN</a> &nbsp;/&nbsp; SSS</div>
+    <h1>Sıkça sorulan<br/>teknik <span class="arc">sorular.</span></h1>
+    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
+      Teklif sürecinden sevkiyata kadar, satın alma ve kalite ekiplerinin
+      en çok sorduğu soruları burada topladık. Cevabını bulamadıklarınız için
+      doğrudan bize ulaşabilirsiniz.
+    </p>
+  </div>
+</section>
+
+<section class="faq-wrap">
+  <div class="container">
+    <div class="faq-layout">
+      <!-- Sidebar -->
+      <aside class="faq-side">
+        <h4>■ Kategori</h4>
+        <nav class="faq-nav">
+          <a href="#teklif"><span class="num">01</span><span>Teklif & Sipariş</span><span class="cnt">5</span></a>
+          <a href="#kalite"><span class="num">02</span><span>Kalite & Sertifika</span><span class="cnt">5</span></a>
+          <a href="#kaynak"><span class="num">03</span><span>Kaynak & Üretim</span><span class="cnt">4</span></a>
+          <a href="#lojistik"><span class="num">04</span><span>Lojistik & Teslim</span><span class="cnt">3</span></a>
+          <a href="#satissonrasi"><span class="num">05</span><span>Satış Sonrası</span><span class="cnt">3</span></a>
+        </nav>
+      </aside>
+
+      <!-- Groups -->
+      <div>
+        <!-- G1 Teklif -->
+        <div class="faq-group" id="teklif">
+          <div class="faq-group-head">
+            <div class="gn">G.01</div>
+            <h2>Teklif & Sipariş</h2>
+          </div>
+
+          <details class="q" open>
+            <summary>
+              <div class="num">Q·01</div>
+              <h3>Teklif için bizden hangi bilgileri istiyorsunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Hızlı ve doğru teklif verebilmemiz için şu üç bilgi kritik:</p>
+              <ul>
+                <li><strong>Teknik çizim</strong> — 2D (DXF/DWG/PDF) veya 3D (STEP) — WPS ve malzeme listesi çıkarmak için</li>
+                <li><strong>Tolerans sınıfı</strong> — ISO 13920 BE/CG gibi — toleranslar üretim prosesini ve maliyeti doğrudan etkiler</li>
+                <li><strong>Hedef teslim tarihi ve adet</strong> — kapasite planlaması için</li>
+              </ul>
+              <p>Çizim yoksa da problem değil — numune veya fotoğraftan başlayıp tersine mühendislik ile çıkartabiliyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·02</div>
+              <h3>Teklif ne kadar sürede gelir?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Standart bileşen tekliflerinde <strong>48 saat</strong> içinde dönüş hedefliyoruz. Komple yapı veya PED/CE kapsamındaki basınçlı ekipmanlar için bu süre <strong>5 – 7 iş günü</strong>'ne uzayabiliyor — çünkü hesap, WPS ve NDT planını teklifle birlikte veriyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·03</div>
+              <h3>Minimum sipariş miktarı var mı?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Hayır. Tek parça prototip de, 1 000 adetlik seri de yapıyoruz. Ancak <span class="inline-tag">MOQ=1</span> çalışmak setup maliyetinin tamamını tek parçaya yansıtır — bunu baştan şeffaf belirtiyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·04</div>
+              <h3>Çizim yoksa ne olur — numuneden çalışabilir misiniz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet. <strong>Tersine mühendislik</strong> kapsamında numuneyi 3D tarayıcı veya manuel ölçümle modelleyip, imalat resmini biz çıkarıyoruz. Onayınızın ardından üretime geçiyoruz. Bu süreçte müşteriye çizim dosyalarını da teslim ediyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·05</div>
+              <h3>Ödeme koşulları nasıl?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>İlk siparişlerde genellikle <strong>%40 avans + %60 sevk öncesi</strong> şeklinde çalışıyoruz. Süreklilik kazanan müşterilerde vadeli cari hesap veya banka garanti mektubu ile açık hesap açıyoruz. Uluslararası siparişlerde L/C veya T/T seçenekleri mevcut.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- G2 Kalite -->
+        <div class="faq-group" id="kalite">
+          <div class="faq-group-head">
+            <div class="gn">G.02</div>
+            <h2>Kalite & Sertifika</h2>
+          </div>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·06</div>
+              <h3>Hangi kalite belgelerine sahipsiniz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Aktif olarak kullanılan belgeler:</p>
+              <ul>
+                <li><span class="inline-tag">ISO 9001</span> Kalite Yönetim Sistemi</li>
+                <li><span class="inline-tag">EN 1090-1 EXC3</span> Yapısal çelik CE işaretleme</li>
+                <li><span class="inline-tag">EN ISO 3834-2</span> Kaynaklı imalat tam kalite</li>
+                <li><span class="inline-tag">PED 2014/68/EU</span> Basınçlı ekipman kategorisine uygun</li>
+                <li><span class="inline-tag">EN 15085-2 CL1</span> Demiryolu aracı kaynaklı imalat</li>
+              </ul>
+              <p>Her belge için güncel sertifika dosyasını teklifte veya istek üzerine paylaşabiliriz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·07</div>
+              <h3>NDT (tahribatsız muayene) kendi bünyenizde mi?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p><strong>VT (görsel), PT (penetrant), MT (manyetik parçacık) ve UT (ultrasonik)</strong> muayeneleri <strong>EN ISO 9712 Level II sertifikalı</strong> personelimiz tarafından <strong>in-house</strong> yapılır. Sadece <strong>RT (radyografi)</strong> radyasyon lisansı gerektirdiğinden yetkili lisanslı laboratuvar partnerimizden hizmet alıyoruz — her iki durumda da rapor zincirini müşteriye eksiksiz teslim ediyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·08</div>
+              <h3>Malzeme sertifikası (3.1 / 3.2) veriyor musunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet. Standart olarak <strong>EN 10204 3.1</strong> malzeme sertifikası tüm projelere eklenir. PED kapsamındaki veya müşteri özel istediği durumlarda <strong>3.2</strong> sertifikası (bağımsız muayene kuruluşu onaylı) alınır. İsteğe bağlı <strong>PMI</strong> (Positive Material Identification) testi ile malzeme sınıfı saha öncesinde doğrulanır.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·09</div>
+              <h3>Üçüncü taraf denetimi nasıl yapıyorsunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Müşteri isterse akredite bir üçüncü taraf muayene kuruluşunu (notified body / third-party inspection) fabrikamıza davet edip <strong>WPQR, FAT (Factory Acceptance Test), NDT ve boyut kontrolü</strong> aşamalarında tanık denetim yaptırıyoruz. Bu raporlar Final Documentation Dossier'in içinde müşteriye teslim edilir.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·10</div>
+              <h3>İzlenebilirlik zinciri nasıl çalışıyor?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Her malzeme parçasına benzersiz bir <strong>HEAT / LOT numarası</strong> atıyoruz. Bu numara kesim, kaynak, boya ve sevkiyat aşamalarında sistemimizde zincire bağlanıyor — böylece <strong>10 yıl sonra</strong> bile bir kaynak dikişinin hangi WPS ile, hangi kaynakçı (WPQ) tarafından, hangi malzemede yapıldığını dosya numarasından sorgulayabiliyorsunuz.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- G3 Kaynak -->
+        <div class="faq-group" id="kaynak">
+          <div class="faq-group-head">
+            <div class="gn">G.03</div>
+            <h2>Kaynak & Üretim</h2>
+          </div>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·11</div>
+              <h3>Hangi kaynak yöntemlerini uyguluyorsunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Rutin olarak <strong>MAG (135/138), TIG (141), MMA (111) ve Tozaltı (SAW, 121)</strong> proseslerini kullanıyoruz. Her biri için onaylı WPS ve pWPS portföyümüz mevcut. Seçim; malzeme, kalınlık, pozisyon ve kalite sınıfına göre kaynak mühendisimiz tarafından yapılır.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·12</div>
+              <h3>Kaynakçılarınız sertifikalı mı?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Bünyemizde çalışan tüm kaynakçılar <strong>EN ISO 9606-1</strong> kapsamında sertifikalı. Sertifikalar proses, malzeme grubu, kalınlık ve pozisyona göre dosyalanmış olup her 6 ayda bir gözden geçiriliyor, 2 yılda bir yeniden sınavla yenileniyor. WPQ kayıtları proje dokümantasyonu ile birlikte teslim edilebilir.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·13</div>
+              <h3>Isıl işlem (PWHT) yapabiliyor musunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet — bünyemizde kalibre edilmiş gerilim giderme (stress relief) fırınımız mevcut. Sıcaklık ve süre kayıtları otomatik olarak şerit kaydedici + dijital olarak alınıp dosyalanıyor. Büyük ekipmanlar için mobil PWHT hizmeti de veriyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·14</div>
+              <h3>Paslanmaz çelik imalatı için ayrı atölye var mı?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet. Karbon çelik ve paslanmaz çelik için <strong>fiziksel olarak ayrılmış iki atölye</strong> işletiyoruz — ortak ekipman yok, kaynak torçları, taşlama taşları, fırça ve eldivenler bile renk kodlu. Bu disiplin <strong>galvanik kontaminasyon</strong> riskini sıfıra indirir.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- G4 Lojistik -->
+        <div class="faq-group" id="lojistik">
+          <div class="faq-group-head">
+            <div class="gn">G.04</div>
+            <h2>Lojistik & Teslim</h2>
+          </div>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·15</div>
+              <h3>Sevkiyat kapsamında neler var?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Standart teslimde <strong>ahşap kasa veya paletli ambalaj, korozyon koruyucu (VCI)</strong>, etiketleme, gümrük dokümanları ve sigorta dahil Incoterms seçeneklerine göre teklif veriyoruz: <span class="inline-tag">EXW</span> <span class="inline-tag">FCA</span> <span class="inline-tag">FOB</span> <span class="inline-tag">CIF</span> <span class="inline-tag">DAP</span>.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·16</div>
+              <h3>Saha montajı da yapıyor musunuz?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet — yapısal çelik ve proses ekipman projelerinde <strong>saha montajı + devreye alma</strong> opsiyonel olarak sunuluyor. Montaj ekibimiz yüksekte çalışma, kaynak ve vinç sertifikalarına sahip. Yurt dışı saha projeleri için vize ve ekipman taşıma dahil komple hizmet veriyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·17</div>
+              <h3>İhracat referanslarınız var mı?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet — <strong>Almanya, Hollanda, İtalya, Polonya, Romanya, Fas ve BAE</strong>'ye düzenli ihracat yapıyoruz. EUR.1, ATR, menşe belgesi, CE DoP gibi tüm dış ticaret evraklarını bünyemizdeki dış ticaret uzmanı ile eksiksiz hazırlıyoruz.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- G5 Sonrasi -->
+        <div class="faq-group" id="satissonrasi">
+          <div class="faq-group-head">
+            <div class="gn">G.05</div>
+            <h2>Satış Sonrası</h2>
+          </div>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·18</div>
+              <h3>Garanti süreniz nedir?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>İşçilik ve malzeme hatalarına karşı <strong>24 ay</strong> garanti. Normal aşınmaya tabi parçalarda (ör. kazıcı kepçe keskileri) garanti kapsamı kullanım koşullarına göre ayrıca sözleşmelendiriliyor. PED ve yapısal çelik ürünlerde garanti süresi CE uygulama kapsamına göre değişebilir.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·19</div>
+              <h3>Revizyon veya onarım talep edebilir miyim?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Evet. Teslim ettiğimiz ya da başka üreticiden alınmış parçalarda revizyon, onarım ve ömür uzatma çalışmaları yapıyoruz. Mevcut durum raporu, tersine mühendislik ve gerekli NDT taramalarını yaptıktan sonra yenileme planı çıkarıyoruz.</p>
+            </div>
+          </details>
+
+          <details class="q">
+            <summary>
+              <div class="num">Q·20</div>
+              <h3>Dokümantasyonumu kaybettim — tekrar alabilir miyim?</h3>
+              <div class="tog"></div>
+            </summary>
+            <div class="a">
+              <p>Tüm proje dokümantasyonunu <strong>10 yıl süreyle</strong> dijital olarak arşivliyoruz. Sipariş numarası veya proje kodu ile talep oluşturduğunuzda; WPS, WPQR, NDT raporları, malzeme sertifikaları ve boyut kontrol kayıtlarını PDF paket olarak 48 saat içinde yeniden gönderiyoruz.</p>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="help-cta">
+  <div class="container">
+    <div class="help-grid">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 20px;">06 / Hâlâ Sorunuz Var Mı?</div>
+        <h2>Aradığınız cevabı<br/>bulamadıysanız — <span class="arc">yazın.</span></h2>
+        <p>Teknik sorularınızı doğrudan proje mühendislerimize iletin. Genellikle aynı gün içinde dönüş yapıyoruz. Fiyat ön-değerlendirmesi için çizim paylaşabilirsiniz — gizlilik NDA ile garanti altında.</p>
+      </div>
+      <div class="help-actions">
+        <a href="iletisim.html" class="help-action">
+          <div>
+            <div class="ttl">Teklif iste</div>
+            <div class="sub">RFQ FORMU · 48 SAATTE DÖNÜŞ</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+        <a href="mailto:teknik@erekan.com.tr" class="help-action">
+          <div>
+            <div class="ttl">Teknik ekiple yaz</div>
+            <div class="sub">TEKNIK@EREKAN.COM.TR</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+        <a href="kalite.html" class="help-action">
+          <div>
+            <div class="ttl">Kalite dosyasını incele</div>
+            <div class="sub">SERTIFIKA & SÜREÇ</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="assets/chrome.js"></script>
+<script>
+mountChrome('sss');
+// Smooth scroll for sidebar nav
+document.querySelectorAll('.faq-nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

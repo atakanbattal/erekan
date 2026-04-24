@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sektörler — EREKAN</title>
+<link rel="stylesheet" href="assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
+  .page-hero-inner { position: relative; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(48px, 8vw, 136px); line-height: .88; letter-spacing: -.04em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 .arc { color: var(--arc-2); }
+
+  .sector-block {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--ink-4);
+  }
+  .sector-block:nth-child(odd) { background: var(--ink-1); }
+  .sector-block:nth-child(even) { background: var(--ink-0); }
+  .sec-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .sec-row.reverse .meta { order: 2; }
+  .sec-row.reverse .visual { order: 1; }
+  .sec-num {
+    font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2);
+    letter-spacing: .24em; margin-bottom: 20px; text-transform: uppercase;
+  }
+  .sec-title {
+    font-family: var(--ff-display); font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px); line-height: .95;
+    letter-spacing: -.03em; color: var(--bone);
+    margin-bottom: 24px;
+  }
+  .sec-title .arc { color: var(--arc-2); }
+  .sec-desc {
+    font-size: 15px; line-height: 1.7; color: var(--steel-3);
+    margin-bottom: 32px; max-width: 54ch;
+  }
+  .sec-apps {
+    list-style: none; margin-bottom: 32px;
+  }
+  .sec-apps li {
+    padding: 12px 0;
+    border-top: 1px solid var(--ink-4);
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    color: var(--steel-3);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    letter-spacing: .02em;
+  }
+  .sec-apps li:last-child { border-bottom: 1px solid var(--ink-4); }
+  .sec-apps .k { color: var(--arc-2); letter-spacing: .14em; text-transform: uppercase; font-size: 10px; align-self: center; }
+  .sec-apps .v { color: var(--bone); font-family: var(--ff-display); font-weight: 600; font-size: 15px; letter-spacing: -.005em; }
+
+  .sec-specs {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--ink-4); border: 1px solid var(--ink-4);
+  }
+  .sec-spec { background: var(--ink-0); padding: 16px; }
+  .sec-spec .k { font-family: var(--ff-mono); font-size: 9px; color: var(--steel-1); letter-spacing: .18em; text-transform: uppercase; }
+  .sec-spec .v { font-family: var(--ff-display); font-weight: 700; font-size: 16px; color: var(--bone); margin-top: 5px; }
+
+  .sec-visual {
+    background: var(--ink-1);
+    border: 1px solid var(--ink-4);
+    padding: 32px 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+  .sx-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--ink-4); margin-bottom: 24px; }
+  .sx-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
+  .sx-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
+  .sx-big { font-family: var(--ff-display); font-weight: 700; font-size: clamp(80px, 8vw, 140px); line-height: .88; letter-spacing: -.03em; color: var(--paper); }
+  .sx-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--steel-2); margin-top: 6px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
+  .sx-rows { display: flex; flex-direction: column; margin: 20px 0; }
+  .sx-rw { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--ink-4); align-items: baseline; }
+  .sx-rw:last-child { border-bottom: 0; }
+  .sx-rw .k { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-1); }
+  .sx-rw .v { font-family: var(--ff-sans); font-size: 13px; color: var(--paper); line-height: 1.4; }
+  .sx-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--ink-4); }
+  .sx-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
+
+  @media (max-width: 1000px) {
+    .sec-row, .sec-row.reverse { grid-template-columns: 1fr; gap: 40px; }
+    .sec-row.reverse .meta { order: 1; }
+    .sec-row.reverse .visual { order: 2; }
+    .sec-specs { grid-template-columns: 1fr; }
+    .sec-apps li { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">EREKAN</a> &nbsp;/&nbsp; SEKTÖRLER</div>
+    <h1>Sektörler.<br/>Farklı yükler,<br/><span class="arc">aynı disiplin.</span></h1>
+    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
+      Makineden inşaat çeliğine, basınçlı kaplardan enerji projelerine — EREKAN,
+      kritik yapılar için mühendislik disiplinini ortak bir şekilde uygular.
+      Her sektörün kendi standardı, kendi kabul kriteri ve kendi belge paketi
+      bize tanımlıdır.
+    </p>
+  </div>
+</section>
+
+<!-- Makine İmalatı -->
+<section class="sector-block">
+  <div class="container">
+    <div class="sec-row">
+      <div class="meta">
+        <div class="sec-num">// 01 · MAKİNE İMALATI</div>
+        <h2 class="sec-title">Makine &<br/>Ekipman <span class="arc">İmalatı.</span></h2>
+        <p class="sec-desc">
+          OEM üreticileri için şase, gövde, çerçeve ve özel aparat üretimi.
+          Müşterilerimizin kendi ürün hattında kullanacakları parçaları, tekrar
+          edilebilir kalite ile seri olarak üretiriz.
+        </p>
+
+        <ul class="sec-apps">
+          <li><span class="k">01 · Ürün</span><span class="v">İş makinesi kovaları, arka tamponlar</span></li>
+          <li><span class="k">02 · Ürün</span><span class="v">Vinç ve redüktör gövdeleri</span></li>
+          <li><span class="k">03 · Ürün</span><span class="v">Üretim hatları için şase ve çerçeve</span></li>
+          <li><span class="k">04 · Ürün</span><span class="v">Taşıma ve stoklama arabaları</span></li>
+        </ul>
+
+        <div class="sec-specs">
+          <div class="sec-spec"><div class="k">Kabul Kriteri</div><div class="v">ISO 5817 B–C</div></div>
+          <div class="sec-spec"><div class="k">Adet / Yıl</div><div class="v">Seri & Tekli</div></div>
+          <div class="sec-spec"><div class="k">Kalite</div><div class="v">ISO 9001 · 3834-2</div></div>
+        </div>
+      </div>
+      <div class="sec-visual">
+        <div class="sx-head">
+          <span class="t">■ MAKİNE İMALATI</span>
+          <span class="r">OEM PARTNER</span>
+        </div>
+        <div class="sx-big">M</div>
+        <div class="sx-sub">Machinery Manufacturing</div>
+        <div class="sx-rows">
+          <div class="sx-rw"><div class="k">Örnek Parçalar</div><div class="v">Kepçe · İkmal kasası · Şasi · Boom</div></div><div class="sx-rw"><div class="k">Malzeme</div><div class="v">HARDOX 400/500 · S355/S460</div></div><div class="sx-rw"><div class="k">Kalite</div><div class="v">EN ISO 5817 B-C · CMM kontrol</div></div><div class="sx-rw"><div class="k">Tipik Adet</div><div class="v">Tekli prototip → 50/yıl seri</div></div>
+        </div>
+        <div class="sx-tags"><span>HARDOX</span><span>AŞINMAYA DAYANIKLI</span><span>KAYNAK+MONTAJ</span><span>SERİ + PROTOTİP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Yapısal Çelik -->
+<section class="sector-block">
+  <div class="container">
+    <div class="sec-row reverse">
+      <div class="meta">
+        <div class="sec-num">// 02 · YAPISAL ÇELİK</div>
+        <h2 class="sec-title">İnşaat &<br/>Yapısal <span class="arc">Çelik.</span></h2>
+        <p class="sec-desc">
+          Fabrika çatıları, depo binaları, çelik köprüler, platform ve merdivenler.
+          EN 1090 kapsamında, EXC1'den EXC3'e kadar icra sınıfıyla; fabrika üretim
+          kontrolü (FPC) ve CE işaretlemesi ile.
+        </p>
+
+        <ul class="sec-apps">
+          <li><span class="k">01 · Yapı</span><span class="v">Endüstriyel çelik depo ve fabrika yapıları</span></li>
+          <li><span class="k">02 · Yapı</span><span class="v">Çatı makasları, uzay kafes sistemleri</span></li>
+          <li><span class="k">03 · Yapı</span><span class="v">Platformlar, ara kat, galeri merdivenleri</span></li>
+          <li><span class="k">04 · Yapı</span><span class="v">Kısa açıklıklı yaya köprüleri</span></li>
+        </ul>
+
+        <div class="sec-specs">
+          <div class="sec-spec"><div class="k">Standart</div><div class="v">EN 1090-2</div></div>
+          <div class="sec-spec"><div class="k">İcra Sınıfı</div><div class="v">EXC1–EXC3</div></div>
+          <div class="sec-spec"><div class="k">Çelik</div><div class="v">S235 – S355 J2+N</div></div>
+        </div>
+      </div>
+      <div class="sec-visual">
+        <div class="sx-head">
+          <span class="t">■ YAPISAL ÇELİK</span>
+          <span class="r">EN 1090 EXC2/3</span>
+        </div>
+        <div class="sx-big">Y</div>
+        <div class="sx-sub">Structural Steel</div>
+        <div class="sx-rows">
+          <div class="sx-rw"><div class="k">Örnek Yapılar</div><div class="v">Çatı makası · Portal · Kolon · Merdiven</div></div><div class="sx-rw"><div class="k">Malzeme</div><div class="v">S235 · S275 · S355</div></div><div class="sx-rw"><div class="k">Kaynak Onayı</div><div class="v">EN ISO 3834-2 + 1090-2</div></div><div class="sx-rw"><div class="k">Tipik Boyut</div><div class="v">Açıklık 6 – 24 m</div></div>
+        </div>
+        <div class="sx-tags"><span>CE</span><span>EXC2</span><span>EXC3</span><span>İMALAT+MONTAJ</span><span>SAHA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Basınçlı Kaplar & Proses -->
+<section class="sector-block">
+  <div class="container">
+    <div class="sec-row">
+      <div class="meta">
+        <div class="sec-num">// 03 · PROSES & BASINÇLI KAPLAR</div>
+        <h2 class="sec-title">Proses &<br/>Basınçlı <span class="arc">Kaplar.</span></h2>
+        <p class="sec-desc">
+          Gıda, kimya, petrokimya ve ilaç tesisleri için basınçlı ve atmosferik
+          tanklar, silolar, reaktörler. 2014/68/EU (PED) kapsamında CE işaretli
+          üretim; kategori II ve üstü için onaylı kuruluş gözetiminde.
+        </p>
+
+        <ul class="sec-apps">
+          <li><span class="k">01 · Kap</span><span class="v">Paslanmaz proses tankları (304 · 316 L)</span></li>
+          <li><span class="k">02 · Kap</span><span class="v">Basınçlı hava / gaz tankları</span></li>
+          <li><span class="k">03 · Kap</span><span class="v">Karıştırıcı, reaktör gövdeleri</span></li>
+          <li><span class="k">04 · Kap</span><span class="v">Endüstriyel silolar, depolama tankları</span></li>
+        </ul>
+
+        <div class="sec-specs">
+          <div class="sec-spec"><div class="k">Direktif</div><div class="v">PED 2014/68/EU</div></div>
+          <div class="sec-spec"><div class="k">Kod</div><div class="v">EN 13445 · ASME VIII</div></div>
+          <div class="sec-spec"><div class="k">Kategori</div><div class="v">I · II · III</div></div>
+        </div>
+      </div>
+      <div class="sec-visual">
+        <div class="sx-head">
+          <span class="t">■ BASINÇLI KAPLAR</span>
+          <span class="r">PED 2014/68/EU</span>
+        </div>
+        <div class="sx-big">B</div>
+        <div class="sx-sub">Pressure Vessels</div>
+        <div class="sx-rows">
+          <div class="sx-rw"><div class="k">Kategori</div><div class="v">PED Kat. I–II</div></div><div class="sx-rw"><div class="k">Malzeme</div><div class="v">P265GH · P355NH · 304L · 316L</div></div><div class="sx-rw"><div class="k">Tasarım Basıncı</div><div class="v">≤ 16 bar · Tasarım + hesap</div></div><div class="sx-rw"><div class="k">NDT</div><div class="v">RT/UT %100 kritik dikiş</div></div>
+        </div>
+        <div class="sx-tags"><span>CAT.II</span><span>PED</span><span>PASLANMAZ</span><span>TERMAL YALITIMA HAZIR</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enerji & OTO/Ulaşım  -->
+<section class="sector-block">
+  <div class="container">
+    <div class="sec-row reverse">
+      <div class="meta">
+        <div class="sec-num">// 04 · ENERJİ</div>
+        <h2 class="sec-title">Enerji &<br/>Yenilenebilir <span class="arc">Altyapı.</span></h2>
+        <p class="sec-desc">
+          GES montaj sehpaları, RES ekipman braketleri, jeneratör ve trafo şaseleri.
+          Dış ortamda 20+ yıl çalışacak metal yapılar için; kumlama Sa 2½ + çift kat
+          zengin boya sistemleri ile birlikte teslim.
+        </p>
+
+        <ul class="sec-apps">
+          <li><span class="k">01 · GES</span><span class="v">Panel montaj konstrüksiyonları, sehpalar</span></li>
+          <li><span class="k">02 · RES</span><span class="v">Türbin servis platformları, küpeşteler</span></li>
+          <li><span class="k">03 · Termik</span><span class="v">Baca iç yapı elemanları, duman kanalı</span></li>
+          <li><span class="k">04 · Şalt</span><span class="v">Jeneratör ve trafo şaseleri, kabinler</span></li>
+        </ul>
+
+        <div class="sec-specs">
+          <div class="sec-spec"><div class="k">Yüzey</div><div class="v">Sa 2½ (ISO 8501)</div></div>
+          <div class="sec-spec"><div class="k">Boya Sınıfı</div><div class="v">C4–C5 (ISO 12944)</div></div>
+          <div class="sec-spec"><div class="k">Çinko</div><div class="v">Sıcak Daldırma Gal.</div></div>
+        </div>
+      </div>
+      <div class="sec-visual">
+        <div class="sx-head">
+          <span class="t">■ ENERJİ · GES/RES</span>
+          <span class="r">WIND 36 m/s</span>
+        </div>
+        <div class="sx-big">E</div>
+        <div class="sx-sub">Energy Infrastructure</div>
+        <div class="sx-rows">
+          <div class="sx-rw"><div class="k">Yapı Türü</div><div class="v">PV taşıyıcı konstrüksiyon · Trafo iskeleti</div></div><div class="sx-rw"><div class="k">Tilt Aralığı</div><div class="v">10° – 35°</div></div><div class="sx-rw"><div class="k">Yüzey</div><div class="v">Sıcak daldırma galvaniz</div></div><div class="sx-rw"><div class="k">Cıvatalama</div><div class="v">ISO 898 Cl. 8.8 · torklu</div></div>
+        </div>
+        <div class="sx-tags"><span>GALVANİZ</span><span>CIVATALI</span><span>SAHA MONTAJI</span><span>UZUN ÖMÜR</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Savunma & Demiryolu -->
+<section class="sector-block">
+  <div class="container">
+    <div class="sec-row">
+      <div class="meta">
+        <div class="sec-num">// 05 · ULAŞIM & DEMİRYOLU</div>
+        <h2 class="sec-title">Ulaşım, Raylı Sistem<br/>& <span class="arc">Savunma.</span></h2>
+        <p class="sec-desc">
+          Demiryolu sektörü için EN 15085 CL1/CL2 kapsamında aracı-üstü yapıları,
+          savunma sektörü için aşınma ve darbe dayanımlı zırh yapıları. Bu alanlarda
+          tek sefer başarısızlığın bedeli ağırdır; bu yüzden en sıkı kabul kriterimiz
+          (EN ISO 5817 B) ve 100% NDT uygulanır.
+        </p>
+
+        <ul class="sec-apps">
+          <li><span class="k">01 · Demiryolu</span><span class="v">Vagon üstü yapı, dizel motor konsolları</span></li>
+          <li><span class="k">02 · Demiryolu</span><span class="v">Bakım platformu, sinyal direk şaseleri</span></li>
+          <li><span class="k">03 · Savunma</span><span class="v">HARDOX zırh plaka imalatı, platform</span></li>
+          <li><span class="k">04 · Ulaşım</span><span class="v">Treyler, dorse şaseleri, fork-lift gövdeleri</span></li>
+        </ul>
+
+        <div class="sec-specs">
+          <div class="sec-spec"><div class="k">Demiryolu</div><div class="v">EN 15085-2 CL1</div></div>
+          <div class="sec-spec"><div class="k">NDT</div><div class="v">% 100 (kritik dikiş)</div></div>
+          <div class="sec-spec"><div class="k">Kabul</div><div class="v">EN ISO 5817 B</div></div>
+        </div>
+      </div>
+      <div class="sec-visual">
+        <div class="sx-head">
+          <span class="t">■ RAYLI SİSTEM</span>
+          <span class="r">EN 15085 CL1</span>
+        </div>
+        <div class="sx-big">R</div>
+        <div class="sx-sub">Rail Transport</div>
+        <div class="sx-rows">
+          <div class="sx-rw"><div class="k">Uygulama</div><div class="v">Bogie çerçevesi · Araç iskeleti · Ekipman</div></div><div class="sx-rw"><div class="k">Kaynak Sınıfı</div><div class="v">CL1 (en yüksek)</div></div><div class="sx-rw"><div class="k">Yorgunluk</div><div class="v">10⁷ çevrim test</div></div><div class="sx-rw"><div class="k">İzlenebilirlik</div><div class="v">Heat-No → Dikiş haritası</div></div>
+        </div>
+        <div class="sx-tags"><span>CL1</span><span>FATIGUE</span><span>DIN EN 15085</span><span>DOKÜMANTE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 100px 0; background: var(--ink-1);">
+  <div class="container" style="text-align: center;">
+    <h2 class="display h2" style="max-width: 22ch; margin: 0 auto 32px;">
+      Sizin sektörünüz <span style="color: var(--arc-2);">listede değil mi?</span>
+    </h2>
+    <p class="lede" style="max-width: 52ch; margin: 0 auto 32px;">
+      Yeni alanlara girmek bizim için bir öğrenme fırsatıdır. Projenizi anlatın,
+      ilgili standardı birlikte çalışalım.
+    </p>
+    <a href="iletisim.html" class="btn btn-primary">İletişime Geçin <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<script src="assets/chrome.js"></script>
+<script>mountChrome('sektorler');</script>
+</body>
+</html>
