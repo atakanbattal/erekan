@@ -4,6 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>EREKAN — Kaynaklı İmalat & Metal İşleme Mühendisliği</title>
+  <meta name="description" content="EN 1090 ve EN ISO 3834-2 sertifikalı kaynaklı imalat, sac kesim, büküm, NDT. S235'ten S960QL'ye, alüminyumdan HARDOX'a tüm çelik gruplarında onaylı WPS ve belgeli kaynakçılar." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EREKAN — Kaynaklı İmalat & Metal İşleme Mühendisliği" />
+  <meta property="og:description" content="EN 1090 ve EN ISO 3834-2 sertifikalı kaynaklı imalat, sac kesim, büküm, NDT. S235'ten S960QL'ye, alüminyumdan HARDOX'a tüm çelik gruplarında onaylı WPS ve belgeli kaynakçılar." />
+  <meta property="og:url" content="https://www.erekan.com.tr/index.html" />
+  <meta property="og:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="EREKAN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EREKAN — Kaynaklı İmalat & Metal İşleme Mühendisliği" />
+  <meta name="twitter:description" content="EN 1090 ve EN ISO 3834-2 sertifikalı kaynaklı imalat, sac kesim, büküm, NDT. S235'ten S960QL'ye, alüminyumdan HARDOX'a tüm çelik gruplarında onaylı WPS ve belgeli kaynakçılar." />
+  <meta name="twitter:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
 <link rel="stylesheet" href="assets/theme.css" />
 <style>
   /* ===== Hero ===== */
@@ -263,123 +276,79 @@
     to { transform: translateX(-50%); }
   }
 
-  /* ===== Services grid ===== */
-  .services { background: var(--ink-1); }
-  .svc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--ink-4);
-    border: 1px solid var(--ink-4);
-  }
-  .svc {
-    background: var(--ink-1);
-    padding: 28px;
-    position: relative;
-    transition: background .35s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 240px;
-  }
-  .svc:hover { background: var(--ink-2); }
-  .svc:hover .svc-arrow { color: var(--arc-2); transform: translate(4px, -4px); }
+  /* ===== Services list ===== */
+  .services { background: var(--ink-0); border-top: 1px solid var(--ink-4); }
+  .svc-list { margin-top: 56px; }
 
-  /* Grid layout: 4 cols, 01=tall-left, 02=wide-top, 03-05=row2, 06-08=row3 */
-  .svc-num {
+  .svc-row {
+    display: grid;
+    grid-template-columns: 56px 1.15fr 1fr 28px;
+    gap: 0 40px;
+    align-items: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--ink-4);
+    border-left: 3px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: background .18s ease, border-color .18s ease;
+    margin: 0 -20px;
+  }
+  .svc-row:last-child { border-bottom: 1px solid var(--ink-4); }
+  .svc-row:hover {
+    background: var(--ink-1);
+    border-left-color: var(--arc-2);
+  }
+  .svc-row:hover .svc-go { color: var(--arc-2); transform: translate(3px,-3px); }
+  .svc-row:hover .svc-name { color: var(--arc-2); }
+
+  .svc-idx {
     font-family: var(--ff-mono);
-    font-size: 10px;
+    font-size: 11px;
     color: var(--steel-1);
-    letter-spacing: .18em;
+    letter-spacing: .2em;
+    align-self: start;
+    padding-top: 4px;
   }
-  .svc-arrow {
-    font-size: 20px;
-    color: var(--steel-1);
-    transition: all .25s ease;
-  }
-  .svc-title {
+  .svc-left { display: flex; flex-direction: column; gap: 12px; }
+  .svc-name {
     font-family: var(--ff-display);
     font-weight: 800;
-    font-size: clamp(22px, 2vw, 30px);
+    font-size: clamp(18px, 1.6vw, 24px);
     line-height: 1.05;
     letter-spacing: -.02em;
     color: var(--bone);
-    margin-bottom: 16px;
+    transition: color .18s ease;
   }
-  .svc-desc {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--steel-2);
-  }
-  .svc-feats {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 16px 0 0;
-    border-top: 1px dashed var(--ink-4);
-  }
-  .svc-feats li {
-    display: grid;
-    grid-template-columns: 16px 1fr;
-    gap: 8px;
-    padding: 9px 0;
-    border-bottom: 1px dashed var(--ink-4);
-    align-items: baseline;
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--steel-2);
-    letter-spacing: .04em;
-  }
-  .svc-feats li::before {
-    content: '→';
-    color: var(--arc-2);
-    font-size: 10px;
-  }
-  .svc-tags {
+  .svc-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 20px;
+    gap: 5px;
   }
-  .svc-tag {
+  .svc-pill {
     font-family: var(--ff-mono);
     font-size: 9px;
-    color: var(--steel-2);
+    color: var(--steel-1);
     text-transform: uppercase;
     letter-spacing: .1em;
-    padding: 4px 8px;
-    background: var(--ink-3);
-    border: 1px solid var(--ink-5);
+    padding: 3px 8px;
+    background: var(--ink-2);
+    border: 1px solid var(--ink-4);
     white-space: nowrap;
   }
-
-  .svc.wide { grid-column: span 4; }
-  .svc.feat { grid-column: span 2; grid-row: span 2; background: var(--ink-0); }
-  .svc.small { grid-column: span 2; }
-  .svc.last2 { grid-column: span 2; }
-  /* Remove old duplicate rules */
-
-  .svc.feat .svc-title {
-    font-size: clamp(28px, 3vw, 42px);
+  .svc-brief {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--steel-2);
   }
-  /* Bento grid placement */
-  .svc.feat { grid-column: 1; grid-row: 1 / 3; background: var(--ink-0); }
-  .svc.wide { grid-column: 2 / 5; }
-  .svc.small { grid-column: span 1; }
-  .svc.last2 { grid-column: span 2; }
-
-  /* Feat svc iconography (weld symbol) */
-  .weld-symbol {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--ink-2);
-    border: 1px solid var(--ink-5);
-    margin: 16px 0 20px;
-    position: relative;
-    overflow: hidden;
+  .svc-go {
+    font-family: var(--ff-mono);
+    font-size: 18px;
+    color: var(--steel-1);
+    transition: color .18s ease, transform .18s ease;
+    justify-self: end;
+    align-self: center;
   }
-  .weld-symbol svg { width: 100%; height: 100%; }
 
   /* ===== Traceability timeline ===== */
   .trace { background: var(--ink-0); position: relative; }
@@ -883,8 +852,8 @@
   @media (max-width: 1100px) {
     .hero-inner { grid-template-columns: 1fr; gap: 48px; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .svc-grid { grid-template-columns: repeat(2, 1fr); }
-    .svc.wide, .svc.feat, .svc.small, .svc.last2 { grid-column: 1 / -1 !important; grid-row: auto !important; }
+    .svc-row { grid-template-columns: 48px 1fr 28px; gap: 0 24px; }
+    .svc-brief { display: none; }
     .trace-steps { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
     .trace-panel { grid-template-columns: 1fr; }
     .comp-grid { grid-template-columns: 1fr; }
@@ -897,8 +866,8 @@
     .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 80px; }
     .hero h1 { font-size: clamp(40px, 12vw, 72px); }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .svc-grid { grid-template-columns: 1fr; }
-    .svc.feat, .svc.wide, .svc.small, .svc.last2 { grid-column: 1 !important; grid-row: auto !important; }
+    .svc-row { grid-template-columns: 36px 1fr 24px; gap: 0 16px; padding: 22px 16px; margin: 0 -16px; }
+    .svc-pills { display: none; }
     .trace-steps { grid-template-columns: 1fr 1fr; }
     .trace-panel { grid-template-columns: 1fr; }
     .comp-grid { grid-template-columns: 1fr; }
@@ -915,6 +884,49 @@
     .hero-meta { flex-direction: column; gap: 8px; font-size: 10px; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://www.erekan.com.tr/#organization",
+      "name": "EREKAN Metal & Kaynak Mühendisliği",
+      "url": "https://www.erekan.com.tr",
+      "logo": "https://www.erekan.com.tr/assets/og-image.jpg",
+      "image": "https://www.erekan.com.tr/assets/og-image.jpg",
+      "description": "EN 1090 ve EN ISO 3834-2 sertifikalı kaynaklı imalat, sac kesim, büküm, NDT hizmetleri. S235'ten S960QL'ye, alüminyumdan HARDOX'a tüm çelik gruplarında üretim.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Organize Sanayi Bölgesi, 10. Cadde No: 24",
+        "addressCountry": "TR"
+      },
+      "email": "info@erekan.com.tr",
+      "telephone": "+905000000000",
+      "foundingDate": "2010",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Üretim Hizmetleri",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kaynaklı İmalat", "url": "https://www.erekan.com.tr/hizmetler.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sac Kesim & Büküm", "url": "https://www.erekan.com.tr/hizmetler.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "NDT Tahribatsız Muayene", "url": "https://www.erekan.com.tr/ndt.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kaynak Yöntemleri MIG/MAG TIG SAW", "url": "https://www.erekan.com.tr/kaynak-yontemleri.html"}}
+        ]
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.erekan.com.tr/#website",
+      "url": "https://www.erekan.com.tr",
+      "name": "EREKAN",
+      "publisher": {"@id": "https://www.erekan.com.tr/#organization"},
+      "inLanguage": "tr-TR"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -969,7 +981,7 @@
           <div class="lbl">Parça Bazlı İzlenebilirlik</div>
         </div>
         <div class="hero-stat">
-          <div class="num">S · P · HARDOX</div>
+          <div class="num" style="font-size: clamp(13px,1.1vw,17px); letter-spacing:-.01em;">S235–S960QL · TMCP · HARDOX · Al</div>
           <div class="lbl">Uzmanlık Sac Grupları</div>
         </div>
       </div>
@@ -1194,168 +1206,123 @@
       </h2>
     </div>
 
-    <div class="svc-grid">
-      <!-- Feat -->
-      <a href="hizmetler.html" class="svc feat reveal">
-        <div>
-          <div class="svc-hd">
-            <span class="svc-num">// 01</span>
-            <span class="svc-arrow">↗</span>
-          </div>
-          <h3 class="svc-title">Kaynaklı<br/>İmalat</h3>
+    <div class="svc-list">
 
-          <p class="svc-desc">
-            MIG/MAG, TIG ve örtülü elektrod yöntemlerinde sertifikalı kaynakçılar
-            ve onaylı WPS'lerle; S grupları, P grupları, Hardox ve Raex dahil
-            her kalite sacı profesyonelce kaynatıyoruz.
-          </p>
-          <div class="svc-tags">
-            <span class="svc-tag">MIG/MAG</span>
-            <span class="svc-tag">TIG</span>
-            <span class="svc-tag">E-ARC</span>
-            <span class="svc-tag">FCAW</span>
-            <span class="svc-tag">EN 15614</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">01</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Kaynaklı İmalat</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">MIG/MAG · 135</span>
+            <span class="svc-pill">TIG · 141</span>
+            <span class="svc-pill">FCAW · 136</span>
+            <span class="svc-pill">EN ISO 3834-2</span>
+            <span class="svc-pill">WPQR Belgeli</span>
           </div>
         </div>
+        <p class="svc-brief">S235'ten S960QL'ye, paslanmazdan alüminyum alaşımlara — onaylı WPS ve belgeli kaynakçılarla her çelik grubunda güvenilir imalat.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <!-- Wide -->
-      <a href="hizmetler.html" class="svc wide reveal">
-        <div>
-          <div class="svc-hd">
-            <span class="svc-num">// 02</span>
-            <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">02</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Sac Kesim & Profil İşleme</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">CNC Plazma</span>
+            <span class="svc-pill">Lazer</span>
+            <span class="svc-pill">Giyotin</span>
+            <span class="svc-pill">Profil Testere</span>
           </div>
-          <h3 class="svc-title">Sac Kesim & Profil İşleme</h3>
-          <p class="svc-desc" style="max-width: 60ch;">
-            CNC plazma, lazer ve giyotin hatlarımızla 1 mm'den 60 mm'ye kadar
-            karbon çeliği, paslanmaz, Hardox ve alüminyum parçalar için
-            teknik resme uygun kesim ve profil işleme.
-          </p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">CNC PLAZMA</span>
-          <span class="svc-tag">LAZER</span>
-          <span class="svc-tag">GİYOTİN</span>
-          <span class="svc-tag">PROFİL TESTERE</span>
-        </div>
+        <p class="svc-brief">1 mm'den 60 mm'ye karbon çeliği, paslanmaz, Hardox ve alüminyum — teknik resme uygun toleranslı kesim ve hazırlık.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <!-- Small -->
-      <a href="hizmetler.html" class="svc small reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 03</span>
-          <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">03</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Büküm & Şekillendirme</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">Abkant Pres · 200 t</span>
+            <span class="svc-pill">Silindir</span>
+            <span class="svc-pill">±0.5° Hassasiyet</span>
+          </div>
         </div>
-        <h3 class="svc-title">Büküm &<br/>Şekillendirme</h3>
-        <p class="svc-desc">CNC abkant pres ve silindir hatlarında kontrollü açı, radyüs ve form yönetimi.</p>
-        <ul class="svc-feats">
-          <li><span>±0.5° açı hassasiyeti</span></li>
-          <li><span>200 t · 3000 mm abkant pres</span></li>
-          <li><span>V-büküm · silindir · U-form</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">ABKANT</span>
-          <span class="svc-tag">SİLİNDİR</span>
-          <span class="svc-tag">CNC</span>
-        </div>
+        <p class="svc-brief">CNC abkant pres ve silindir hatlarında V-büküm, U-form ve silindirik şekillendirme — programlı açı ve radyüs yönetimi.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <a href="hizmetler.html" class="svc small reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 04</span>
-          <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">04</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Mekanik Montaj & Sevke Hazırlık</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">ISO 898 Cl.8.8/10.9</span>
+            <span class="svc-pill">Dijital Tork</span>
+            <span class="svc-pill">Lazer Hizalama</span>
+          </div>
         </div>
-        <h3 class="svc-title">Mekanik Montaj<br/>ve Sevke Hazırlık</h3>
-        <p class="svc-desc">Büyük yapı ve ekipmanların atölye montajı, hizalama kontrolü ve sevke hazırlığı.</p>
-        <ul class="svc-feats">
-          <li><span>ISO 898 Cl. 8.8 / 10.9 cıvata</span></li>
-          <li><span>Dijital tork kaydı · sertifikalı</span></li>
-          <li><span>Lazer hizalama · fonksiyonel test</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">FULL BOM</span>
-          <span class="svc-tag">TORK</span>
-          <span class="svc-tag">SAHA</span>
-        </div>
+        <p class="svc-brief">Büyük yapı ve ekipman alt-montajları, tork kaydı ve fonksiyonel test dahil sevkiyat paketleme — tek çatı altında komple teslim.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <a href="ndt.html" class="svc small reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 05</span>
-          <span class="svc-arrow">↗</span>
+      <a href="ndt.html" class="svc-row reveal">
+        <div class="svc-idx">05</div>
+        <div class="svc-left">
+          <h3 class="svc-name">NDT & Tahribatsız Muayene</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">VT · PT · MT · UT</span>
+            <span class="svc-pill">EN ISO 9712 L2</span>
+            <span class="svc-pill">RT Partner Lab</span>
+          </div>
         </div>
-        <h3 class="svc-title">NDT &<br/>Muayene</h3>
-        <p class="svc-desc">VT, PT, MT, UT, RT yöntemleriyle seviye 2 personel eşliğinde kontrol.</p>
-        <ul class="svc-feats">
-          <li><span>EN ISO 9712 Level II personel</span></li>
-          <li><span>4 yöntem bünyemizde</span></li>
-          <li><span>RT → lisanslı partner lab</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">VT</span>
-          <span class="svc-tag">PT</span>
-          <span class="svc-tag">MT</span>
-          <span class="svc-tag">UT</span>
-        </div>
+        <p class="svc-brief">4 muayene yöntemi bünyede, EN ISO 5817 B kabul kriteri — her dikiş belgelenmiş, hiçbir kayıt atlanamaz.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <a href="hizmetler.html" class="svc small reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 06</span>
-          <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">06</div>
+        <div class="svc-left">
+          <h3 class="svc-name">İş Makinesi Gövdesi & Kepçe</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">HARDOX 400/450/500</span>
+            <span class="svc-pill">RAEX</span>
+            <span class="svc-pill">Seri Üretim</span>
+          </div>
         </div>
-        <h3 class="svc-title">İş Makinesi<br/>Gövdesi</h3>
-        <p class="svc-desc">Hardox/Raex aşınma plakalarıyla kepçe, kova, bıçak ve gövde imalatı.</p>
-        <ul class="svc-feats">
-          <li><span>HARDOX 400 · 450 · 500</span></li>
-          <li><span>Seri imalata uygun fikstür</span></li>
-          <li><span>MT %20 NDT kapsamı</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">HARDOX</span>
-          <span class="svc-tag">RAEX</span>
-          <span class="svc-tag">SERİ</span>
-        </div>
+        <p class="svc-brief">Aşınma çelikleriyle kepçe, kova, bıçak ve gövde imalatı — seri üretim fikstürleri ve MT muayene dahil.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <a href="hizmetler.html" class="svc small reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 07</span>
-          <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">07</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Vinç Konstrüksiyonu</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">EN 1090 EXC2</span>
+            <span class="svc-pill">CE İşaretleme</span>
+            <span class="svc-pill">1 – 20 t</span>
+          </div>
         </div>
-        <h3 class="svc-title">Vinç<br/>İmalatı</h3>
-        <p class="svc-desc">Gezer köprü, pergel ve monoray vinç yapıları; CE işaretlemesine uygun.</p>
-        <ul class="svc-feats">
-          <li><span>EN 1090 EXC2 çerçeve kaynağı</span></li>
-          <li><span>1 t – 20 t taşıma kapasitesi</span></li>
-          <li><span>FEM standart statik hesap</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">CE</span>
-          <span class="svc-tag">EN 1090</span>
-          <span class="svc-tag">FEM</span>
-        </div>
+        <p class="svc-brief">Gezer köprü, pergel ve monoray vinç yapı imalatı — FEM statik hesap ve CE DoP ile teslim.</p>
+        <span class="svc-go">↗</span>
       </a>
 
-      <a href="hizmetler.html" class="svc last2 reveal">
-        <div class="svc-hd">
-          <span class="svc-num">// 08</span>
-          <span class="svc-arrow">↗</span>
+      <a href="hizmetler.html" class="svc-row reveal">
+        <div class="svc-idx">08</div>
+        <div class="svc-left">
+          <h3 class="svc-name">Basınçlı Kaplar & Proses Tankları</h3>
+          <div class="svc-pills">
+            <span class="svc-pill">PED Cat. I–II</span>
+            <span class="svc-pill">RT/UT %100</span>
+            <span class="svc-pill">P265GH · 304L · 316L</span>
+          </div>
         </div>
-        <h3 class="svc-title">Basınçlı<br/>Kaplar & Tanklar</h3>
-        <p class="svc-desc">Kod/standart tabanlı basınçlı kap ve proses tankı imalatı.</p>
-        <ul class="svc-feats">
-          <li><span>PED Cat. I – II uyumlu</span></li>
-          <li><span>RT/UT %100 kritik dikiş</span></li>
-          <li><span>P265GH · 304L · 316L</span></li>
-        </ul>
-        <div class="svc-tags">
-          <span class="svc-tag">PED</span>
-          <span class="svc-tag">PASLANMAZ</span>
-          <span class="svc-tag">RT/UT</span>
-        </div>
+        <p class="svc-brief">Standart tabanlı basınçlı kap ve proses tankı imalatı — tam nüfuziyet kaynak, %100 kritik dikiş muayenesi ve CE uygunluk beyanı.</p>
+        <span class="svc-go">↗</span>
       </a>
+
     </div>
   </div>
 </section>
@@ -1801,6 +1768,80 @@
           <div class="sector-sub">Class Onaylı Yapı</div>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- REFERANSLAR -->
+<section style="padding:100px 0; background:var(--ink-1); border-top:1px solid var(--ink-4);">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:56px;">
+      <div>
+        <div class="eyebrow">Referanslar</div>
+        <p class="idx mono" style="margin-top:12px; color:var(--steel-1);">CLT — 240 PROJE</p>
+      </div>
+      <h2 class="display h2">
+        240+ proje, <span style="color:var(--arc-2);">5 sektörde.</span>
+      </h2>
+    </div>
+
+    <!-- Sektör rozetleri -->
+    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px;">
+      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+        <span style="color:var(--arc-2);">■</span> İŞ MAKİNELERİ
+        <span style="color:var(--steel-1);">/ HARDOX · S700MC</span>
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+        <span style="color:var(--arc-2);">■</span> YAPISAL ÇELİK
+        <span style="color:var(--steel-1);">/ S355 · S690QL</span>
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+        <span style="color:var(--arc-2);">■</span> ENERJİ / GES
+        <span style="color:var(--steel-1);">/ S275 · HDG</span>
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+        <span style="color:var(--arc-2);">■</span> DEMİRYOLU
+        <span style="color:var(--steel-1);">/ EN 15085 CL1</span>
+      </span>
+      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+        <span style="color:var(--arc-2);">■</span> PROSES / BASINÇLI KAP
+        <span style="color:var(--steel-1);">/ PED · RT %100</span>
+      </span>
+    </div>
+
+    <!-- Müşteri sözleri -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--ink-4); border:1px solid var(--ink-4);">
+      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
+        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+          S960QL ile daha önce kaynak yaptıran firmalar ön ısıtma yapmamıştı, çatlak çıkmıştı. EREKAN'da WPS'i ve ön ısıtma protokolü eksiksizdi.
+        </p>
+        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
+          SATIN ALMA MÜD. · AĞIR ARAÇ OEM
+        </div>
+      </div>
+      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
+        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+          EN 1090 EXC3 kapsamında belge paketi talep ettik. CE dosyası, WPQR listesi, NDT kayıtları — hepsi ilk teslimde hazırdı.
+        </p>
+        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
+          KALİTE MÜHENDİSİ · ENERJİ TESİSİ
+        </div>
+      </div>
+      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
+        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+          3 yıldır her yıl seri kepçe siparişimizi veriyoruz. Adet başı kalite sapması neredeyse sıfır — bu disiplini sürdürmek kolay değil.
+        </p>
+        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
+          GENEL MÜDÜR · MAKİNE İMALAT SANAYİ
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; text-align:center;">
+      <a href="projeler.html" class="btn btn-ghost">Tüm Projelere Bak <span class="arrow">→</span></a>
     </div>
   </div>
 </section>

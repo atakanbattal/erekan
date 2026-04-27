@@ -155,20 +155,39 @@ function initCounters() {
   els.forEach(el => io.observe(el));
 }
 
+function buildScrollBar() {
+  return `<div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>`;
+}
+
+
+function initScrollBar() {
+  const bar = document.getElementById('scrollBar');
+  if (!bar) return;
+  const update = () => {
+    const scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
 function mountChrome(activePage) {
   // Initialize theme from localStorage BEFORE mounting, so no flash
-  const savedTheme = localStorage.getItem('erekan-theme') || 'dark';
+  const savedTheme = localStorage.getItem('erekan-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
-  document.body.insertAdjacentHTML('afterbegin', buildNav(activePage));
+  document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage));
   document.body.insertAdjacentHTML('beforeend', buildFooter());
   document.addEventListener('DOMContentLoaded', () => {
     initReveals();
     initCounters();
+    initScrollBar();
   });
   if (document.readyState !== 'loading') {
     initReveals();
     initCounters();
+    initScrollBar();
   }
 }
 

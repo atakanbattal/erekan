@@ -4,6 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hizmetler — EREKAN</title>
+  <meta name="description" content="Kaynaklı imalat, lazer kesim, CNC büküm, yüzey işleme ve montaj hizmetleri. S690QL, S700MC, S960QL ve alüminyum dahil tüm çelik gruplarında üretim." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hizmetler — EREKAN" />
+  <meta property="og:description" content="Kaynaklı imalat, lazer kesim, CNC büküm, yüzey işleme ve montaj hizmetleri. S690QL, S700MC, S960QL ve alüminyum dahil tüm çelik gruplarında üretim." />
+  <meta property="og:url" content="https://www.erekan.com.tr/hizmetler.html" />
+  <meta property="og:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="EREKAN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hizmetler — EREKAN" />
+  <meta name="twitter:description" content="Kaynaklı imalat, lazer kesim, CNC büküm, yüzey işleme ve montaj hizmetleri. S690QL, S700MC, S960QL ve alüminyum dahil tüm çelik gruplarında üretim." />
+  <meta name="twitter:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
 <link rel="stylesheet" href="assets/theme.css" />
 <style>
   .page-hero {
@@ -163,7 +176,7 @@
   .sv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
   .sv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
   .sv-big { font-family: var(--ff-display); font-weight: 700; font-size: clamp(56px, 5.5vw, 92px); line-height: .95; letter-spacing: -.03em; color: var(--paper); }
-  .sv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--steel-2); margin-top: 4px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
+  .sv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; color: var(--steel-2); margin-top: 4px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
   .sv-rows { display: flex; flex-direction: column; margin: 20px 0; }
   .sv-rw { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--ink-4); align-items: baseline; }
   .sv-rw:last-child { border-bottom: 0; }
@@ -207,47 +220,116 @@
   }
   .svc-table td:first-child { color: var(--bone); }
 
-  /* Sac kalite matrix */
-  .sac-matrix {
+  /* Material table */
+  .mat-cols {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1px;
     background: var(--ink-5);
-    border: 1px solid var(--ink-5);
+    border: 1px solid var(--ink-4);
   }
-  .sac-cell {
+  .mat-wrap {
+    overflow: hidden;
     background: var(--ink-1);
-    padding: 16px 14px;
   }
-  .sac-cell .g {
+  .mat-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .mat-table thead th {
     font-family: var(--ff-mono);
     font-size: 9px;
-    color: var(--arc-2);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--steel-1);
+    padding: 10px 16px;
+    text-align: left;
+    background: var(--ink-2);
+    border-bottom: 1px solid var(--ink-5);
+    white-space: nowrap;
+  }
+  .mat-table tbody tr {
+    border-bottom: 1px solid var(--ink-4);
+    transition: background .15s ease;
+  }
+  .mat-table tbody tr:last-child { border-bottom: 0; }
+  .mat-table tbody tr:hover { background: var(--ink-2); }
+  .mat-table tbody td {
+    padding: 13px 16px;
+    vertical-align: middle;
+  }
+  .mat-cat {
+    font-family: var(--ff-mono);
+    font-size: 8.5px;
+    color: var(--steel-1);
     letter-spacing: .14em;
     text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
   }
-  .sac-cell .grd {
+  .mat-grade {
     font-family: var(--ff-display);
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     color: var(--bone);
     letter-spacing: -.01em;
-    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
   }
-  .sac-cell .desc {
+  .mat-desc {
+    font-size: 12px;
+    color: var(--steel-3);
+    line-height: 1.45;
+  }
+  .mat-fy {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--bone);
+    white-space: nowrap;
+  }
+  .mat-note {
     font-size: 11px;
     color: var(--steel-2);
-    margin-top: 6px;
-    line-height: 1.4;
+    line-height: 1.45;
+  }
+  .mat-niche { background: rgba(255,122,26,.04); }
+  .mat-niche:hover { background: rgba(255,122,26,.07) !important; }
+  .mat-niche .mat-cat { color: var(--arc-3); }
+  .mat-niche .mat-grade { color: var(--bone); }
+  .niche-tag {
+    font-family: var(--ff-mono);
+    font-size: 7.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--arc-2);
+    border: 1px solid rgba(255,122,26,.45);
+    padding: 1px 5px;
+    line-height: 1.6;
+    flex-shrink: 0;
   }
 
   @media (max-width: 1000px) {
     .svc-row, .svc-row.reverse { grid-template-columns: 1fr; gap: 32px; }
     .svc-row.reverse .svc-meta { order: 1; }
     .svc-row.reverse .svc-visual { order: 2; }
-    .sac-matrix { grid-template-columns: repeat(2, 1fr); }
+    .mat-cols { grid-template-columns: 1fr; }
+    .mat-table .mat-note { display: none; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://www.erekan.com.tr/hizmetler.html",
+  "name": "Kaynaklı İmalat & Metal İşleme Hizmetleri",
+  "provider": {"@id": "https://www.erekan.com.tr/#organization"},
+  "description": "Kaynaklı imalat, lazer kesim, CNC büküm, yüzey işleme. S235'ten S960QL, S700MC, alüminyum alaşımlar ve HARDOX dahil tüm çelik gruplarında WPS onaylı üretim.",
+  "serviceType": ["Kaynaklı İmalat", "Sac Kesim", "CNC Büküm", "Yüzey İşleme", "Montaj"],
+  "areaServed": {"@type": "Country", "name": "Türkiye"},
+  "url": "https://www.erekan.com.tr/hizmetler.html"
+}
+</script>
 </head>
 <body>
 
@@ -330,24 +412,12 @@
         </p>
 
         <ul class="svc-feats">
-          <li>EN ISO 9606-1 sertifikalı kaynakçı ekibi ve sertifika takip matrisi</li>
-          <li>EN ISO 15614-1 WPQR bazlı, her malzeme grubu için onaylı WPS kütüphanesi</li>
+          <li>EN ISO 9606-1 (çelik) ve 9606-2 (alüminyum) sertifikalı kaynakçı ekibi</li>
+          <li>EN ISO 15614-1 (çelik) ve 15614-2 (alüminyum) WPQR tabanlı WPS kütüphanesi</li>
+          <li>S690QL · S700MC · S960QL gibi yüksek mukavemetli çeliklerde onaylı WPS ve izlenebilir dikiş</li>
           <li>Ön ısıtma ve pasolar arası sıcaklık (interpass) kayıtlı kontrolü</li>
-          <li>Dikiş bazında kaynakçı, WPS ve parametre izleme</li>
           <li>Kabul kriteri olarak EN ISO 5817 B sınıfı (yüksek kalite)</li>
         </ul>
-
-        <h4 style="font-family: var(--ff-mono); font-size: 11px; color: var(--steel-2); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px;">Kaynatabildiğimiz Sac Grupları</h4>
-        <div class="sac-matrix">
-          <div class="sac-cell"><div class="g">Grup 1</div><div class="grd">S235 · S275</div><div class="desc">Yapısal karbon çeliği</div></div>
-          <div class="sac-cell"><div class="g">Grup 1.2</div><div class="grd">S355 J2+N</div><div class="desc">Yapısal orta mukavemet</div></div>
-          <div class="sac-cell"><div class="g">Grup 3</div><div class="grd">S690 QL</div><div class="desc">Yüksek akma mukavemeti</div></div>
-          <div class="sac-cell"><div class="g">Grup 8</div><div class="grd">304 · 316 L</div><div class="desc">Östenitik paslanmaz</div></div>
-          <div class="sac-cell"><div class="g">Aşınma</div><div class="grd">HARDOX 400/450/500</div><div class="desc">Aşınmaya dayanıklı</div></div>
-          <div class="sac-cell"><div class="g">Aşınma</div><div class="grd">RAEX 400/450</div><div class="desc">Aşınmaya dayanıklı</div></div>
-          <div class="sac-cell"><div class="g">P-Grubu</div><div class="grd">P265 · P355</div><div class="desc">Basınçlı kap çeliği</div></div>
-          <div class="sac-cell"><div class="g">Hafif metal</div><div class="grd">EN AW 5754/6082</div><div class="desc">Alüminyum (TIG)</div></div>
-        </div>
       </div>
 
       <div class="svc-visual">
@@ -356,10 +426,10 @@
           <span class="r">ISO 3834-2</span>
         </div>
         <div class="sv-big">01</div>
-        <div class="sv-sub">Welded Fabrication</div>
+        <div class="sv-sub">WELDED FABRICATION</div>
 
         <div class="sv-rows">
-          <div class="sv-rw"><div class="k">Yöntemler</div><div class="v">MIG/MAG · TIG · E-ARC</div></div><div class="sv-rw"><div class="k">WPS / WPQR</div><div class="v">EN ISO 15614-1</div></div><div class="sv-rw"><div class="k">Kaynakçı Yeterlilik</div><div class="v">EN ISO 9606-1 · 100%</div></div><div class="sv-rw"><div class="k">Maks. Kesit</div><div class="v">60 mm çelik · 20 mm paslanmaz</div></div><div class="sv-rw"><div class="k">Sembolizasyon</div><div class="v">EN ISO 2553</div></div><div class="sv-rw"><div class="k">Kabul Sınıfı</div><div class="v">EN ISO 5817 B/C</div></div>
+          <div class="sv-rw"><div class="k">Yöntemler</div><div class="v">MIG/MAG · TIG · E-ARC</div></div><div class="sv-rw"><div class="k">WPS / WPQR</div><div class="v">EN ISO 15614-1 · 15614-2</div></div><div class="sv-rw"><div class="k">Kaynakçı Yeterlilik</div><div class="v">EN ISO 9606-1 · 9606-2 · 100%</div></div><div class="sv-rw"><div class="k">Maks. Kesit</div><div class="v">60 mm çelik · 20 mm paslanmaz</div></div><div class="sv-rw"><div class="k">Sembolizasyon</div><div class="v">EN ISO 2553</div></div><div class="sv-rw"><div class="k">Kabul Sınıfı</div><div class="v">EN ISO 5817 B/C</div></div>
         </div>
 
         <div class="sv-tags"><span>KARBON ÇELİK</span><span>PASLANMAZ</span><span>ALÜMİNYUM</span><span>PED CAT.II</span><span>EN 1090 EXC3</span></div>
@@ -367,6 +437,108 @@
         <div class="sv-foot">
           <span>12 İSTASYON</span>
           <span class="ok">● AKTİF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tam genişlik malzeme tablosu -->
+    <div style="margin-top: 48px;">
+      <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px;">Kaynatabildiğimiz Sac Grupları</div>
+      <div class="mat-cols">
+        <!-- Sol: Yapısal & Yüksek Mukavemet -->
+        <div class="mat-wrap">
+          <table class="mat-table">
+            <thead>
+              <tr><th>Sınıf</th><th>Açıklama</th><th>fy min</th><th>Kaynak Notu</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="mat-cat">Grup 1</span><span class="mat-grade">S235 · S275</span></td>
+                <td><span class="mat-desc">Yapısal karbon çeliği</span></td>
+                <td><span class="mat-fy">235–275 MPa</span></td>
+                <td><span class="mat-note">Standart WPS</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">Grup 1.2</span><span class="mat-grade">S355 J2+N</span></td>
+                <td><span class="mat-desc">Yapısal orta mukavemet</span></td>
+                <td><span class="mat-fy">355 MPa</span></td>
+                <td><span class="mat-note">EN 1090 EXC3</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S690 QL</span></td>
+                <td><span class="mat-desc">Su verme + temperleme</span></td>
+                <td><span class="mat-fy">690 MPa</span></td>
+                <td><span class="mat-note">Ön ısıtma · EN 1011-2</span></td>
+              </tr>
+              <tr class="mat-niche">
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S960 QL <span class="niche-tag">NİŞ</span></span></td>
+                <td><span class="mat-desc">Ultra-yüksek mukavemet</span></td>
+                <td><span class="mat-fy">960 MPa</span></td>
+                <td><span class="mat-note">Özel WPS + H5 sarf malzeme</span></td>
+              </tr>
+              <tr class="mat-niche">
+                <td><span class="mat-cat">Grup 3 · TMCP</span><span class="mat-grade">S700 MC <span class="niche-tag">NİŞ</span></span></td>
+                <td><span class="mat-desc">Termomekanik haddeleme</span></td>
+                <td><span class="mat-fy">700 MPa</span></td>
+                <td><span class="mat-note">Isı girdisi ≤ 1.5 kJ/mm</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Sağ: Paslanmaz, Aşınma, Basınçlı, Alüminyum -->
+        <div class="mat-wrap">
+          <table class="mat-table">
+            <thead>
+              <tr><th>Sınıf</th><th>Açıklama</th><th>fy min</th><th>Kaynak Notu</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="mat-cat">Grup 8</span><span class="mat-grade">304 · 316 L</span></td>
+                <td><span class="mat-desc">Östenitik paslanmaz çelik</span></td>
+                <td><span class="mat-fy">—</span></td>
+                <td><span class="mat-note">Ayrı atölye · kontaminasyon sıfır</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">Aşınma</span><span class="mat-grade">HARDOX 400/450/500</span></td>
+                <td><span class="mat-desc">Aşınmaya dayanıklı (Ar çeliği)</span></td>
+                <td><span class="mat-fy">1000+ MPa</span></td>
+                <td><span class="mat-note">Kepçe · zırh · konveyör</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">Aşınma</span><span class="mat-grade">RAEX 400/450</span></td>
+                <td><span class="mat-desc">Aşınmaya dayanıklı</span></td>
+                <td><span class="mat-fy">1200+ MPa</span></td>
+                <td><span class="mat-note">Yüksek aşınma uygulamaları</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">P-Grubu</span><span class="mat-grade">P265GH · P355NH</span></td>
+                <td><span class="mat-desc">Basınçlı kap çeliği</span></td>
+                <td><span class="mat-fy">265–355 MPa</span></td>
+                <td><span class="mat-note">PED Kat. I–II · EN 13445</span></td>
+              </tr>
+              <tr>
+                <td><span class="mat-cat">Hafif Metal · 9606-2</span><span class="mat-grade">EN AW 5754/6082</span></td>
+                <td><span class="mat-desc">Alüminyum alaşımı (TIG)</span></td>
+                <td><span class="mat-fy">—</span></td>
+                <td><span class="mat-note">EN ISO 9606-2 belgeli kaynakçı</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Yüksek mukavemetli çelik callout -->
+      <div style="margin-top: 16px; padding: 18px 20px; background: rgba(255,122,26,.05); border: 1px solid rgba(255,122,26,.2); border-left: 3px solid var(--arc-2);">
+        <div style="font-family: var(--ff-mono); font-size: 9px; color: var(--arc-2); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px;">■ YÜKSEK MUKAVEMETLİ ÇELİK KAYNAĞINDA KRİTİK FARKLILIKLAR</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div>
+            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S700MC — TMCP</div>
+            <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;">Isı girdisi ≤ 1.5 kJ/mm · Interpass ≤ 200°C · CEV düşük, ön ısıtma çoğu durumda gerekmez.</div>
+          </div>
+          <div>
+            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S690QL / S960QL — QT</div>
+            <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;">Ön ısıtma zorunlu (EN 1011-2 Metot B) · H5 sarf · WPQR olmadan dikiş atılmaz.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -408,7 +580,7 @@
           <span class="r">DXF → G-CODE</span>
         </div>
         <div class="sv-big">02</div>
-        <div class="sv-sub">Precision Cutting</div>
+        <div class="sv-sub">PRECISION CUTTING</div>
 
         <div class="sv-rows">
           <div class="sv-rw"><div class="k">CNC Plazma</div><div class="v">Maks. 60 mm · ±0.3 mm</div></div><div class="sv-rw"><div class="k">Oksijen</div><div class="v">Maks. 200 mm · kalın kesit</div></div><div class="sv-rw"><div class="k">Lazer</div><div class="v">Maks. 20 mm · ±0.1 mm</div></div><div class="sv-rw"><div class="k">Gilyotin</div><div class="v">Maks. 12 mm · 3000 mm</div></div><div class="sv-rw"><div class="k">Nesting</div><div class="v">Plaka verimi ≥ %85</div></div><div class="sv-rw"><div class="k">Dosya Formatı</div><div class="v">DXF · DWG · STEP</div></div>
@@ -459,7 +631,7 @@
           <span class="r">α ± 0.5°</span>
         </div>
         <div class="sv-big">03</div>
-        <div class="sv-sub">Forming & Bending</div>
+        <div class="sv-sub">FORMING & BENDING</div>
 
         <div class="sv-rows">
           <div class="sv-rw"><div class="k">Abkant Presi</div><div class="v">200 ton · 3000 mm</div></div><div class="sv-rw"><div class="k">Büküm Açısı</div><div class="v">0° – 180° · ±0.5°</div></div><div class="sv-rw"><div class="k">İç Radyüs</div><div class="v">1.5 × t (pratik)</div></div><div class="sv-rw"><div class="k">Maks. Sac Kalınlığı</div><div class="v">10 mm (200t) · 6 mm (seri)</div></div><div class="sv-rw"><div class="k">Silindir Makina</div><div class="v">3-top · Ø 60 mm min.</div></div><div class="sv-rw"><div class="k">K-Faktör</div><div class="v">Malzemeye göre hesap</div></div>
@@ -505,7 +677,7 @@
           <span class="r">BILL OF OPERATIONS</span>
         </div>
         <div class="sv-big">04</div>
-        <div class="sv-sub">Mechanical Assembly</div>
+        <div class="sv-sub">MECHANICAL ASSEMBLY</div>
 
         <div class="sv-rows">
           <div class="sv-rw"><div class="k">Fikstür</div><div class="v">Proje bazlı · CMM kontrollü</div></div><div class="sv-rw"><div class="k">Cıvatalı Birleştirme</div><div class="v">ISO 898 Sınıf 8.8 · 10.9</div></div><div class="sv-rw"><div class="k">Tork Sertifikalı</div><div class="v">Dijital anahtar · iz kaydı</div></div><div class="sv-rw"><div class="k">Hassas Hizalama</div><div class="v">Lazer + optik</div></div><div class="sv-rw"><div class="k">Test</div><div class="v">Kuru/Islak · Fonksiyonel</div></div><div class="sv-rw"><div class="k">Paketleme</div><div class="v">Deniz/kara · çelik kasa</div></div>
@@ -554,7 +726,7 @@
           <span class="r">EN ISO 9712</span>
         </div>
         <div class="sv-big">05</div>
-        <div class="sv-sub">Quality & Inspection</div>
+        <div class="sv-sub">QUALITY & INSPECTION</div>
 
         <div class="sv-rows">
           <div class="sv-rw"><div class="k">Görsel (VT)</div><div class="v">EN ISO 17637 · 100%</div></div><div class="sv-rw"><div class="k">Penetrant (PT)</div><div class="v">EN ISO 3452</div></div><div class="sv-rw"><div class="k">Manyetik (MT)</div><div class="v">EN ISO 17638</div></div><div class="sv-rw"><div class="k">Ultrasonik (UT)</div><div class="v">EN ISO 17640 · A-scan</div></div><div class="sv-rw"><div class="k">Radyografik (RT)</div><div class="v">Dış hizmet · lisanslı</div></div><div class="sv-rw"><div class="k">Geometrik</div><div class="v">CMM · 3D tarama</div></div>
