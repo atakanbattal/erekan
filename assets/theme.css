@@ -121,7 +121,7 @@
 [data-theme="light"] .nav-burger span { background: var(--steel-4); }
 
 /* Smooth transition when switching */
-html { transition: background .3s ease; }
+html { transition: background .3s ease; overflow-x: hidden; }
 body, .nav, .footer, section, .container, [class*="card"], [class*="panel"] {
   transition: background-color .3s ease, border-color .3s ease, color .3s ease;
 }
@@ -621,6 +621,28 @@ section { position: relative; }
   .section-head { grid-template-columns: 1fr; gap: 16px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 640px) {
+  /* Nav: hide CTA, compact right side */
+  .nav-cta { display: none !important; }
+  .nav-right { gap: 8px; }
+
+  /* Footer: single column */
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Typography clamp safeguard */
+  .h1 { font-size: clamp(36px, 10vw, 72px); }
+  .h2 { font-size: clamp(28px, 7vw, 52px); }
+}
+
+@media (max-width: 480px) {
+  /* Extra small: tighten container gutter */
+  .container { padding: 0 16px; }
+  /* Badges: allow wrap */
+  .badge, .svc-pill { white-space: normal; }
+  /* Table cells: tighter */
+  table th, table td { padding: 8px 6px; font-size: 10px; }
 }
 
 /* ── Scroll progress bar ── */

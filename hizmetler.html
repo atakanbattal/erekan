@@ -316,6 +316,10 @@
     .mat-cols { grid-template-columns: 1fr; }
     .mat-table .mat-note { display: none; }
   }
+  @media (max-width: 640px) {
+    .mat-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .mat-table { min-width: 400px; }
+  }
 </style>
 <script type="application/ld+json">
 {
