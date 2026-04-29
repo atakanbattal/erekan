@@ -277,7 +277,7 @@ img { max-width: 100%; display: block; }
   border-radius: 3px;
 }
 .logo-img {
-  height: 40px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   display: block;
