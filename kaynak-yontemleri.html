@@ -25,7 +25,7 @@
   .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
-  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(40px, 6vw, 92px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
   .page-hero h1 .arc { color: var(--arc-2); }
 
   /* Method selector (interactive) */
@@ -217,6 +217,54 @@
     .mb-pros { grid-template-columns: 1fr; }
     .sel-specs { grid-template-columns: 1fr; }
   }
+
+  /* Image effect system */
+  .hero-img-strip {
+    width: 100%; aspect-ratio: 21/7; overflow: hidden;
+    position: relative; background: var(--ink-2);
+  }
+  .hero-img-strip img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.78) saturate(.9);
+    transition: transform 12s ease, filter 12s ease;
+  }
+  .hero-img-strip:hover img { transform: scale(1.04); filter: brightness(.88) saturate(1); }
+  .hero-img-strip .strip-label {
+    position: absolute; bottom: 20px; right: 28px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--bone); letter-spacing: .2em; text-transform: uppercase;
+    opacity: .7;
+  }
+
+  .method-img-card {
+    position: relative; overflow: hidden; background: var(--ink-2);
+    aspect-ratio: 16/9; margin-top: 28px;
+  }
+  .method-img-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s ease;
+    filter: brightness(.85) saturate(.9);
+  }
+  .method-img-card:hover img { transform: scale(1.06); filter: brightness(1.05) saturate(1.08); }
+  .method-img-card .ic-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,.65) 100%);
+    transition: opacity .45s ease;
+  }
+  .method-img-card:hover .ic-overlay { opacity: .2; }
+  .method-img-card .ic-badge {
+    position: absolute; bottom: 14px; left: 16px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .method-img-card:hover .ic-badge { opacity: 1; transform: none; }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
+  .reveal[data-d="2"] { transition-delay: .24s; }
 </style>
 </head>
 <body>
@@ -224,7 +272,7 @@
 <section class="page-hero">
   <div class="container page-hero-inner">
     <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; KAYNAK YÖNTEMLERİ</div>
-    <h1>Kaynak Teknolojileri.<br/><span class="arc">Standartlara uygun üretim.</span></h1>
+    <h1>Prosese Hakim Üretim.<br/><span class="arc">Her malzeme için doğru kaynak yöntemi.</span></h1>
     <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
       Doğru kaynak; doğru proses, doğru dolgu metali, doğru gaz ve doğru elin
       birleştiği andır. ArmaWeld'de üç ana proses ailesinde derin uzmanlığımız var:
@@ -232,6 +280,12 @@
     </p>
   </div>
 </section>
+
+<!-- Hero image strip -->
+<div class="hero-img-strip">
+  <img src="uploads/boru-kaynagi.jpeg" alt="Boru kaynağı uygulaması" loading="lazy" />
+  <span class="strip-label">Kaynak Prosesleri · MIG · TIG · E-Arc</span>
+</div>
 
 <!-- Method selector -->
 <section class="selector">
@@ -318,7 +372,7 @@
 <!-- MIG/MAG Detail -->
 <section class="method-block">
   <div class="container">
-    <div class="mb-row">
+    <div class="mb-row reveal">
       <div class="mb-meta">
         <div class="abbr">MIG / MAG</div>
         <div class="full">Gaz Metal Ark Kaynağı · ISO 4063 Proses 131/135/136</div>
@@ -381,6 +435,12 @@
           <span>DC+ · 120–320 A</span>
           <span class="ok">● ÖNCELİKLİ</span>
         </div>
+
+        <div class="method-img-card">
+          <img src="uploads/kaynak.png" alt="MIG/MAG kaynak uygulaması" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● MIG/MAG · Yapısal Kaynak</span>
+        </div>
       </div>
     </div>
   </div>
@@ -389,7 +449,7 @@
 <!-- TIG Detail -->
 <section class="method-block">
   <div class="container">
-    <div class="mb-row">
+    <div class="mb-row reveal" data-d="1">
       <div class="mb-visual">
         <div class="mv-head">
           <span class="t">■ TIG</span>
@@ -412,6 +472,12 @@
         <div class="mv-foot">
           <span>AC/DC · 20–220 A</span>
           <span class="ok">● HASSAS İŞ</span>
+        </div>
+
+        <div class="method-img-card">
+          <img src="uploads/tig.jpeg" alt="TIG kaynak uygulaması" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● TIG · Hassas Ark Kaynağı</span>
         </div>
       </div>
 
@@ -460,7 +526,7 @@
 <!-- SMAW Detail -->
 <section class="method-block">
   <div class="container">
-    <div class="mb-row">
+    <div class="mb-row reveal">
       <div class="mb-meta">
         <div class="abbr">E-ARC</div>
         <div class="full">Örtülü Elektrod Ark Kaynağı (SMAW) · ISO 4063 Proses 111</div>
@@ -639,6 +705,12 @@ document.querySelectorAll('.sel-pills').forEach(group => {
   });
 });
 chooseProc();
+
+// Scroll reveal
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 </script>
 </body>
 </html>

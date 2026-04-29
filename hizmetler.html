@@ -100,9 +100,9 @@
   .page-hero h1 {
     font-family: var(--ff-display);
     font-weight: 900;
-    font-size: clamp(40px, 6vw, 92px);
-    line-height: .98;
-    letter-spacing: -.035em;
+    font-size: clamp(28px, 4vw, 62px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
     color: var(--bone);
     margin-bottom: 32px;
   }
@@ -138,7 +138,7 @@
     font-family: var(--ff-display);
     font-weight: 800;
     font-size: clamp(40px, 4.5vw, 64px);
-    line-height: .95;
+    line-height: 1.08;
     letter-spacing: -.03em;
     color: var(--bone);
     margin-bottom: 28px;
@@ -320,6 +320,42 @@
     .mat-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .mat-table { min-width: 400px; }
   }
+
+  /* ── Görsel kart ───────────────────────────── */
+  .img-card {
+    position: relative; overflow: hidden;
+    margin-bottom: 20px;
+    aspect-ratio: 16 / 9;
+    background: var(--ink-2);
+  }
+  .img-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s ease;
+    filter: brightness(.88) saturate(.92);
+  }
+  .img-card:hover img { transform: scale(1.06); filter: brightness(1.1) saturate(1.08); }
+  .img-card .ic-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 45%, rgba(10,10,10,.6) 100%);
+    transition: opacity .45s ease;
+  }
+  .img-card:hover .ic-overlay { opacity: .25; }
+  .img-card .ic-badge {
+    position: absolute; bottom: 12px; left: 14px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .img-card:hover .ic-badge { opacity: 1; transform: none; }
+
+  /* ── Scroll reveal ─────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
+  .reveal[data-d="2"] { transition-delay: .24s; }
+  .reveal[data-d="3"] { transition-delay: .36s; }
 </style>
 <script type="application/ld+json">
 {
@@ -403,7 +439,7 @@
 <!-- 01: Kaynaklı İmalat -->
 <section class="svc-block" id="s-01">
   <div class="container">
-    <div class="svc-row">
+    <div class="svc-row reveal">
       <div class="svc-meta">
         <div class="num">// 01 · KAYNAKLI İMALAT</div>
         <h2>Kaynaklı<br/>İmalat Çözümleri.</h2>
@@ -419,12 +455,17 @@
           <li>EN ISO 9606-1 (çelik) ve 9606-2 (alüminyum) sertifikalı kaynakçı ekibi</li>
           <li>EN ISO 15614-1 (çelik) ve 15614-2 (alüminyum) WPQR tabanlı WPS kütüphanesi</li>
           <li>S690QL · S700MC · S960QL gibi yüksek mukavemetli çeliklerde onaylı WPS ve izlenebilir dikiş</li>
-          <li>Ön ısıtma ve pasolar arası sıcaklık (interpass) kayıtlı kontrolü</li>
+          <li>Ön ısıtma ve pasolar arası sıcaklık kontrolü; her dikiş kayıt altına alınır</li>
           <li>Kabul kriteri olarak EN ISO 5817 B sınıfı (yüksek kalite)</li>
         </ul>
       </div>
 
       <div class="svc-visual">
+        <div class="img-card reveal" data-d="2">
+          <img src="uploads/kaynak.png" alt="Kaynaklı imalat" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● Kaynaklı İmalat</span>
+        </div>
         <div class="sv-head">
           <span class="t">■ KAYNAKLI İMALAT</span>
           <span class="r">ISO 3834-2</span>
@@ -537,7 +578,7 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
           <div>
             <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S700MC — TMCP</div>
-            <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;">Isı girdisi ≤ 1.5 kJ/mm · Interpass ≤ 200°C · CEV düşük, ön ısıtma çoğu durumda gerekmez.</div>
+            <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;">Isı girdisi ≤ 1.5 kJ/mm · Pasolar arası sıcaklık ≤ 200°C · Karbon eşdeğeri düşük, ön ısıtma çoğu durumda gerekmez.</div>
           </div>
           <div>
             <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S690QL / S960QL — QT</div>
@@ -552,7 +593,7 @@
 <!-- 02: Sac Kesim -->
 <section class="svc-block" id="s-02">
   <div class="container">
-    <div class="svc-row reverse">
+    <div class="svc-row reverse reveal">
       <div class="svc-meta">
         <div class="num">// 02 · SAC KESİM & PROFİL İŞLEME</div>
         <h2>Sac Kesim<br/>ve Tolerans Yönetimi.</h2>
@@ -579,6 +620,11 @@
       </div>
 
       <div class="svc-visual">
+        <div class="img-card reveal" data-d="2">
+          <img src="uploads/kesim.png" alt="Sac kesim" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● Hassas Kesim</span>
+        </div>
         <div class="sv-head">
           <span class="t">■ SAC KESİM</span>
           <span class="r">DXF → G-CODE</span>
@@ -604,7 +650,7 @@
 <!-- 03: Büküm -->
 <section class="svc-block" id="s-03">
   <div class="container">
-    <div class="svc-row">
+    <div class="svc-row reveal">
       <div class="svc-meta">
         <div class="num">// 03 · BÜKÜM & ŞEKİLLENDİRME</div>
         <h2>Büküm<br/>ve Şekillendirme.</h2>
@@ -630,6 +676,11 @@
       </div>
 
       <div class="svc-visual">
+        <div class="img-card reveal" data-d="2">
+          <img src="uploads/bukum.png" alt="Büküm ve şekillendirme" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● CNC Büküm</span>
+        </div>
         <div class="sv-head">
           <span class="t">■ BÜKÜM & ŞEKİLLENDİRME</span>
           <span class="r">α ± 0.5°</span>
@@ -655,7 +706,7 @@
 <!-- 04: Montaj -->
 <section class="svc-block" id="s-04">
   <div class="container">
-    <div class="svc-row reverse">
+    <div class="svc-row reverse reveal">
       <div class="svc-meta">
         <div class="num">// 04 · MEKANİK MONTAJ</div>
         <h2>Mekanik Montaj<br/>ve Sevke Hazırlık.</h2>
@@ -676,6 +727,11 @@
       </div>
 
       <div class="svc-visual">
+        <div class="img-card reveal" data-d="2">
+          <img src="uploads/bom.png" alt="Mekanik montaj" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● Mekanik Montaj</span>
+        </div>
         <div class="sv-head">
           <span class="t">■ MEKANİK MONTAJ</span>
           <span class="r">BILL OF OPERATIONS</span>
@@ -701,7 +757,7 @@
 <!-- 05: NDT -->
 <section class="svc-block">
   <div class="container">
-    <div class="svc-row">
+    <div class="svc-row reveal">
       <div class="svc-meta">
         <div class="num">// 05 · NDT / TAHRİBATSIZ MUAYENE</div>
         <h2>NDT<br/>ve Kalite Kontrol.</h2>
@@ -725,6 +781,11 @@
       </div>
 
       <div class="svc-visual">
+        <div class="img-card reveal" data-d="2">
+          <img src="uploads/ndt-3.jpeg" alt="NDT ve kalite kontrol" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● NDT · Kalite Kontrol</span>
+        </div>
         <div class="sv-head">
           <span class="t">■ KALİTE & NDT</span>
           <span class="r">EN ISO 9712</span>
@@ -759,5 +820,13 @@
 
 <script src="assets/chrome.js"></script>
 <script>mountChrome('hizmetler');</script>
+<script>
+(function(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
 </body>
 </html>

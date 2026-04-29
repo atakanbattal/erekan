@@ -45,7 +45,7 @@
   .page-hero h1 {
     font-family: var(--ff-display);
     font-weight: 900;
-    font-size: clamp(40px, 6vw, 92px);
+    font-size: clamp(28px, 4vw, 62px);
     line-height: .98;
     letter-spacing: -.035em;
     color: var(--bone);
@@ -187,6 +187,24 @@
   }
   @media (max-width: 640px) {
     .mani-visual { grid-template-columns: 1fr; }
+    .manifesto { padding: 64px 0; }
+    .mani-body .lead-quote {
+      font-size: clamp(22px, 6vw, 34px);
+      line-height: 1.2;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--arc-2);
+      padding-left: 18px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    .mani-body {
+      font-size: clamp(15px, 4.2vw, 18px);
+      line-height: 1.6;
+      letter-spacing: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .mani-body p { margin-bottom: 22px; }
   }
 
   .team { padding: 120px 0; background: var(--ink-0); }
@@ -555,6 +573,46 @@
     .val-grid { grid-template-columns: 1fr; }
     .fac-wrap { grid-template-columns: 1fr; gap: 40px; }
   }
+
+  /* ── Görsel kart ───────────────────────────── */
+  .img-card {
+    position: relative; overflow: hidden;
+    background: var(--ink-2);
+  }
+  .img-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s ease;
+    filter: brightness(.88) saturate(.92);
+  }
+  .img-card:hover img { transform: scale(1.05); filter: brightness(1.1) saturate(1.08); }
+  .img-card .ic-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,.55) 100%);
+    transition: opacity .45s ease;
+  }
+  .img-card:hover .ic-overlay { opacity: .2; }
+  .img-card .ic-badge {
+    position: absolute; bottom: 16px; left: 18px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .img-card:hover .ic-badge { opacity: 1; transform: none; }
+
+  /* Tam genişlik hero görseli */
+  .hero-img-strip { width: 100%; aspect-ratio: 21/8; }
+  @media (max-width: 768px) { .hero-img-strip { aspect-ratio: 16/9; } }
+
+  /* Manifesto görsel */
+  .mani-img { aspect-ratio: 4/3; margin-top: 32px; }
+
+  /* ── Scroll reveal ─────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
+  .reveal[data-d="2"] { transition-delay: .24s; }
 </style>
 </head>
 <body>
@@ -562,7 +620,7 @@
 <section class="page-hero">
   <div class="container page-hero-inner">
     <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; HAKKIMIZDA</div>
-    <h1>ArmaWeld Hakkında.<br/><span class="arc">Mühendislik disipliniyle üretim.</span></h1>
+    <h1>Köklü Mühendislik Disiplini.<br/><span class="arc">Deneyimle şekillenen üretim anlayışı.</span></h1>
     <p class="lede">
       ArmaWeld, makine ve kaynak mühendislerinin kurduğu bir metal işleme atölyesidir.
       Kaynaklı imalattan yola çıkıp kesim, büküm ve mekanik montajı tek çatı altında
@@ -571,6 +629,12 @@
     </p>
   </div>
 </section>
+
+<div class="img-card hero-img-strip reveal">
+  <img src="uploads/fabrika.png" alt="ArmaWeld atölyesi" loading="lazy" />
+  <div class="ic-overlay"></div>
+  <span class="ic-badge">● ArmaWeld Üretim Atölyesi</span>
+</div>
 
 <section class="manifesto">
   <div class="container">
@@ -595,6 +659,11 @@
         </p>
       </div>
       <div class="mani-visual">
+        <div class="img-card mani-img reveal" data-d="1">
+          <img src="uploads/welder.png" alt="ArmaWeld kaynakçı" loading="lazy" />
+          <div class="ic-overlay"></div>
+          <span class="ic-badge">● Mühendislik Disiplini</span>
+        </div>
         <div class="mv-card">
           <i></i><span class="corners"></span>
           <div class="kt"><span class="on">SERTİFİKA AKTİF</span><span>#01</span></div>
@@ -868,7 +937,7 @@
   <div class="container" style="text-align: center;">
     <div class="eyebrow" style="justify-content: center; margin-bottom: 24px;">Sıradaki adım</div>
     <h2 class="display h2" style="max-width: 20ch; margin: 0 auto 32px;">
-      Bizimle bir <span style="color: var(--arc-2);">proje konuşmak</span><br/>ister misiniz?
+      Bizimle bir <span style="color: var(--arc-2);">proje konuşmak</span> ister misiniz?
     </h2>
     <a href="iletisim.html" class="btn btn-primary">İletişime Geçin <span class="arrow">→</span></a>
   </div>
@@ -876,5 +945,13 @@
 
 <script src="assets/chrome.js"></script>
 <script>mountChrome('hakkimizda');</script>
+<script>
+(function(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
 </body>
 </html>

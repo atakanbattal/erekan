@@ -25,7 +25,7 @@
   .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
-  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(40px, 6vw, 92px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
   .page-hero h1 .arc { color: var(--arc-2); }
 
   .filters { padding: 40px 0; background: var(--ink-1); border-bottom: 1px solid var(--ink-4); }
@@ -214,6 +214,39 @@
   @media (max-width: 1000px) {
     .proj-grid, .testim-grid, .num-row { grid-template-columns: 1fr; }
   }
+
+  /* Image effect system */
+  .hero-img-strip {
+    width: 100%; aspect-ratio: 21/7; overflow: hidden;
+    position: relative; background: var(--ink-2);
+  }
+  .hero-img-strip img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.75) saturate(.88);
+    transition: transform 12s ease, filter 12s ease;
+  }
+  .hero-img-strip:hover img { transform: scale(1.04); filter: brightness(.88) saturate(1); }
+  .hero-img-strip .strip-label {
+    position: absolute; bottom: 20px; right: 28px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--bone); letter-spacing: .2em; text-transform: uppercase;
+    opacity: .7;
+  }
+
+  .proj-img-real {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    position: absolute; inset: 0;
+    filter: brightness(.7) saturate(.9);
+    transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s ease;
+  }
+  .proj:hover .proj-img-real { transform: scale(1.06); filter: brightness(.85) saturate(1.05); }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
+  .reveal[data-d="2"] { transition-delay: .24s; }
+  .reveal[data-d="3"] { transition-delay: .36s; }
 </style>
 </head>
 <body>
@@ -229,6 +262,12 @@
     </p>
   </div>
 </section>
+
+<!-- Hero image strip -->
+<div class="hero-img-strip">
+  <img src="uploads/bom-2.png" alt="ArmaWeld imalat projesi referansı" loading="lazy" />
+  <span class="strip-label">Referans Projeler · 240+ Teslim</span>
+</div>
 
 <!-- Filters -->
 <section class="filters">
@@ -248,11 +287,11 @@
 <!-- Projects -->
 <div class="proj-grid" id="proj-grid">
   <!-- P1 -->
-  <div class="proj" data-cat="makine">
+  <div class="proj reveal" data-cat="makine">
     <div class="proj-img">
+      <img class="proj-img-real" src="uploads/bom.png" alt="HARDOX kepçe imalatı" loading="lazy" />
       <div class="badge">■ 01 · OEM İMALAT</div>
       <div class="year">’25</div>
-      <div class="pi-glyph">M</div>
       <div class="pi-cat">MAKİNE</div>
       <div class="pi-grid"></div>
     </div>
@@ -269,11 +308,11 @@
   </div>
 
   <!-- P2 -->
-  <div class="proj" data-cat="yapisal">
+  <div class="proj reveal" data-d="1" data-cat="yapisal">
     <div class="proj-img">
+      <img class="proj-img-real" src="uploads/kaynak.png" alt="Yapısal çelik kaynaklı imalat" loading="lazy" />
       <div class="badge">■ 02 · EN 1090 EXC2</div>
       <div class="year">’24</div>
-      <div class="pi-glyph">Y</div>
       <div class="pi-cat">YAPISAL</div>
       <div class="pi-grid"></div>
     </div>
@@ -290,11 +329,11 @@
   </div>
 
   <!-- P3 -->
-  <div class="proj" data-cat="proses">
+  <div class="proj reveal" data-d="2" data-cat="proses">
     <div class="proj-img">
+      <img class="proj-img-real" src="uploads/tig.jpeg" alt="TIG kaynak - basınçlı kap imalatı" loading="lazy" />
       <div class="badge">■ 03 · PED CAT.II</div>
       <div class="year">’25</div>
-      <div class="pi-glyph">B</div>
       <div class="pi-cat">BASINÇ</div>
       <div class="pi-grid"></div>
     </div>
@@ -311,7 +350,7 @@
   </div>
 
   <!-- P4 -->
-  <div class="proj" data-cat="enerji">
+  <div class="proj reveal" data-cat="enerji">
     <div class="proj-img">
       <div class="badge">■ 04 · GES YAPISI</div>
       <div class="year">’25</div>
@@ -332,11 +371,11 @@
   </div>
 
   <!-- P5 -->
-  <div class="proj" data-cat="ulasim">
+  <div class="proj reveal" data-d="1" data-cat="ulasim">
     <div class="proj-img">
+      <img class="proj-img-real" src="uploads/taslama.jpeg" alt="Demiryolu boji çerçevesi imalatı" loading="lazy" />
       <div class="badge">■ 05 · EN 15085 CL1</div>
       <div class="year">’24</div>
-      <div class="pi-glyph">R</div>
       <div class="pi-cat">RAY</div>
       <div class="pi-grid"></div>
     </div>
@@ -353,11 +392,11 @@
   </div>
 
   <!-- P6 -->
-  <div class="proj" data-cat="yapisal">
+  <div class="proj reveal" data-d="2" data-cat="yapisal">
     <div class="proj-img">
+      <img class="proj-img-real" src="uploads/bukum.png" alt="Büküm ve şekillendirme imalat" loading="lazy" />
       <div class="badge">■ 06 · ENDÜSTRİYEL PLT.</div>
       <div class="year">’25</div>
-      <div class="pi-glyph">P</div>
       <div class="pi-cat">PLATFORM</div>
       <div class="pi-grid"></div>
     </div>
@@ -476,6 +515,12 @@ document.querySelectorAll('.f-pill').forEach(p => {
     });
   });
 });
+
+// Scroll reveal
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 </script>
 </body>
 </html>

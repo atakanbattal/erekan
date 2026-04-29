@@ -883,6 +883,29 @@
     .trace-steps { grid-template-columns: 1fr; }
     .hero-meta { flex-direction: column; gap: 8px; font-size: 10px; }
   }
+
+  /* Image effect system */
+  .hero-img-strip {
+    width: 100%; aspect-ratio: 21/7; overflow: hidden;
+    position: relative; background: var(--ink-2);
+  }
+  .hero-img-strip img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    filter: brightness(.75) saturate(.88);
+    transition: transform 12s ease, filter 12s ease;
+  }
+  .hero-img-strip:hover img { transform: scale(1.04); filter: brightness(.88) saturate(1); }
+  .hero-img-strip .strip-label {
+    position: absolute; bottom: 20px; right: 28px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--bone); letter-spacing: .2em; text-transform: uppercase;
+    opacity: .7;
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
+  .reveal[data-d="2"] { transition-delay: .24s; }
+  .reveal[data-d="3"] { transition-delay: .36s; }
 </style>
 <script type="application/ld+json">
 {
@@ -1192,6 +1215,12 @@
   </div>
 </div>
 
+<!-- Atölye image strip -->
+<div class="hero-img-strip">
+  <img src="uploads/fabrika.png" alt="ArmaWeld üretim atölyesi" loading="lazy" />
+  <span class="strip-label">Üretim Atölyesi · EN ISO 3834-2 Sertifikalı</span>
+</div>
+
 <!-- SERVICES -->
 <section class="services section-pad">
   <div class="container">
@@ -1201,8 +1230,7 @@
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">SVC — 001 / 008</p>
       </div>
       <h2 class="display h2">
-        Metal işleme süreçlerini <span style="color: var(--arc-2);">mühendislik</span><br/>
-        disipliniyle uçtan uca yönetiyoruz.
+        Metal işleme süreçlerini <span style="color: var(--arc-2);">mühendislik</span> disipliniyle uçtan uca yönetiyoruz.
       </h2>
     </div>
 
@@ -1413,8 +1441,7 @@
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">PROC — 111 · 135 · 141</p>
       </div>
       <h2 class="display h2">
-        Hangi iş için <span style="color: var(--arc-2);">hangi ark?</span><br/>
-        Teknik gerçekler, tek bakışta.
+        Hangi iş için <span style="color: var(--arc-2);">hangi ark?</span> Teknik gerçekler, tek bakışta.
       </h2>
     </div>
 
@@ -1522,8 +1549,7 @@
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">DOC — WPS.142-A</p>
       </div>
       <h2 class="display h2">
-        Her teslimatla <span style="color: var(--arc-2);">dosya</span>:<br/>
-        WPS, WPQR, NDT, İzleme.
+        Her teslimatla <span style="color: var(--arc-2);">dosya</span>: WPS, WPQR, NDT, İzleme.
       </h2>
     </div>
 
@@ -1624,8 +1650,7 @@
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">IND — 001 / 008</p>
       </div>
       <h2 class="display h2">
-        Ağır sanayide <span style="color: var(--arc-2);">kritik yük</span><br/>
-        taşıyan her yerdeyiz.
+        Ağır sanayide <span style="color: var(--arc-2);">kritik yük</span> taşıyan her yerdeyiz.
       </h2>
     </div>
 
@@ -1851,8 +1876,7 @@
   <div class="cta-inner">
     <div class="eyebrow" style="justify-content: center; margin-bottom: 24px;">Birlikte Çalışalım</div>
     <h2>
-      Teknik resminizi gönderin,<br/>
-      <span class="arc">24 saat içinde</span> teklifiniz hazır.
+      Teknik resminizi gönderin, <span class="arc">24 saat içinde</span> teklifiniz hazır.
     </h2>
     <p class="lede">
       DWG/DXF/PDF dosyalarınızı inceleyip; kullanılacak kaynak yöntemi,
@@ -1878,7 +1902,7 @@
       idx: '01',
       title: 'Sipariş & Mühendislik',
       dur: '1–3 gün',
-      chip: 'FAZ 01 · SOP.REV.ENG',
+      chip: 'AŞAMA 01 · SOP.REV.ENG',
       heading: 'Teknik resim gelir, iş emri açılır.',
       body: 'Müşteriden gelen DWG/DXF/PDF dosyaları mühendis kadromuz tarafından gözden geçirilir. Her iş emrine eşsiz bir seri numarası atanır ve üretim yol haritası, WPS seçimi ve NDT planı bu aşamada belirlenir.',
       docs: [
@@ -1896,7 +1920,7 @@
       idx: '02',
       title: 'Hammadde Kabul & Şarje',
       dur: '1 gün',
-      chip: 'FAZ 02 · MAT.INCOMING',
+      chip: 'AŞAMA 02 · MAT.INCOMING',
       heading: 'Sac şarjesi, 3.1 sertifikası ile kaydedilir.',
       body: 'Atölyeye giren her plaka; şarje (heat) numarası, kalite sınıfı ve EN 10204 3.1 malzeme belgesi ile kabul edilir. Plaka üzerine iş emri numarası yazılır ve kesim başlayana kadar ayrı istifte bekler.',
       docs: [
@@ -1914,7 +1938,7 @@
       idx: '03',
       title: 'Kesim & Büküm',
       dur: '1–2 gün',
-      chip: 'FAZ 03 · CUT.FORM',
+      chip: 'AŞAMA 03 · CUT.FORM',
       heading: 'CNC kesim, tolerans kontrolü, büküm.',
       body: 'Plakalar CNC plazma veya lazerle DXF\'e göre kesilir; profiller uygun açılarda hazırlanır. Bükümler abkant pres ile önceden simüle edilerek doğru açıda yapılır. Her parça üzerinde iş emri + şarje izi fiziksel olarak yer alır.',
       docs: [
@@ -1932,14 +1956,14 @@
       idx: '04',
       title: 'Kaynaklı İmalat',
       dur: '3–10 gün',
-      chip: 'FAZ 04 · WELDING.ACTIVE',
+      chip: 'AŞAMA 04 · WELDING.ACTIVE',
       heading: 'Sertifikalı kaynakçı, onaylı WPS ile.',
       body: 'Kaynak işlemi yalnızca o prosedür için sertifikalı kaynakçılar tarafından yapılır. Her dikiş; kaynakçı kodu, WPS numarası, paso sayısı ve tel/gaz parametreleriyle dijital kayıt altına alınır. Ön ısıtma ve pasolar arası sıcaklık sürekli izlenir.',
       docs: [
         ['Kaynakçı Sertifikası', 'EN ISO 9606-1'],
         ['WPS', 'WPS-142-A Rev.02'],
         ['Kaynak Günlüğü', 'JOB-xxxx.log'],
-        ['Interpass Kayıt', 'T ≤ 250°C'],
+        ['Pasolar Arası Sıcaklık Kaydı', 'T ≤ 250°C'],
       ],
       heat: 'HEAT-A41E2',
       wps: 'WPS-142-A',
@@ -1950,7 +1974,7 @@
       idx: '05',
       title: 'NDT / Muayene',
       dur: '1–3 gün',
-      chip: 'FAZ 05 · NDT.INSPECT',
+      chip: 'AŞAMA 05 · NDT.INSPECT',
       heading: 'Tahribatsız muayene: gözle, yüzey, hacim.',
       body: 'NDT planına göre; %100 Visuel Muayene (VT), kritik dikişlerde Penetrant (PT) veya Manyetik Parçacık (MT), hacimsel kontrolde Ultrasonik (UT) veya Radyografi (RT) uygulanır. Seviye 2 personel tarafından raporlanır.',
       docs: [
@@ -1968,7 +1992,7 @@
       idx: '06',
       title: 'Yüzey & Boya',
       dur: '1–3 gün',
-      chip: 'FAZ 06 · SURFACE.COAT',
+      chip: 'AŞAMA 06 · SURFACE.COAT',
       heading: 'Kumlama, astar, son kat — C3/C4 koruma.',
       body: 'Parçalar Sa 2½ kumlama sınıfında hazırlanır; korozyon kategorisine uygun boya sistemi uygulanır. Her katta kuru film kalınlığı (DFT) ölçülür ve rapor edilir.',
       docs: [
@@ -1986,7 +2010,7 @@
       idx: '07',
       title: 'Sevkiyat & Dosya',
       dur: '1 gün',
-      chip: 'FAZ 07 · SHIP.DOSSIER',
+      chip: 'AŞAMA 07 · SHIP.DOSSIER',
       heading: 'Ürün + belge dosyası, birlikte teslim.',
       body: 'Son muayene sonrası ürün paketlenir. Müşteriye fiziksel ya da dijital olarak iş emriyle bağlı tüm belge paketi — WPS, WPQR, kaynakçı belgeleri, sac sertifikaları, NDT raporları, boyut ve DFT kayıtları, CE beyanı — tek dosyada teslim edilir.',
       docs: [
@@ -2008,7 +2032,7 @@
 
   stepsEl.innerHTML = TRACE_STEPS.map((s, i) => `
     <div class="trace-step" data-i="${i}" ${i === 3 ? 'data-active="true"' : ''}>
-      <div class="ts-idx">FASE ${s.idx}</div>
+      <div class="ts-idx">AŞAMA ${s.idx}</div>
       <div class="ts-title">${s.title}</div>
       <div class="ts-dur">${s.dur}</div>
     </div>
@@ -2060,6 +2084,12 @@
       readouts[1].textContent = w + ' m/dk';
     }, 800);
   }
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 </script>
 
 </body>

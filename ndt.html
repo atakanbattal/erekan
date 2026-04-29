@@ -25,7 +25,7 @@
   .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
-  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(40px, 6vw, 92px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
   .page-hero h1 .arc { color: var(--arc-2); }
 
   /* Methods tabs */
@@ -241,6 +241,37 @@
     .def-grid { grid-template-columns: 1fr; }
     .ndt-scope { grid-template-columns: 1fr; }
   }
+
+  /* ── Görsel kart ───────────────────────────── */
+  .img-card { position: relative; overflow: hidden; background: var(--ink-2); }
+  .img-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .7s cubic-bezier(.25,.46,.45,.94), filter .5s ease;
+    filter: brightness(.88) saturate(.92);
+  }
+  .img-card:hover img { transform: scale(1.05); filter: brightness(1.1) saturate(1.08); }
+  .img-card .ic-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,.55) 100%);
+    transition: opacity .45s ease;
+  }
+  .img-card:hover .ic-overlay { opacity: .2; }
+  .img-card .ic-badge {
+    position: absolute; bottom: 14px; left: 16px;
+    font-family: var(--ff-mono); font-size: 10px;
+    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .img-card:hover .ic-badge { opacity: 1; transform: none; }
+  .ndt-panel-img { aspect-ratio: 16/9; margin-bottom: 20px; }
+  .hero-img-strip { width: 100%; aspect-ratio: 21/8; }
+  @media (max-width: 768px) { .hero-img-strip { aspect-ratio: 16/9; } }
+
+  /* ── Scroll reveal ─────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal[data-d="1"] { transition-delay: .12s; }
 </style>
 </head>
 <body>
@@ -257,6 +288,12 @@
     </p>
   </div>
 </section>
+
+<div class="img-card hero-img-strip reveal">
+  <img src="uploads/ndt-4.jpeg" alt="NDT muayene" loading="lazy" />
+  <div class="ic-overlay"></div>
+  <span class="ic-badge">● Tahribatsız Muayene · EN ISO 9712</span>
+</div>
 
 <!-- Methods -->
 <section class="methods">
@@ -518,6 +555,11 @@
           </div>
         </div>
         <div class="ndt-visual">
+          <div class="img-card ndt-panel-img reveal">
+            <img src="uploads/ndt-3.jpeg" alt="Ultrasonik muayene" loading="lazy" />
+            <div class="ic-overlay"></div>
+            <span class="ic-badge">● Ultrasonik Muayene · UT</span>
+          </div>
           <div class="nv-head">
             <span class="t">■ UT · ULTRASONIC TESTING</span>
             <span class="r">EN ISO 17640</span>
@@ -773,6 +815,14 @@ document.querySelectorAll('.ndt-tab').forEach(tab => {
     document.querySelector(`.ndt-panel[data-panel="${id}"]`).classList.add('active');
   });
 });
+</script>
+<script>
+(function(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
 </script>
 </body>
 </html>

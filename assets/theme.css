@@ -180,7 +180,7 @@ img { max-width: 100%; display: block; }
 }
 
 .h1 { font-size: clamp(44px, 7vw, 112px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.92; }
-.h2 { font-size: clamp(36px, 5.2vw, 76px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.0; }
+.h2 { font-size: clamp(26px, 3.0vw, 48px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
 .h3 { font-size: clamp(26px, 3vw, 44px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
 .h4 { font-size: clamp(20px, 2vw, 28px); font-weight: 600; letter-spacing: -0.015em; }
 
@@ -639,7 +639,7 @@ section { position: relative; }
 
   /* Typography clamp safeguard */
   .h1 { font-size: clamp(36px, 10vw, 72px); }
-  .h2 { font-size: clamp(28px, 7vw, 52px); }
+  .h2 { font-size: clamp(22px, 5.5vw, 38px); }
 }
 
 @media (max-width: 480px) {
