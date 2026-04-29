@@ -321,6 +321,23 @@
     .mat-table { min-width: 400px; }
   }
 
+  /* ── Mobil overflow düzeltmeleri ── */
+  @media (max-width: 768px) {
+    /* Grid hücreleri min-width:auto ile taşıyor; 0 yaparak kapsayıcıya kısıtla */
+    .svc-meta, .svc-visual { min-width: 0; overflow: hidden; }
+    /* svc-meta h2 mobilde daha küçük */
+    .svc-meta h2 { font-size: clamp(28px, 7vw, 40px); word-break: break-word; }
+    /* sv-rw 170px sabit sütun taşıyor; mobilde ikiye düşür veya stack yap */
+    .sv-rw { grid-template-columns: 110px 1fr; gap: 10px; }
+    .sv-rw .v { min-width: 0; overflow-wrap: break-word; word-break: break-word; }
+    /* sv-big büyük sayı, font küçült */
+    .sv-big { font-size: clamp(40px, 10vw, 60px); }
+    /* svc-visual içi padding daralt */
+    .svc-visual { padding: 20px 16px; }
+    /* inline grid callout */
+    [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+  }
+
   /* ── Görsel kart ───────────────────────────── */
   .img-card {
     position: relative; overflow: hidden;
