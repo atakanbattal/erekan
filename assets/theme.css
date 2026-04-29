@@ -651,6 +651,31 @@ section { position: relative; }
   table th, table td { padding: 8px 6px; font-size: 10px; }
 }
 
+/* ── Mobil görsel & animasyon düzeltmeleri ── */
+@media (max-width: 768px) {
+  /* Reveal animasyonu mobilde çalışmadığında görsel kaybolmaması için */
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  /* Hero şeritlerini mobilde daha yüksek göster */
+  .hero-img-strip { aspect-ratio: 3 / 2 !important; }
+
+  /* Img-card'ları mobilde daha büyük ve net göster */
+  .img-card { min-height: 220px; }
+  .img-card img { filter: brightness(.92) saturate(.95) !important; }
+
+  /* Badge'leri mobilde her zaman görünür yap (hover yok) */
+  .img-card .ic-badge { opacity: 1 !important; transform: none !important; font-size: 9px; }
+
+  /* NDT panel görselleri */
+  .ndt-panel-img { aspect-ratio: 4 / 3 !important; }
+
+  /* Method img card */
+  .method-img-card { aspect-ratio: 4 / 3 !important; min-height: 200px; }
+
+  /* Hakkımızda fabrika şeridi */
+  .hero-img-strip img { filter: brightness(.82) saturate(.9) !important; }
+}
+
 /* ── Scroll progress bar ── */
 .scroll-bar {
   position: fixed;
