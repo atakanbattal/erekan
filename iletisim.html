@@ -378,9 +378,11 @@
           <h2>Teknik teklif formu.<br/>Doğru bilgi, net kapsam ve güvenilir fiyatlandırma sağlar.</h2>
         </div>
 
-        <form id="rfq" name="teklif-formu" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
-          <input type="hidden" name="form-name" value="teklif-formu">
-          <p hidden><label>Bot alanı: <input name="bot-field"></label></p>
+        <form id="rfq" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="access_key" value="e842aa2a-ebd7-4e86-87e6-ee5c40bab8d4">
+          <input type="hidden" name="subject" value="ArmaWeld — Yeni Teklif Talebi">
+          <input type="hidden" name="from_name" value="ArmaWeld Web Sitesi">
+          <input type="checkbox" name="botcheck" style="display:none">
 
           <!-- STEP 1: Service -->
           <div class="form-section">
@@ -787,11 +789,13 @@ function handleSubmit(e) {
 
   const data = new FormData(form);
 
-  fetch('/', {
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(data).toString(),
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(Object.fromEntries(data)),
   })
+    .then(res => res.json())
+    .then(res => { if (!res.success) throw new Error(res.message); })
     .then(() => {
       btn.innerHTML = '<span>✓ ALINDI — EN KISA SÜREDE DÖNÜŞ YAPACAĞIZ</span><span class="arr">→</span>';
       btn.style.background = 'var(--ok)';
