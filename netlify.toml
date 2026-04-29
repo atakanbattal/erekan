@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "http://armaweld.com/*"
+  to   = "https://www.armaweld.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://armaweld.com/*"
+  to   = "https://www.armaweld.com/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

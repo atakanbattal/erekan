@@ -1,5 +1,5 @@
 // ============================================
-// EREKAN — Shared Chrome (Nav + Footer)
+// ArmaWeld — Shared Chrome (Nav + Footer)
 // ============================================
 
 function buildNav(activePage) {
@@ -22,9 +22,9 @@ function buildNav(activePage) {
   return `
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="logo" aria-label="EREKAN ana sayfa">
-        <span class="logo-mark">E</span>
-        <span>EREKAN</span>
+      <a href="index.html" class="logo" aria-label="ArmaWeld ana sayfa">
+        <span class="logo-mark">A</span>
+        <span>ArmaWeld</span>
       </a>
       <div class="nav-links">
         ${linkHtml}
@@ -63,8 +63,8 @@ function buildFooter() {
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:24px;">
-            <span class="logo-mark">E</span>
-            <span>EREKAN</span>
+            <span class="logo-mark">A</span>
+            <span>ArmaWeld</span>
           </a>
           <p class="footer-tag">Her dikişin arkasında bir mühendis imzası vardır.</p>
           <p class="footer-contact">
@@ -101,13 +101,13 @@ function buildFooter() {
             Organize Sanayi Bölgesi<br/>
             10. Cadde No: 24<br/>
             Türkiye<br/><br/>
-            <a href="mailto:info@erekan.com.tr">info@erekan.com.tr</a><br/>
+            <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
             <a href="tel:+900000000000">+90 (000) 000 00 00</a>
           </p>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 EREKAN Metal & Kaynak Mühendisliği</span>
+        <span>© 2026 ArmaWeld Metal ArmaWeld Metal & Kaynak Mühendisliği Kaynak Mühendisliği</span>
         <span>EN 1090 · EN ISO 3834-2 · ISO 9001:2015</span>
         <span>Ver. 2026.01 — Türkiye</span>
       </div>
@@ -174,7 +174,7 @@ function initScrollBar() {
 
 function mountChrome(activePage) {
   // Initialize theme from localStorage BEFORE mounting, so no flash
-  const savedTheme = localStorage.getItem('erekan-theme') || 'light';
+  const savedTheme = localStorage.getItem('armaweld-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
   document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage));
@@ -196,5 +196,5 @@ function toggleTheme() {
   const current = root.getAttribute('data-theme') || 'dark';
   const next = current === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
-  localStorage.setItem('erekan-theme', next);
+  localStorage.setItem('armaweld-theme', next);
 }

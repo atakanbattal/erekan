@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>İletişim & Teklif — EREKAN</title>
+<title>İletişim & Teklif — ArmaWeld</title>
   <meta name="description" content="Teknik detaylarınızı paylaşın, 24 saat içinde yanıt alın. Malzeme, kalınlık ve uygulama bilgilerini içeren hızlı teklif formu." />
   <meta name="robots" content="index, follow" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="İletişim & Teklif Al — EREKAN" />
+  <meta property="og:title" content="İletişim & Teklif Al — ArmaWeld" />
   <meta property="og:description" content="Teknik detaylarınızı paylaşın, 24 saat içinde yanıt alın. Malzeme, kalınlık ve uygulama bilgilerini içeren hızlı teklif formu." />
-  <meta property="og:url" content="https://www.erekan.com.tr/iletisim.html" />
-  <meta property="og:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
+  <meta property="og:url" content="https://www.armaweld.com/iletisim.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
   <meta property="og:locale" content="tr_TR" />
-  <meta property="og:site_name" content="EREKAN" />
+  <meta property="og:site_name" content="ArmaWeld" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="İletişim & Teklif Al — EREKAN" />
+  <meta name="twitter:title" content="İletişim & Teklif Al — ArmaWeld" />
   <meta name="twitter:description" content="Teknik detaylarınızı paylaşın, 24 saat içinde yanıt alın. Malzeme, kalınlık ve uygulama bilgilerini içeren hızlı teklif formu." />
-  <meta name="twitter:image" content="https://www.erekan.com.tr/assets/og-image.jpg" />
+  <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="stylesheet" href="assets/theme.css" />
 <style>
   .page-hero { padding: calc(var(--nav-h) + 80px) 0 60px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
@@ -352,7 +352,7 @@
 
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">EREKAN</a> &nbsp;/&nbsp; İLETİŞİM & TEKLİF AL</div>
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; İLETİŞİM & TEKLİF AL</div>
     <div class="page-hero-inner">
       <div>
         <h1>Projeniz İçin<br/><span class="arc">Teknik Teklif</span> Süreci.</h1>
@@ -378,7 +378,9 @@
           <h2>Teknik teklif formu.<br/>Doğru bilgi, net kapsam ve güvenilir fiyatlandırma sağlar.</h2>
         </div>
 
-        <form id="rfq" onsubmit="handleSubmit(event)">
+        <form id="rfq" name="teklif-formu" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="teklif-formu">
+          <p hidden><label>Bot alanı: <input name="bot-field"></label></p>
 
           <!-- STEP 1: Service -->
           <div class="form-section">
@@ -609,21 +611,21 @@
           <div class="contact-row">
             <div class="k">RFQ</div>
             <div class="v">
-              <a href="mailto:teklif@erekan.com.tr">teklif@erekan.com.tr</a>
+              <a href="mailto:info@armaweld.com">info@armaweld.com</a>
               <span class="small">TEKLİF VE SATINALMA</span>
             </div>
           </div>
           <div class="contact-row">
             <div class="k">TEK.</div>
             <div class="v">
-              <a href="mailto:teknik@erekan.com.tr">teknik@erekan.com.tr</a>
+              <a href="mailto:info@armaweld.com">info@armaweld.com</a>
               <span class="small">TEKNİK MÜHENDİSLİK</span>
             </div>
           </div>
           <div class="contact-row">
             <div class="k">KALİTE</div>
             <div class="v">
-              <a href="mailto:kalite@erekan.com.tr">kalite@erekan.com.tr</a>
+              <a href="mailto:info@armaweld.com">info@armaweld.com</a>
               <span class="small">QA / QC / DENETİM</span>
             </div>
           </div>
@@ -634,7 +636,7 @@
           <h4>Fabrika Adresi</h4>
           <div class="contact-row" style="grid-template-columns: 1fr;">
             <div class="v" style="font-size: 15px;">
-              EREKAN Çelik İmalat San. Tic. A.Ş.<br/>
+              ArmaWeld Çelik İmalat San. Tic. A.Ş.<br/>
               Gebze Organize Sanayi Bölgesi<br/>
               3. Cadde No: 24 · Çayırova / Kocaeli
               <span class="small" style="margin-top: 10px;">41420 · TÜRKİYE · KOORDİNAT 40.81°N, 29.43°E</span>
@@ -669,11 +671,11 @@
               <g font-family="JetBrains Mono" font-size="8" fill="#6b7280">
                 <text x="10" y="245">MARMARA · İZMİT KÖRFEZİ</text>
                 <text x="390" y="14" text-anchor="end">GEBZE OSB</text>
-                <text x="180" y="175" fill="#ff7a1a">EREKAN ↗</text>
+                <text x="180" y="175" fill="#ff7a1a">ArmaWeld ↗</text>
               </g>
             </svg>
             <div class="map-pin">
-              <div class="lbl">EREKAN · 3. CADDE 24</div>
+              <div class="lbl">ArmaWeld · 3. CADDE 24</div>
               <div class="dot"></div>
             </div>
           </div>
@@ -785,12 +787,35 @@ dz.addEventListener('drop', e => {
 
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
+  const form = e.target;
+  const btn = form.querySelector('.btn-submit');
+  btn.disabled = true;
   btn.innerHTML = '<span>GÖNDERİLİYOR...</span><span class="arr">◷</span>';
-  setTimeout(() => {
-    btn.innerHTML = '<span>✓ ALINDI · RFQ-2026-0147</span><span class="arr">→</span>';
-    btn.style.background = 'var(--ok)';
-  }, 900);
+
+  const data = new FormData(form);
+
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data).toString(),
+  })
+    .then(() => {
+      btn.innerHTML = '<span>✓ ALINDI — EN KISA SÜREDE DÖNÜŞ YAPACAĞIZ</span><span class="arr">→</span>';
+      btn.style.background = 'var(--ok)';
+      form.reset();
+      files = [];
+      renderFiles();
+      document.querySelectorAll('.svc-opt').forEach((o, i) => { o.classList.toggle('sel', i === 0); });
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<span>HATA — TEKRAR DENEYIN</span><span class="arr">!</span>';
+      btn.style.background = '#c0392b';
+      setTimeout(() => {
+        btn.style.background = '';
+        btn.innerHTML = '<span>TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>';
+      }, 3000);
+    });
 }
 </script>
 </body>
