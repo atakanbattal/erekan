@@ -20,7 +20,7 @@ function buildNav(activePage) {
   ).join('');
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
-  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.png' : 'assets/logo-light.png';
 
   return `
   <nav class="nav">
@@ -60,7 +60,7 @@ function buildNav(activePage) {
 
 function buildFooter() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
-  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.png' : 'assets/logo-light.png';
 
   return `
   <footer class="footer">
@@ -204,7 +204,7 @@ function toggleTheme() {
   // Update logo images for theme
   const navLogo = document.getElementById('nav-logo');
   const footerLogo = document.getElementById('footer-logo');
-  const logoSrc = next === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+  const logoSrc = next === 'dark' ? 'assets/logo-dark.png' : 'assets/logo-light.png';
   if (navLogo) navLogo.src = logoSrc;
   if (footerLogo) footerLogo.src = logoSrc;
 }
