@@ -276,6 +276,12 @@ img { max-width: 100%; display: block; }
   opacity: .35;
   border-radius: 3px;
 }
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .logo-suffix {
   font-family: var(--ff-mono);
   font-size: 10px;
