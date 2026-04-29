@@ -101,8 +101,7 @@ function buildFooter() {
             Organize Sanayi Bölgesi<br/>
             10. Cadde No: 24<br/>
             Türkiye<br/><br/>
-            <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
-            <a href="tel:+900000000000">+90 (000) 000 00 00</a>
+            <a href="mailto:info@armaweld.com">info@armaweld.com</a>
           </p>
         </div>
       </div>
