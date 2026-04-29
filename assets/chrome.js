@@ -19,12 +19,14 @@ function buildNav(activePage) {
     `<a class="nav-link ${l.id === activePage ? 'active' : ''}" href="${l.href}">${l.label}</a>`
   ).join('');
 
+  const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
+  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+
   return `
   <nav class="nav">
     <div class="nav-inner">
       <a href="index.html" class="logo" aria-label="ArmaWeld ana sayfa">
-        <span class="logo-mark">A</span>
-        <span>ArmaWeld</span>
+        <img id="nav-logo" src="${logoSrc}" alt="ArmaWeld" class="logo-img" />
       </a>
       <div class="nav-links">
         ${linkHtml}
@@ -57,14 +59,16 @@ function buildNav(activePage) {
 }
 
 function buildFooter() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
+  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+
   return `
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:24px;">
-            <span class="logo-mark">A</span>
-            <span>ArmaWeld</span>
+            <img id="footer-logo" src="${logoSrc}" alt="ArmaWeld" class="logo-img" />
           </a>
           <p class="footer-tag">Her dikişin arkasında bir mühendis imzası vardır.</p>
           <p class="footer-contact">
@@ -196,4 +200,11 @@ function toggleTheme() {
   const next = current === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   localStorage.setItem('armaweld-theme', next);
+
+  // Update logo images for theme
+  const navLogo = document.getElementById('nav-logo');
+  const footerLogo = document.getElementById('footer-logo');
+  const logoSrc = next === 'dark' ? 'assets/logo-dark.svg' : 'assets/logo-light.svg';
+  if (navLogo) navLogo.src = logoSrc;
+  if (footerLogo) footerLogo.src = logoSrc;
 }
