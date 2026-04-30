@@ -136,6 +136,9 @@ export const handler = async (event) => {
   const recipient = process.env.MAIL_TO || 'battalatakan@outlook.com';
   const sender    = process.env.MAIL_FROM || 'ArmaWeld Web <onboarding@resend.dev>';
 
+  // Email format kontrolü (tam doğrulama: domain + TLD)
+  const isValidEmail = (e) => typeof e === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
+
   const emailPayload = {
     from: sender,
     to: [recipient],
@@ -143,7 +146,7 @@ export const handler = async (event) => {
     html,
     text,
   };
-  if (form.email) emailPayload.replyTo = form.email;
+  if (isValidEmail(form.email)) emailPayload.replyTo = form.email.trim();
 
   console.log('[send-form] payload received', {
     sender, recipient,

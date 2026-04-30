@@ -560,7 +560,7 @@
               </div>
               <div class="field">
                 <label><span data-i18n="contact_label_email">E-Posta</span> <span class="req">*</span></label>
-                <input type="email" name="email" placeholder="ad.soyad@firma.com" data-i18n-placeholder="contact_ph_email" required>
+                <input type="email" name="email" placeholder="ad.soyad@firma.com" data-i18n-placeholder="contact_ph_email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" title="Geçerli bir e-posta adresi girin (örn: ad@firma.com)">
               </div>
               <div class="field">
                 <label><span data-i18n="contact_label_tel">Telefon</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
