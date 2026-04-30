@@ -480,7 +480,7 @@
           <h2 data-i18n-html="contact_rfq_h2">Teknik teklif formu.<br/>Doğru bilgi, net kapsam ve güvenilir fiyatlandırma sağlar.</h2>
         </div>
 
-        <form id="rfq" onsubmit="handleSubmit(event)">
+        <form id="rfq" method="POST" action="javascript:void(0)" onsubmit="handleSubmit(event)">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
           <!-- STEP 1: Service -->
@@ -569,18 +569,18 @@
               <div class="field">
                 <label><span data-i18n="contact_label_role">Pozisyon</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
                 <select name="role">
-                  <option value="">Seçiniz...</option>
-                  <option>Satın Alma</option>
-                  <option>Proje Mühendisi</option>
-                  <option>Kalite Yöneticisi</option>
-                  <option>Genel Müdür / Patron</option>
-                  <option>Ar-Ge</option>
-                  <option>Diğer</option>
+                  <option value="" data-i18n="contact_select_placeholder">Seçiniz...</option>
+                  <option data-i18n="contact_role_purchase">Satın Alma</option>
+                  <option data-i18n="contact_role_proj">Proje Mühendisi</option>
+                  <option data-i18n="contact_role_qa">Kalite Yöneticisi</option>
+                  <option data-i18n="contact_role_gm">Genel Müdür / Patron</option>
+                  <option data-i18n="contact_role_rd">Ar-Ge</option>
+                  <option data-i18n="contact_role_other">Diğer</option>
                 </select>
               </div>
               <div class="field">
                 <label data-i18n="contact_label_loc">Ülke / Şehir</label>
-                <input type="text" name="loc" placeholder="Türkiye / Konya" value="Türkiye / ">
+                <input type="text" name="loc" placeholder="Türkiye / Konya" data-i18n-placeholder="contact_loc_ph" data-i18n-value="contact_loc_default" value="Türkiye / ">
               </div>
             </div>
           </div>
@@ -595,24 +595,24 @@
             <div class="field-grid three">
               <div class="field">
                 <label data-i18n="contact_qty_lbl">Adet</label>
-                <input type="number" name="qty" placeholder="Örn: 24" min="1">
+                <input type="number" name="qty" placeholder="Örn: 24" min="1" data-i18n-placeholder="contact_qty_ph">
               </div>
               <div class="field">
                 <label data-i18n="contact_weight_lbl">Ağırlık (kg/adet)</label>
-                <input type="text" name="weight" placeholder="Yaklaşık">
+                <input type="text" name="weight" placeholder="Yaklaşık" data-i18n-placeholder="contact_weight_ph">
               </div>
               <div class="field">
                 <label data-i18n="contact_mat_lbl">Malzeme</label>
                 <select name="mat">
-                  <option value="">Seçiniz...</option>
-                  <option>Yapı Çeliği (S235 / S275 / S355)</option>
-                  <option>Yüksek Mukavemet (S690QL / S700MC)</option>
-                  <option>Ultra Yüksek Mukavemet (S960QL)</option>
-                  <option>Hardox / RAEX / Aşınma Çeliği</option>
-                  <option>Paslanmaz (304 / 316 / 316L / Duplex)</option>
-                  <option>Kazan Çeliği (P265GH / P355GH)</option>
-                  <option>Alüminyum Alaşım (EN AW-5754 / 6082)</option>
-                  <option>Karışık / Bilinmiyor</option>
+                  <option value="" data-i18n="contact_select_placeholder">Seçiniz...</option>
+                  <option data-i18n="contact_mat_struct">Yapı Çeliği (S235 / S275 / S355)</option>
+                  <option data-i18n="contact_mat_hs">Yüksek Mukavemet (S690QL / S700MC)</option>
+                  <option data-i18n="contact_mat_uhs">Ultra Yüksek Mukavemet (S960QL)</option>
+                  <option data-i18n="contact_mat_wear">Hardox / RAEX / Aşınma Çeliği</option>
+                  <option data-i18n="contact_mat_ss">Paslanmaz (304 / 316 / 316L / Duplex)</option>
+                  <option data-i18n="contact_mat_pv">Kazan Çeliği (P265GH / P355GH)</option>
+                  <option data-i18n="contact_mat_alu">Alüminyum Alaşım (EN AW-5754 / 6082)</option>
+                  <option data-i18n="contact_mat_mixed">Karışık / Bilinmiyor</option>
                 </select>
               </div>
             </div>
@@ -624,19 +624,19 @@
               <div class="field">
                 <label><span data-i18n="contact_budget_lbl">Tahmini Bütçe</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
                 <select name="budget">
-                  <option value="">Belirtmek istemiyorum</option>
-                  <option>&lt; 100 000 ₺</option>
-                  <option>100 000 – 500 000 ₺</option>
-                  <option>500 000 – 2 000 000 ₺</option>
-                  <option>2 000 000 ₺ +</option>
+                  <option value="" data-i18n="contact_budget_none">Belirtmek istemiyorum</option>
+                  <option data-i18n="contact_budget_1">&lt; 100 000 ₺</option>
+                  <option data-i18n="contact_budget_2">100 000 – 500 000 ₺</option>
+                  <option data-i18n="contact_budget_3">500 000 – 2 000 000 ₺</option>
+                  <option data-i18n="contact_budget_4">2 000 000 ₺ +</option>
                 </select>
               </div>
             </div>
             <div class="field-grid full" style="margin-top: 20px;">
               <div class="field">
                 <label><span data-i18n="contact_label_desc">Proje Açıklaması</span> <span class="req">*</span></label>
-                <textarea name="desc" placeholder="Projeniz hakkında kısa teknik özet: kullanım yeri, toleranslar, NDT istekleri, kalite sınıfı (EXC2/3, PED kategorisi vb), boya/kaplama, sevkiyat noktası..." required></textarea>
-                <div class="hint">→ Daha fazla detay = daha kesin fiyat. Teknik terimlerden çekinmeyin.</div>
+                <textarea name="desc" placeholder="Projeniz hakkında kısa teknik özet: kullanım yeri, toleranslar, NDT istekleri, kalite sınıfı (EXC2/3, PED kategorisi vb), boya/kaplama, sevkiyat noktası..." data-i18n-placeholder="contact_desc_ph" required></textarea>
+                <div class="hint" data-i18n="contact_desc_hint">→ Daha fazla detay = daha kesin fiyat. Teknik terimlerden çekinmeyin.</div>
               </div>
             </div>
           </div>
@@ -655,7 +655,7 @@
               <input type="file" id="fi" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.iges,.igs,.zip,.jpg,.jpeg,.png">
             </label>
             <div class="file-list" id="fl"></div>
-            <div class="hint" style="margin-top: 12px;">Çiziminiz yoksa, açıklama kısmına detay yazabilir veya numuneden tersine mühendislik ile devam edebiliriz.</div>
+            <div class="hint" style="margin-top: 12px;" data-i18n="contact_dz_hint">Çiziminiz yoksa, açıklama kısmına detay yazabilir veya numuneden tersine mühendislik ile devam edebiliriz.</div>
           </div>
 
           <!-- STEP 5: Consent -->
@@ -663,28 +663,28 @@
             <div class="form-section-title">
               <span class="sec-num">05</span>
               <span data-i18n="contact_step5">Onaylar</span>
-              <span class="tag">KVKK · NDA</span>
+              <span class="tag" data-i18n="contact_tag_kvkknda">KVKK · NDA</span>
             </div>
             <label class="chk">
               <input type="checkbox" required>
               <span class="box"></span>
-              <span class="txt"><strong>KVKK aydınlatma metnini okudum.</strong> Kişisel verilerimin bu teklif süreci kapsamında işlenmesine onay veriyorum. <a href="#">Metni görüntüle →</a></span>
+              <span class="txt" data-i18n-html="contact_consent_kvkk"><strong>KVKK aydınlatma metnini okudum.</strong> Kişisel verilerimin bu teklif süreci kapsamında işlenmesine onay veriyorum. <a href="#">Metni görüntüle →</a></span>
             </label>
             <label class="chk">
               <input type="checkbox" checked>
               <span class="box"></span>
-              <span class="txt"><strong>Paylaştığım teknik dosyalar için karşılıklı NDA imzalansın.</strong> Talebim tarafınızca teklif öncesi NDA imzalandıktan sonra incelensin. <span style="color: var(--steel-1);">(Önerilir)</span></span>
+              <span class="txt" data-i18n-html="contact_consent_nda"><strong>Paylaştığım teknik dosyalar için karşılıklı NDA imzalansın.</strong> Talebim tarafınızca teklif öncesi NDA imzalandıktan sonra incelensin. <span style="color: var(--steel-1);">(Önerilir)</span></span>
             </label>
             <label class="chk">
               <input type="checkbox">
               <span class="box"></span>
-              <span class="txt">Sektör bülteninize abone olmak istiyorum. <span style="color: var(--steel-1);">(Ayda 1 mail, istediğiniz zaman ayrılabilirsiniz)</span></span>
+              <span class="txt" data-i18n-html="contact_consent_news">Sektör bülteninize abone olmak istiyorum. <span style="color: var(--steel-1);">(Ayda 1 mail, istediğiniz zaman ayrılabilirsiniz)</span></span>
             </label>
           </div>
 
           <!-- SUBMIT -->
           <div class="submit-row">
-            <div class="submit-note">
+            <div class="submit-note" data-i18n-html="contact_submit_note">
               Formunuz alındıktan sonra, size en geç <strong>48 saat</strong> içinde teknik mühendisimiz üzerinden dönüş yapacağız. Acil durumlar için doğrudan telefon veya e-posta tercih edilebilir.
             </div>
             <button type="submit" class="btn-submit">
@@ -706,21 +706,21 @@
             <div class="k">RFQ</div>
             <div class="v">
               <a href="mailto:info@armaweld.com">info@armaweld.com</a>
-              <span class="small">TEKLİF VE SATINALMA</span>
+              <span class="small" data-i18n="contact_dir_rfq">TEKLİF VE SATINALMA</span>
             </div>
           </div>
           <div class="contact-row">
             <div class="k">TEK.</div>
             <div class="v">
               <a href="mailto:info@armaweld.com">info@armaweld.com</a>
-              <span class="small">TEKNİK MÜHENDİSLİK</span>
+              <span class="small" data-i18n="contact_dir_tek">TEKNİK MÜHENDİSLİK</span>
             </div>
           </div>
           <div class="contact-row">
             <div class="k">KALİTE</div>
             <div class="v">
               <a href="mailto:info@armaweld.com">info@armaweld.com</a>
-              <span class="small">QA / QC / DENETİM</span>
+              <span class="small" data-i18n="contact_dir_qa">QA / QC / DENETİM</span>
             </div>
           </div>
         </div>
@@ -783,7 +783,7 @@
             <div class="row"><span data-i18n="contact_hours_sat">CUMARTESİ</span><span>08:00 – 13:00</span></div>
             <div class="row"><span data-i18n="contact_hours_sun">PAZAR</span><span data-i18n="contact_hours_closed">KAPALI</span></div>
           </div>
-          <div class="hint" style="margin-top: 16px; font-family: var(--ff-mono); font-size: 10px; color: var(--steel-2); letter-spacing: .08em;">→ OFİS SAATLERİ DIŞINDA E-POSTA ATABİLİRSİNİZ. 24 S İÇİNDE DÖNÜŞ.</div>
+          <div class="hint" style="margin-top: 16px; font-family: var(--ff-mono); font-size: 10px; color: var(--steel-2); letter-spacing: .08em;" data-i18n="contact_hours_hint">→ OFİS SAATLERİ DIŞINDA E-POSTA ATABİLİRSİNİZ. 24 S İÇİNDE DÖNÜŞ.</div>
         </div>
 
       </aside>
@@ -993,19 +993,23 @@ async function handleSubmit(e) {
   const fd = new FormData(form);
   const formObj = Object.fromEntries(fd);
 
-  fetch('/.netlify/functions/send-form', {
+  const FN_URL = 'https://armaweld.com/.netlify/functions/send-form';
+  fetch(FN_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ form: formObj, files: uploadedFiles }),
   })
     .then(async res => {
       const text = await res.text();
-      let json; try { json = JSON.parse(text); } catch { json = { success: false, message: 'Sunucudan geçersiz yanıt: ' + text.slice(0, 200) }; }
-      if (!res.ok || !json.success) {
-        const msg = json.message || ('HTTP ' + res.status);
+      let data;
+      try { data = JSON.parse(text); } catch {
+        data = { success: false, message: 'Sunucudan geçersiz yanıt (HTTP ' + res.status + '): ' + text.slice(0, 120) };
+      }
+      if (!res.ok || !data.success) {
+        const msg = data.message || ('HTTP ' + res.status);
         throw new Error(msg);
       }
-      return json;
+      return data;
     })
     .then(() => {
       form.reset();

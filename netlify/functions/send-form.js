@@ -28,6 +28,19 @@ const SVC_LABELS = {
   diger:   'Diğer',
 };
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Content-Type': 'application/json',
+};
+
+const json = (statusCode, body) => ({
+  statusCode,
+  headers: CORS_HEADERS,
+  body: JSON.stringify(body),
+});
+
 const escapeHtml = (s) => String(s ?? '')
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
@@ -36,62 +49,69 @@ const escapeHtml = (s) => String(s ?? '')
   .replace(/'/g, '&#39;');
 
 export const handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: JSON.stringify({ success: false, message: 'Method not allowed' }) };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return { statusCode: 500, body: JSON.stringify({ success: false, message: 'RESEND_API_KEY not configured' }) };
-  }
-
-  let payload;
+  // Wrap everything in a top-level try/catch so we ALWAYS return JSON, never HTML
   try {
-    payload = JSON.parse(event.body || '{}');
-  } catch {
-    return { statusCode: 400, body: JSON.stringify({ success: false, message: 'Invalid JSON' }) };
-  }
+    // CORS preflight
+    if (event.httpMethod === 'OPTIONS') {
+      return { statusCode: 204, headers: CORS_HEADERS, body: '' };
+    }
 
-  const form  = payload.form  || {};
-  const files = Array.isArray(payload.files) ? payload.files : [];
+    if (event.httpMethod !== 'POST') {
+      return json(405, { success: false, message: 'Method not allowed' });
+    }
 
-  // Honeypot
-  if (form.botcheck) {
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
-  }
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return json(500, { success: false, message: 'RESEND_API_KEY not configured' });
+    }
 
-  // Form alanlarını HTML tabloya çevir
-  const rows = [];
-  for (const [key, raw] of Object.entries(form)) {
-    if (!raw || key === 'botcheck' || key === 'access_key' || key === 'subject' || key === 'from_name' || key === 'redirect') continue;
-    const label = FIELD_LABELS[key] || key;
-    let value = raw;
-    if (key === 'svc') value = SVC_LABELS[raw] || raw;
-    rows.push(`
-      <tr>
-        <td style="padding:10px 14px;background:#f6f6f6;border-bottom:1px solid #e6e6e6;font-family:monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#666;width:200px;vertical-align:top;">${escapeHtml(label)}</td>
-        <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;color:#111;white-space:pre-wrap;">${escapeHtml(value)}</td>
-      </tr>`);
-  }
+    let payload;
+    try {
+      payload = JSON.parse(event.body || '{}');
+    } catch {
+      return json(400, { success: false, message: 'Invalid JSON body' });
+    }
 
-  // Dosyaları HTML link listesine çevir
-  let filesHtml = '';
-  if (files.length > 0) {
-    const items = files.map((f, i) => {
-      const safeName = escapeHtml(f.name || `dosya_${i+1}`);
-      const safeUrl  = escapeHtml(f.url  || '#');
-      return `<li style="margin:6px 0;"><a href="${safeUrl}" style="color:#e85d04;text-decoration:underline;font-weight:600;" target="_blank" rel="noopener">${safeName}</a></li>`;
-    }).join('');
-    filesHtml = `
-      <tr>
-        <td style="padding:10px 14px;background:#f6f6f6;border-bottom:1px solid #e6e6e6;font-family:monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#666;width:200px;vertical-align:top;">Ekli Dosyalar (${files.length})</td>
-        <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;">
-          <ul style="margin:0;padding-left:18px;">${items}</ul>
-        </td>
-      </tr>`;
-  }
+    const form  = payload.form  || {};
+    const files = Array.isArray(payload.files) ? payload.files : [];
 
-  const html = `<!doctype html>
+    // Honeypot
+    if (form.botcheck) {
+      return json(200, { success: true });
+    }
+
+    // Form alanlarını HTML tabloya çevir
+    const rows = [];
+    for (const [key, raw] of Object.entries(form)) {
+      if (!raw || key === 'botcheck' || key === 'access_key' || key === 'subject' || key === 'from_name' || key === 'redirect') continue;
+      const label = FIELD_LABELS[key] || key;
+      let value = raw;
+      if (key === 'svc') value = SVC_LABELS[raw] || raw;
+      rows.push(`
+        <tr>
+          <td style="padding:10px 14px;background:#f6f6f6;border-bottom:1px solid #e6e6e6;font-family:monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#666;width:200px;vertical-align:top;">${escapeHtml(label)}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;color:#111;white-space:pre-wrap;">${escapeHtml(value)}</td>
+        </tr>`);
+    }
+
+    // Dosyaları HTML link listesine çevir
+    let filesHtml = '';
+    if (files.length > 0) {
+      const items = files.map((f, i) => {
+        const safeName = escapeHtml(f.name || `dosya_${i+1}`);
+        const safeUrl  = escapeHtml(f.url  || '#');
+        return `<li style="margin:6px 0;"><a href="${safeUrl}" style="color:#e85d04;text-decoration:underline;font-weight:600;" target="_blank" rel="noopener">${safeName}</a></li>`;
+      }).join('');
+      filesHtml = `
+        <tr>
+          <td style="padding:10px 14px;background:#f6f6f6;border-bottom:1px solid #e6e6e6;font-family:monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#666;width:200px;vertical-align:top;">Ekli Dosyalar (${files.length})</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;">
+            <ul style="margin:0;padding-left:18px;">${items}</ul>
+          </td>
+        </tr>`;
+    }
+
+    const html = `<!doctype html>
 <html lang="tr">
 <head><meta charset="utf-8"><title>ArmaWeld — Yeni Teklif Talebi</title></head>
 <body style="margin:0;padding:24px;background:#f0f0f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#111;">
@@ -111,80 +131,77 @@ export const handler = async (event) => {
 </body>
 </html>`;
 
-  // Plain-text fallback
-  const textRows = [];
-  for (const [key, raw] of Object.entries(form)) {
-    if (!raw || key === 'botcheck' || key === 'access_key' || key === 'subject' || key === 'from_name' || key === 'redirect') continue;
-    const label = FIELD_LABELS[key] || key;
-    let value = raw;
-    if (key === 'svc') value = SVC_LABELS[raw] || raw;
-    textRows.push(`${label}: ${value}`);
-  }
-  if (files.length > 0) {
-    textRows.push('', `Ekli Dosyalar (${files.length}):`);
-    files.forEach((f, i) => {
-      textRows.push(`${i+1}. ${f.name}`);
-      textRows.push(`   ${f.url}`);
+    // Plain-text fallback
+    const textRows = [];
+    for (const [key, raw] of Object.entries(form)) {
+      if (!raw || key === 'botcheck' || key === 'access_key' || key === 'subject' || key === 'from_name' || key === 'redirect') continue;
+      const label = FIELD_LABELS[key] || key;
+      let value = raw;
+      if (key === 'svc') value = SVC_LABELS[raw] || raw;
+      textRows.push(`${label}: ${value}`);
+    }
+    if (files.length > 0) {
+      textRows.push('', `Ekli Dosyalar (${files.length}):`);
+      files.forEach((f, i) => {
+        textRows.push(`${i+1}. ${f.name}`);
+        textRows.push(`   ${f.url}`);
+      });
+    }
+    const text = textRows.join('\n');
+
+    const resend = new Resend(apiKey);
+
+    const recipient = process.env.MAIL_TO || 'battalatakan@outlook.com';
+    const sender    = process.env.MAIL_FROM || 'ArmaWeld Web <onboarding@resend.dev>';
+
+    // Email format kontrolü (tam doğrulama: domain + TLD)
+    const isValidEmail = (e) => typeof e === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
+
+    const emailPayload = {
+      from: sender,
+      to: [recipient],
+      subject: `ArmaWeld — Teklif: ${form.name || ''} / ${form.company || ''}`.trim(),
+      html,
+      text,
+    };
+    if (isValidEmail(form.email)) emailPayload.replyTo = form.email.trim();
+
+    console.log('[send-form] payload received', {
+      sender, recipient,
+      formKeys: Object.keys(form),
+      fileCount: files.length,
+      subject: emailPayload.subject,
+      replyTo: emailPayload.replyTo,
     });
-  }
-  const text = textRows.join('\n');
 
-  const resend = new Resend(apiKey);
+    try {
+      const result = await resend.emails.send(emailPayload);
 
-  // Alıcı: MAIL_TO env var ayarlandıysa onu kullan
-  // Aksi halde Resend hesap mailine gönder (sandbox limiti — domain doğrulayınca info@armaweld.com'a alabilirsin)
-  const recipient = process.env.MAIL_TO || 'battalatakan@outlook.com';
-  const sender    = process.env.MAIL_FROM || 'ArmaWeld Web <onboarding@resend.dev>';
-
-  // Email format kontrolü (tam doğrulama: domain + TLD)
-  const isValidEmail = (e) => typeof e === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
-
-  const emailPayload = {
-    from: sender,
-    to: [recipient],
-    subject: `ArmaWeld — Teklif: ${form.name || ''} / ${form.company || ''}`.trim(),
-    html,
-    text,
-  };
-  if (isValidEmail(form.email)) emailPayload.replyTo = form.email.trim();
-
-  console.log('[send-form] payload received', {
-    sender, recipient,
-    formKeys: Object.keys(form),
-    fileCount: files.length,
-    subject: emailPayload.subject,
-    replyTo: emailPayload.replyTo,
-  });
-
-  try {
-    const result = await resend.emails.send(emailPayload);
-
-    if (result.error) {
-      console.error('[send-form] Resend error:', JSON.stringify(result.error));
-      return {
-        statusCode: 502,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      if (result.error) {
+        console.error('[send-form] Resend error:', JSON.stringify(result.error));
+        return json(502, {
           success: false,
           message: result.error.message || 'Resend error',
           error: result.error,
           debug: { sender, recipient, replyTo: emailPayload.replyTo },
-        }),
-      };
+        });
+      }
+
+      console.log('[send-form] sent ok, id:', result.data?.id);
+      return json(200, { success: true, id: result.data?.id });
+
+    } catch (err) {
+      console.error('[send-form] Resend exception:', err.message, err.stack);
+      return json(500, { success: false, message: err.message || 'Send failed' });
     }
 
-    console.log('[send-form] sent ok, id:', result.data?.id);
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, id: result.data?.id }),
-    };
-  } catch (err) {
-    console.error('[send-form] exception:', err.message, err.stack);
+  } catch (fatalErr) {
+    // Top-level catch: ensure we NEVER return HTML
+    console.error('[send-form] FATAL:', fatalErr?.message, fatalErr?.stack);
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: false, message: err.message || 'Send failed' }),
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ success: false, message: 'Internal server error: ' + (fatalErr?.message || 'unknown') }),
     };
   }
 };
