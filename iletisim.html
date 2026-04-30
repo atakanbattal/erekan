@@ -989,7 +989,7 @@ async function handleSubmit(e) {
   const fd = new FormData(form);
   const formObj = Object.fromEntries(fd);
 
-  const FN_URL = 'https://armaweld.com/.netlify/functions/send-form';
+  const FN_URL = '/mail.php';
   fetch(FN_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
