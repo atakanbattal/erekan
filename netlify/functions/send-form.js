@@ -131,18 +131,32 @@ export const handler = async (event) => {
 
   const resend = new Resend(apiKey);
 
+  // Alıcıyı env variable'dan oku, yoksa Resend hesap mailine gönder
+  const recipient = process.env.MAIL_TO || 'info@armaweld.com';
+  const sender    = process.env.MAIL_FROM || 'ArmaWeld Web <onboarding@resend.dev>';
+
+  const emailPayload = {
+    from: sender,
+    to: [recipient],
+    subject: `ArmaWeld — Teklif: ${form.name || ''} / ${form.company || ''}`.trim(),
+    html,
+    text,
+  };
+  if (form.email) emailPayload.replyTo = form.email;
+
   try {
-    const result = await resend.emails.send({
-      from: 'ArmaWeld Web <onboarding@resend.dev>',
-      to: ['info@armaweld.com'],
-      reply_to: form.email || undefined,
-      subject: `ArmaWeld — Teklif: ${form.name || ''} / ${form.company || ''}`.trim(),
-      html,
-      text,
-    });
+    const result = await resend.emails.send(emailPayload);
 
     if (result.error) {
-      return { statusCode: 502, body: JSON.stringify({ success: false, message: result.error.message || 'Resend error' }) };
+      return {
+        statusCode: 502,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          success: false,
+          message: result.error.message || 'Resend error',
+          error: result.error,
+        }),
+      };
     }
 
     return {
@@ -153,6 +167,7 @@ export const handler = async (event) => {
   } catch (err) {
     return {
       statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, message: err.message || 'Send failed' }),
     };
   }

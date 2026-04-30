@@ -922,14 +922,6 @@ const MAX_TOTAL_MB = 100;
 const MAX_FILE_B   = MAX_FILE_MB  * 1024 * 1024;
 const MAX_TOTAL_B  = MAX_TOTAL_MB * 1024 * 1024;
 
-async function shortenUrl(longUrl) {
-  try {
-    const r = await fetch('https://is.gd/create.php?format=simple&url=' + encodeURIComponent(longUrl));
-    if (r.ok) { const s = (await r.text()).trim(); if (s.startsWith('http')) return s; }
-  } catch (e) {}
-  return longUrl; // is.gd başarısız olursa orijinal URL
-}
-
 async function uploadToUploadcare(file) {
   const fd = new FormData();
   fd.append('UPLOADCARE_PUB_KEY', UC_PUB_KEY);
@@ -940,9 +932,9 @@ async function uploadToUploadcare(file) {
   const json = await res.json();
   const uuid = (typeof json.file === 'string') ? json.file : Object.values(json)[0];
   if (!uuid || typeof uuid !== 'string') throw new Error('UUID alınamadı');
-  const longUrl = 'https://ucarecdn.com/' + uuid + '/';
-  const shortUrl = await shortenUrl(longUrl); // ~22 karakter, QP kesmez
-  return { name: file.name, uuid: uuid, url: shortUrl };
+  // Dosya adıyla birlikte URL — Uploadcare orijinal adıyla download eder
+  const safeName = file.name.replace(/[^\w.\-]/g, '_');
+  return { name: file.name, uuid: uuid, url: 'https://ucarecdn.com/' + uuid + '/' + safeName };
 }
 // ────────────────────────────────────────────────────────────
 
