@@ -82,9 +82,6 @@ function buildFooter() {
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="index.html" class="logo" style="margin-bottom:24px;">
-            <img id="footer-logo" src="${logoSrc}" alt="ArmaWeld" class="logo-img" />
-          </a>
           <p class="footer-tag" data-i18n="footer_tag">${t('footer_tag')}</p>
           <p class="footer-contact" data-i18n="footer_desc">${t('footer_desc')}</p>
         </div>
