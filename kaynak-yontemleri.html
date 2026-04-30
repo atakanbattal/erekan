@@ -647,9 +647,11 @@ const PROC = {
     get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_mig') : 'Yüksek yığma oranı ve otomasyon uyumu ile seri imalat için en ekonomik proses. Temiz dikiş verir.'; }},
   TIG: { name: 'TIG', iso: 'ISO 4063 · 141', eff: '≈ %100', fm: 'ER70S-2 · ER308L',
     get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_tig') : 'En temiz ve en hassas proses. İnce cidar, paslanmaz ve alüminyumda vazgeçilmez.'; }},
-  SMAW: { name: 'Örtülü Elektrod (SMAW)', iso: 'ISO 4063 · 111', eff: '≈ %65', fm: 'E7018-H4 · E6013',
+  SMAW: { iso: 'ISO 4063 · 111', eff: '≈ %65', fm: 'E7018-H4 · E6013',
+    get name(){ return window.i18n ? window.i18n.get('proc_name_smaw') : 'Örtülü Elektrod (SMAW)'; },
     get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_smaw') : 'Gaz gerektirmez, rüzgara dayanıklıdır. Saha ve tamir kaynaklarında idealdir.'; }},
-  FCAW: { name: 'FCAW (Özlü Tel)', iso: 'ISO 4063 · 136', eff: '≈ %85', fm: 'T46 / T55',
+  FCAW: { iso: 'ISO 4063 · 136', eff: '≈ %85', fm: 'T46 / T55',
+    get name(){ return window.i18n ? window.i18n.get('proc_name_fcaw') : 'FCAW (Özlü Tel)'; },
     get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_fcaw') : 'Yüksek yığma + saha toleransı. Büyük yapısal kaynaklarda seçilir.'; }},
 };
 
@@ -705,6 +707,8 @@ document.querySelectorAll('.sel-pills').forEach(group => {
   });
 });
 chooseProc();
+
+document.addEventListener('langchange', chooseProc);
 
 // Scroll reveal
 const revealObs = new IntersectionObserver((entries) => {
