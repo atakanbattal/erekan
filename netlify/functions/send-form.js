@@ -131,8 +131,9 @@ export const handler = async (event) => {
 
   const resend = new Resend(apiKey);
 
-  // Alıcıyı env variable'dan oku, yoksa Resend hesap mailine gönder
-  const recipient = process.env.MAIL_TO || 'info@armaweld.com';
+  // Alıcı: MAIL_TO env var ayarlandıysa onu kullan
+  // Aksi halde Resend hesap mailine gönder (sandbox limiti — domain doğrulayınca info@armaweld.com'a alabilirsin)
+  const recipient = process.env.MAIL_TO || 'battalatakan@outlook.com';
   const sender    = process.env.MAIL_FROM || 'ArmaWeld Web <onboarding@resend.dev>';
 
   const emailPayload = {
