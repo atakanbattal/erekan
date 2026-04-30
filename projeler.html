@@ -253,12 +253,10 @@
 
 <section class="page-hero">
   <div class="container page-hero-inner">
-    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; PROJELER</div>
-    <h1>Proje Deneyimi.<br/><span class="arc">Teslim edilmiş mühendislik çözümleri.</span></h1>
-    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
-      Müşteri gizliliği nedeniyle bazı projeleri anonim sunuyoruz — ama sektör,
-      standart ve mühendislik detayları gerçek. İlgilendiğiniz bir benzer iş için
-      teknik referanslarımızı paylaşabiliriz.
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; <span data-i18n="projects_breadcrumb">PROJELER</span></div>
+    <h1 data-i18n-html="projects_h1">Proje Deneyimi.<br/><span class="arc">Teslim edilmiş mühendislik çözümleri.</span></h1>
+    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);" data-i18n="projects_lede">
+      240+ tamamlanan proje — iş makinesi, yapısal çelik, enerji, demiryolu ve proses ekipmanı.
     </p>
   </div>
 </section>
@@ -266,20 +264,20 @@
 <!-- Hero image strip -->
 <div class="hero-img-strip">
   <img src="uploads/bom-2.png" alt="ArmaWeld imalat projesi referansı" loading="lazy" />
-  <span class="strip-label">Referans Projeler · 240+ Teslim</span>
+  <span class="strip-label" data-i18n="proj_strip_label">Referans Projeler · 240+ Teslim</span>
 </div>
 
 <!-- Filters -->
 <section class="filters">
   <div class="container">
     <div class="filter-row">
-      <span class="lbl">FİLTRE · SEKTÖR</span>
-      <button class="f-pill active" data-f="all">Hepsi</button>
-      <button class="f-pill" data-f="makine">Makine İmalatı</button>
-      <button class="f-pill" data-f="yapisal">Yapısal Çelik</button>
-      <button class="f-pill" data-f="proses">Proses / Basınçlı Kap</button>
-      <button class="f-pill" data-f="enerji">Enerji</button>
-      <button class="f-pill" data-f="ulasim">Ulaşım / Demiryolu</button>
+      <span class="lbl" data-i18n="proj_filter_lbl">FİLTRE · SEKTÖR</span>
+      <button class="f-pill active" data-f="all" data-i18n="proj_f_all">Hepsi</button>
+      <button class="f-pill" data-f="makine" data-i18n="proj_f_makine">Makine İmalatı</button>
+      <button class="f-pill" data-f="yapisal" data-i18n="proj_f_yapisal">Yapısal Çelik</button>
+      <button class="f-pill" data-f="proses" data-i18n="proj_f_proses">Proses / Basınçlı Kap</button>
+      <button class="f-pill" data-f="enerji" data-i18n="proj_f_enerji">Enerji</button>
+      <button class="f-pill" data-f="ulasim" data-i18n="proj_f_ulasim">Ulaşım / Demiryolu</button>
     </div>
   </div>
 </section>
@@ -290,19 +288,19 @@
   <div class="proj reveal" data-cat="makine">
     <div class="proj-img">
       <img class="proj-img-real" src="uploads/bom.png" alt="HARDOX kepçe imalatı" loading="lazy" />
-      <div class="badge">■ 01 · OEM İMALAT</div>
+      <div class="badge" data-i18n="proj1_badge">■ 01 · OEM İMALAT</div>
       <div class="year">’25</div>
-      <div class="pi-cat">MAKİNE</div>
+      <div class="pi-cat" data-i18n="proj1_pi">MAKİNE</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">MAKİNE İMALATI</div>
-      <h3>Kazıcı Kepçe Seri İmalatı — 32 Adet</h3>
-      <p>HARDOX 500 malzemeli, aşınmaya dayanıklı kazıcı kepçeler. Tekrar edilebilir kaliteyle 3 farklı ebatta üretim.</p>
+      <div class="proj-cat" data-i18n="proj1_cat">MAKİNE İMALATI</div>
+      <h3 data-i18n="proj1_h3">Kazıcı Kepçe Seri İmalatı — 32 Adet</h3>
+      <p data-i18n="proj1_p">HARDOX 500 malzemeli, aşınmaya dayanıklı kazıcı kepçeler. Tekrar edilebilir kaliteyle 3 farklı ebatta üretim.</p>
       <div class="proj-meta">
-        <div><div class="k">Adet</div><div class="v">32 / yıl</div></div>
-        <div><div class="k">Malzeme</div><div class="v">HARDOX 500</div></div>
-        <div><div class="k">NDT</div><div class="v">VT + MT %20</div></div>
+        <div><div class="k" data-i18n="proj1_m1k">Adet</div><div class="v" data-i18n="proj1_m1v">32 / yıl</div></div>
+        <div><div class="k" data-i18n="proj1_m2k">Malzeme</div><div class="v" data-i18n="proj1_m2v">HARDOX 500</div></div>
+        <div><div class="k" data-i18n="proj1_m3k">NDT</div><div class="v" data-i18n="proj1_m3v">VT + MT %20</div></div>
       </div>
     </div>
   </div>
@@ -311,19 +309,19 @@
   <div class="proj reveal" data-d="1" data-cat="yapisal">
     <div class="proj-img">
       <img class="proj-img-real" src="uploads/kaynak.png" alt="Yapısal çelik kaynaklı imalat" loading="lazy" />
-      <div class="badge">■ 02 · EN 1090 EXC2</div>
+      <div class="badge" data-i18n="proj2_badge">■ 02 · EN 1090 EXC2</div>
       <div class="year">’24</div>
-      <div class="pi-cat">YAPISAL</div>
+      <div class="pi-cat" data-i18n="proj2_pi">YAPISAL</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">YAPISAL ÇELİK</div>
-      <h3>Lojistik Depo Ana Taşıyıcısı — 2 400 m²</h3>
-      <p>Tek katlı, 20 m açıklıklı portal çerçeveli depo yapısı. Çatı makas imalatı, dikmeler, aşıklar, bağlantı plakaları ile komple fabrika imalatı.</p>
+      <div class="proj-cat" data-i18n="proj2_cat">YAPISAL ÇELİK</div>
+      <h3 data-i18n="proj2_h3">Lojistik Depo Ana Taşıyıcısı — 2 400 m²</h3>
+      <p data-i18n="proj2_p">Tek katlı, 20 m açıklıklı portal çerçeveli depo yapısı. Çatı makas imalatı, dikmeler, aşıklar, bağlantı plakaları ile komple fabrika imalatı.</p>
       <div class="proj-meta">
-        <div><div class="k">Tonaj</div><div class="v">142 t</div></div>
-        <div><div class="k">Sınıf</div><div class="v">EXC2</div></div>
-        <div><div class="k">Süre</div><div class="v">14 hafta</div></div>
+        <div><div class="k" data-i18n="proj2_m1k">Tonaj</div><div class="v" data-i18n="proj2_m1v">142 t</div></div>
+        <div><div class="k" data-i18n="proj2_m2k">Sınıf</div><div class="v" data-i18n="proj2_m2v">EXC2</div></div>
+        <div><div class="k" data-i18n="proj2_m3k">Süre</div><div class="v" data-i18n="proj2_m3v">14 hafta</div></div>
       </div>
     </div>
   </div>
@@ -332,19 +330,19 @@
   <div class="proj reveal" data-d="2" data-cat="proses">
     <div class="proj-img">
       <img class="proj-img-real" src="uploads/tig.jpeg" alt="TIG kaynak - basınçlı kap imalatı" loading="lazy" />
-      <div class="badge">■ 03 · PED CAT.II</div>
+      <div class="badge" data-i18n="proj3_badge">■ 03 · PED CAT.II</div>
       <div class="year">’25</div>
-      <div class="pi-cat">BASINÇ</div>
+      <div class="pi-cat" data-i18n="proj3_pi">BASINÇ</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">PROSES</div>
-      <h3>Paslanmaz Karıştırıcı Reaktör — 5 m³</h3>
-      <p>316 L paslanmaz çelik proses reaktörü. TIG kök + MIG dolgu hibrit WPS, 100% RT muayene, PED kategori II kapsamında CE işaretleme.</p>
+      <div class="proj-cat" data-i18n="proj3_cat">PROSES</div>
+      <h3 data-i18n="proj3_h3">Paslanmaz Karıştırıcı Reaktör — 5 m³</h3>
+      <p data-i18n="proj3_p">316 L paslanmaz çelik proses reaktörü. TIG kök + MIG dolgu hibrit WPS, 100% RT muayene, PED kategori II kapsamında CE işaretleme.</p>
       <div class="proj-meta">
-        <div><div class="k">Hacim</div><div class="v">5 000 L</div></div>
-        <div><div class="k">Basınç</div><div class="v">8 bar</div></div>
-        <div><div class="k">NDT</div><div class="v">RT %100</div></div>
+        <div><div class="k" data-i18n="proj3_m1k">Hacim</div><div class="v" data-i18n="proj3_m1v">5 000 L</div></div>
+        <div><div class="k" data-i18n="proj3_m2k">Basınç</div><div class="v" data-i18n="proj3_m2v">8 bar</div></div>
+        <div><div class="k" data-i18n="proj3_m3k">NDT</div><div class="v" data-i18n="proj3_m3v">RT %100</div></div>
       </div>
     </div>
   </div>
@@ -352,20 +350,20 @@
   <!-- P4 -->
   <div class="proj reveal" data-cat="enerji">
     <div class="proj-img">
-      <div class="badge">■ 04 · GES YAPISI</div>
+      <div class="badge" data-i18n="proj4_badge">■ 04 · GES YAPISI</div>
       <div class="year">’25</div>
       <div class="pi-glyph">G</div>
-      <div class="pi-cat">ENERJİ</div>
+      <div class="pi-cat" data-i18n="proj4_pi">ENERJİ</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">ENERJİ / GES</div>
-      <h3>42 MWp Güneş Santrali Montaj Yapıları</h3>
-      <p>920 adet tripod ayaklı PV montaj konstrüksiyonu. Sıcak daldırma galvaniz kaplamalı S275 çelik. DIN EN 1090 EXC2 kapsamında üretim + saha teslim.</p>
+      <div class="proj-cat" data-i18n="proj4_cat">ENERJİ / GES</div>
+      <h3 data-i18n="proj4_h3">42 MWp Güneş Santrali Montaj Yapıları</h3>
+      <p data-i18n="proj4_p">920 adet tripod ayaklı PV montaj konstrüksiyonu. Sıcak daldırma galvaniz kaplamalı S275 çelik. DIN EN 1090 EXC2 kapsamında üretim + saha teslim.</p>
       <div class="proj-meta">
-        <div><div class="k">Adet</div><div class="v">920</div></div>
-        <div><div class="k">Kaplama</div><div class="v">HDG 85 µm</div></div>
-        <div><div class="k">Ömür</div><div class="v">25 yıl (C5)</div></div>
+        <div><div class="k" data-i18n="proj4_m1k">Adet</div><div class="v" data-i18n="proj4_m1v">920</div></div>
+        <div><div class="k" data-i18n="proj4_m2k">Kaplama</div><div class="v" data-i18n="proj4_m2v">HDG 85 µm</div></div>
+        <div><div class="k" data-i18n="proj4_m3k">Ömür</div><div class="v" data-i18n="proj4_m3v">25 yıl (C5)</div></div>
       </div>
     </div>
   </div>
@@ -374,19 +372,19 @@
   <div class="proj reveal" data-d="1" data-cat="ulasim">
     <div class="proj-img">
       <img class="proj-img-real" src="uploads/taslama.jpeg" alt="Demiryolu boji çerçevesi imalatı" loading="lazy" />
-      <div class="badge">■ 05 · EN 15085 CL1</div>
+      <div class="badge" data-i18n="proj5_badge">■ 05 · EN 15085 CL1</div>
       <div class="year">’24</div>
-      <div class="pi-cat">RAY</div>
+      <div class="pi-cat" data-i18n="proj5_pi">RAY</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">DEMİRYOLU</div>
-      <h3>Servis Aracı Boji Çerçevesi — 6 Set</h3>
-      <p>Demiryolu servis aracı için EN 15085 CL1 kapsamında, yorulma (fatigue) hesabı yapılmış ve %100 UT muayene edilmiş boji ana çerçevesi.</p>
+      <div class="proj-cat" data-i18n="proj5_cat">DEMİRYOLU</div>
+      <h3 data-i18n="proj5_h3">Servis Aracı Boji Çerçevesi — 6 Set</h3>
+      <p data-i18n="proj5_p">Demiryolu servis aracı için EN 15085 CL1 kapsamında, yorulma (fatigue) hesabı yapılmış ve %100 UT muayene edilmiş boji ana çerçevesi.</p>
       <div class="proj-meta">
-        <div><div class="k">Adet</div><div class="v">6 set</div></div>
-        <div><div class="k">Sınıf</div><div class="v">CL1 · EXC3</div></div>
-        <div><div class="k">NDT</div><div class="v">UT %100</div></div>
+        <div><div class="k" data-i18n="proj5_m1k">Adet</div><div class="v" data-i18n="proj5_m1v">6 set</div></div>
+        <div><div class="k" data-i18n="proj5_m2k">Sınıf</div><div class="v" data-i18n="proj5_m2v">CL1 · EXC3</div></div>
+        <div><div class="k" data-i18n="proj5_m3k">NDT</div><div class="v" data-i18n="proj5_m3v">UT %100</div></div>
       </div>
     </div>
   </div>
@@ -395,19 +393,19 @@
   <div class="proj reveal" data-d="2" data-cat="yapisal">
     <div class="proj-img">
       <img class="proj-img-real" src="uploads/bukum.png" alt="Büküm ve şekillendirme imalat" loading="lazy" />
-      <div class="badge">■ 06 · ENDÜSTRİYEL PLT.</div>
+      <div class="badge" data-i18n="proj6_badge">■ 06 · ENDÜSTRİYEL PLT.</div>
       <div class="year">’25</div>
-      <div class="pi-cat">PLATFORM</div>
+      <div class="pi-cat" data-i18n="proj6_pi">PLATFORM</div>
       <div class="pi-grid"></div>
     </div>
     <div class="proj-body">
-      <div class="proj-cat">YAPISAL ÇELİK</div>
-      <h3>3 Katlı Servis Platformu & Galeri Merdiveni</h3>
-      <p>Proses tesisi bakım ekipleri için 3 katlı servis platformu. Rıht (grating), küpeşte, merdiven ve sahanlıklarla komple teslim.</p>
+      <div class="proj-cat" data-i18n="proj6_cat">YAPISAL ÇELİK</div>
+      <h3 data-i18n="proj6_h3">3 Katlı Servis Platformu & Galeri Merdiveni</h3>
+      <p data-i18n="proj6_p">Proses tesisi bakım ekipleri için 3 katlı servis platformu. Rıht (grating), küpeşte, merdiven ve sahanlıklarla komple teslim.</p>
       <div class="proj-meta">
-        <div><div class="k">Uzunluk</div><div class="v">12 m × 3 kat</div></div>
-        <div><div class="k">Tonaj</div><div class="v">28 t</div></div>
-        <div><div class="k">Yük</div><div class="v">5 kN/m²</div></div>
+        <div><div class="k" data-i18n="proj6_m1k">Uzunluk</div><div class="v" data-i18n="proj6_m1v">12 m × 3 kat</div></div>
+        <div><div class="k" data-i18n="proj6_m2k">Tonaj</div><div class="v" data-i18n="proj6_m2v">28 t</div></div>
+        <div><div class="k" data-i18n="proj6_m3k">Yük</div><div class="v" data-i18n="proj6_m3v">5 kN/m²</div></div>
       </div>
     </div>
   </div>
@@ -418,45 +416,45 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow">02 / Referans Sözler</div>
+        <div class="eyebrow" data-i18n="testim_eyebrow">02 / Referans Sözler</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">VOC — 003</p>
       </div>
       <h2 class="display h2">
-        Müşteri geri bildirimleri <span style="color: var(--arc-2);">proje kalitesini doğrular.</span>
+        <span data-i18n-html="testim_h2">Müşteri geri bildirimleri <span style="color: var(--arc-2);">proje kalitesini doğrular.</span></span>
       </h2>
     </div>
 
     <div class="testim-grid">
       <div class="tm">
         <div class="tm-mark">“</div>
-        <div class="tm-quote">Belge paketinin bu kadar eksiksiz geldiği bir tedarikçi ile ilk kez çalıştık. Saha denetiminde soru işareti bırakmadık — tüm WPS, NDT ve malzeme kayıtları hazırdı.</div>
+        <div class="tm-quote" data-i18n="tm1_q">Belge paketinin bu kadar eksiksiz geldiği bir tedarikçi ile ilk kez çalıştık. Saha denetiminde soru işareti bırakmadık — tüm WPS, NDT ve malzeme kayıtları hazırdı.</div>
         <div class="tm-who">
           <div class="avatar">VM</div>
           <div>
             <div class="name">V. Mercan</div>
-            <div class="role">Kalite Müdürü · Enerji OEM</div>
+            <div class="role" data-i18n="tm1_role">Kalite Müdürü · Enerji OEM</div>
           </div>
         </div>
       </div>
       <div class="tm">
         <div class="tm-mark">“</div>
-        <div class="tm-quote">Seri kepçe üretiminde hem dakik hem de tekrar edilebilir kalite bekliyorduk. ArmaWeld bize üç yıldır bu disiplini tutarlı şekilde sağlıyor.</div>
+        <div class="tm-quote" data-i18n="tm2_q">Seri kepçe üretiminde hem dakik hem de tekrar edilebilir kalite bekliyorduk. ArmaWeld bize üç yıldır bu disiplini tutarlı şekilde sağlıyor.</div>
         <div class="tm-who">
           <div class="avatar">AK</div>
           <div>
             <div class="name">A. Kılıç</div>
-            <div class="role">Satın Alma Yön. · İş Mak. OEM</div>
+            <div class="role" data-i18n="tm2_role">Satın Alma Yön. · İş Mak. OEM</div>
           </div>
         </div>
       </div>
       <div class="tm">
         <div class="tm-mark">“</div>
-        <div class="tm-quote">Basınçlı kap projemizde, tasarım aşamasından CE DoP'a kadar tek bir ekip ile yürüdük. Devreye alma sorunsuz geçti.</div>
+        <div class="tm-quote" data-i18n="tm3_q">Basınçlı kap projemizde, tasarım aşamasından CE DoP'a kadar tek bir ekip ile yürüdük. Devreye alma sorunsuz geçti.</div>
         <div class="tm-who">
           <div class="avatar">SE</div>
           <div>
             <div class="name">S. Erkan</div>
-            <div class="role">Proje Müh. · Kimya Tesisi</div>
+            <div class="role" data-i18n="tm3_role">Proje Müh. · Kimya Tesisi</div>
           </div>
         </div>
       </div>
@@ -469,39 +467,41 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow">03 / Tarih & Kapasite</div>
+        <div class="eyebrow" data-i18n="stats_eyebrow">03 / Tarih & Kapasite</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">STATS — TOTAL</p>
       </div>
       <h2 class="display h2">
-        Proje deneyimimiz <span style="color: var(--arc-2);">ölçülebilir sonuçlarla.</span>
+        <span data-i18n-html="stats_h2">Proje deneyimimiz <span style="color: var(--arc-2);">ölçülebilir sonuçlarla.</span></span>
       </h2>
     </div>
 
     <div class="num-row">
       <div class="num-cell">
-        <div class="k">Teslim Edilen Çelik</div>
+        <div class="k" data-i18n="stat1_k">Teslim Edilen Çelik</div>
         <div class="n"><span data-counter="4200" data-decimals="0">4200</span><span class="u">ton</span></div>
-        <div class="sub">2018 – 2026 · Kümülatif</div>
+        <div class="sub" data-i18n="stat1_sub">2018 – 2026 · Kümülatif</div>
       </div>
       <div class="num-cell">
-        <div class="k">Tamamlanan Proje</div>
+        <div class="k" data-i18n="stat2_k">Tamamlanan Proje</div>
         <div class="n"><span data-counter="240" data-decimals="0">240</span><span class="u">+</span></div>
-        <div class="sub">Makine · Yapı · Proses</div>
+        <div class="sub" data-i18n="stat2_sub">Makine · Yapı · Proses</div>
       </div>
       <div class="num-cell">
-        <div class="k">Kaynaklı Dikiş (km)</div>
+        <div class="k" data-i18n="stat3_k">Kaynaklı Dikiş (km)</div>
         <div class="n"><span data-counter="8.6" data-decimals="1">8.6</span><span class="u">km</span></div>
-        <div class="sub">Tüm prosesler dahil</div>
+        <div class="sub" data-i18n="stat3_sub">Tüm prosesler dahil</div>
       </div>
       <div class="num-cell">
-        <div class="k">Müşteri Devam Oranı</div>
+        <div class="k" data-i18n="stat4_k">Müşteri Devam Oranı</div>
         <div class="n"><span data-counter="92" data-decimals="0">92</span><span class="u">%</span></div>
-        <div class="sub">Tekrar sipariş veren müşteri</div>
+        <div class="sub" data-i18n="stat4_sub">Tekrar sipariş veren müşteri</div>
       </div>
     </div>
   </div>
 </section>
 
+<script src="assets/translations.js"></script>
+<script src="assets/i18n.js"></script>
 <script src="assets/chrome.js"></script>
 <script>
 mountChrome('projeler');

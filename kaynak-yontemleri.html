@@ -271,12 +271,10 @@
 
 <section class="page-hero">
   <div class="container page-hero-inner">
-    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; KAYNAK YÖNTEMLERİ</div>
-    <h1>Prosese Hakim Üretim.<br/><span class="arc">Her malzeme için doğru kaynak yöntemi.</span></h1>
-    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
-      Doğru kaynak; doğru proses, doğru dolgu metali, doğru gaz ve doğru elin
-      birleştiği andır. ArmaWeld'de üç ana proses ailesinde derin uzmanlığımız var:
-      MIG/MAG, TIG ve örtülü elektrod.
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; <span data-i18n="welding_breadcrumb">KAYNAK YÖNTEMLERİ</span></div>
+    <h1 data-i18n-html="welding_h1">Prosese Hakim Üretim.<br/><span class="arc">Her malzeme için doğru kaynak yöntemi.</span></h1>
+    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);" data-i18n="welding_lede">
+      MAG, TIG, MMA ve SAW prosesleri — malzeme, kalınlık ve uygulama gereksinimine göre doğru süreç seçimi.
     </p>
   </div>
 </section>
@@ -292,36 +290,36 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow">01 / Proses Seçici</div>
+        <div class="eyebrow" data-i18n="welding_eyebrow">01 / Proses Seçici</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">PROC.SEL — INTERACTIVE</p>
       </div>
-      <h2 class="display h2">
+      <h2 class="display h2" data-i18n-html="welding_h2">
         Malzeme ve uygulamaya göre <span style="color: var(--arc-2);">doğru kaynak prosesi.</span>
       </h2>
     </div>
 
-    <p class="lede" style="margin-bottom: 20px;">
+    <p class="lede" style="margin-bottom: 20px;" data-i18n="welding_sel_lede">
       Aşağıdaki seçicide malzeme, kalınlık ve ortam bilgisini girdikten sonra — ArmaWeld
       mühendislik bilgi havuzundan size en uygun kaynak prosesini öneriyoruz.
     </p>
 
     <div class="sel-wrap">
       <div class="sel-input">
-        <h4>Parametreler</h4>
+        <h4 data-i18n="welding_params_h4">Parametreler</h4>
 
         <div class="sel-group">
-          <label>Malzeme Grubu</label>
+          <label data-i18n="welding_lbl_mat">Malzeme Grubu</label>
           <div class="sel-pills" data-param="mat">
-            <button class="sel-pill active" data-v="carbon">Karbon Çeliği</button>
-            <button class="sel-pill" data-v="stainless">Paslanmaz</button>
-            <button class="sel-pill" data-v="aluminum">Alüminyum</button>
-            <button class="sel-pill" data-v="hardox">HARDOX / Aşınma</button>
-            <button class="sel-pill" data-v="pressure">Basınçlı Kap (P)</button>
+            <button class="sel-pill active" data-v="carbon" data-i18n="welding_pill_carbon">Karbon Çeliği</button>
+            <button class="sel-pill" data-v="stainless" data-i18n="welding_pill_stainless">Paslanmaz</button>
+            <button class="sel-pill" data-v="aluminum" data-i18n="welding_pill_aluminum">Alüminyum</button>
+            <button class="sel-pill" data-v="hardox" data-i18n="welding_pill_hardox">HARDOX / Aşınma</button>
+            <button class="sel-pill" data-v="pressure" data-i18n="welding_pill_pressure">Basınçlı Kap (P)</button>
           </div>
         </div>
 
         <div class="sel-group">
-          <label>Kalınlık</label>
+          <label data-i18n="welding_lbl_thick">Kalınlık</label>
           <div class="sel-pills" data-param="thick">
             <button class="sel-pill" data-v="thin">&lt; 3 mm</button>
             <button class="sel-pill active" data-v="med">3 – 15 mm</button>
@@ -331,36 +329,36 @@
         </div>
 
         <div class="sel-group">
-          <label>Ortam</label>
+          <label data-i18n="welding_lbl_env">Ortam</label>
           <div class="sel-pills" data-param="env">
-            <button class="sel-pill active" data-v="shop">Atölye</button>
-            <button class="sel-pill" data-v="field">Saha / Açık Alan</button>
+            <button class="sel-pill active" data-v="shop" data-i18n="welding_pill_shop">Atölye</button>
+            <button class="sel-pill" data-v="field" data-i18n="welding_pill_field">Saha / Açık Alan</button>
           </div>
         </div>
 
         <div class="sel-group">
-          <label>Öncelik</label>
+          <label data-i18n="welding_lbl_prio">Öncelik</label>
           <div class="sel-pills" data-param="prio">
-            <button class="sel-pill active" data-v="speed">Hız / Verim</button>
-            <button class="sel-pill" data-v="quality">Kalite / Görünüm</button>
-            <button class="sel-pill" data-v="balanced">Dengeli</button>
+            <button class="sel-pill active" data-v="speed" data-i18n="welding_pill_speed">Hız / Verim</button>
+            <button class="sel-pill" data-v="quality" data-i18n="welding_pill_quality">Kalite / Görünüm</button>
+            <button class="sel-pill" data-v="balanced" data-i18n="welding_pill_balanced">Dengeli</button>
           </div>
         </div>
       </div>
 
       <div class="sel-out corner-ticks">
-        <div class="sel-rec" id="sel-rec">ÖNERİLEN PROSES</div>
+        <div class="sel-rec" id="sel-rec" data-i18n="welding_sel_rec">ÖNERİLEN PROSES</div>
         <h3 id="sel-name">—</h3>
         <p class="sel-reason" id="sel-reason">—</p>
 
         <div class="sel-specs">
-          <div class="sel-spec"><div class="k">ISO Kodu</div><div class="v" id="sel-iso">—</div></div>
-          <div class="sel-spec"><div class="k">Verimlilik</div><div class="v" id="sel-eff">—</div></div>
-          <div class="sel-spec"><div class="k">Dolgu Metali</div><div class="v" id="sel-fm">—</div></div>
+          <div class="sel-spec"><div class="k" data-i18n="welding_sel_iso_k">ISO Kodu</div><div class="v" id="sel-iso">—</div></div>
+          <div class="sel-spec"><div class="k" data-i18n="welding_sel_eff_k">Verimlilik</div><div class="v" id="sel-eff">—</div></div>
+          <div class="sel-spec"><div class="k" data-i18n="welding_sel_fm_k">Dolgu Metali</div><div class="v" id="sel-fm">—</div></div>
         </div>
 
         <div class="sel-alt">
-          <span class="lbl">ALTERNATİF:</span>
+          <span class="lbl" data-i18n="welding_sel_alt">ALTERNATİF:</span>
           <span class="a" id="sel-alt1">—</span>
           <span class="a" id="sel-alt2">—</span>
         </div>
@@ -375,38 +373,38 @@
     <div class="mb-row reveal">
       <div class="mb-meta">
         <div class="abbr">MIG / MAG</div>
-        <div class="full">Gaz Metal Ark Kaynağı · ISO 4063 Proses 131/135/136</div>
-        <p class="desc">
+        <div class="full" data-i18n="welding_mig_full">Gaz Metal Ark Kaynağı · ISO 4063 Proses 131/135/136</div>
+        <p class="desc" data-i18n="welding_mig_desc">
           Sürekli beslenen dolgu teli ile koruyucu gaz altında çalışan, yüksek yığma oranlı
           yarı-otomatik kaynak yöntemi. Atölyemizin omurgası; vinç gövdeleri, yapısal çelik,
           iş makinesi şaselerinde ilk tercihimiz.
         </p>
 
         <div class="mb-params">
-          <div class="mb-param"><div class="k">Akım</div><div class="v">DC+ · 120 – 320 A</div></div>
-          <div class="mb-param"><div class="k">Gerilim</div><div class="v">18 – 32 V</div></div>
-          <div class="mb-param"><div class="k">Gaz</div><div class="v">Ar + CO₂ (M21)</div></div>
-          <div class="mb-param"><div class="k">Tel Çapı</div><div class="v">0.8 – 1.6 mm</div></div>
-          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %95</div></div>
-          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">1.5 – 5 kg/saat</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_amp">Akım</div><div class="v">DC+ · 120 – 320 A</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_volt">Gerilim</div><div class="v">18 – 32 V</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_gas">Gaz</div><div class="v">Ar + CO₂ (M21)</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_wire">Tel Çapı</div><div class="v">0.8 – 1.6 mm</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_eff">Verimlilik</div><div class="v">≈ %95</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_dep">Yığma Hızı</div><div class="v">1.5 – 5 kg/saat</div></div>
         </div>
 
         <div class="mb-pros">
           <div class="pro">
-            <h5>Avantajları</h5>
+            <h5 data-i18n="welding_pros_h">Avantajları</h5>
             <ul>
-              <li>Yüksek yığma oranı, seri imalata uygun</li>
-              <li>Kolay otomasyon (robot kaynağı)</li>
-              <li>Tüm pozisyonlarda uygulanabilir</li>
-              <li>Temiz, cürufsuz dikiş</li>
+              <li data-i18n="welding_mig_pro1">Yüksek yığma oranı, seri imalata uygun</li>
+              <li data-i18n="welding_mig_pro2">Kolay otomasyon (robot kaynağı)</li>
+              <li data-i18n="welding_mig_pro3">Tüm pozisyonlarda uygulanabilir</li>
+              <li data-i18n="welding_mig_pro4">Temiz, cürufsuz dikiş</li>
             </ul>
           </div>
           <div class="con">
-            <h5>Sınırlamaları</h5>
+            <h5 data-i18n="welding_cons_h">Sınırlamaları</h5>
             <ul>
-              <li>Açık alanda gaz dağılımı sorunu</li>
-              <li>Rüzgar ≥ 3 m/s'de uygulanamaz</li>
-              <li>Ekipman daha maliyetli</li>
+              <li data-i18n="welding_mig_con1">Açık alanda gaz dağılımı sorunu</li>
+              <li data-i18n="welding_mig_con2">Rüzgar ≥ 3 m/s'de uygulanamaz</li>
+              <li data-i18n="welding_mig_con3">Ekipman daha maliyetli</li>
             </ul>
           </div>
         </div>
@@ -418,28 +416,28 @@
           <span class="r">ISO 4063 · 135</span>
         </div>
         <div class="mv-big">MIG<span>/MAG</span></div>
-        <div class="mv-sub">Gaz Metal Ark Kaynağı</div>
+        <div class="mv-sub" data-i18n="welding_mig_sub">Gaz Metal Ark Kaynağı</div>
 
         <div class="mv-bars">
-          <div class="mv-bar"><div class="bl">Yığma Hızı</div><div class="bt"><i style="width:82%"></i></div><div class="br">1.5–4.5 kg/sa</div></div>
-          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:95%"></i></div><div class="br">%95</div></div>
-          <div class="mv-bar"><div class="bl">Otomasyon</div><div class="bt"><i style="width:90%"></i></div><div class="br">Yüksek</div></div>
-          <div class="mv-bar"><div class="bl">Rüzgar Dir.</div><div class="bt"><i style="width:20%"></i></div><div class="br">Düşük</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_dep">Yığma Hızı</div><div class="bt"><i style="width:82%"></i></div><div class="br">1.5–4.5 kg/sa</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_eff">Verimlilik</div><div class="bt"><i style="width:95%"></i></div><div class="br">%95</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_auto">Otomasyon</div><div class="bt"><i style="width:90%"></i></div><div class="br" data-i18n="mvbar_high">Yüksek</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_wind">Rüzgar Dir.</div><div class="bt"><i style="width:20%"></i></div><div class="br" data-i18n="mvbar_low">Düşük</div></div>
         </div>
 
         <div class="mv-tags">
-          <span>KARBON ÇELİK</span><span>DÜŞÜK ALAŞIM</span><span>SERİ İMALAT</span><span>ROBOT</span>
+          <span data-i18n="tag_carbon">KARBON ÇELİK</span><span data-i18n="tag_lowalloy">DÜŞÜK ALAŞIM</span><span data-i18n="tag_series">SERİ İMALAT</span><span data-i18n="tag_robot">ROBOT</span>
         </div>
 
         <div class="mv-foot">
           <span>DC+ · 120–320 A</span>
-          <span class="ok">● ÖNCELİKLİ</span>
+          <span class="ok" data-i18n="mvfoot_pri">● ÖNCELİKLİ</span>
         </div>
 
         <div class="method-img-card">
           <img src="uploads/kaynak.png" alt="MIG/MAG kaynak uygulaması" loading="lazy" />
           <div class="ic-overlay"></div>
-          <span class="ic-badge">● MIG/MAG · Yapısal Kaynak</span>
+          <span class="ic-badge" data-i18n="icbadge_mig">● MIG/MAG · Yapısal Kaynak</span>
         </div>
       </div>
     </div>
@@ -456,65 +454,65 @@
           <span class="r">ISO 4063 · 141</span>
         </div>
         <div class="mv-big">TIG</div>
-        <div class="mv-sub">Gaz Tungsten Ark Kaynağı</div>
+        <div class="mv-sub" data-i18n="welding_tig_sub">Gaz Tungsten Ark Kaynağı</div>
 
         <div class="mv-bars">
-          <div class="mv-bar"><div class="bl">Dikiş Temizliği</div><div class="bt"><i style="width:100%"></i></div><div class="br">En Yüksek</div></div>
-          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:100%"></i></div><div class="br">%100</div></div>
-          <div class="mv-bar"><div class="bl">Hassasiyet</div><div class="bt"><i style="width:98%"></i></div><div class="br">Çok Yüksek</div></div>
-          <div class="mv-bar"><div class="bl">Hız</div><div class="bt"><i style="width:28%"></i></div><div class="br">Yavaş</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_clean">Dikiş Temizliği</div><div class="bt"><i style="width:100%"></i></div><div class="br" data-i18n="mvbar_highest">En Yüksek</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_eff">Verimlilik</div><div class="bt"><i style="width:100%"></i></div><div class="br">%100</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_prec">Hassasiyet</div><div class="bt"><i style="width:98%"></i></div><div class="br" data-i18n="mvbar_vhigh">Çok Yüksek</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_speed">Hız</div><div class="bt"><i style="width:28%"></i></div><div class="br" data-i18n="mvbar_slow">Yavaş</div></div>
         </div>
 
         <div class="mv-tags">
-          <span>PASLANMAZ</span><span>ALÜMİNYUM</span><span>TİTANYUM</span><span>İNCE CİDAR</span><span>GIDA</span>
+          <span data-i18n="tag_stainless">PASLANMAZ</span><span data-i18n="tag_alu">ALÜMİNYUM</span><span data-i18n="tag_ti">TİTANYUM</span><span data-i18n="tag_thin">İNCE CİDAR</span><span data-i18n="tag_food">GIDA</span>
         </div>
 
         <div class="mv-foot">
           <span>AC/DC · 20–220 A</span>
-          <span class="ok">● HASSAS İŞ</span>
+          <span class="ok" data-i18n="mvfoot_prec">● HASSAS İŞ</span>
         </div>
 
         <div class="method-img-card">
           <img src="uploads/tig.jpeg" alt="TIG kaynak uygulaması" loading="lazy" />
           <div class="ic-overlay"></div>
-          <span class="ic-badge">● TIG · Hassas Ark Kaynağı</span>
+          <span class="ic-badge" data-i18n="icbadge_tig">● TIG · Hassas Ark Kaynağı</span>
         </div>
       </div>
 
       <div class="mb-meta">
         <div class="abbr" style="color: var(--arc-2);">TIG</div>
-        <div class="full">Gaz Tungsten Ark Kaynağı · ISO 4063 Proses 141</div>
-        <p class="desc">
+        <div class="full" data-i18n="welding_tig_full">Gaz Tungsten Ark Kaynağı · ISO 4063 Proses 141</div>
+        <p class="desc" data-i18n="welding_tig_desc">
           Erimeyen tungsten elektrod ve saf argon gazı ile çalışan, el ile beslenen dolgu telli,
           en temiz ve en hassas ark kaynağı. Paslanmaz tanklar, basınçlı kaplar, alüminyum
           parçalar, sıhhi uygulamalar ve görünür dikişler için ilk tercihimiz.
         </p>
 
         <div class="mb-params">
-          <div class="mb-param"><div class="k">Akım</div><div class="v">AC / DC · 20 – 220 A</div></div>
-          <div class="mb-param"><div class="k">Gerilim</div><div class="v">10 – 18 V</div></div>
-          <div class="mb-param"><div class="k">Gaz</div><div class="v">%100 Argon</div></div>
-          <div class="mb-param"><div class="k">Elektrod</div><div class="v">WT20 / WC20</div></div>
-          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %100</div></div>
-          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">0.3 – 0.8 kg/saat</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_amp">Akım</div><div class="v">AC / DC · 20 – 220 A</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_volt">Gerilim</div><div class="v">10 – 18 V</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_gas">Gaz</div><div class="v">%100 Argon</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_el">Elektrod</div><div class="v">WT20 / WC20</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_eff">Verimlilik</div><div class="v">≈ %100</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_dep">Yığma Hızı</div><div class="v">0.3 – 0.8 kg/saat</div></div>
         </div>
 
         <div class="mb-pros">
           <div class="pro">
-            <h5>Avantajları</h5>
+            <h5 data-i18n="welding_pros_h">Avantajları</h5>
             <ul>
-              <li>En temiz, cürufsuz, sıçramasız dikiş</li>
-              <li>Hassas akım kontrolü (ince cidar için)</li>
-              <li>Paslanmaz, alüminyum, titanyum uyumu</li>
-              <li>Görünür / estetik dikişler için ideal</li>
+              <li data-i18n="welding_tig_pro1">En temiz, cürufsuz, sıçramasız dikiş</li>
+              <li data-i18n="welding_tig_pro2">Hassas akım kontrolü (ince cidar için)</li>
+              <li data-i18n="welding_tig_pro3">Paslanmaz, alüminyum, titanyum uyumu</li>
+              <li data-i18n="welding_tig_pro4">Görünür / estetik dikişler için ideal</li>
             </ul>
           </div>
           <div class="con">
-            <h5>Sınırlamaları</h5>
+            <h5 data-i18n="welding_cons_h">Sınırlamaları</h5>
             <ul>
-              <li>Yavaş — seri imalata uygun değil</li>
-              <li>Operatör becerisi kritik</li>
-              <li>Malzeme yüzeyi çok temiz olmalı</li>
+              <li data-i18n="welding_tig_con1">Yavaş — seri imalata uygun değil</li>
+              <li data-i18n="welding_tig_con2">Operatör becerisi kritik</li>
+              <li data-i18n="welding_tig_con3">Malzeme yüzeyi çok temiz olmalı</li>
             </ul>
           </div>
         </div>
@@ -529,39 +527,39 @@
     <div class="mb-row reveal">
       <div class="mb-meta">
         <div class="abbr">E-ARC</div>
-        <div class="full">Örtülü Elektrod Ark Kaynağı (SMAW) · ISO 4063 Proses 111</div>
-        <p class="desc">
+        <div class="full" data-i18n="welding_earc_full">Örtülü Elektrod Ark Kaynağı (SMAW) · ISO 4063 Proses 111</div>
+        <p class="desc" data-i18n="welding_earc_desc">
           Eriyebilir örtülü elektrod ile çalışan; gaz gerektirmeyen, rüzgara dirençli klasik
           yöntem. Saha çalışmalarında, açık alanda ve tamir kaynaklarında tercih ediyoruz.
           Bazik elektrodlarla yüksek tokluk gereken kritik birleştirmelerde de uygundur.
         </p>
 
         <div class="mb-params">
-          <div class="mb-param"><div class="k">Akım</div><div class="v">AC / DC · 60 – 300 A</div></div>
-          <div class="mb-param"><div class="k">Gerilim</div><div class="v">20 – 34 V</div></div>
-          <div class="mb-param"><div class="k">Gaz</div><div class="v">Yok (örtüden)</div></div>
-          <div class="mb-param"><div class="k">Elektrod</div><div class="v">Bazik · Rutil · Selülozik</div></div>
-          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %65</div></div>
-          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">0.5 – 2.5 kg/saat</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_amp">Akım</div><div class="v">AC / DC · 60 – 300 A</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_volt">Gerilim</div><div class="v">20 – 34 V</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_gas">Gaz</div><div class="v" data-i18n="mbpar_gas_none">Yok (örtüden)</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_el">Elektrod</div><div class="v">Bazik · Rutil · Selülozik</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_eff">Verimlilik</div><div class="v">≈ %65</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_dep">Yığma Hızı</div><div class="v">0.5 – 2.5 kg/saat</div></div>
         </div>
 
         <div class="mb-pros">
           <div class="pro">
-            <h5>Avantajları</h5>
+            <h5 data-i18n="welding_pros_h">Avantajları</h5>
             <ul>
-              <li>Rüzgara / açık alana dayanıklı</li>
-              <li>Ekipman basit ve taşınabilir</li>
-              <li>Bazik elektrodla yüksek tokluk</li>
-              <li>Her pozisyonda kullanılabilir</li>
+              <li data-i18n="welding_earc_pro1">Rüzgara / açık alana dayanıklı</li>
+              <li data-i18n="welding_earc_pro2">Ekipman basit ve taşınabilir</li>
+              <li data-i18n="welding_earc_pro3">Bazik elektrodla yüksek tokluk</li>
+              <li data-i18n="welding_earc_pro4">Her pozisyonda kullanılabilir</li>
             </ul>
           </div>
           <div class="con">
-            <h5>Sınırlamaları</h5>
+            <h5 data-i18n="welding_cons_h">Sınırlamaları</h5>
             <ul>
-              <li>Elektrod değişim kesintileri</li>
-              <li>Cüruf temizleme gerekir</li>
-              <li>Verimlilik düşük — fire yüksek</li>
-              <li>Elektrod kuruluk takibi kritik</li>
+              <li data-i18n="welding_earc_con1">Elektrod değişim kesintileri</li>
+              <li data-i18n="welding_earc_con2">Cüruf temizleme gerekir</li>
+              <li data-i18n="welding_earc_con3">Verimlilik düşük — fire yüksek</li>
+              <li data-i18n="welding_earc_con4">Elektrod kuruluk takibi kritik</li>
             </ul>
           </div>
         </div>
@@ -573,22 +571,22 @@
           <span class="r">ISO 4063 · 111</span>
         </div>
         <div class="mv-big">E-ARC</div>
-        <div class="mv-sub">Örtülü Elektrod Ark Kaynağı</div>
+        <div class="mv-sub" data-i18n="welding_earc_sub">Örtülü Elektrod Ark Kaynağı</div>
 
         <div class="mv-bars">
-          <div class="mv-bar"><div class="bl">Rüzgar Dir.</div><div class="bt"><i style="width:95%"></i></div><div class="br">En Yüksek</div></div>
-          <div class="mv-bar"><div class="bl">Taşınabilirlik</div><div class="bt"><i style="width:90%"></i></div><div class="br">Saha Ready</div></div>
-          <div class="mv-bar"><div class="bl">Tokluk (Bazik)</div><div class="bt"><i style="width:85%"></i></div><div class="br">Çok İyi</div></div>
-          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:65%"></i></div><div class="br">%65</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_wind">Rüzgar Dir.</div><div class="bt"><i style="width:95%"></i></div><div class="br" data-i18n="mvbar_highest">En Yüksek</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_port">Taşınabilirlik</div><div class="bt"><i style="width:90%"></i></div><div class="br" data-i18n="mvbar_field">Saha Ready</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_tough">Tokluk (Bazik)</div><div class="bt"><i style="width:85%"></i></div><div class="br" data-i18n="mvbar_vgood">Çok İyi</div></div>
+          <div class="mv-bar"><div class="bl" data-i18n="mvbar_eff">Verimlilik</div><div class="bt"><i style="width:65%"></i></div><div class="br">%65</div></div>
         </div>
 
         <div class="mv-tags">
-          <span>SAHA</span><span>TAMİR</span><span>KALIN KESİT</span><span>AÇIK ALAN</span>
+          <span data-i18n="tag_field">SAHA</span><span data-i18n="tag_repair">TAMİR</span><span data-i18n="tag_thick">KALIN KESİT</span><span data-i18n="tag_open">AÇIK ALAN</span>
         </div>
 
         <div class="mv-foot">
           <span>AC/DC · 60–300 A</span>
-          <span class="ok">● SAHA / TAMİR</span>
+          <span class="ok" data-i18n="mvfoot_field">● SAHA / TAMİR</span>
         </div>
       </div>
     </div>
@@ -600,10 +598,10 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow">04 / Tam Karşılaştırma</div>
+        <div class="eyebrow" data-i18n="welding_cmp_eyebrow">04 / Tam Karşılaştırma</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">COMPARE — ALL</p>
       </div>
-      <h2 class="display h2">
+      <h2 class="display h2" data-i18n-html="welding_cmp_h2_html">
         Kaynak yöntemleri <span style="color: var(--arc-2);">teknik kriterlerle karşılaştırılır.</span>
       </h2>
     </div>
@@ -611,31 +609,33 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Özellik</th>
+          <th data-i18n="welding_cmp_th_feat">Özellik</th>
           <th>MIG/MAG (135)</th>
           <th>TIG (141)</th>
           <th>E-ARC (111)</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Tam Adı</td><td>Gaz Metal Ark K.</td><td>Gaz Tungsten Ark K.</td><td>Örtülü Elektrod Ark K.</td></tr>
-        <tr><td>Elektrod</td><td>Eriyen tel</td><td>Erimeyen tungsten</td><td>Eriyen örtülü çubuk</td></tr>
-        <tr><td>Koruyucu Gaz</td><td>Ar + CO₂</td><td>%100 Argon</td><td>Yok (örtüden)</td></tr>
-        <tr><td>Akım Aralığı</td><td>120–320 A</td><td>20–220 A</td><td>60–300 A</td></tr>
-        <tr><td>Polarite</td><td>DC+</td><td>AC / DC−</td><td>AC / DC±</td></tr>
-        <tr><td>Verimlilik</td><td>%95</td><td>%100</td><td>%65</td></tr>
-        <tr><td>Yığma Hızı (kg/saat)</td><td>1.5 – 5.0</td><td>0.3 – 0.8</td><td>0.5 – 2.5</td></tr>
-        <tr><td>Min. Kalınlık</td><td>0.8 mm</td><td>0.3 mm</td><td>2.0 mm</td></tr>
-        <tr><td>Maks. Kalınlık (tek paso)</td><td>8 mm</td><td>4 mm</td><td>5 mm</td></tr>
-        <tr><td>Saha Kullanımı</td><td>Sınırlı (rüzgar)</td><td>Yok (rüzgar)</td><td>İdeal</td></tr>
-        <tr><td>Otomasyon</td><td>Yüksek (robot)</td><td>Orta</td><td>Düşük</td></tr>
-        <tr><td>Operatör Becerisi</td><td>Orta</td><td>Yüksek</td><td>Orta–Yüksek</td></tr>
-        <tr><td>Göze Çarpan Alanı</td><td>Seri imalat, yapı</td><td>İnce, görünür</td><td>Saha, tamir</td></tr>
+        <tr><td data-i18n="welding_cmp_r1">Tam Adı</td><td data-i18n="welding_cmp_mig_name">Gaz Metal Ark K.</td><td data-i18n="welding_cmp_tig_name">Gaz Tungsten Ark K.</td><td data-i18n="welding_cmp_earc_name">Örtülü Elektrod Ark K.</td></tr>
+        <tr><td data-i18n="welding_cmp_r2">Elektrod</td><td data-i18n="welding_cmp_mig_el">Eriyen tel</td><td data-i18n="welding_cmp_tig_el">Erimeyen tungsten</td><td data-i18n="welding_cmp_earc_el">Eriyen örtülü çubuk</td></tr>
+        <tr><td data-i18n="welding_cmp_r3">Koruyucu Gaz</td><td data-i18n="welding_cmp_mig_gas">Ar + CO₂</td><td data-i18n="welding_cmp_tig_gas">%100 Argon</td><td data-i18n="welding_cmp_earc_gas">Yok (örtüden)</td></tr>
+        <tr><td data-i18n="welding_cmp_r4">Akım Aralığı</td><td>120–320 A</td><td>20–220 A</td><td>60–300 A</td></tr>
+        <tr><td data-i18n="welding_cmp_r5">Polarite</td><td>DC+</td><td>AC / DC−</td><td>AC / DC±</td></tr>
+        <tr><td data-i18n="welding_cmp_r6">Verimlilik</td><td>%95</td><td>%100</td><td>%65</td></tr>
+        <tr><td data-i18n="welding_cmp_r7">Yığma Hızı (kg/saat)</td><td>1.5 – 5.0</td><td>0.3 – 0.8</td><td>0.5 – 2.5</td></tr>
+        <tr><td data-i18n="welding_cmp_r8">Min. Kalınlık</td><td>0.8 mm</td><td>0.3 mm</td><td>2.0 mm</td></tr>
+        <tr><td data-i18n="welding_cmp_r9">Maks. Kalınlık (tek paso)</td><td>8 mm</td><td>4 mm</td><td>5 mm</td></tr>
+        <tr><td data-i18n="welding_cmp_r10">Saha Kullanımı</td><td data-i18n="welding_cmp_mig_site">Sınırlı (rüzgar)</td><td data-i18n="welding_cmp_tig_site">Yok (rüzgar)</td><td data-i18n="welding_cmp_earc_site">İdeal</td></tr>
+        <tr><td data-i18n="welding_cmp_r11">Otomasyon</td><td data-i18n="welding_cmp_mig_auto">Yüksek (robot)</td><td data-i18n="welding_cmp_tig_auto">Orta</td><td data-i18n="welding_cmp_earc_auto">Düşük</td></tr>
+        <tr><td data-i18n="welding_cmp_r12">Operatör Becerisi</td><td data-i18n="welding_cmp_mig_skill">Orta</td><td data-i18n="welding_cmp_tig_skill">Yüksek</td><td data-i18n="welding_cmp_earc_skill">Orta–Yüksek</td></tr>
+        <tr><td data-i18n="welding_cmp_r13">Göze Çarpan Alanı</td><td data-i18n="welding_cmp_mig_use">Seri imalat, yapı</td><td data-i18n="welding_cmp_tig_use">İnce, görünür</td><td data-i18n="welding_cmp_earc_use">Saha, tamir</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
+<script src="assets/translations.js"></script>
+<script src="assets/i18n.js"></script>
 <script src="assets/chrome.js"></script>
 <script>
 mountChrome('kaynak');
@@ -644,13 +644,13 @@ mountChrome('kaynak');
 const state = { mat: 'carbon', thick: 'med', env: 'shop', prio: 'speed' };
 const PROC = {
   MIG: { name: 'MIG / MAG', iso: 'ISO 4063 · 135', eff: '≈ %95', fm: 'G3Si1 · G4Si1', arc: true,
-    reasonBase: 'Yüksek yığma oranı ve otomasyon uyumu ile seri imalat için en ekonomik proses. Temiz dikiş verir.'},
+    get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_mig') : 'Yüksek yığma oranı ve otomasyon uyumu ile seri imalat için en ekonomik proses. Temiz dikiş verir.'; }},
   TIG: { name: 'TIG', iso: 'ISO 4063 · 141', eff: '≈ %100', fm: 'ER70S-2 · ER308L',
-    reasonBase: 'En temiz ve en hassas proses. İnce cidar, paslanmaz ve alüminyumda vazgeçilmez.'},
+    get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_tig') : 'En temiz ve en hassas proses. İnce cidar, paslanmaz ve alüminyumda vazgeçilmez.'; }},
   SMAW: { name: 'Örtülü Elektrod (SMAW)', iso: 'ISO 4063 · 111', eff: '≈ %65', fm: 'E7018-H4 · E6013',
-    reasonBase: 'Gaz gerektirmez, rüzgara dayanıklıdır. Saha ve tamir kaynaklarında idealdir.'},
+    get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_smaw') : 'Gaz gerektirmez, rüzgara dayanıklıdır. Saha ve tamir kaynaklarında idealdir.'; }},
   FCAW: { name: 'FCAW (Özlü Tel)', iso: 'ISO 4063 · 136', eff: '≈ %85', fm: 'T46 / T55',
-    reasonBase: 'Yüksek yığma + saha toleransı. Büyük yapısal kaynaklarda seçilir.'},
+    get reasonBase(){ return window.i18n ? window.i18n.get('proc_reason_fcaw') : 'Yüksek yığma + saha toleransı. Büyük yapısal kaynaklarda seçilir.'; }},
 };
 
 function chooseProc() {
@@ -662,23 +662,23 @@ function chooseProc() {
   if (env === 'field') {
     choice = 'SMAW';
     alts = ['FCAW', 'MIG'];
-    extra = ' Saha/açık alan koşullarında gaz bazlı prosesler rüzgar nedeniyle güvenilir değildir.';
+    extra = window.i18n ? window.i18n.get('proc_extra_field') : ' Saha/açık alan koşullarında gaz bazlı prosesler rüzgar nedeniyle güvenilir değildir.';
   } else if (mat === 'stainless' || mat === 'aluminum') {
     if (thick === 'thin' || prio === 'quality') {
       choice = 'TIG'; alts = ['MIG', 'SMAW'];
-      extra = ` ${mat === 'aluminum' ? 'Alüminyum' : 'Paslanmaz'} için oksit temizliği ve hassas ark kontrolü TIG'i öne çıkarır.`;
+      extra = window.i18n ? (mat === 'aluminum' ? window.i18n.get('proc_extra_alu') : window.i18n.get('proc_extra_ss')) : ` ${mat === 'aluminum' ? 'Alüminyum' : 'Paslanmaz'} için oksit temizliği ve hassas ark kontrolü TIG'i öne çıkarır.`;
     } else {
       choice = 'MIG'; alts = ['TIG', 'SMAW'];
-      extra = ' Orta/kalın kesitlerde verim için MIG tercih edilir, görünür pasolar TIG ile tamamlanabilir.';
+      extra = window.i18n ? window.i18n.get('proc_extra_mig_ss') : ' Orta/kalın kesitlerde verim için MIG tercih edilir, görünür pasolar TIG ile tamamlanabilir.';
     }
   } else if (mat === 'pressure') {
     choice = 'TIG'; alts = ['MIG', 'SMAW'];
-    extra = ' Basınçlı kap uygulamalarında kök pasosu TIG, dolgu pasoları MIG/MAG ile yapılır (hibrit WPS).';
+    extra = window.i18n ? window.i18n.get('proc_extra_pv') : ' Basınçlı kap uygulamalarında kök pasosu TIG, dolgu pasoları MIG/MAG ile yapılır (hibrit WPS).';
   } else if (mat === 'hardox') {
     choice = 'MIG'; alts = ['SMAW', 'TIG'];
-    extra = ' HARDOX/Raex için pasolar arası sıcaklık kritik; bazik elektrod veya düşük hidrojen kaynağı uygulanır.';
+    extra = window.i18n ? window.i18n.get('proc_extra_hardox') : ' HARDOX/Raex için pasolar arası sıcaklık kritik; bazik elektrod veya düşük hidrojen kaynağı uygulanır.';
   } else {
-    if (thick === 'heavy') { choice = 'SMAW'; alts = ['MIG', 'FCAW']; extra = ' Çok kalın plakalarda bazik elektrodla çok pasolu dikiş tercih edilir.'; }
+    if (thick === 'heavy') { choice = 'SMAW'; alts = ['MIG', 'FCAW']; extra = window.i18n ? window.i18n.get('proc_extra_heavy') : ' Çok kalın plakalarda bazik elektrodla çok pasolu dikiş tercih edilir.'; }
     else if (prio === 'quality') { choice = 'TIG'; alts = ['MIG', 'SMAW']; }
     else { choice = 'MIG'; alts = ['SMAW', 'TIG']; }
   }
