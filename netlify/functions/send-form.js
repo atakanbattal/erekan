@@ -94,19 +94,19 @@ export const handler = async (event) => {
         </tr>`);
     }
 
-    // Dosyaları HTML link listesine çevir
+    // Ekli dosyaları HTML tablo satırına yaz (ek olarak zaten e-postada olacak)
     let filesHtml = '';
     if (files.length > 0) {
       const items = files.map((f, i) => {
         const safeName = escapeHtml(f.name || `dosya_${i+1}`);
-        const safeUrl  = escapeHtml(f.url  || '#');
-        return `<li style="margin:6px 0;"><a href="${safeUrl}" style="color:#e85d04;text-decoration:underline;font-weight:600;" target="_blank" rel="noopener">${safeName}</a></li>`;
+        return `<li style="margin:4px 0;font-family:monospace;font-size:12px;color:#444;">${safeName}</li>`;
       }).join('');
       filesHtml = `
         <tr>
           <td style="padding:10px 14px;background:#f6f6f6;border-bottom:1px solid #e6e6e6;font-family:monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#666;width:200px;vertical-align:top;">Ekli Dosyalar (${files.length})</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;">
+          <td style="padding:10px 14px;border-bottom:1px solid #e6e6e6;color:#111;">
             <ul style="margin:0;padding-left:18px;">${items}</ul>
+            <div style="margin-top:6px;font-size:11px;color:#888;">Dosyalar bu e-postanın ekleri olarak gelmiştir.</div>
           </td>
         </tr>`;
     }
@@ -142,10 +142,7 @@ export const handler = async (event) => {
     }
     if (files.length > 0) {
       textRows.push('', `Ekli Dosyalar (${files.length}):`);
-      files.forEach((f, i) => {
-        textRows.push(`${i+1}. ${f.name}`);
-        textRows.push(`   ${f.url}`);
-      });
+      files.forEach((f, i) => textRows.push(`${i+1}. ${f.name}`));
     }
     const text = textRows.join('\n');
 
@@ -165,6 +162,16 @@ export const handler = async (event) => {
       text,
     };
     if (isValidEmail(form.email)) emailPayload.replyTo = form.email.trim();
+
+    // Dosyaları base64'ten Resend e-posta eki formatına çevir
+    if (files.length > 0) {
+      emailPayload.attachments = files
+        .filter(f => f.name && f.content)
+        .map(f => ({
+          filename: f.name,
+          content:  f.content,  // base64 string — Resend bunu direkt destekliyor
+        }));
+    }
 
     console.log('[send-form] payload received', {
       sender, recipient,

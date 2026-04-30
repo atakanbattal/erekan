@@ -651,11 +651,12 @@
             <label class="dropzone" id="dz">
               <div class="ico">+</div>
               <div class="ttl" data-i18n="contact_dz_ttl">Dosyaları sürükleyin veya tıklayıp seçin</div>
-              <div class="sub" data-i18n="contact_dz_sub">PDF · DWG · DXF · STEP · IGES · ZIP · max 50 MB</div>
+              <div class="sub" data-i18n="contact_dz_sub">PDF · DWG · DXF · STEP · IGES · ZIP · max 4 MB</div>
               <input type="file" id="fi" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.iges,.igs,.zip,.jpg,.jpeg,.png">
             </label>
             <div class="file-list" id="fl"></div>
             <div class="hint" style="margin-top: 12px;" data-i18n="contact_dz_hint">Çiziminiz yoksa, açıklama kısmına detay yazabilir veya numuneden tersine mühendislik ile devam edebiliriz.</div>
+            <div class="hint" style="margin-top: 6px; color: var(--steel-1);">4 MB üzeri dosyalar için: <strong>info@armaweld.com</strong> adresine doğrudan e-posta gönderin.</div>
           </div>
 
           <!-- STEP 5: Consent -->
@@ -915,26 +916,20 @@ function renderFiles() {
 }
 function rmFile(i) { files.splice(i, 1); renderFiles(); }
 
-// ── Uploadcare ──────────────────────────────────────────────
-const UC_PUB_KEY   = 'f2d6a6b19715f7c9ba39';
-const MAX_FILE_MB  = 50;
-const MAX_TOTAL_MB = 100;
+// ── Dosya → Base64 (Resend e-posta eki olarak gönderilir) ───
+// Netlify Function body limiti ~6MB → base64 +33% → max ~4 MB ham dosya
+const MAX_FILE_MB  = 4;
+const MAX_TOTAL_MB = 4;
 const MAX_FILE_B   = MAX_FILE_MB  * 1024 * 1024;
 const MAX_TOTAL_B  = MAX_TOTAL_MB * 1024 * 1024;
 
-async function uploadToUploadcare(file) {
-  const fd = new FormData();
-  fd.append('UPLOADCARE_PUB_KEY', UC_PUB_KEY);
-  fd.append('UPLOADCARE_STORE', '1');
-  fd.append('file', file);
-  const res = await fetch('https://upload.uploadcare.com/base/', { method: 'POST', body: fd });
-  if (!res.ok) throw new Error('Yükleme başarısız: ' + file.name);
-  const json = await res.json();
-  const uuid = (typeof json.file === 'string') ? json.file : Object.values(json)[0];
-  if (!uuid || typeof uuid !== 'string') throw new Error('UUID alınamadı');
-  // Dosya adıyla birlikte URL — Uploadcare orijinal adıyla download eder
-  const safeName = file.name.replace(/[^\w.\-]/g, '_');
-  return { name: file.name, uuid: uuid, url: 'https://ucarecdn.com/' + uuid + '/' + safeName };
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result.split(',')[1]); // "data:...;base64,XXX" → "XXX"
+    reader.onerror = () => reject(new Error('Dosya okunamadı: ' + file.name));
+    reader.readAsDataURL(file);
+  });
 }
 // ────────────────────────────────────────────────────────────
 
@@ -969,26 +964,27 @@ async function handleSubmit(e) {
 
   btn.disabled = true;
 
-  // 1) Dosyaları Uploadcare'e yükle
-  let uploadedFiles = [];
+  // 1) Dosyaları base64'e çevir (Resend e-posta eki olarak gönderilir)
+  let attachments = [];
   if (files.length > 0) {
-    btn.innerHTML = '<span>DOSYALAR YÜKLENİYOR ' + files.length + '/' + files.length + '...</span><span class="arr">◷</span>';
+    btn.innerHTML = '<span>DOSYALAR HAZIRLANIYOR...</span><span class="arr">◷</span>';
     try {
-      let uploaded = 0;
+      let done = 0;
       for (const f of files) {
-        btn.innerHTML = '<span>DOSYA YÜKLENİYOR ' + (++uploaded) + '/' + files.length + '...</span><span class="arr">◷</span>';
-        uploadedFiles.push(await uploadToUploadcare(f));
+        btn.innerHTML = '<span>DOSYA ' + (++done) + '/' + files.length + ' HAZIRLANIYOR...</span><span class="arr">◷</span>';
+        const content = await fileToBase64(f);
+        attachments.push({ name: f.name, content }); // base64 string
       }
     } catch (err) {
       btn.disabled = false;
-      btn.innerHTML = '<span>DOSYA YÜKLEME HATASI — TEKRAR DENEYIN</span><span class="arr">!</span>';
+      btn.innerHTML = '<span>DOSYA HATASI — TEKRAR DENEYIN</span><span class="arr">!</span>';
       btn.style.background = '#c0392b';
       setTimeout(() => { btn.style.background = ''; btn.innerHTML = '<span data-i18n="contact_submit_btn">TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>'; }, 3000);
       return;
     }
   }
 
-  // 2) Form verisini Netlify Function'a JSON olarak gönder (proper HTML email)
+  // 2) Form verisini Netlify Function'a JSON olarak gönder
   btn.innerHTML = '<span>GÖNDERİLİYOR...</span><span class="arr">◷</span>';
   const fd = new FormData(form);
   const formObj = Object.fromEntries(fd);
@@ -997,7 +993,7 @@ async function handleSubmit(e) {
   fetch(FN_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ form: formObj, files: uploadedFiles }),
+    body: JSON.stringify({ form: formObj, files: attachments }),
   })
     .then(async res => {
       const text = await res.text();
