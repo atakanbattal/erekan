@@ -195,7 +195,7 @@ export const handler = async (event) => {
       }
 
       console.log('[send-form] sent ok, id:', result.data?.id);
-      return json(200, { success: true, id: result.data?.id });
+      return json(200, { success: true, id: result.data?.id, _debug: { to: recipient, from: sender } });
 
     } catch (err) {
       console.error('[send-form] Resend exception:', err.message, err.stack);
