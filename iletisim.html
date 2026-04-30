@@ -454,16 +454,16 @@
 
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; İLETİŞİM & TEKLİF AL</div>
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; <span data-i18n="contact_breadcrumb">İLETİŞİM & TEKLİF AL</span></div>
     <div class="page-hero-inner">
       <div>
-        <h1>Projeniz İçin<br/><span class="arc">Teknik Teklif</span> Süreci.</h1>
+        <h1 data-i18n-html="contact_h1">Projeniz İçin<br/><span class="arc">Teknik Teklif</span> Süreci.</h1>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><span class="k">Ort. Teklif Süresi</span><span class="v">48 saat</span></div>
-        <div class="hero-stat"><span class="k">NDA / Gizlilik</span><span class="v">Standart</span></div>
-        <div class="hero-stat"><span class="k">İhracat Ülkeleri</span><span class="v">12 +</span></div>
-        <div class="hero-stat"><span class="k">Teknik Destek</span><span class="v">Aynı Gün</span></div>
+        <div class="hero-stat"><span class="k" data-i18n="contact_stat1_k">Ort. Teklif Süresi</span><span class="v" data-i18n="contact_stat1_v">48 saat</span></div>
+        <div class="hero-stat"><span class="k" data-i18n="contact_stat2_k">NDA / Gizlilik</span><span class="v" data-i18n="contact_stat2_v">Standart</span></div>
+        <div class="hero-stat"><span class="k" data-i18n="contact_stat3_k">İhracat Ülkeleri</span><span class="v" data-i18n="contact_stat3_v">12 +</span></div>
+        <div class="hero-stat"><span class="k" data-i18n="contact_stat4_k">Teknik Destek</span><span class="v" data-i18n="contact_stat4_v">Aynı Gün</span></div>
       </div>
     </div>
   </div>
@@ -477,7 +477,7 @@
       <div>
         <div class="rfq-head">
           <div class="gn">RFQ.01</div>
-          <h2>Teknik teklif formu.<br/>Doğru bilgi, net kapsam ve güvenilir fiyatlandırma sağlar.</h2>
+          <h2 data-i18n-html="contact_rfq_h2">Teknik teklif formu.<br/>Doğru bilgi, net kapsam ve güvenilir fiyatlandırma sağlar.</h2>
         </div>
 
         <form id="rfq" onsubmit="handleSubmit(event)">
@@ -490,8 +490,8 @@
           <div class="form-section">
             <div class="form-section-title">
               <span class="sec-num">01</span>
-              <span>İhtiyacınız olan hizmet</span>
-              <span class="tag">TEK SEÇİM</span>
+              <span data-i18n="contact_step1">İhtiyacınız olan hizmet</span>
+              <span class="tag" data-i18n="contact_tag_single">TEK SEÇİM</span>
             </div>
             <div class="svc-grid">
               <label class="svc-opt sel">
@@ -499,48 +499,48 @@
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13 L8 3 L14 13 Z"/><line x1="5" y1="9" x2="11" y2="9"/></svg>
                 </div>
-                <div class="t">Üretim İmalatı</div>
-                <div class="sub">SERİ / TEKİL PARÇA</div>
+                <div class="t" data-i18n="contact_svc1_t">Üretim İmalatı</div>
+                <div class="sub" data-i18n="contact_svc1_sub">SERİ / TEKİL PARÇA</div>
               </label>
               <label class="svc-opt">
                 <input type="radio" name="svc" value="yapisal" onchange="selSvc(this)">
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="10" width="12" height="1"/><rect x="3" y="3" width="2" height="7"/><rect x="11" y="3" width="2" height="7"/><line x1="4" y1="3" x2="8" y2="6"/><line x1="12" y1="3" x2="8" y2="6"/></svg>
                 </div>
-                <div class="t">Yapısal Çelik</div>
-                <div class="sub">EN 1090 EXC2/3</div>
+                <div class="t" data-i18n="contact_svc2_t">Yapısal Çelik</div>
+                <div class="sub" data-i18n="contact_svc2_sub">EN 1090 EXC2/3</div>
               </label>
               <label class="svc-opt">
                 <input type="radio" name="svc" value="kap" onchange="selSvc(this)">
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="10" height="9" rx="1.5"/><line x1="3" y1="8" x2="13" y2="8" stroke-dasharray="2 2"/><rect x="7" y="2" width="2" height="2"/></svg>
                 </div>
-                <div class="t">Basınçlı Kap</div>
-                <div class="sub">PED / CE</div>
+                <div class="t" data-i18n="contact_svc3_t">Basınçlı Kap</div>
+                <div class="sub" data-i18n="contact_svc3_sub">PED / CE</div>
               </label>
               <label class="svc-opt">
                 <input type="radio" name="svc" value="montaj" onchange="selSvc(this)">
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="8" y1="11" x2="8" y2="14"/><line x1="2" y1="8" x2="5" y2="8"/><line x1="11" y1="8" x2="14" y2="8"/></svg>
                 </div>
-                <div class="t">Saha Montajı</div>
-                <div class="sub">KOMPLE TESLİM</div>
+                <div class="t" data-i18n="contact_svc4_t">Saha Montajı</div>
+                <div class="sub" data-i18n="contact_svc4_sub">KOMPLE TESLİM</div>
               </label>
               <label class="svc-opt">
                 <input type="radio" name="svc" value="ndt" onchange="selSvc(this)">
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
                 </div>
-                <div class="t">NDT Muayene</div>
-                <div class="sub">VT · MT · PT · RT · UT</div>
+                <div class="t" data-i18n="contact_svc5_t">NDT Muayene</div>
+                <div class="sub" data-i18n="contact_svc5_sub">VT · MT · PT · RT · UT</div>
               </label>
               <label class="svc-opt">
                 <input type="radio" name="svc" value="diger" onchange="selSvc(this)">
                 <div class="ico">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="4" cy="8" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="12" cy="8" r="1.5"/></svg>
                 </div>
-                <div class="t">Diğer / Danışmanlık</div>
-                <div class="sub">REVİZYON, ONARIM</div>
+                <div class="t" data-i18n="contact_svc6_t">Diğer / Danışmanlık</div>
+                <div class="sub" data-i18n="contact_svc6_sub">REVİZYON, ONARIM</div>
               </label>
             </div>
           </div>
@@ -549,28 +549,28 @@
           <div class="form-section">
             <div class="form-section-title">
               <span class="sec-num">02</span>
-              <span>İletişim bilgileri</span>
-              <span class="tag">ZORUNLU</span>
+              <span data-i18n="contact_step2">İletişim bilgileri</span>
+              <span class="tag" data-i18n="contact_tag_required">ZORUNLU</span>
             </div>
             <div class="field-grid">
               <div class="field">
-                <label>Ad Soyad <span class="req">*</span></label>
-                <input type="text" name="name" placeholder="Örn: Mehmet Yılmaz" required>
+                <label><span data-i18n="contact_label_name">Ad Soyad</span> <span class="req">*</span></label>
+                <input type="text" name="name" placeholder="Örn: Mehmet Yılmaz" data-i18n-placeholder="contact_ph_name" required>
               </div>
               <div class="field">
-                <label>Firma Adı <span class="req">*</span></label>
-                <input type="text" name="company" placeholder="Örn: ABC Makine A.Ş." required>
+                <label><span data-i18n="contact_label_company">Firma Adı</span> <span class="req">*</span></label>
+                <input type="text" name="company" placeholder="Örn: ABC Makine A.Ş." data-i18n-placeholder="contact_ph_company" required>
               </div>
               <div class="field">
-                <label>E-Posta <span class="req">*</span></label>
-                <input type="email" name="email" placeholder="ad.soyad@firma.com" required>
+                <label><span data-i18n="contact_label_email">E-Posta</span> <span class="req">*</span></label>
+                <input type="email" name="email" placeholder="ad.soyad@firma.com" data-i18n-placeholder="contact_ph_email" required>
               </div>
               <div class="field">
-                <label>Telefon <span class="opt">· OPSİYONEL</span></label>
+                <label><span data-i18n="contact_label_tel">Telefon</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
                 <input type="tel" name="tel" placeholder="+90 ___ ___ __ __">
               </div>
               <div class="field">
-                <label>Pozisyon <span class="opt">· OPSİYONEL</span></label>
+                <label><span data-i18n="contact_label_role">Pozisyon</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
                 <select name="role">
                   <option value="">Seçiniz...</option>
                   <option>Satın Alma</option>
@@ -582,8 +582,8 @@
                 </select>
               </div>
               <div class="field">
-                <label>Ülke / Şehir</label>
-                <input type="text" name="loc" placeholder="Türkiye / Kocaeli" value="Türkiye / ">
+                <label data-i18n="contact_label_loc">Ülke / Şehir</label>
+                <input type="text" name="loc" placeholder="Türkiye / Konya" value="Türkiye / ">
               </div>
             </div>
           </div>
@@ -592,20 +592,20 @@
           <div class="form-section">
             <div class="form-section-title">
               <span class="sec-num">03</span>
-              <span>Proje detayı</span>
-              <span class="tag">TEKNİK</span>
+              <span data-i18n="contact_step3">Proje detayı</span>
+              <span class="tag" data-i18n="contact_tag_technical">TEKNİK</span>
             </div>
             <div class="field-grid three">
               <div class="field">
-                <label>Adet</label>
+                <label data-i18n="contact_qty_lbl">Adet</label>
                 <input type="number" name="qty" placeholder="Örn: 24" min="1">
               </div>
               <div class="field">
-                <label>Ağırlık (kg/adet)</label>
+                <label data-i18n="contact_weight_lbl">Ağırlık (kg/adet)</label>
                 <input type="text" name="weight" placeholder="Yaklaşık">
               </div>
               <div class="field">
-                <label>Malzeme</label>
+                <label data-i18n="contact_mat_lbl">Malzeme</label>
                 <select name="mat">
                   <option value="">Seçiniz...</option>
                   <option>Yapı Çeliği (S235 / S275 / S355)</option>
@@ -621,11 +621,11 @@
             </div>
             <div class="field-grid" style="margin-top: 20px;">
               <div class="field">
-                <label>Hedef Teslim Tarihi</label>
-                <input type="text" name="deadline" placeholder="Örn: Mart 2026">
+                <label data-i18n="contact_deadline_lbl">Hedef Teslim Tarihi</label>
+                <input type="text" name="deadline" placeholder="Örn: Mart 2026" data-i18n-placeholder="contact_ph_deadline">
               </div>
               <div class="field">
-                <label>Tahmini Bütçe <span class="opt">· OPSİYONEL</span></label>
+                <label><span data-i18n="contact_budget_lbl">Tahmini Bütçe</span> <span class="opt">· <span data-i18n="contact_tag_optional">OPSİYONEL</span></span></label>
                 <select name="budget">
                   <option value="">Belirtmek istemiyorum</option>
                   <option>&lt; 100 000 ₺</option>
@@ -637,7 +637,7 @@
             </div>
             <div class="field-grid full" style="margin-top: 20px;">
               <div class="field">
-                <label>Proje Açıklaması <span class="req">*</span></label>
+                <label><span data-i18n="contact_label_desc">Proje Açıklaması</span> <span class="req">*</span></label>
                 <textarea name="desc" placeholder="Projeniz hakkında kısa teknik özet: kullanım yeri, toleranslar, NDT istekleri, kalite sınıfı (EXC2/3, PED kategorisi vb), boya/kaplama, sevkiyat noktası..." required></textarea>
                 <div class="hint">→ Daha fazla detay = daha kesin fiyat. Teknik terimlerden çekinmeyin.</div>
               </div>
@@ -648,13 +648,13 @@
           <div class="form-section">
             <div class="form-section-title">
               <span class="sec-num">04</span>
-              <span>Çizim / Dosya yükleme</span>
-              <span class="tag">OPSİYONEL</span>
+              <span data-i18n="contact_step4">Çizim / Dosya yükleme</span>
+              <span class="tag" data-i18n="contact_tag_optional">OPSİYONEL</span>
             </div>
             <label class="dropzone" id="dz">
               <div class="ico">+</div>
-              <div class="ttl">Dosyaları sürükleyin veya tıklayıp seçin</div>
-              <div class="sub">PDF · DWG · DXF · STEP · IGES · ZIP · max 50 MB</div>
+              <div class="ttl" data-i18n="contact_dz_ttl">Dosyaları sürükleyin veya tıklayıp seçin</div>
+              <div class="sub" data-i18n="contact_dz_sub">PDF · DWG · DXF · STEP · IGES · ZIP · max 50 MB</div>
               <input type="file" id="fi" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.iges,.igs,.zip,.jpg,.jpeg,.png">
             </label>
             <div class="file-list" id="fl"></div>
@@ -665,7 +665,7 @@
           <div class="form-section">
             <div class="form-section-title">
               <span class="sec-num">05</span>
-              <span>Onaylar</span>
+              <span data-i18n="contact_step5">Onaylar</span>
               <span class="tag">KVKK · NDA</span>
             </div>
             <label class="chk">
@@ -691,7 +691,7 @@
               Formunuz alındıktan sonra, size en geç <strong>48 saat</strong> içinde teknik mühendisimiz üzerinden dönüş yapacağız. Acil durumlar için doğrudan telefon veya e-posta tercih edilebilir.
             </div>
             <button type="submit" class="btn-submit">
-              <span>TEKLİF TALEBİNİ GÖNDER</span>
+              <span data-i18n="contact_submit_btn">TEKLİF TALEBİNİ GÖNDER</span>
               <span class="arr">→</span>
             </button>
           </div>
@@ -704,7 +704,7 @@
 
         <!-- Direct contact -->
         <div class="panel">
-          <h4>Direkt İletişim</h4>
+          <h4 data-i18n="contact_direct_h4">Direkt İletişim</h4>
           <div class="contact-row">
             <div class="k">RFQ</div>
             <div class="v">
@@ -730,13 +730,13 @@
 
         <!-- Adres + Map -->
         <div class="panel">
-          <h4>Fabrika Adresi</h4>
+          <h4 data-i18n="contact_address_h4">Fabrika Adresi</h4>
           <div class="contact-row" style="grid-template-columns: 1fr;">
             <div class="v" style="font-size: 15px;">
               ArmaWeld Çelik İmalat San. Tic. A.Ş.<br/>
-              Gebze Organize Sanayi Bölgesi<br/>
-              3. Cadde No: 24 · Çayırova / Kocaeli
-              <span class="small" style="margin-top: 10px;">41420 · TÜRKİYE · KOORDİNAT 40.81°N, 29.43°E</span>
+              Konya Organize Sanayi Bölgesi<br/>
+              3. Cadde No: 24 · Karatay / Konya
+              <span class="small" style="margin-top: 10px;">42060 · TÜRKİYE · KOORDİNAT 37.87°N, 32.49°E</span>
             </div>
           </div>
           <div class="map-card" style="margin-top: 20px;">
@@ -766,8 +766,8 @@
                 <rect x="300" y="50" width="55" height="35"/>
               </g>
               <g font-family="JetBrains Mono" font-size="8" fill="#6b7280">
-                <text x="10" y="245">MARMARA · İZMİT KÖRFEZİ</text>
-                <text x="390" y="14" text-anchor="end">GEBZE OSB</text>
+                <text x="10" y="245">İÇ ANADOLU · KONYA OVASI</text>
+                <text x="390" y="14" text-anchor="end">KONYA OSB</text>
                 <text x="180" y="175" fill="#ff7a1a">ArmaWeld ↗</text>
               </g>
             </svg>
@@ -780,11 +780,11 @@
 
         <!-- Hours -->
         <div class="panel">
-          <h4>Çalışma Saatleri</h4>
+          <h4 data-i18n="contact_hours_h4">Çalışma Saatleri</h4>
           <div class="hours">
-            <div class="row on"><span>PAZARTESİ – CUMA</span><span>08:00 – 18:00</span></div>
-            <div class="row"><span>CUMARTESİ</span><span>08:00 – 13:00</span></div>
-            <div class="row"><span>PAZAR</span><span>KAPALI</span></div>
+            <div class="row on"><span data-i18n="contact_hours_mon">PAZARTESİ – CUMA</span><span>08:00 – 18:00</span></div>
+            <div class="row"><span data-i18n="contact_hours_sat">CUMARTESİ</span><span>08:00 – 13:00</span></div>
+            <div class="row"><span data-i18n="contact_hours_sun">PAZAR</span><span data-i18n="contact_hours_closed">KAPALI</span></div>
           </div>
           <div class="hint" style="margin-top: 16px; font-family: var(--ff-mono); font-size: 10px; color: var(--steel-2); letter-spacing: .08em;">→ OFİS SAATLERİ DIŞINDA E-POSTA ATABİLİRSİNİZ. 24 S İÇİNDE DÖNÜŞ.</div>
         </div>
@@ -799,10 +799,10 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow">02 / Form Sonrası Süreç</div>
+        <div class="eyebrow" data-i18n="contact_process_eyebrow">02 / Form Sonrası Süreç</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">RFQ — 004</p>
       </div>
-      <h2 class="display h2">
+      <h2 class="display h2" data-i18n-html="contact_process_h2">
         Teklif talebinizden sonra<br/>
         <span style="color: var(--arc-2);">izlenen süreç.</span>
       </h2>
@@ -811,27 +811,27 @@
     <div class="step-grid">
       <div class="step">
         <div class="step-num">01</div>
-        <div class="step-time">+ 2 SAAT</div>
-        <h3>Alındı onayı</h3>
-        <p>Talebinizi aldık. Proje mühendisi atadık. Size referans numarası ile geri dönüyoruz.</p>
+        <div class="step-time" data-i18n="contact_pstep1_time">+ 2 SAAT</div>
+        <h3 data-i18n="contact_pstep1_h">Alındı onayı</h3>
+        <p data-i18n="contact_pstep1_p">Talebinizi aldık. Proje mühendisi atadık. Size referans numarası ile geri dönüyoruz.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div class="step-time">+ 24 SAAT</div>
-        <h3>Teknik görüşme</h3>
-        <p>Gerekiyorsa Teams / telefon ile tolerans, kaynak sınıfı ve teslim detaylarını netleştiriyoruz.</p>
+        <div class="step-time" data-i18n="contact_pstep2_time">+ 24 SAAT</div>
+        <h3 data-i18n="contact_pstep2_h">Teknik görüşme</h3>
+        <p data-i18n="contact_pstep2_p">Gerekiyorsa Teams / telefon ile tolerans, kaynak sınıfı ve teslim detaylarını netleştiriyoruz.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div class="step-time">+ 48 SAAT</div>
-        <h3>Ticari teklif</h3>
-        <p>WPS listesi, NDT planı, malzeme sertifika kapsamı, ambalaj ve teslim takvimi ile birlikte detaylı teklif.</p>
+        <div class="step-time" data-i18n="contact_pstep3_time">+ 48 SAAT</div>
+        <h3 data-i18n="contact_pstep3_h">Ticari teklif</h3>
+        <p data-i18n="contact_pstep3_p">WPS listesi, NDT planı, malzeme sertifika kapsamı, ambalaj ve teslim takvimi ile birlikte detaylı teklif.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div class="step-time">ONAYDA</div>
-        <h3>Üretime giriş</h3>
-        <p>Avans + onaylı resimlerle 3 iş günü içinde kesim planlaması başlıyor. Haftalık ilerleme raporları düzenli.</p>
+        <div class="step-time" data-i18n="contact_pstep4_time">ONAYDA</div>
+        <h3 data-i18n="contact_pstep4_h">Üretime giriş</h3>
+        <p data-i18n="contact_pstep4_p">Avans + onaylı resimlerle 3 iş günü içinde kesim planlaması başlıyor. Haftalık ilerleme raporları düzenli.</p>
       </div>
     </div>
   </div>
@@ -842,9 +842,9 @@
   <div class="success-card">
     <div class="success-icon">✓</div>
     <div class="success-ref" id="successRef">RFQ — #AW-000000</div>
-    <div class="success-title">Talebiniz<br/><span>alındı.</span></div>
+    <div class="success-title" data-i18n="contact_success_title">Talebiniz<br/><span>alındı.</span></div>
     <div class="success-body">
-      Teklif formunuz başarıyla iletildi. Proje mühendisimiz kısa süre içinde devreye girecek ve referans numaranızla size dönüş yapacak.
+      <span data-i18n="contact_success_body">Teklif formunuz başarıyla iletildi. Proje mühendisimiz kısa süre içinde devreye girecek ve referans numaranızla size dönüş yapacak.</span>
     </div>
     <div class="success-steps">
       <div class="success-step">
@@ -867,6 +867,8 @@
   </div>
 </div>
 
+<script src="assets/translations.js"></script>
+<script src="assets/i18n.js"></script>
 <script src="assets/chrome.js"></script>
 <script>
 mountChrome('iletisim');
@@ -926,10 +928,13 @@ function handleSubmit(e) {
 
   const data = new FormData(form);
 
+  // Dosyaları FormData'ya ekle
+  files.forEach(f => data.append('attachment', f));
+
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(Object.fromEntries(data)),
+    headers: { 'Accept': 'application/json' },
+    body: data,
   })
     .then(res => res.json())
     .then(res => { if (!res.success) throw new Error(res.message); })
@@ -939,7 +944,7 @@ function handleSubmit(e) {
       renderFiles();
       document.querySelectorAll('.svc-opt').forEach((o, i) => { o.classList.toggle('sel', i === 0); });
       btn.disabled = false;
-      btn.innerHTML = '<span>TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>';
+      btn.innerHTML = '<span data-i18n="contact_submit_btn">TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>';
       const ref = 'AW-' + Date.now().toString().slice(-6);
       document.getElementById('successRef').textContent = 'RFQ — #' + ref;
       document.getElementById('successOverlay').classList.add('visible');
@@ -950,7 +955,7 @@ function handleSubmit(e) {
       btn.style.background = '#c0392b';
       setTimeout(() => {
         btn.style.background = '';
-        btn.innerHTML = '<span>TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>';
+        btn.innerHTML = '<span data-i18n="contact_submit_btn">TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>';
       }, 3000);
     });
 }
