@@ -2,14 +2,8 @@
   publish = "."
 
 [[redirects]]
-  from = "http://armaweld.com/*"
-  to   = "https://www.armaweld.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://armaweld.com/*"
-  to   = "https://www.armaweld.com/:splat"
+  from = "http://www.armaweld.com/*"
+  to   = "https://armaweld.com/:splat"
   status = 301
   force = true
 
