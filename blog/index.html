@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr" data-i18n-title="blog_idx_title">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Teknik Blog — Kaynak & Metal İşleme | ArmaWeld</title>
+  <meta name="description" content="Kaynak yöntemleri, NDT muayene teknikleri, yüksek mukavemetli çelik işleme ve EN 1090 standartları hakkında teknik makaleler." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.armaweld.com/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Teknik Blog — ArmaWeld" />
+  <meta property="og:description" content="Kaynak yöntemleri, NDT ve yüksek mukavemetli çelik işleme hakkında teknik makaleler." />
+  <meta property="og:url" content="https://www.armaweld.com/blog/" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="../assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.12), transparent 60%); }
+  .page-hero-inner { position: relative; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 24px; }
+  .page-hero h1 .arc { color: var(--arc-2); }
+  .page-hero .lede { font-size: clamp(15px, 1.2vw, 18px); color: var(--steel-2); max-width: 600px; line-height: 1.6; }
+
+  .blog-wrap { padding: 80px 0 120px; background: var(--ink-0); }
+  .blog-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+
+  .card { background: var(--ink-2); border: 1px solid var(--ink-4); border-radius: 4px; overflow: hidden; transition: border-color .2s, transform .2s; display: flex; flex-direction: column; }
+  .card:hover { border-color: var(--arc-2); transform: translateY(-3px); }
+  .card-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+  .card-tag { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .18em; margin-bottom: 16px; }
+  .card h2 { font-size: 20px; font-weight: 700; color: var(--bone); line-height: 1.25; margin-bottom: 14px; letter-spacing: -.02em; }
+  .card p { font-size: 14px; color: var(--steel-2); line-height: 1.65; flex: 1; margin-bottom: 24px; }
+  .card-meta { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); display: flex; gap: 16px; margin-bottom: 20px; }
+  .card-link { font-family: var(--ff-mono); font-size: 12px; color: var(--arc-2); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; display: inline-flex; align-items: center; gap: 6px; }
+  .card-link:hover { color: var(--arc-3); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "ArmaWeld Teknik Blog",
+  "description": "Kaynak mühendisliği, NDT ve metal işleme üzerine teknik makaleler",
+  "url": "https://www.armaweld.com/blog/",
+  "publisher": {"@id": "https://www.armaweld.com/#organization"},
+  "inLanguage": "tr-TR"
+}
+</script>
+</head>
+<body>
+
+<script src="../assets/translations.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/chrome.js"></script>
+<script>mountChrome('blog', '../');</script>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="../index.html" data-i18n="blog_breadcrumb_home">ArmaWeld</a> &nbsp;/&nbsp; <span>Blog</span></div>
+    <h1 data-i18n="blog_idx_h1">Teknik <span class="arc">Makaleler.</span></h1>
+    <p class="lede" data-i18n="blog_idx_lede">Kaynak mühendisliği, NDT muayene yöntemleri ve yüksek mukavemetli çelik işleme üzerine sektör notları.</p>
+  </div>
+</section>
+
+<section class="blog-wrap">
+  <div class="blog-inner">
+    <div class="blog-grid">
+
+      <article class="card">
+        <div class="card-body">
+          <div class="card-tag" data-i18n="blog_card1_tag">NDT · Tahribatsız Muayene</div>
+          <h2 data-i18n="blog_card1_h2">NDT Yöntemleri Nedir? VT, PT, MT, UT, RT Karşılaştırması</h2>
+          <p data-i18n="blog_card1_p">Kaynaklı imalatta kullanılan beş temel tahribatsız muayene yöntemi, hangi durumda hangisi seçilmeli ve EN ISO 9712 sertifikasyon gereklilikleri.</p>
+          <div class="card-meta">
+            <span>2026-05-01</span>
+            <span data-i18n="blog_ndt_read">8 dk okuma</span>
+          </div>
+          <a href="ndt-tahribatsiz-muayene-yontemleri.html" class="card-link" data-i18n="blog_card1_read">Makaleyi Oku →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <div class="card-tag" data-i18n="blog_card2_tag">Yüksek Mukavemetli Çelik</div>
+          <h2 data-i18n="blog_card2_h2">S960QL Kaynak Parametreleri: Ön Isıtma, Isı Girdisi ve WPS</h2>
+          <p data-i18n="blog_card2_p">Ultra-yüksek mukavemetli S960QL çeliğinin kaynağında kritik parametreler: CEV hesabı, H5 sarf malzeme zorunluluğu ve pasolar arası sıcaklık kontrolü.</p>
+          <div class="card-meta">
+            <span>2026-05-01</span>
+            <span data-i18n="blog_s960_read">10 dk okuma</span>
+          </div>
+          <a href="s960ql-kaynak-parametreleri.html" class="card-link" data-i18n="blog_card2_read">Makaleyi Oku →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <div class="card-tag" data-i18n="blog_card3_tag">Standartlar &amp; Sertifikasyon</div>
+          <h2 data-i18n="blog_card3_h2">EN 1090 EXC3 Nedir? Yapısal Çelik CE İşaretlemesi Rehberi</h2>
+          <p data-i18n="blog_card3_p">EN 1090-1 ve EN 1090-2 standartlarının farkı, EXC1–EXC4 yürütme sınıfları ve CE belgesi almak için gerekli adımlar.</p>
+          <div class="card-meta">
+            <span>2026-05-01</span>
+            <span data-i18n="blog_exc3_read">7 dk okuma</span>
+          </div>
+          <a href="en-1090-exc3-nedir.html" class="card-link" data-i18n="blog_card3_read">Makaleyi Oku →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

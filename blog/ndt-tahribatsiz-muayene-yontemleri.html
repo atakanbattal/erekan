@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr" data-i18n-title="blog_ndt_title">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NDT Yöntemleri Nedir? VT, PT, MT, UT, RT Karşılaştırması | ArmaWeld Blog</title>
+  <meta name="description" content="Kaynaklı imalatta kullanılan tahribatsız muayene yöntemleri: VT, PT, MT, UT ve RT'nin karşılaştırması, uygulama alanları ve EN ISO 9712 sertifikasyon gereklilikleri." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.armaweld.com/blog/ndt-tahribatsiz-muayene-yontemleri.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="NDT Yöntemleri Nedir? VT, PT, MT, UT, RT Karşılaştırması" />
+  <meta property="og:description" content="Kaynaklı imalatta beş temel NDT yöntemi, uygulama koşulları ve sertifikasyon gereklilikleri." />
+  <meta property="og:url" content="https://www.armaweld.com/blog/ndt-tahribatsiz-muayene-yontemleri.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+  <meta property="article:published_time" content="2026-05-01" />
+  <meta property="article:author" content="ArmaWeld Mühendislik" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="../assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 64px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.10), transparent 60%); }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 32px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .article-tag { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .18em; margin-bottom: 20px; }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 52px); font-weight: 900; color: var(--bone); line-height: 1.05; letter-spacing: -.035em; margin-bottom: 24px; }
+  .article-meta { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-1); display: flex; gap: 24px; flex-wrap: wrap; }
+  .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+  .article-wrap { padding: 64px 0 120px; background: var(--ink-0); }
+  .article-body { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .article-body h2 { font-size: clamp(20px, 2vw, 28px); font-weight: 800; color: var(--bone); letter-spacing: -.025em; margin: 52px 0 20px; padding-top: 52px; border-top: 1px solid var(--ink-4); }
+  .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body h3 { font-size: 18px; font-weight: 700; color: var(--bone); margin: 32px 0 12px; }
+  .article-body p { font-size: 16px; color: var(--steel-3); line-height: 1.75; margin-bottom: 20px; }
+  .article-body ul, .article-body ol { color: var(--steel-3); font-size: 16px; line-height: 1.75; padding-left: 24px; margin-bottom: 20px; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--bone); font-weight: 600; }
+
+  .tag-inline { background: var(--ink-4); color: var(--arc-3); font-family: var(--ff-mono); font-size: 12px; padding: 2px 8px; border-radius: 2px; display: inline-block; }
+
+  .comparison-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+  .comparison-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .comparison-table td { padding: 12px 16px; color: var(--steel-3); border-bottom: 1px solid var(--ink-4); vertical-align: top; }
+  .comparison-table tr:hover td { background: var(--ink-2); }
+  .comparison-table td:first-child { color: var(--arc-3); font-family: var(--ff-mono); font-weight: 600; }
+
+  .callout { background: var(--ink-3); border-left: 3px solid var(--arc-2); padding: 20px 24px; margin: 32px 0; border-radius: 0 4px 4px 0; }
+  .callout p { margin: 0; font-size: 15px; color: var(--steel-2); }
+  .callout strong { color: var(--arc-3); }
+
+  .article-footer { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--ink-4); display: flex; gap: 16px; flex-wrap: wrap; }
+  .back-link { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-2); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; display: inline-flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--arc-2); }
+  .cta-box { background: var(--ink-2); border: 1px solid var(--ink-5); border-radius: 4px; padding: 32px; margin-top: 48px; }
+  .cta-box h3 { font-size: 20px; font-weight: 800; color: var(--bone); margin-bottom: 10px; }
+  .cta-box p { font-size: 15px; color: var(--steel-2); margin-bottom: 20px; }
+  .btn-arc { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 12px 24px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .btn-arc:hover { background: var(--arc-3); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NDT Yöntemleri Nedir? VT, PT, MT, UT, RT Karşılaştırması",
+  "description": "Kaynaklı imalatta kullanılan beş temel tahribatsız muayene yöntemi, uygulama alanları ve EN ISO 9712 sertifikasyon gereklilikleri.",
+  "datePublished": "2026-05-01",
+  "dateModified": "2026-05-01",
+  "author": {"@type": "Organization", "name": "ArmaWeld Mühendislik", "url": "https://www.armaweld.com"},
+  "publisher": {"@id": "https://www.armaweld.com/#organization"},
+  "url": "https://www.armaweld.com/blog/ndt-tahribatsiz-muayene-yontemleri.html",
+  "inLanguage": "tr-TR",
+  "about": [
+    {"@type": "Thing", "name": "Tahribatsız Muayene"},
+    {"@type": "Thing", "name": "NDT"},
+    {"@type": "Thing", "name": "EN ISO 9712"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<script src="../assets/translations.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/chrome.js"></script>
+<script>mountChrome('blog', '../');</script>
+
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html" data-i18n="blog_breadcrumb_home">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html" data-i18n="blog_breadcrumb_blog">Blog</a> &nbsp;/&nbsp; <span data-i18n="blog_ndt_breadcrumb3">NDT Yöntemleri</span></div>
+    <div class="article-tag" data-i18n="blog_ndt_tag">NDT · Tahribatsız Muayene</div>
+    <h1 data-i18n="blog_ndt_h1">NDT Yöntemleri Nedir?<br/>VT, PT, MT, UT, RT Karşılaştırması</h1>
+    <div class="article-meta">
+      <span>2026-05-01</span>
+      <span data-i18n="blog_ndt_read">8 dk okuma</span>
+      <span data-i18n="blog_ndt_author">ArmaWeld Mühendislik</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-wrap">
+  <div class="article-body">
+
+    <div data-i18n-html="blog_ndt_s0">
+    <p>Tahribatsız muayene (NDT — Non-Destructive Testing), kaynaklı yapıların, basınçlı ekipmanların ve taşıyıcı konstrüksiyonların malzeme bütünlüğünü parçayı bozmadan kontrol etme yöntemidir. EN ISO 9712 standardı, NDT personelinin sertifikasyon gerekliliklerini belirleyen uluslararası referans dokümandır.</p>
+
+    <p>Kaynaklı imalatta hangi NDT yönteminin seçileceği; malzeme tipi, parça geometrisi, beklenen hata türü ve uygulama standardına göre belirlenir.</p>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s1">
+    <h2>Beş Temel NDT Yöntemi</h2>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Yöntem</th>
+          <th>Açılımı</th>
+          <th>Tespit Ettiği Hatalar</th>
+          <th>Sınırlılıkları</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>VT</td>
+          <td>Görsel Muayene</td>
+          <td>Yüzey çatlakları, gözenek, aşırı dolgu, kaynak geometrisi hataları</td>
+          <td>Yalnızca yüzey; iç hatalar görülmez</td>
+        </tr>
+        <tr>
+          <td>PT</td>
+          <td>Penetrant Muayene</td>
+          <td>Yüzeye açık çatlak, gözenek, katmerleşme</td>
+          <td>Yüzeye açık hatalar; gözenekli malzemelerde kullanılamaz</td>
+        </tr>
+        <tr>
+          <td>MT</td>
+          <td>Manyetik Parçacık Muayenesi</td>
+          <td>Yüzey ve yüzey altı (≤3 mm) çatlaklar, katmerler</td>
+          <td>Yalnızca ferromanyetik malzemelerde; alüminyum ve paslanmaz çelikte çalışmaz</td>
+        </tr>
+        <tr>
+          <td>UT</td>
+          <td>Ultrasonik Muayene</td>
+          <td>İç çatlaklar, füzyon hataları, laminasyon, boşluklar</td>
+          <td>Kalın malzemelerde derin iç kusurlar; operatör bağımlı yorum</td>
+        </tr>
+        <tr>
+          <td>RT</td>
+          <td>Radyografik Muayene</td>
+          <td>İç gözenekler, curuf kalıntısı, yanma oluğu, füzyon eksikliği</td>
+          <td>Radyasyon lisansı gerekli; çatlak yönü önemli; erişim her iki taraftan</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s2">
+    <h2>VT — Görsel Muayene</h2>
+
+    <p><strong>VT (Visual Testing)</strong>, tüm NDT muayenelerinin başlangıç adımıdır ve EN ISO 17637 standardına göre yapılır. Kaynak geometrisi, yüzey pürüzlülüğü, sıçrama, renk değişimi ve gözle görülebilen çatlaklar değerlendirilir.</p>
+
+    <p>VT her zaman diğer NDT yöntemlerinden önce yapılmalıdır. Görsel olarak ret edilecek bir kaynak, PT veya UT'ye alınmaz; bu hem zaman hem maliyet tasarrufu sağlar.</p>
+
+    <div class="callout">
+      <p><strong>EN ISO 5817 Kabul Kriterleri:</strong> Kaynak kalite sınıfı B, C veya D'ye göre kabul edilebilir hata büyüklükleri tanımlanmıştır. EN 1090 EXC3 kapsamında genellikle B sınıfı geçerlidir.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s3">
+    <h2>PT — Penetrant Muayene</h2>
+
+    <p><strong>PT (Penetrant Testing)</strong>, EN ISO 3452-1 standardına göre uygulanır. Yüzeye açık süreksizlikleri tespit etmek için floresan veya renkli (kırmızı-beyaz) penetrant sıvılar kullanılır.</p>
+
+    <p>Uygulama adımları:</p>
+    <ol>
+      <li>Yüzey temizliği (yağ, pas, boya giderilir)</li>
+      <li>Penetrant uygulaması ve bekleme süresi (tipik 10–30 dk)</li>
+      <li>Fazla penetrantın silinmesi</li>
+      <li>Developer uygulaması</li>
+      <li>Görsel değerlendirme (UV veya beyaz ışık)</li>
+    </ol>
+
+    <p>Alüminyum konstrüksiyonlarda MT uygulanamadığından PT tercih edilen yüzey muayene yöntemidir.</p>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s4">
+    <h2>MT — Manyetik Parçacık Muayenesi</h2>
+
+    <p><strong>MT (Magnetic Particle Testing)</strong>, EN ISO 17638 standardına göre yapılır. Ferromanyetik malzemelerde (karbon çelik, düşük alaşımlı çelik) manyetik alan oluşturularak demir tozu veya floresan parçacıklar hataların üzerinde yoğunlaşır.</p>
+
+    <p><strong>Avantajı:</strong> Yüzeye yakın (≤3 mm derinlikte) çatlakları PT'den çok daha güvenilir şekilde tespit eder. EN 1090 EXC3 kapsamında T-birleşimleri ve köşe kaynaklarında sıklıkla istenir.</p>
+
+    <div class="callout">
+      <p><strong>Dikkat:</strong> Paslanmaz çelik (östenitik) ve alüminyumda MT uygulanamaz. Bu malzemelerde yüzey muayenesi için <strong>PT</strong> kullanılır.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s5">
+    <h2>UT — Ultrasonik Muayene</h2>
+
+    <p><strong>UT (Ultrasonic Testing)</strong>, EN ISO 11666 standardına göre yapılır. Yüksek frekanslı ses dalgaları malzeme içinden gönderilir; iç hataların yol açtığı yansımalar değerlendirilerek hata konumu ve büyüklüğü belirlenir.</p>
+
+    <p>Modern <span class="tag-inline">TOFD</span> (Time-of-Flight Diffraction) ve <span class="tag-inline">Phased Array UT (PAUT)</span> teknikleri, konvansiyonel UT'ye göre çok daha yüksek güvenilirlik ve kayıt edilebilirlik sunar. Özellikle basınçlı kap ve boru hattı kaynaklarında tercih edilir.</p>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s6">
+    <h2>RT — Radyografik Muayene</h2>
+
+    <p><strong>RT (Radiographic Testing)</strong>, EN ISO 17636-1 standardına göre yapılır. X-ışını veya gama ışınları kaynak kesitinden geçirilip film veya dijital dedektör üzerinde görüntü oluşturulur.</p>
+
+    <p>RT, gözenek ve curuf kalıntısı gibi hacimsel hataları çok net gösterir ancak düzlem kaynaklı çatlakların tespitinde UT kadar güvenilir değildir — çünkü çatlak yönü ışın yönüne paralel olduğunda tespit edilemeyebilir.</p>
+    </div>
+
+    <div data-i18n-html="blog_ndt_s7">
+    <h2>EN ISO 9712 Sertifikasyon Seviyeleri</h2>
+
+    <p>NDT personeli EN ISO 9712'ye göre üç seviyede sertifikalandırılır:</p>
+
+    <ul>
+      <li><strong>Seviye 1:</strong> Belirlenmiş prosedüre göre muayene yapar, raporlamaz. Deneyimli personel gözetiminde çalışır.</li>
+      <li><strong>Seviye 2:</strong> Prosedür hazırlar, muayene yapar, sonuçları standarda göre değerlendirir ve raporlar. Endüstriyel pratikte muayeneci standardı.</li>
+      <li><strong>Seviye 3:</strong> NDT sistemini kurar, prosedür ve teknik talimat onaylar, Seviye 1 ve 2 personeli sınar. Mühendis düzeyi yetki.</li>
+    </ul>
+
+    <p>ArmaWeld'de VT, PT, MT ve UT muayeneleri <strong>EN ISO 9712 Seviye 2 sertifikalı</strong> in-house personelimiz tarafından gerçekleştirilmektedir. RT için akredite laboratuvar ortağımızdan hizmet alınmaktadır.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3 data-i18n="blog_ndt_cta_h3">NDT Hizmetleri Hakkında Bilgi Alın</h3>
+      <p data-i18n="blog_ndt_cta_p">Projenizin hangi NDT yöntemine ihtiyaç duyduğunu belirlemek için teknik ekibimizle iletişime geçin.</p>
+      <a href="../ndt.html" class="btn-arc" data-i18n="blog_ndt_cta_btn">NDT Sayfasına Git →</a>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link" data-i18n="blog_back">← Blog'a Dön</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

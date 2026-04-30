@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr" data-i18n-title="blog_s960_title">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>S960QL Kaynak Parametreleri: Ön Isıtma, Isı Girdisi, WPS | ArmaWeld Blog</title>
+  <meta name="description" content="S960QL ultra-yüksek mukavemetli çeliğin kaynağında kritik parametreler: CEV hesabı, ön ısıtma sıcaklığı, H5 sarf malzeme zorunluluğu, pasolar arası sıcaklık ve WPS gereklilikleri." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.armaweld.com/blog/s960ql-kaynak-parametreleri.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="S960QL Kaynak Parametreleri: Ön Isıtma, Isı Girdisi, WPS" />
+  <meta property="og:description" content="S960QL çeliğinin kaynağında kritik parametreler: CEV hesabı, H5 sarf malzeme ve pasolar arası sıcaklık kontrolü." />
+  <meta property="og:url" content="https://www.armaweld.com/blog/s960ql-kaynak-parametreleri.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+  <meta property="article:published_time" content="2026-05-01" />
+  <meta property="article:author" content="ArmaWeld Mühendislik" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="../assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 64px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.10), transparent 60%); }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 32px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .article-tag { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .18em; margin-bottom: 20px; }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 52px); font-weight: 900; color: var(--bone); line-height: 1.05; letter-spacing: -.035em; margin-bottom: 24px; }
+  .article-meta { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-1); display: flex; gap: 24px; flex-wrap: wrap; }
+
+  .article-wrap { padding: 64px 0 120px; background: var(--ink-0); }
+  .article-body { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .article-body h2 { font-size: clamp(20px, 2vw, 28px); font-weight: 800; color: var(--bone); letter-spacing: -.025em; margin: 52px 0 20px; padding-top: 52px; border-top: 1px solid var(--ink-4); }
+  .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body h3 { font-size: 18px; font-weight: 700; color: var(--bone); margin: 32px 0 12px; }
+  .article-body p { font-size: 16px; color: var(--steel-3); line-height: 1.75; margin-bottom: 20px; }
+  .article-body ul, .article-body ol { color: var(--steel-3); font-size: 16px; line-height: 1.75; padding-left: 24px; margin-bottom: 20px; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--bone); font-weight: 600; }
+  .tag-inline { background: var(--ink-4); color: var(--arc-3); font-family: var(--ff-mono); font-size: 12px; padding: 2px 8px; border-radius: 2px; display: inline-block; }
+  .callout { background: var(--ink-3); border-left: 3px solid var(--arc-2); padding: 20px 24px; margin: 32px 0; border-radius: 0 4px 4px 0; }
+  .callout p { margin: 0; font-size: 15px; color: var(--steel-2); }
+  .callout strong { color: var(--arc-3); }
+  .param-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+  .param-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .param-table td { padding: 12px 16px; color: var(--steel-3); border-bottom: 1px solid var(--ink-4); }
+  .param-table td:first-child { color: var(--arc-3); font-family: var(--ff-mono); font-weight: 600; white-space: nowrap; }
+  .article-footer { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--ink-4); }
+  .back-link { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-2); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; display: inline-flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--arc-2); }
+  .cta-box { background: var(--ink-2); border: 1px solid var(--ink-5); border-radius: 4px; padding: 32px; margin-top: 48px; }
+  .cta-box h3 { font-size: 20px; font-weight: 800; color: var(--bone); margin-bottom: 10px; }
+  .cta-box p { font-size: 15px; color: var(--steel-2); margin-bottom: 20px; }
+  .btn-arc { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 12px 24px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .btn-arc:hover { background: var(--arc-3); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "S960QL Kaynak Parametreleri: Ön Isıtma, Isı Girdisi ve WPS",
+  "description": "S960QL ultra-yüksek mukavemetli çeliğin kaynağında kritik parametreler: CEV hesabı, ön ısıtma sıcaklığı, H5 sarf malzeme zorunluluğu ve pasolar arası sıcaklık kontrolü.",
+  "datePublished": "2026-05-01",
+  "dateModified": "2026-05-01",
+  "author": {"@type": "Organization", "name": "ArmaWeld Mühendislik", "url": "https://www.armaweld.com"},
+  "publisher": {"@id": "https://www.armaweld.com/#organization"},
+  "url": "https://www.armaweld.com/blog/s960ql-kaynak-parametreleri.html",
+  "inLanguage": "tr-TR",
+  "about": [
+    {"@type": "Thing", "name": "S960QL"},
+    {"@type": "Thing", "name": "Kaynak Parametreleri"},
+    {"@type": "Thing", "name": "Yüksek Mukavemetli Çelik"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<script src="../assets/translations.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/chrome.js"></script>
+<script>mountChrome('blog', '../');</script>
+
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html" data-i18n="blog_breadcrumb_home">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html" data-i18n="blog_breadcrumb_blog">Blog</a> &nbsp;/&nbsp; <span data-i18n="blog_s960_breadcrumb3">S960QL</span></div>
+    <div class="article-tag" data-i18n="blog_s960_tag">Yüksek Mukavemetli Çelik</div>
+    <h1 data-i18n="blog_s960_h1">S960QL Kaynak Parametreleri:<br/>Ön Isıtma, Isı Girdisi ve WPS</h1>
+    <div class="article-meta">
+      <span>2026-05-01</span>
+      <span data-i18n="blog_s960_read">10 dk okuma</span>
+      <span data-i18n="blog_s960_author">ArmaWeld Mühendislik</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-wrap">
+  <div class="article-body">
+
+    <div data-i18n-html="blog_s960_s0">
+    <p>S960QL, minimum akma dayanımı 960 MPa olan, suverme ve temperlenmiş (Quenching &amp; Tempering — QT) yüksek mukavemetli yapı çeliğidir. EN 10025-6 standardı kapsamında üretilir ve askeri araçlar, ağır iş makineleri, mobil vinçler ve taşıyıcı yapısal konstrüksiyonlarda kullanılır.</p>
+
+    <p>Bu çeliğin kaynağı teknik açıdan son derece kritiktir: yanlış parametreler hem kaynak bölgesinde sertlik kaybına (HAZ softening) hem de soğuk çatlak (hidrojen kaynaklı gecikmiş çatlak) riskine yol açar.</p>
+
+    <div class="callout">
+      <p><strong>Temel kural:</strong> S960QL için genel geçer bir WPS yoktur. EN ISO 15614-1 kapsamında S960QL malzemeye özgü onaylı WPS zorunludur.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_s960_s1">
+    <h2>S960QL'nin Metalurjik Özellikleri</h2>
+
+    <p>S960QL'nin mekanik özellikleri, yüzey-iç sertlik dağılımı ve HAZ tokluğu büyük ölçüde QT ısıl işleminden kaynaklanır. Kaynak ısısı bu yapıyı olumsuz etkileyebilir:</p>
+
+    <ul>
+      <li><strong>HAZ Softening (Yumuşama):</strong> Kaynak ısı girdisi yüksek olduğunda ısı tesiri altındaki bölgede (HAZ) mikro yapı normalize olur ve akma dayanımı 960 MPa'nın altına düşer.</li>
+      <li><strong>Soğuk Çatlak:</strong> Difüzible hidrojen + yüksek çekme gerilmesi + duyarlı mikroyapı üçgeninde oluşur; kaynak bittikten saatler sonra bile ortaya çıkabilir.</li>
+    </ul>
+    </div>
+
+    <div data-i18n-html="blog_s960_s2">
+    <h2>Kritik Kaynak Parametreleri</h2>
+
+    <table class="param-table">
+      <thead>
+        <tr>
+          <th>Parametre</th>
+          <th>Değer / Kural</th>
+          <th>Standart Referansı</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Isı Girdisi (Heat Input)</td>
+          <td>Maksimum 1,5 kJ/mm (üretici önerisine göre 0,5–1,5 kJ/mm arası)</td>
+          <td>EN ISO 1011-2 Metot B</td>
+        </tr>
+        <tr>
+          <td>Ön Isıtma (Preheat)</td>
+          <td>CEV'e, kalınlığa ve ortam sıcaklığına göre; genellikle ≥75°C – 150°C</td>
+          <td>EN ISO 1011-2 Metot B</td>
+        </tr>
+        <tr>
+          <td>Pasolar Arası Sıcaklık</td>
+          <td>Maksimum 220°C (çoğu üretici için ≤200°C önerilir)</td>
+          <td>WPS'de belirtilmelidir</td>
+        </tr>
+        <tr>
+          <td>Difüzible Hidrojen</td>
+          <td>H5 sınıfı veya altı (≤5 ml/100g kaynak metali)</td>
+          <td>EN ISO 3690</td>
+        </tr>
+        <tr>
+          <td>PWHT</td>
+          <td>Genellikle önerilmez — temperleme sıcaklığının üzerine çıkılmamalı</td>
+          <td>Üretici teknik belgesi</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div data-i18n-html="blog_s960_s3">
+    <h2>CEV Hesabı ve Ön Isıtma</h2>
+
+    <p>Ön ısıtma sıcaklığı, çeliğin kimyasal bileşiminden hesaplanan <strong>Karbon Eşdeğeri (CEV)</strong> değerine dayanır. EN ISO 1011-2 Metot B formülü:</p>
+
+    <p><span class="tag-inline">CEV = C + Mn/6 + (Cr+Mo+V)/5 + (Ni+Cu)/15</span></p>
+
+    <p>S960QL için tipik CEV değeri <strong>0,65–0,82</strong> aralığındadır. Bu değer, ön ısıtmanın zorunlu olduğunu gösterir. Ayrıca kombinasyon parametresi C<sub>p</sub> ile difüzible hidrojen (HD) ve et kalınlığı hesaba katılarak gerçek ön ısıtma hesaplanır.</p>
+
+    <div class="callout">
+      <p><strong>Pratik not:</strong> Ortam sıcaklığı +5°C'nin altında olduğunda hesaplanan ön ısıtma değeri EN ISO 1011-2'ye göre otomatik olarak artırılmalıdır.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_s960_s4">
+    <h2>Sarf Malzeme Seçimi: H5 Zorunluluğu</h2>
+
+    <p>S960QL kaynağında difüzible hidrojen miktarının düşük tutulması soğuk çatlak önlemenin en kritik adımıdır. Bu nedenle:</p>
+
+    <ul>
+      <li>Tüm kaynak sarf malzemeleri (tel, elektrod, toz) <span class="tag-inline">H5</span> sınıfı veya altında olmalıdır.</li>
+      <li>Sarf malzemeleri nem almış ise kullanılmamalı; özlü teller ve elektrodlar ısıtılmış muhafaza dolabında bekletilmelidir.</li>
+      <li>MAG kaynağında <strong>Ar-CO₂ karışım gaz</strong> (tipik %80 Ar + %20 CO₂ veya üretici önerisine göre) tercih edilir.</li>
+      <li>Sarf malzeme seçiminde çekme dayanımı uyumu da sağlanmalıdır (aşırı eşleştirmeden / under-matching'den kaçınılmalı).</li>
+    </ul>
+    </div>
+
+    <div data-i18n-html="blog_s960_s5">
+    <h2>WPS (Kaynak Prosedür Şartnamesi) Gereklilikleri</h2>
+
+    <p>S960QL kaynağında WPS, EN ISO 15614-1 kapsamında <strong>WPQR (Kaynak Prosedürü Yeterlilik Kaydı)</strong> ile desteklenmiş ve onaylanmış olmalıdır. WPQR'ın onayı için yapılan tahribatlı testler:</p>
+
+    <ul>
+      <li>Çekme testi (EN ISO 4136)</li>
+      <li>Eğme testi (EN ISO 5173)</li>
+      <li>Charpy çentik darbe testi (EN ISO 9016) — HAZ ve kaynak metalinden, genellikle −40°C'de</li>
+      <li>Sertlik testi (EN ISO 9015-1) — HAZ'da softening kontrolü için kritik</li>
+      <li>Makro muayene (EN ISO 17639)</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Önemli:</strong> S960QL için onaylı WPS'in kapsam sınırları —kalınlık, ısı girdisi, preheat, sarf malzeme grubu— üretime yansıyan parçayla birebir örtüşmelidir. WPS dışı parametre kullanımı CE belgesini ve EN 1090 uyumunu geçersiz kılar.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_s960_s6">
+    <h2>S700MC ile Karşılaştırma</h2>
+
+    <p>Benzer mukavemet sınıflarında sıkça karıştırılan S700MC, <strong>TMCP</strong> (Thermomechanically Controlled Process) çeliğidir ve QT çeliği olan S960QL'den köklü biçimde farklı kaynak davranışı gösterir:</p>
+
+    <ul>
+      <li>S700MC'de CEV düşüktür (≤0,39), ön ısıtma çoğu durumda gerekmez.</li>
+      <li>S700MC'de ısı girdisi sınırı daha katıdır: maksimum <strong>1,5 kJ/mm</strong> (bazı üreticilerde 1,0 kJ/mm).</li>
+      <li>S960QL'de PWHT uygulanmaması gerekirken S700MC'de de PWHT önerilmez — ancak nedenler farklıdır.</li>
+    </ul>
+
+    <p>Her iki malzeme için ayrı WPS gereklidir; aynı WPS ile her iki çeliği kesmek teknik açıdan hatalıdır.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3 data-i18n="blog_s960_cta_h3">S960QL veya Yüksek Mukavemetli Çelik Projeniz mi Var?</h3>
+      <p data-i18n="blog_s960_cta_p">WPS portföyümüzü ve WPQR belgelerimizi paylaşabiliriz. Teknik detayları doğrudan kaynak mühendislerimizle değerlendirin.</p>
+      <a href="../iletisim.html" class="btn-arc" data-i18n="blog_s960_cta_btn">Teklif İste →</a>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link" data-i18n="blog_back">← Blog'a Dön</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

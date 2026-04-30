@@ -3,7 +3,7 @@
    Karbon siyahı + kaynak arkı turuncusu
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* Google Fonts HTML <link> etiketleriyle yükleniyor (render-blocking önleme) */
 
 :root {
   /* Core palette */

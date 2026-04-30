@@ -2,17 +2,19 @@
 // ArmaWeld — Shared Chrome (Nav + Footer)
 // ============================================
 
-function buildNav(activePage) {
+function buildNav(activePage, base) {
+  const b = base || '';
   const links = [
-    { id: 'index',     i18n: 'nav_home',     href: 'index.html' },
-    { id: 'hakkimizda',i18n: 'nav_about',    href: 'hakkimizda.html' },
-    { id: 'hizmetler', i18n: 'nav_services', href: 'hizmetler.html' },
-    { id: 'kalite',    i18n: 'nav_quality',  href: 'kalite.html' },
-    { id: 'kaynak',    i18n: 'nav_welding',  href: 'kaynak-yontemleri.html' },
-    { id: 'ndt',       i18n: 'nav_ndt',      href: 'ndt.html' },
-    { id: 'sektorler', i18n: 'nav_sectors',  href: 'sektorler.html' },
-    { id: 'projeler',  i18n: 'nav_projects', href: 'projeler.html' },
-    { id: 'sss',       i18n: 'nav_faq',      href: 'sss.html' },
+    { id: 'index',     i18n: 'nav_home',     href: b + 'index.html' },
+    { id: 'hakkimizda',i18n: 'nav_about',    href: b + 'hakkimizda.html' },
+    { id: 'hizmetler', i18n: 'nav_services', href: b + 'hizmetler.html' },
+    { id: 'kalite',    i18n: 'nav_quality',  href: b + 'kalite.html' },
+    { id: 'kaynak',    i18n: 'nav_welding',  href: b + 'kaynak-yontemleri.html' },
+    { id: 'ndt',       i18n: 'nav_ndt',      href: b + 'ndt.html' },
+    { id: 'sektorler', i18n: 'nav_sectors',  href: b + 'sektorler.html' },
+    { id: 'projeler',  i18n: 'nav_projects', href: b + 'projeler.html' },
+    { id: 'sss',       i18n: 'nav_faq',      href: b + 'sss.html' },
+    { id: 'blog',      i18n: 'nav_blog',     href: b + 'blog/' },
   ];
 
   const t = (key) => (window.i18n ? window.i18n.get(key) : key);
@@ -22,13 +24,13 @@ function buildNav(activePage) {
   ).join('');
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
-  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.png' : 'assets/logo-light.png';
+  const logoSrc = (b || 'assets/') + (b ? 'assets/' : '') + (currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png');
 
   return `
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="${t('nav_aria_home')}">
-        <img id="nav-logo" src="${logoSrc}" alt="ArmaWeld" class="logo-img" />
+      <a href="${b}index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="${t('nav_aria_home')}">
+        <img id="nav-logo" src="${b}assets/${currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png'}" alt="ArmaWeld" class="logo-img" />
       </a>
       <div class="nav-links">
         ${linkHtml}
@@ -62,7 +64,7 @@ function buildNav(activePage) {
           </div>
         </div>
 
-        <a href="iletisim.html" class="nav-cta" data-i18n="nav_cta">${t('nav_cta')}</a>
+        <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta">${t('nav_cta')}</a>
         <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="${t('nav_aria_menu')}" onclick="document.querySelector('.nav').classList.toggle('open')">
           <span></span><span></span><span></span>
         </button>
@@ -72,9 +74,10 @@ function buildNav(activePage) {
   `;
 }
 
-function buildFooter() {
+function buildFooter(base) {
+  const b = base || '';
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
-  const logoSrc = currentTheme === 'dark' ? 'assets/logo-dark.png' : 'assets/logo-light.png';
+  const logoSrc = b + 'assets/' + (currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png');
   const t = (key) => (window.i18n ? window.i18n.get(key) : key);
 
   return `
@@ -88,23 +91,23 @@ function buildFooter() {
         <div>
           <h5 data-i18n="footer_services_h">${t('footer_services_h')}</h5>
           <ul>
-            <li><a href="hizmetler.html" data-i18n="footer_s1">${t('footer_s1')}</a></li>
-            <li><a href="hizmetler.html" data-i18n="footer_s2">${t('footer_s2')}</a></li>
-            <li><a href="hizmetler.html" data-i18n="footer_s3">${t('footer_s3')}</a></li>
-            <li><a href="hizmetler.html" data-i18n="footer_s4">${t('footer_s4')}</a></li>
-            <li><a href="kaynak-yontemleri.html" data-i18n="footer_s5">${t('footer_s5')}</a></li>
-            <li><a href="ndt.html" data-i18n="footer_s6">${t('footer_s6')}</a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s1">${t('footer_s1')}</a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s2">${t('footer_s2')}</a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s3">${t('footer_s3')}</a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s4">${t('footer_s4')}</a></li>
+            <li><a href="${b}kaynak-yontemleri.html" data-i18n="footer_s5">${t('footer_s5')}</a></li>
+            <li><a href="${b}ndt.html" data-i18n="footer_s6">${t('footer_s6')}</a></li>
           </ul>
         </div>
         <div>
           <h5 data-i18n="footer_corporate_h">${t('footer_corporate_h')}</h5>
           <ul>
-            <li><a href="hakkimizda.html" data-i18n="footer_c1">${t('footer_c1')}</a></li>
-            <li><a href="kalite.html" data-i18n="footer_c2">${t('footer_c2')}</a></li>
-            <li><a href="sektorler.html" data-i18n="footer_c3">${t('footer_c3')}</a></li>
-            <li><a href="projeler.html" data-i18n="footer_c4">${t('footer_c4')}</a></li>
-            <li><a href="sss.html" data-i18n="footer_c5">${t('footer_c5')}</a></li>
-            <li><a href="iletisim.html" data-i18n="footer_c6">${t('footer_c6')}</a></li>
+            <li><a href="${b}hakkimizda.html" data-i18n="footer_c1">${t('footer_c1')}</a></li>
+            <li><a href="${b}kalite.html" data-i18n="footer_c2">${t('footer_c2')}</a></li>
+            <li><a href="${b}sektorler.html" data-i18n="footer_c3">${t('footer_c3')}</a></li>
+            <li><a href="${b}projeler.html" data-i18n="footer_c4">${t('footer_c4')}</a></li>
+            <li><a href="${b}sss.html" data-i18n="footer_c5">${t('footer_c5')}</a></li>
+            <li><a href="${b}iletisim.html" data-i18n="footer_c6">${t('footer_c6')}</a></li>
           </ul>
         </div>
         <div>
@@ -182,12 +185,12 @@ function initScrollBar() {
   update();
 }
 
-function mountChrome(activePage) {
+function mountChrome(activePage, base) {
   const savedTheme = localStorage.getItem('armaweld-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
-  document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage));
-  document.body.insertAdjacentHTML('beforeend', buildFooter());
+  document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage, base));
+  document.body.insertAdjacentHTML('beforeend', buildFooter(base));
 
   // Apply language translations after DOM is ready
   if (window.i18n) {

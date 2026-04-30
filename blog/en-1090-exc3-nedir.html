@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr" data-i18n-title="blog_exc3_title">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EN 1090 EXC3 Nedir? Yapısal Çelik CE İşaretlemesi Rehberi | ArmaWeld Blog</title>
+  <meta name="description" content="EN 1090-1 ve EN 1090-2 standardlarının farkı, EXC1'den EXC4'e yürütme sınıfları, CE belgesi için gerekli adımlar ve EN ISO 3834-2 ile ilişkisi." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.armaweld.com/blog/en-1090-exc3-nedir.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="EN 1090 EXC3 Nedir? Yapısal Çelik CE İşaretlemesi Rehberi" />
+  <meta property="og:description" content="EN 1090 yürütme sınıfları, CE işaretlemesi gereklilikleri ve EN ISO 3834-2 ile ilişkisi." />
+  <meta property="og:url" content="https://www.armaweld.com/blog/en-1090-exc3-nedir.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+  <meta property="article:published_time" content="2026-05-01" />
+  <meta property="article:author" content="ArmaWeld Mühendislik" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="../assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 64px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.10), transparent 60%); }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 32px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .article-tag { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .18em; margin-bottom: 20px; }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 52px); font-weight: 900; color: var(--bone); line-height: 1.05; letter-spacing: -.035em; margin-bottom: 24px; }
+  .article-meta { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-1); display: flex; gap: 24px; flex-wrap: wrap; }
+
+  .article-wrap { padding: 64px 0 120px; background: var(--ink-0); }
+  .article-body { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .article-body h2 { font-size: clamp(20px, 2vw, 28px); font-weight: 800; color: var(--bone); letter-spacing: -.025em; margin: 52px 0 20px; padding-top: 52px; border-top: 1px solid var(--ink-4); }
+  .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body h3 { font-size: 18px; font-weight: 700; color: var(--bone); margin: 32px 0 12px; }
+  .article-body p { font-size: 16px; color: var(--steel-3); line-height: 1.75; margin-bottom: 20px; }
+  .article-body ul, .article-body ol { color: var(--steel-3); font-size: 16px; line-height: 1.75; padding-left: 24px; margin-bottom: 20px; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--bone); font-weight: 600; }
+  .tag-inline { background: var(--ink-4); color: var(--arc-3); font-family: var(--ff-mono); font-size: 12px; padding: 2px 8px; border-radius: 2px; display: inline-block; }
+  .callout { background: var(--ink-3); border-left: 3px solid var(--arc-2); padding: 20px 24px; margin: 32px 0; border-radius: 0 4px 4px 0; }
+  .callout p { margin: 0; font-size: 15px; color: var(--steel-2); }
+  .callout strong { color: var(--arc-3); }
+  .exc-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+  .exc-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .exc-table td { padding: 12px 16px; color: var(--steel-3); border-bottom: 1px solid var(--ink-4); vertical-align: top; }
+  .exc-table tr:hover td { background: var(--ink-2); }
+  .exc-table td:first-child { color: var(--arc-3); font-family: var(--ff-mono); font-weight: 700; white-space: nowrap; }
+  .article-footer { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--ink-4); }
+  .back-link { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-2); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; display: inline-flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--arc-2); }
+  .cta-box { background: var(--ink-2); border: 1px solid var(--ink-5); border-radius: 4px; padding: 32px; margin-top: 48px; }
+  .cta-box h3 { font-size: 20px; font-weight: 800; color: var(--bone); margin-bottom: 10px; }
+  .cta-box p { font-size: 15px; color: var(--steel-2); margin-bottom: 20px; }
+  .btn-arc { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 12px 24px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .btn-arc:hover { background: var(--arc-3); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "EN 1090 EXC3 Nedir? Yapısal Çelik CE İşaretlemesi Rehberi",
+  "description": "EN 1090-1 ve EN 1090-2 standartlarının farkı, EXC1–EXC4 yürütme sınıfları ve CE belgesi almak için gerekli adımlar.",
+  "datePublished": "2026-05-01",
+  "dateModified": "2026-05-01",
+  "author": {"@type": "Organization", "name": "ArmaWeld Mühendislik", "url": "https://www.armaweld.com"},
+  "publisher": {"@id": "https://www.armaweld.com/#organization"},
+  "url": "https://www.armaweld.com/blog/en-1090-exc3-nedir.html",
+  "inLanguage": "tr-TR",
+  "about": [
+    {"@type": "Thing", "name": "EN 1090"},
+    {"@type": "Thing", "name": "CE İşaretlemesi"},
+    {"@type": "Thing", "name": "Yapısal Çelik"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<script src="../assets/translations.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/chrome.js"></script>
+<script>mountChrome('blog', '../');</script>
+
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html" data-i18n="blog_breadcrumb_home">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html" data-i18n="blog_breadcrumb_blog">Blog</a> &nbsp;/&nbsp; <span data-i18n="blog_exc3_breadcrumb3">EN 1090 EXC3</span></div>
+    <div class="article-tag" data-i18n="blog_exc3_tag">Standartlar &amp; Sertifikasyon</div>
+    <h1 data-i18n="blog_exc3_h1">EN 1090 EXC3 Nedir?<br/>Yapısal Çelik CE İşaretlemesi Rehberi</h1>
+    <div class="article-meta">
+      <span>2026-05-01</span>
+      <span data-i18n="blog_exc3_read">7 dk okuma</span>
+      <span data-i18n="blog_exc3_author">ArmaWeld Mühendislik</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-wrap">
+  <div class="article-body">
+
+    <div data-i18n-html="blog_exc3_s0">
+    <p>Avrupa'da yapısal çelik ve alüminyum taşıyıcı bileşenlerin piyasaya sürülebilmesi için <strong>EN 1090-1</strong> standardı kapsamında CE işaretlemesi zorunludur. Bu kapsamda üretim yapan firmalar için EN 1090-2 (çelik) veya EN 1090-3 (alüminyum) teknik gereklilikleri belirleyen uygulama standardıdır.</p>
+
+    <p>CE belgesi hem yurt içi ihale süreçlerinde hem de Avrupa'ya ihracat kapsamındaki projelerde temel tedarikçi ön koşulu haline gelmiştir.</p>
+    </div>
+
+    <div data-i18n-html="blog_exc3_s1">
+    <h2>EN 1090-1 ve EN 1090-2 Farkı</h2>
+
+    <ul>
+      <li><strong>EN 1090-1:</strong> Uygunluk değerlendirme standardıdır. CE işaretlemesi için nasıl bir fabrika üretim kontrol (FPC) sistemi kurulacağını ve hangi bildirim kuruluşuyla çalışılacağını belirler. Sonunda CE DoP (Declaration of Performance — Performans Beyanı) düzenlenir.</li>
+      <li><strong>EN 1090-2:</strong> Teknik uygulama standardıdır. Kaynak, NDT, tolerans, yüzey işleme ve malzeme gereklilikleri bu standartta tanımlanmıştır. EN 1090-2'ye uyum için aynı zamanda <span class="tag-inline">EN ISO 3834-2</span> (tam kalite) veya <span class="tag-inline">EN ISO 3834-3</span> (standart kalite) sertifikası şarttır.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Özet:</strong> CE belgesi almak için EN 1090-1 sürecini yürütürsünüz. Bu süreçte EN 1090-2 teknik gerekliliklerini karşıladığınızı ispatlarsınız. EN ISO 3834-2 ise kaynak kalite sistemini bağımsız olarak belgeleyen ek sertifikadır.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_exc3_s2">
+    <h2>EXC Yürütme Sınıfları (Execution Classes)</h2>
+
+    <p>EN 1090-2, yapısal bileşenleri dört yürütme sınıfına ayırır. Sınıf ne kadar yüksekse gereklilikler o kadar ağırdır:</p>
+
+    <table class="exc-table">
+      <thead>
+        <tr>
+          <th>Sınıf</th>
+          <th>Kullanım Alanı</th>
+          <th>NDT Oranı</th>
+          <th>Kaynak Kalite Sistemi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EXC1</td>
+          <td>Düşük hasar riskleri, ikincil yapısal bileşenler</td>
+          <td>Yok (VT yeterli)</td>
+          <td>EN ISO 3834-4</td>
+        </tr>
+        <tr>
+          <td>EXC2</td>
+          <td>Binalarda çoğu yapısal çelik, orta risk</td>
+          <td>%5 (tahribatsız muayene)</td>
+          <td>EN ISO 3834-3</td>
+        </tr>
+        <tr>
+          <td>EXC3</td>
+          <td>Köprüler, ağır endüstriyel yapılar, yüksek hasar riski</td>
+          <td>%10 (kritik bölgeler %25)</td>
+          <td>EN ISO 3834-2</td>
+        </tr>
+        <tr>
+          <td>EXC4</td>
+          <td>Yüksek sismik bölgeler, nükleer, olağanüstü risk</td>
+          <td>%20 (kritik bölgeler %50)</td>
+          <td>EN ISO 3834-2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>ArmaWeld, <strong>EN 1090-2 EXC3</strong> kapsamında üretim yetkisine sahiptir. Bu, piyasadaki büyük çoğunluğu kapsayan en zorlu ticari sınıftır.</p>
+    </div>
+
+    <div data-i18n-html="blog_exc3_s3">
+    <h2>EXC3 Kapsamında Ne Gerekiyor?</h2>
+
+    <h3>Kaynak Yönetimi</h3>
+    <ul>
+      <li>Tüm kaynak prosesleri için onaylı WPS (EN ISO 15614-1/2)</li>
+      <li>EN ISO 9606-1/2 sertifikalı kaynakçılar</li>
+      <li>Kaynak koordinatörü (IWE veya IWT düzeyinde, EN ISO 14731)</li>
+      <li>WPS kapsamı dışında kaynak yapılmaması</li>
+    </ul>
+
+    <h3>NDT Gereklilikleri</h3>
+    <ul>
+      <li>Tüm CJP (tam nüfuziyetli) kaynak dikişlerinin minimum %10'u UT veya RT ile muayene</li>
+      <li>Kritik birleşimlerde bu oran %25'e çıkar</li>
+      <li>EN ISO 9712 Seviye 2 sertifikalı NDT personeli</li>
+    </ul>
+
+    <h3>Malzeme ve İzlenebilirlik</h3>
+    <ul>
+      <li>EN 10204 3.1 malzeme sertifikası (bazı durumlarda 3.2)</li>
+      <li>Her parçanın HEAT/LOT numarası ile izlenebilirliği</li>
+      <li>Kaynak prosedürü, kaynakçı ve malzeme zincirinin belgelenmesi</li>
+    </ul>
+    </div>
+
+    <div data-i18n-html="blog_exc3_s4">
+    <h2>CE İşaretlemesi Süreci</h2>
+
+    <p>Bir üreticinin EN 1090-1 kapsamında CE belgesi alması için gereken adımlar:</p>
+
+    <ol>
+      <li><strong>Fabrika Üretim Kontrol (FPC) Sisteminin Kurulması:</strong> Prosedürler, kayıtlar, ekipman kalibrasyon sistemi ve personel yeterlilikleri belgelenir.</li>
+      <li><strong>Bildirim Kuruluşu (Notified Body) Başvurusu:</strong> AB'de akredite bir notified body (örn. TÜV, Bureau Veritas, DNV) fabrika denetimi yapar.</li>
+      <li><strong>İlk Tip Testi:</strong> Temsili ürün numuneleri standart gerekliliklerine göre test edilir.</li>
+      <li><strong>CE DoP Düzenlenmesi:</strong> Uygunluk belgesi yayınlanır ve ürüne CE işareti iliştirilir.</li>
+      <li><strong>Yıllık Gözetim Denetimi:</strong> Notified body yılda bir fabrikayı denetler.</li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>EXC3 için not:</strong> Bildirim kuruluşunun (notified body) yürütme sınıfını açıkça onaylaması gerekir. EXC2 belgesiyle EXC3 projesi yapılamaz.</p>
+    </div>
+    </div>
+
+    <div data-i18n-html="blog_exc3_s5">
+    <h2>EN ISO 3834-2 ile İlişkisi</h2>
+
+    <p>EN 1090 EXC3 için zorunlu olan <strong>EN ISO 3834-2 (Tam Kalite)</strong> sertifikası, kaynak kalite yönetim sisteminin bağımsız bir belgelendirme kuruluşu tarafından onaylandığını gösterir. Bu sertifika:</p>
+
+    <ul>
+      <li>Yalnızca EN 1090 kapsamındaki işler için değil, tüm kaynaklı imalat projeleri için geçerlidir</li>
+      <li>ISO 9001'i tamamlar; kaynak prosesine özgü gereklilikleri kapsar</li>
+      <li>PED (Basınçlı Ekipman Direktifi) ve EN 15085 (demiryolu) gibi diğer standartlarla da kesişir</li>
+    </ul>
+    </div>
+
+    <div class="cta-box">
+      <h3 data-i18n="blog_exc3_cta_h3">EN 1090 EXC3 Kapsamında Üretim mi Arıyorsunuz?</h3>
+      <p data-i18n="blog_exc3_cta_p">ArmaWeld'in kalite sertifikaları ve onaylı WPS portföyü hakkında bilgi almak için kalite sayfamızı ziyaret edin veya teklif isteyin.</p>
+      <a href="../kalite.html" class="btn-arc" data-i18n="blog_exc3_cta_btn">Kalite Sayfası →</a>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link" data-i18n="blog_back">← Blog'a Dön</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
