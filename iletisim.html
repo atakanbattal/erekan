@@ -982,20 +982,15 @@ async function handleSubmit(e) {
   btn.disabled = true;
 
   // 1) Dosyaları Uploadcare'e yükle
-  let fileLinks = '';
+  let uploadedFiles = [];
   if (files.length > 0) {
     btn.innerHTML = '<span>DOSYALAR YÜKLENİYOR ' + files.length + '/' + files.length + '...</span><span class="arr">◷</span>';
     try {
       let uploaded = 0;
-      const results = [];
       for (const f of files) {
         btn.innerHTML = '<span>DOSYA YÜKLENİYOR ' + (++uploaded) + '/' + files.length + '...</span><span class="arr">◷</span>';
-        results.push(await uploadToUploadcare(f));
+        uploadedFiles.push(await uploadToUploadcare(f));
       }
-      // URL'leri ayrı satırda ve girintisiz yaz — MIME QP encoding kesmesini önler
-      fileLinks = results.map((r, i) =>
-        '[' + (i+1) + '] ' + r.name + '\n' + r.url
-      ).join('\n\n');
     } catch (err) {
       btn.disabled = false;
       btn.innerHTML = '<span>DOSYA YÜKLEME HATASI — TEKRAR DENEYIN</span><span class="arr">!</span>';
@@ -1005,10 +1000,17 @@ async function handleSubmit(e) {
     }
   }
 
-  // 2) Form verisini gönder (dosya linkleri metin olarak eklenir)
+  // 2) Form verisini gönder — her dosyayı AYRI alana koy (QP encoding kesmesin)
   btn.innerHTML = '<span>GÖNDERİLİYOR...</span><span class="arr">◷</span>';
   const data = new FormData(form);
-  if (fileLinks) data.append('ekli_dosyalar', fileLinks);
+  uploadedFiles.forEach((r, i) => {
+    const n = (i+1);
+    data.append('Dosya_' + n + '_Adi',  r.name);
+    data.append('Dosya_' + n + '_Link', r.url);
+  });
+  if (uploadedFiles.length > 0) {
+    data.append('Toplam_Dosya', uploadedFiles.length + ' adet');
+  }
 
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
