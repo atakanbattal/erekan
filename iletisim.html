@@ -998,8 +998,15 @@ async function handleSubmit(e) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ form: formObj, files: uploadedFiles }),
   })
-    .then(res => res.json())
-    .then(res => { if (!res.success) throw new Error(res.message || 'Bilinmeyen hata'); })
+    .then(async res => {
+      const text = await res.text();
+      let json; try { json = JSON.parse(text); } catch { json = { success: false, message: 'Sunucudan geçersiz yanıt: ' + text.slice(0, 200) }; }
+      if (!res.ok || !json.success) {
+        const msg = json.message || ('HTTP ' + res.status);
+        throw new Error(msg);
+      }
+      return json;
+    })
     .then(() => {
       form.reset();
       files = [];
@@ -1011,10 +1018,12 @@ async function handleSubmit(e) {
       document.getElementById('successRef').textContent = 'RFQ — #' + ref;
       document.getElementById('successOverlay').classList.add('visible');
     })
-    .catch(() => {
+    .catch(err => {
       btn.disabled = false;
-      btn.innerHTML = '<span>HATA — TEKRAR DENEYIN</span><span class="arr">!</span>';
+      btn.innerHTML = '<span>HATA</span><span class="arr">!</span>';
       btn.style.background = '#c0392b';
+      // Hata mesajını göster
+      alert('Form gönderilemedi:\n\n' + (err.message || 'Bilinmeyen hata') + '\n\nBu mesajı kopyalayıp yöneticinize iletin.');
       setTimeout(() => { btn.style.background = ''; btn.innerHTML = '<span data-i18n="contact_submit_btn">TEKLİF TALEBİNİ GÖNDER</span><span class="arr">→</span>'; }, 3000);
     });
 }

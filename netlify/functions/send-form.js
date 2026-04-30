@@ -145,10 +145,19 @@ export const handler = async (event) => {
   };
   if (form.email) emailPayload.replyTo = form.email;
 
+  console.log('[send-form] payload received', {
+    sender, recipient,
+    formKeys: Object.keys(form),
+    fileCount: files.length,
+    subject: emailPayload.subject,
+    replyTo: emailPayload.replyTo,
+  });
+
   try {
     const result = await resend.emails.send(emailPayload);
 
     if (result.error) {
+      console.error('[send-form] Resend error:', JSON.stringify(result.error));
       return {
         statusCode: 502,
         headers: { 'Content-Type': 'application/json' },
@@ -156,16 +165,19 @@ export const handler = async (event) => {
           success: false,
           message: result.error.message || 'Resend error',
           error: result.error,
+          debug: { sender, recipient, replyTo: emailPayload.replyTo },
         }),
       };
     }
 
+    console.log('[send-form] sent ok, id:', result.data?.id);
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: true, id: result.data?.id }),
     };
   } catch (err) {
+    console.error('[send-form] exception:', err.message, err.stack);
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
