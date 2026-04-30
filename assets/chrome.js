@@ -32,18 +32,6 @@ function buildNav(activePage) {
       </a>
       <div class="nav-links">
         ${linkHtml}
-        <div class="nav-mobile-lang">
-          <div class="lang-switcher" id="langSwitcherMobile" style="position:relative;">
-            <button class="lang-btn" onclick="toggleLangMenu('Mobile')" aria-label="Dil seç">${(window.i18n ? window.i18n.getLang() : (localStorage.getItem('armaweld-lang') || 'tr')).toUpperCase()}</button>
-            <div class="lang-dropdown" id="langDropdownMobile">
-              <button class="lang-option" data-lang="tr" onclick="selectLang('tr')">🇹🇷 Türkçe</button>
-              <button class="lang-option" data-lang="en" onclick="selectLang('en')">🇬🇧 English</button>
-              <button class="lang-option" data-lang="de" onclick="selectLang('de')">🇩🇪 Deutsch</button>
-              <button class="lang-option" data-lang="es" onclick="selectLang('es')">🇪🇸 Español</button>
-              <button class="lang-option" data-lang="fr" onclick="selectLang('fr')">🇫🇷 Français</button>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="nav-right">
         <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="${t('nav_aria_theme')}" onclick="toggleTheme()" title="Açık / Koyu mod">

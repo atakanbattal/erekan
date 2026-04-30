@@ -504,11 +504,7 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 8px 32px rgba(0,0,0,.15);
 }
 @media (max-width: 1080px) {
-  /* Dil seçiciyi header'dan kaldır, mobil menüye taşı */
-  .lang-switcher { display: none; }
-  .nav-mobile-lang { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--ink-3); }
-  .nav-mobile-lang .lang-btn { height: 32px; font-size: 10px; }
-  .nav-mobile-lang .lang-dropdown { top: calc(100% + 4px); }
+  .lang-switcher { display: flex; }
 }
 
 /* ===== Section scaffolding ===== */
