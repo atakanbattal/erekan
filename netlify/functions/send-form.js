@@ -46,7 +46,9 @@ const escapeHtml = (s) => String(s ?? '')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
-  .replace(/'/g, '&#39;');
+  .replace(/'/g, '&#39;')
+  // Non-ASCII → HTML entity (Outlook PC QP encoding bozukluğunu önler)
+  .replace(/[^\x00-\x7F]/g, c => '&#' + c.codePointAt(0) + ';');
 
 export const handler = async (event) => {
   // Wrap everything in a top-level try/catch so we ALWAYS return JSON, never HTML
@@ -154,21 +156,39 @@ export const handler = async (event) => {
     // Email format kontrolü (tam doğrulama: domain + TLD)
     const isValidEmail = (e) => typeof e === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
 
+    // Subject: ASCII-only (— → -, Türkçe harfler translitere) — QP bozukluğunu önler
+    const toAscii = (s) => String(s ?? '')
+      .replace(/[İI]/g, 'I').replace(/[ışŞ]/g, s => ({'ı':'i','ş':'s','Ş':'S'}[s]||s))
+      .replace(/[ğĞ]/g, s => s === 'ğ' ? 'g' : 'G')
+      .replace(/[üÜ]/g, s => s === 'ü' ? 'u' : 'U')
+      .replace(/[öÖ]/g, s => s === 'ö' ? 'o' : 'O')
+      .replace(/[çÇ]/g, s => s === 'ç' ? 'c' : 'C')
+      .replace(/[^\x00-\x7F]/g, '?');
+
     const emailPayload = {
       from: sender,
       to: [recipient],
-      subject: `ArmaWeld — Teklif: ${form.name || ''} / ${form.company || ''}`.trim(),
+      subject: `ArmaWeld - Teklif: ${toAscii(form.name || '')} / ${toAscii(form.company || '')}`.trim(),
       html,
       text,
     };
     if (isValidEmail(form.email)) emailPayload.replyTo = form.email.trim();
 
     // Dosyaları base64'ten Resend e-posta eki formatına çevir
+    // filename ASCII olmalı — aksi hâlde Outlook QP encoding yüzünden bozuyor
+    const safeFilename = (name) => String(name || 'dosya')
+      .replace(/[ışŞİ]/g, s => ({'ı':'i','ş':'s','Ş':'S','İ':'I'}[s]||s))
+      .replace(/[ğĞ]/g, s => s === 'ğ' ? 'g' : 'G')
+      .replace(/[üÜ]/g, s => s === 'ü' ? 'u' : 'U')
+      .replace(/[öÖ]/g, s => s === 'ö' ? 'o' : 'O')
+      .replace(/[çÇ]/g, s => s === 'ç' ? 'c' : 'C')
+      .replace(/[^\x20-\x7E]/g, '_');
+
     if (files.length > 0) {
       emailPayload.attachments = files
         .filter(f => f.name && f.content)
         .map(f => ({
-          filename: f.name,
+          filename: safeFilename(f.name),
           content:  f.content,  // base64 string — Resend bunu direkt destekliyor
         }));
     }
