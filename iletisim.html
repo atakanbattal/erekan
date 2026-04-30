@@ -892,6 +892,7 @@ let files = [];
 
 function renderFiles() {
   fl.innerHTML = '';
+  const totalSize = files.reduce((s, f) => s + f.size, 0);
   files.forEach((f, i) => {
     const row = document.createElement('div');
     row.className = 'file-item';
@@ -905,24 +906,52 @@ function renderFiles() {
     `;
     fl.appendChild(row);
   });
+  // Toplam boyut göstergesi
+  if (files.length > 1) {
+    const totalMB = (totalSize / 1024 / 1024).toFixed(1);
+    const warn = totalSize > MAX_TOTAL_B;
+    const info = document.createElement('div');
+    info.style.cssText = 'font-size:11px;margin-top:6px;font-family:monospace;color:' + (warn ? '#e74c3c' : '#888') + ';';
+    info.textContent = 'Toplam: ' + totalMB + ' MB / ' + MAX_TOTAL_MB + ' MB' + (warn ? ' — LİMİT AŞILDI' : '');
+    fl.appendChild(info);
+  }
 }
 function rmFile(i) { files.splice(i, 1); renderFiles(); }
 
-fi.addEventListener('change', e => {
-  files = [...files, ...Array.from(e.target.files)];
+const MAX_FILE_MB  = 5;
+const MAX_TOTAL_MB = 20;
+const MAX_FILE_B   = MAX_FILE_MB  * 1024 * 1024;
+const MAX_TOTAL_B  = MAX_TOTAL_MB * 1024 * 1024;
+
+function addFiles(newFiles) {
+  const oversized = [];
+  const ok = [];
+  newFiles.forEach(f => {
+    if (f.size > MAX_FILE_B) oversized.push(f.name + ' (' + (f.size/1024/1024).toFixed(1) + ' MB)');
+    else ok.push(f);
+  });
+  if (oversized.length) alert('Bu dosyalar 5 MB limitini aşıyor, eklenmedi:\n' + oversized.join('\n'));
+  files = [...files, ...ok];
   renderFiles();
-});
+}
+
+fi.addEventListener('change', e => { addFiles(Array.from(e.target.files)); fi.value = ''; });
 ['dragenter', 'dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag'); }));
 ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag'); }));
-dz.addEventListener('drop', e => {
-  files = [...files, ...Array.from(e.dataTransfer.files)];
-  renderFiles();
-});
+dz.addEventListener('drop', e => { addFiles(Array.from(e.dataTransfer.files)); });
 
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('.btn-submit');
+
+  // Toplam dosya boyutu kontrolü
+  const totalSize = files.reduce((s, f) => s + f.size, 0);
+  if (totalSize > MAX_TOTAL_B) {
+    alert('Toplam dosya boyutu ' + MAX_TOTAL_MB + ' MB limitini aşıyor (' + (totalSize/1024/1024).toFixed(1) + ' MB). Lütfen bazı dosyaları kaldırın.');
+    return;
+  }
+
   btn.disabled = true;
   btn.innerHTML = '<span>GÖNDERİLİYOR...</span><span class="arr">◷</span>';
 
