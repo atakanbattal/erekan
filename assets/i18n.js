@@ -70,19 +70,24 @@
   window.i18n = { apply, setLang, getLang: () => lang, get };
   window.selectLang = function (l) {
     setLang(l);
-    const dd = document.getElementById('langDropdown');
-    if (dd) dd.classList.remove('open');
+    ['langDropdown', 'langDropdownMobile'].forEach(function(id) {
+      const dd = document.getElementById(id);
+      if (dd) dd.classList.remove('open');
+    });
   };
-  window.toggleLangMenu = function () {
-    const dd = document.getElementById('langDropdown');
+  window.toggleLangMenu = function (suffix) {
+    const id = 'langDropdown' + (suffix || '');
+    const dd = document.getElementById(id);
     if (dd) dd.classList.toggle('open');
   };
 
   document.addEventListener('click', function (e) {
-    const sw = document.getElementById('langSwitcher');
-    if (sw && !sw.contains(e.target)) {
-      const dd = document.getElementById('langDropdown');
-      if (dd) dd.classList.remove('open');
-    }
+    ['langSwitcher', 'langSwitcherMobile'].forEach(function(swId) {
+      const sw = document.getElementById(swId);
+      if (sw && !sw.contains(e.target)) {
+        const dd = sw.querySelector('.lang-dropdown');
+        if (dd) dd.classList.remove('open');
+      }
+    });
   });
 })();
