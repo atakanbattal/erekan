@@ -481,11 +481,7 @@
         </div>
 
         <form id="rfq" onsubmit="handleSubmit(event)">
-          <input type="hidden" name="access_key" value="e842aa2a-ebd7-4e86-87e6-ee5c40bab8d4">
-          <input type="hidden" name="subject" value="ArmaWeld — Yeni Teklif Talebi">
-          <input type="hidden" name="from_name" value="ArmaWeld Web Sitesi">
-          <input type="hidden" name="redirect" value="https://armaweld.com">
-          <input type="checkbox" name="botcheck" style="display:none">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
           <!-- STEP 1: Service -->
           <div class="form-section">
@@ -1000,25 +996,18 @@ async function handleSubmit(e) {
     }
   }
 
-  // 2) Form verisini gönder — her dosyayı AYRI alana koy (QP encoding kesmesin)
+  // 2) Form verisini Netlify Function'a JSON olarak gönder (proper HTML email)
   btn.innerHTML = '<span>GÖNDERİLİYOR...</span><span class="arr">◷</span>';
-  const data = new FormData(form);
-  uploadedFiles.forEach((r, i) => {
-    const n = (i+1);
-    data.append('Dosya_' + n + '_Adi',  r.name);
-    data.append('Dosya_' + n + '_Link', r.url);
-  });
-  if (uploadedFiles.length > 0) {
-    data.append('Toplam_Dosya', uploadedFiles.length + ' adet');
-  }
+  const fd = new FormData(form);
+  const formObj = Object.fromEntries(fd);
 
-  fetch('https://api.web3forms.com/submit', {
+  fetch('/.netlify/functions/send-form', {
     method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: data,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ form: formObj, files: uploadedFiles }),
   })
     .then(res => res.json())
-    .then(res => { if (!res.success) throw new Error(res.message); })
+    .then(res => { if (!res.success) throw new Error(res.message || 'Bilinmeyen hata'); })
     .then(() => {
       form.reset();
       files = [];

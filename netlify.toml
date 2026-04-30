@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  publish   = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "http://www.armaweld.com/*"
