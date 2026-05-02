@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hakkımızda — ArmaWeld</title>
+  <meta name="description" content="ArmaWeld mühendis kadrosu hakkında bilgi alın. Kaynak mühendisleri, NDT teknisyenleri ve sertifikalı kaynakçılardan oluşan ekibimizle tanışın." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hakkımızda — ArmaWeld" />
+  <meta property="og:description" content="ArmaWeld mühendis kadrosu hakkında bilgi alın. Kaynak mühendisleri, NDT teknisyenleri ve sertifikalı kaynakçılardan oluşan ekibimizle tanışın." />
+  <meta property="og:url" content="https://www.armaweld.com/hakkimizda.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hakkımızda — ArmaWeld" />
+  <meta name="twitter:description" content="ArmaWeld mühendis kadrosu hakkında bilgi alın. Kaynak mühendisleri, NDT teknisyenleri ve sertifikalı kaynakçılardan oluşan ekibimizle tanışın." />
+  <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+<link rel="stylesheet" href="assets/theme.css" />
+<style>
+  .page-hero {
+    padding: calc(var(--nav-h) + 80px) 0 80px;
+    background: var(--ink-0);
+    border-bottom: 1px solid var(--ink-4);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%);
+  }
+  .page-hero-inner { position: relative; }
+  .breadcrumb {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--steel-1);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    margin-bottom: 40px;
+  }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .page-hero h1 {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(40px, 6vw, 92px);
+    line-height: .98;
+    letter-spacing: -.035em;
+    color: var(--bone);
+    margin-bottom: 32px;
+    max-width: 18ch;
+  }
+  .page-hero h1 .arc { color: var(--arc-2); }
+  .page-hero .lede { font-size: clamp(17px, 1.4vw, 22px); }
+
+  .manifesto {
+    padding: 120px 0;
+    background: var(--ink-1);
+    position: relative;
+    overflow: hidden;
+  }
+  .manifesto::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 85% 40%, rgba(255,122,26,.1), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(255,122,26,.06), transparent 70%);
+    pointer-events: none;
+  }
+  .mani-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 64px;
+    position: relative;
+    align-items: start;
+  }
+  .mani-label {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--arc-2);
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--arc-2);
+    padding-top: 14px;
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    line-height: 1.8;
+  }
+  .mani-label .big {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: 48px;
+    color: var(--bone);
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-top: 10px;
+    font-weight: 900;
+  }
+  .mani-body {
+    font-family: var(--ff-display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 32px);
+    line-height: 1.35;
+    color: var(--bone);
+    letter-spacing: -.015em;
+  }
+  .mani-body p { margin-bottom: 32px; }
+  .mani-body p:last-child { margin-bottom: 0; }
+  .mani-body strong { color: var(--arc-2); font-weight: 600; }
+  .mani-body .lead-quote {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(42px, 4.2vw, 68px);
+    line-height: 1;
+    letter-spacing: -.03em;
+    color: var(--bone);
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .mani-body .lead-quote::before {
+    content: '"';
+    position: absolute;
+    left: -60px;
+    top: -20px;
+    font-size: 200px;
+    color: var(--arc-2);
+    opacity: .15;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* Manifesto side visual — sampled certificate edge */
+  .mani-visual {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+  .mv-card {
+    background: var(--ink-0);
+    border: 1px solid var(--ink-5);
+    padding: 22px;
+    font-family: var(--ff-mono);
+    position: relative;
+  }
+  .mv-card + .mv-card { margin-top: 16px; }
+  .mv-card .kt {
+    font-size: 9px;
+    color: var(--steel-1);
+    letter-spacing: .25em;
+    margin-bottom: 12px;
+    display: flex; justify-content: space-between;
+  }
+  .mv-card .kt .on { color: var(--arc-2); }
+  .mv-card .kt .on::before { content: '●'; margin-right: 5px; font-size: 8px; }
+  .mv-card .vw {
+    font-family: var(--ff-display);
+    font-size: 28px;
+    color: var(--bone);
+    letter-spacing: -.02em;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .mv-card .vw small { font-size: 12px; font-weight: 400; color: var(--arc-2); letter-spacing: 0.1em; margin-left: 6px; }
+  .mv-card .sub { font-size: 10px; color: var(--steel-2); line-height: 1.5; letter-spacing: .02em; }
+  .mv-card .corners::before,
+  .mv-card .corners::after,
+  .mv-card .corners > i::before,
+  .mv-card .corners > i::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--arc-2);
+  }
+  .mv-card .corners::before { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+  .mv-card .corners::after { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+  .mv-card .corners > i::before { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+  .mv-card .corners > i::after { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+  @media (max-width: 1100px) {
+    .mani-grid { grid-template-columns: 1fr; gap: 40px; }
+    .mani-visual { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .mani-body .lead-quote::before { display: none; }
+  }
+  @media (max-width: 640px) {
+    .mani-visual { grid-template-columns: 1fr; }
+  }
+
+  .team { padding: 120px 0; background: var(--ink-0); }
+
+  /* Discipline cards (names-free staff overview) */
+  .disc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-bottom: 56px;
+  }
+  .disc-card {
+    background: var(--ink-1);
+    padding: 36px 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 420px;
+  }
+  .disc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .disc-n {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--arc-2);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+  .disc-ico {
+    width: 48px; height: 48px;
+    color: var(--steel-2);
+    flex-shrink: 0;
+  }
+  .disc-card h3 {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: clamp(22px, 1.8vw, 26px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    color: var(--bone);
+    margin-bottom: 20px;
+  }
+  .disc-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--steel-3);
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .disc-creds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink-4);
+  }
+
+  /* Team stats bar */
+  .team-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+  }
+  .ts {
+    background: var(--ink-1);
+    padding: 28px 24px;
+  }
+  .ts-n {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(36px, 3.5vw, 52px);
+    line-height: 1;
+    letter-spacing: -.03em;
+    color: var(--arc-2);
+    margin-bottom: 10px;
+  }
+  .ts-l {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--steel-2);
+    letter-spacing: .08em;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1000px) {
+    .disc-grid { grid-template-columns: 1fr; }
+    .team-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-top: 56px;
+  }
+  .team-card {
+    background: var(--ink-1);
+    padding: 0;
+    transition: background .3s ease;
+  }
+  .team-card:hover { background: var(--ink-2); }
+  .team-photo {
+    aspect-ratio: 4/5;
+    background:
+      linear-gradient(135deg, var(--ink-3) 0%, var(--ink-0) 100%);
+    position: relative;
+    border-bottom: 1px solid var(--ink-4);
+    overflow: hidden;
+  }
+  .team-photo::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  [data-theme="light"] .team-photo::before {
+    background-image:
+      linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px);
+  }
+  .team-photo-abbr {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(56px, 6vw, 96px);
+    letter-spacing: -.05em;
+    color: var(--ink-5);
+  }
+  .team-photo-tag {
+    position: absolute;
+    top: 16px; left: 16px;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--arc-2);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid var(--arc-2);
+    background: rgba(0,0,0,.5);
+  }
+  .team-body { padding: 28px; }
+  .team-name {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -.015em;
+    color: var(--bone);
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--arc-2);
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    margin-bottom: 18px;
+  }
+  .team-bio {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--steel-3);
+    margin-bottom: 20px;
+  }
+  .team-cred {
+    border-top: 1px solid var(--ink-4);
+    padding-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .values { padding: 120px 0; background: var(--ink-1); }
+  .val-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-top: 56px;
+  }
+  .val {
+    background: var(--ink-1);
+    padding: 48px 40px;
+  }
+  .val-num {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--arc-2);
+    letter-spacing: .24em;
+    margin-bottom: 20px;
+  }
+  .val h3 {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: clamp(26px, 2.4vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -.025em;
+    color: var(--bone);
+    margin-bottom: 20px;
+    max-width: 16ch;
+  }
+  .val p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--steel-3);
+    max-width: 48ch;
+  }
+  .val-num-big {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: 14vw;
+    line-height: .9;
+    letter-spacing: -.05em;
+    color: var(--ink-3);
+    position: absolute;
+    right: 40px;
+    bottom: -30px;
+    pointer-events: none;
+  }
+  .val { position: relative; overflow: hidden; }
+
+  .facility {
+    padding: 120px 0;
+    background: var(--ink-0);
+  }
+  .fac-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .fac-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-top: 40px;
+  }
+  .fac-stat {
+    background: var(--ink-1);
+    padding: 28px;
+  }
+  .fac-stat .n {
+    font-family: var(--ff-display);
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--bone);
+    letter-spacing: -.03em;
+  }
+  .fac-stat .n .u { font-size: 0.45em; color: var(--arc-2); }
+  .fac-stat .l {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--steel-2);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  /* Facility flow — process stations */
+  .flow-card {
+    background: var(--ink-1);
+    border: 1px solid var(--ink-4);
+    padding: 36px 32px 28px;
+    position: relative;
+  }
+  .flow-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ink-4);
+    margin-bottom: 24px;
+  }
+  .flow-card-head .t {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--steel-2);
+  }
+  .flow-card-head .t b { color: var(--arc-2); font-weight: 400; margin-right: 8px; }
+  .flow-card-head .r {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--steel-1);
+    letter-spacing: .1em;
+  }
+  .flow-stations { display: flex; flex-direction: column; gap: 0; }
+  .flow-st {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px dashed var(--ink-4);
+    position: relative;
+  }
+  .flow-st:last-child { border-bottom: 0; }
+  .flow-st.active { background: linear-gradient(90deg, rgba(255,122,26,.06), transparent 60%); margin: 0 -20px; padding-left: 20px; padding-right: 20px; border-left: 2px solid var(--arc-2); }
+  .flow-st .n {
+    font-family: var(--ff-mono);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--steel-2);
+    letter-spacing: .04em;
+  }
+  .flow-st.active .n { color: var(--arc-2); }
+  .flow-st .body .title {
+    font-family: var(--ff-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--paper);
+    margin-bottom: 4px;
+    letter-spacing: -.005em;
+  }
+  .flow-st .body .sub {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--steel-1);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .flow-st .kpi {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--paper);
+    text-align: right;
+    letter-spacing: .04em;
+  }
+  .flow-st .kpi .u { color: var(--steel-1); margin-left: 4px; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+  .flow-card-foot {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--ink-4);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--steel-1);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .flow-card-foot .ok { color: var(--arc-2); }
+
+  @media (max-width: 1000px) {
+    .mani-grid { grid-template-columns: 1fr; gap: 40px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .val-grid { grid-template-columns: 1fr; }
+    .fac-wrap { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; HAKKIMIZDA</div>
+    <h1>ArmaWeld Hakkında.<br/><span class="arc">Mühendislik disipliniyle üretim.</span></h1>
+    <p class="lede">
+      ArmaWeld, makine ve kaynak mühendislerinin kurduğu bir metal işleme atölyesidir.
+      Kaynaklı imalattan yola çıkıp kesim, büküm ve mekanik montajı tek çatı altında
+      birleştiriyor; her parçayı belgelendirilmiş bir mühendislik çıktısı olarak
+      teslim ediyoruz.
+    </p>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="mani-grid">
+      <div class="mani-body">
+        <div class="lead-quote">Sadece ürünü değil, <span style="color: var(--arc-2);">izlenebilir kalite dokümantasyonunu</span> teslim ederiz.</div>
+        <p>
+          Metal işleme, gözle görülmese bile
+          <strong>matematik ve fizikle</strong> işleyen bir bilimdir.
+          Bir dikişin mukavemeti; doğru akımın, doğru gazın,
+          doğru ön ısıtmanın ve doğru elin birleştiği an ortaya çıkar.
+        </p>
+        <p>
+          Pek çok atölye yalnızca ürünü teslim eder. Biz aynı anda
+          <strong>ürünün kendisini, üretim geçmişini ve kalite kayıtlarını</strong>
+          teslim ediyoruz.
+        </p>
+        <p>
+          Çünkü inandığımız tek bir şey var: Kritik bir parçanın
+          yarın sahada güvenli çalışacağına dair tek teminat,
+          bugün arkasında bıraktığımız <strong>belgelerdir.</strong>
+        </p>
+      </div>
+      <div class="mani-visual">
+        <div class="mv-card">
+          <i></i><span class="corners"></span>
+          <div class="kt"><span class="on">SERTİFİKA AKTİF</span><span>#01</span></div>
+          <div class="vw">EN 1090-2 <small>EXC3</small></div>
+          <div class="sub">Çelik yapı imalatı — Üretim Kontrol Sertifikası · FPC onaylı</div>
+        </div>
+        <div class="mv-card">
+          <i></i><span class="corners"></span>
+          <div class="kt"><span class="on">SERTİFİKA AKTİF</span><span>#02</span></div>
+          <div class="vw">EN ISO 3834-2</div>
+          <div class="sub">Metalik malzemelerin ergitme kaynağı — Kapsamlı kalite gereksinimleri</div>
+        </div>
+        <div class="mv-card">
+          <i></i><span class="corners"></span>
+          <div class="kt"><span class="on">PERSONEL NITELENDIRME</span><span>#03</span></div>
+          <div class="vw">EN ISO 9606-1</div>
+          <div class="sub">Her kaynakçı belgeli · 6 ayda bir yenileme · süresi dolmadan sahaya çıkmaz</div>
+        </div>
+        <div class="mv-card">
+          <i></i><span class="corners"></span>
+          <div class="kt"><span class="on">MUAYENE</span><span>#04</span></div>
+          <div class="vw">ISO 9712 <small>L2</small></div>
+          <div class="sub">Bünyemizde Seviye 2 NDT · VT · PT · MT · UT muayenesi in-house</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">01 / Mühendis Kadro</div>
+        <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">TEAM — MULTI-DISCIPLINE</p>
+      </div>
+      <h2 class="display h2">
+        Üretim süreçlerini yöneten <span style="color: var(--arc-2);">uzman ekip.</span>
+      </h2>
+    </div>
+
+    <p class="lede" style="margin: 40px 0 56px; max-width: 72ch;">
+      ArmaWeld'in arkasında, sektörde uzun yıllardır <strong style="color: var(--bone);">kalite yönetimi
+      ve üretim süreçlerine hâkim</strong> makine mühendisleri, uluslararası yetkinlikte kaynak
+      mühendisleri ve EN ISO 9712 sertifikalı NDT uzmanlarından oluşan bir ekip var.
+      Her disiplin kendi kulvarında derinleşmiş; birlikte çalışarak bir parçayı
+      hammaddeden teslim raporuna kadar belgelendirerek çıkarıyorlar.
+    </p>
+
+    <div class="disc-grid">
+      <div class="disc-card reveal">
+        <div class="disc-head">
+          <div class="disc-n">KAYNAK MÜHENDİSLİĞİ</div>
+          <div class="disc-ico" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+              <path d="M 8 36 L 40 36"/>
+              <path d="M 12 32 L 20 24 L 26 28 L 36 18"/>
+              <circle cx="20" cy="24" r="2" fill="currentColor"/>
+              <circle cx="26" cy="28" r="2" fill="currentColor"/>
+              <path d="M 32 10 L 32 16 M 29 13 L 35 13" stroke-dasharray="1.5 1.5"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Uluslararası sertifikalı<br/>kaynak mühendisleri.</h3>
+        <p>
+          IWE / IWT düzeyinde eğitimli, EN ISO 3834-2 kalite sisteminin her
+          adımını yöneten mühendis kadromuz; WPS geliştirme, WPQR onay süreçleri
+          ve kaynakçı nitelendirme matrisini bizzat yürütür. Her dikişin
+          arkasında bir mühendis imzası vardır.
+        </p>
+        <div class="disc-creds">
+          <span class="badge badge-arc">IWE · EN ISO 14731</span>
+          <span class="badge">EN ISO 9606-1</span>
+          <span class="badge">EN 1090-2</span>
+        </div>
+      </div>
+
+      <div class="disc-card reveal">
+        <div class="disc-head">
+          <div class="disc-n">MAKİNE MÜHENDİSLİĞİ</div>
+          <div class="disc-ico" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+              <circle cx="24" cy="24" r="14"/>
+              <circle cx="24" cy="24" r="4"/>
+              <path d="M 24 4 L 24 10 M 24 38 L 24 44 M 4 24 L 10 24 M 38 24 L 44 24 M 10 10 L 14 14 M 34 34 L 38 38 M 10 38 L 14 34 M 34 14 L 38 10"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Tasarımdan üretime<br/>hâkim makine mühendisleri.</h3>
+        <p>
+          Uzun yıllar üretim hatlarında tecrübe edinmiş makine mühendislerimiz;
+          mekanik tasarım, sonlu elemanlar analizi (FEA) ve üretim planlamasından
+          sorumludur. DWG'den son ürüne kadar imalat hattının omurgasını
+          kurarlar — kâğıttaki tasarımın sahada çalışması onların işidir.
+        </p>
+        <div class="disc-creds">
+          <span class="badge">Mekanik Tasarım · FEA</span>
+          <span class="badge">Üretim Planlama</span>
+          <span class="badge">CE · PED</span>
+        </div>
+      </div>
+
+      <div class="disc-card reveal">
+        <div class="disc-head">
+          <div class="disc-n">NDT / MUAYENE</div>
+          <div class="disc-ico" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+              <circle cx="22" cy="22" r="10"/>
+              <path d="M 30 30 L 40 40"/>
+              <path d="M 18 22 L 21 25 L 26 18"/>
+            </svg>
+          </div>
+        </div>
+        <h3>EN ISO 9712 Seviye 2<br/>NDT uzmanları.</h3>
+        <p>
+          VT, PT, MT ve UT yöntemlerinde Seviye 2 sertifikalı muayene kadromuz,
+          her işin muayene planını hazırlar ve raporları onaylar. Kabul
+          kriterleri EN ISO 5817 B sınıfı baz alınır; hiçbir dikiş kayıt
+          dışı sahaya çıkmaz.
+        </p>
+        <div class="disc-creds">
+          <span class="badge badge-arc">EN ISO 9712 L2</span>
+          <span class="badge">VT · PT · MT · UT</span>
+          <span class="badge">EN ISO 5817</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-stats">
+      <div class="ts"><div class="ts-n">10+</div><div class="ts-l">Yıl sektörel tecrübe<br/>(ortalama kadro)</div></div>
+      <div class="ts"><div class="ts-n">3</div><div class="ts-l">Mühendislik disiplini<br/>tek çatı altında</div></div>
+      <div class="ts"><div class="ts-n">4</div><div class="ts-l">NDT yöntemi bünyede<br/>VT · PT · MT · UT</div></div>
+      <div class="ts"><div class="ts-n">100%</div><div class="ts-l">Kaynakçı kadrosu<br/>EN ISO 9606-1 belgeli</div></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">02 / İlkelerimiz</div>
+        <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">PRNC — 001 / 004</p>
+      </div>
+      <h2 class="display h2">
+        Taviz vermediğimiz <span style="color: var(--arc-2);">dört temel ilke.</span>
+      </h2>
+    </div>
+
+    <div class="val-grid">
+      <div class="val reveal">
+        <h3>İzlenebilir üretim, pazarlık konusu değildir.</h3>
+        <p>Her parçanın hammaddesi, kaynakçısı, WPS'i ve NDT kaydı birbirine bağlıdır. Seri numarası olmayan parça üretmeyiz.</p>
+      </div>
+      <div class="val reveal">
+        <h3>Mühendislik kararı, üretim hattında verilir.</h3>
+        <p>Her iş emri mühendis onayından geçer. Sorun çıkan yerde, kaynak maskesini takıp ark başında durabilen mühendislerimiz karar verir.</p>
+      </div>
+      <div class="val reveal">
+        <h3>Belgesi olmayan dikiş, yapılmamış sayılır.</h3>
+        <p>Sertifikasız kaynakçı, onaysız WPS, raporlanmamış NDT — bizim için kabul edilemez. Kağıt, çelik kadar ciddidir.</p>
+      </div>
+      <div class="val reveal">
+        <h3>Hatalar saklanmaz, kaydedilir.</h3>
+        <p>Uygunsuzluk, sorumsuzluk değil — öğrenme fırsatıdır. CAPA sistemimizle her uygunsuzluk kök neden analizi ile kapatılır.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="facility">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">03 / Atölye & Kapasite</div>
+        <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">FAC — LAYOUT.01</p>
+      </div>
+      <h2 class="display h2">
+        Planlı atölye düzeni, <span style="color: var(--arc-2);">tutarlı üretim kalitesi.</span>
+      </h2>
+    </div>
+
+    <div class="fac-wrap">
+      <div>
+        <p class="lede">
+          Atölyemiz; malzeme akışı, kaynak istasyonları, NDT kabini ve sevkiyat
+          bölgesi sırasıyla tek yönlü olarak tasarlanmıştır. Bu, her işin
+          "geri dönüş"süz bir hat içinde ilerlemesini ve izlenebilirliği
+          fiziksel olarak desteklemesini sağlar.
+        </p>
+
+        <div class="fac-stats">
+          <div class="fac-stat">
+            <div class="n">2 400<span class="u">m²</span></div>
+            <div class="l">Kapalı Atölye Alanı</div>
+          </div>
+          <div class="fac-stat">
+            <div class="n">12<span class="u">kaynak istasyonu</span></div>
+            <div class="l">MIG/MAG · TIG · E-ARC</div>
+          </div>
+          <div class="fac-stat">
+            <div class="n">60<span class="u">mm</span></div>
+            <div class="l">Maksimum Plaka Kesim</div>
+          </div>
+          <div class="fac-stat">
+            <div class="n">20<span class="u">ton</span></div>
+            <div class="l">Köprü Vinç Kapasitesi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-card reveal">
+        <div class="flow-card-head">
+          <div class="t"><b>■</b>SÜREÇ AKIŞI · ARMAWELD-01</div>
+          <div class="r">TEK YÖNLÜ · GERİ-DÖNÜŞSÜZ</div>
+        </div>
+        <div class="flow-stations">
+          <div class="flow-st">
+            <div class="n">01</div>
+            <div class="body">
+              <div class="title">Malzeme Kabul</div>
+              <div class="sub">Sertifika · Mill Test · Heat-No eşleşme</div>
+            </div>
+            <div class="kpi">100<span class="u">% izlenebilir</span></div>
+          </div>
+          <div class="flow-st">
+            <div class="n">02</div>
+            <div class="body">
+              <div class="title">Sac Kesim</div>
+              <div class="sub">CNC Plazma · Gilyotin · Profil</div>
+            </div>
+            <div class="kpi">60<span class="u">mm maks.</span></div>
+          </div>
+          <div class="flow-st active">
+            <div class="n">03</div>
+            <div class="body">
+              <div class="title">Kaynaklı İmalat</div>
+              <div class="sub">MIG/MAG · TIG · E-ARC · 12 istasyon</div>
+            </div>
+            <div class="kpi">EN ISO<span class="u">3834-2</span></div>
+          </div>
+          <div class="flow-st">
+            <div class="n">04</div>
+            <div class="body">
+              <div class="title">NDT &amp; Muayene</div>
+              <div class="sub">VT · PT · MT · UT · Geometrik kontrol</div>
+            </div>
+            <div class="kpi">EN ISO<span class="u">9712</span></div>
+          </div>
+          <div class="flow-st">
+            <div class="n">05</div>
+            <div class="body">
+              <div class="title">Sevkiyat</div>
+              <div class="sub">Yüzey · Etiket · Sertifika paketi</div>
+            </div>
+            <div class="kpi">20<span class="u">ton vinç</span></div>
+          </div>
+        </div>
+        <div class="flow-card-foot">
+          <span>TOPL. 05 İSTASYON</span>
+          <span class="ok">● OPERASYONEL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="page-hero" style="padding: 100px 0; background: var(--ink-1); border-top: 1px solid var(--ink-4); border-bottom: 0;">
+  <div class="container" style="text-align: center;">
+    <div class="eyebrow" style="justify-content: center; margin-bottom: 24px;">Sıradaki adım</div>
+    <h2 class="display h2" style="max-width: 20ch; margin: 0 auto 32px;">
+      Bizimle bir <span style="color: var(--arc-2);">proje konuşmak</span><br/>ister misiniz?
+    </h2>
+    <a href="iletisim.html" class="btn btn-primary">İletişime Geçin <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<script src="assets/chrome.js"></script>
+<script>mountChrome('hakkimizda');</script>
+</body>
+</html>

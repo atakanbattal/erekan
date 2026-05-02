@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kaynak Yöntemleri — EREKAN</title>
+<link rel="stylesheet" href="assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
+  .page-hero-inner { position: relative; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(40px, 6vw, 92px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
+  .page-hero h1 .arc { color: var(--arc-2); }
+
+  /* Method selector (interactive) */
+  .selector { padding: 120px 0; background: var(--ink-1); }
+  .sel-wrap {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .sel-input {
+    background: var(--ink-0);
+    border: 1px solid var(--ink-4);
+    padding: 32px 28px;
+  }
+  .sel-input h4 { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .22em; text-transform: uppercase; margin-bottom: 20px; }
+  .sel-group { margin-bottom: 24px; }
+  .sel-group label {
+    display: block;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--steel-1);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sel-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sel-pill {
+    padding: 8px 12px;
+    background: var(--ink-1);
+    border: 1px solid var(--ink-4);
+    color: var(--steel-2);
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .sel-pill:hover { border-color: var(--steel-1); color: var(--bone); }
+  .sel-pill.active { background: var(--arc-2); border-color: var(--arc-2); color: var(--ink-0); font-weight: 600; }
+
+  .sel-out {
+    background: var(--ink-0);
+    border: 1px solid var(--ink-4);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sel-rec {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--arc-2);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .sel-out h3 {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(40px, 4vw, 68px);
+    line-height: .95;
+    letter-spacing: -.03em;
+    color: var(--bone);
+    margin-bottom: 16px;
+  }
+  .sel-out h3 .arc { color: var(--arc-2); }
+  .sel-reason { font-size: 15px; line-height: 1.6; color: var(--steel-3); margin-bottom: 28px; max-width: 58ch; }
+
+  .sel-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-bottom: 20px;
+  }
+  .sel-spec { background: var(--ink-0); padding: 16px; }
+  .sel-spec .k { font-family: var(--ff-mono); font-size: 9px; color: var(--steel-1); letter-spacing: .18em; text-transform: uppercase; }
+  .sel-spec .v { font-family: var(--ff-display); font-weight: 700; font-size: 18px; color: var(--bone); margin-top: 6px; letter-spacing: -.01em; }
+
+  .sel-alt {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid var(--ink-4);
+    font-family: var(--ff-mono);
+    font-size: 11px;
+  }
+  .sel-alt .lbl { color: var(--steel-1); text-transform: uppercase; letter-spacing: .14em; margin-right: 8px; }
+  .sel-alt .a { padding: 4px 10px; border: 1px solid var(--ink-5); color: var(--steel-2); }
+
+  /* Detail sections per method */
+  .method-block { padding: 100px 0; border-bottom: 1px solid var(--ink-4); }
+  .method-block:nth-child(odd) { background: var(--ink-1); }
+  .method-block:nth-child(even) { background: var(--ink-0); }
+  .mb-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .mb-meta .abbr {
+    font-family: var(--ff-display); font-weight: 900;
+    font-size: clamp(48px, 5.5vw, 86px); line-height: .95;
+    color: var(--bone); letter-spacing: -.04em;
+    margin-bottom: 12px;
+  }
+  .mb-meta .full {
+    font-family: var(--ff-mono); font-size: 13px; color: var(--arc-2);
+    letter-spacing: .14em; text-transform: uppercase; margin-bottom: 32px;
+  }
+  .mb-meta .desc { font-size: 15px; line-height: 1.65; color: var(--steel-3); margin-bottom: 28px; max-width: 52ch; }
+
+  .mb-params {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--ink-4); border: 1px solid var(--ink-4);
+    margin-bottom: 24px;
+  }
+  .mb-param { background: var(--ink-0); padding: 16px 18px; }
+  .mb-param .k { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .16em; text-transform: uppercase; }
+  .mb-param .v { font-family: var(--ff-display); font-weight: 700; font-size: 16px; color: var(--bone); margin-top: 4px; }
+
+  .mb-visual {
+    background: var(--ink-1); border: 1px solid var(--ink-4);
+    padding: 32px 28px; position: relative;
+    display: flex; flex-direction: column;
+    align-self: start;
+  }
+  .mv-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 18px; border-bottom: 1px solid var(--ink-4);
+    margin-bottom: 24px;
+  }
+  .mv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
+  .mv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
+  .mv-big {
+    font-family: var(--ff-display); font-weight: 700;
+    font-size: clamp(48px, 5vw, 78px); line-height: .95;
+    letter-spacing: -.02em; color: var(--paper);
+  }
+  .mv-big span { color: var(--steel-2); font-weight: 400; }
+  .mv-sub {
+    font-family: var(--ff-mono); font-size: 11px;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--steel-2); margin-top: 6px; padding-bottom: 24px;
+    border-bottom: 1px dashed var(--ink-4);
+  }
+  .mv-bars { display: flex; flex-direction: column; gap: 14px; margin: 24px 0; }
+  .mv-bar {
+    display: grid; grid-template-columns: 110px 1fr 90px;
+    gap: 14px; align-items: center;
+  }
+  .mv-bar .bl { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-1); }
+  .mv-bar .bt { height: 3px; background: var(--ink-4); position: relative; overflow: hidden; }
+  .mv-bar .bt i { position: absolute; top: 0; left: 0; bottom: 0; background: var(--arc-2); display: block; }
+  .mv-bar .br { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .08em; color: var(--paper); text-align: right; }
+  .mv-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding-top: 20px; border-top: 1px dashed var(--ink-4);
+  }
+  .mv-tags span {
+    font-family: var(--ff-mono); font-size: 9px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--steel-2);
+    padding: 4px 8px; border: 1px solid var(--ink-4);
+  }
+  .mv-foot {
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid var(--ink-4);
+    display: flex; justify-content: space-between;
+    font-family: var(--ff-mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--steel-1);
+  }
+  .mv-foot .ok { color: var(--arc-2); }
+
+  .mb-pros {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-top: 24px;
+  }
+  .mb-pros h5 { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 12px; }
+  .mb-pros ul { list-style: none; }
+  .mb-pros li { padding: 8px 0; border-bottom: 1px dashed var(--ink-4); font-size: 13px; color: var(--steel-3); display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; }
+  .mb-pros .pro h5 { color: var(--success); }
+  .mb-pros .pro li::before { content: '+'; color: var(--success); font-family: var(--ff-mono); }
+  .mb-pros .con h5 { color: var(--arc-2); }
+  .mb-pros .con li::before { content: '−'; color: var(--arc-2); font-family: var(--ff-mono); }
+
+  @media (max-width: 1000px) {
+    .sel-wrap { grid-template-columns: 1fr; }
+    .mb-row { grid-template-columns: 1fr; gap: 40px; }
+    .mb-pros { grid-template-columns: 1fr; }
+    .sel-specs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">EREKAN</a> &nbsp;/&nbsp; KAYNAK YÖNTEMLERİ</div>
+    <h1>Kaynak Teknolojileri.<br/><span class="arc">Standartlara uygun üretim.</span></h1>
+    <p class="lede" style="font-size: clamp(17px,1.4vw,22px);">
+      Doğru kaynak; doğru proses, doğru dolgu metali, doğru gaz ve doğru elin
+      birleştiği andır. EREKAN'da üç ana proses ailesinde derin uzmanlığımız var:
+      MIG/MAG, TIG ve örtülü elektrod.
+    </p>
+  </div>
+</section>
+
+<!-- Method selector -->
+<section class="selector">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">01 / Proses Seçici</div>
+        <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">PROC.SEL — INTERACTIVE</p>
+      </div>
+      <h2 class="display h2">
+        Malzeme ve uygulamaya göre <span style="color: var(--arc-2);">doğru kaynak prosesi.</span>
+      </h2>
+    </div>
+
+    <p class="lede" style="margin-bottom: 20px;">
+      Aşağıdaki seçicide malzeme, kalınlık ve ortam bilgisini girdikten sonra — EREKAN
+      mühendislik bilgi havuzundan size en uygun kaynak prosesini öneriyoruz.
+    </p>
+
+    <div class="sel-wrap">
+      <div class="sel-input">
+        <h4>Parametreler</h4>
+
+        <div class="sel-group">
+          <label>Malzeme Grubu</label>
+          <div class="sel-pills" data-param="mat">
+            <button class="sel-pill active" data-v="carbon">Karbon Çeliği</button>
+            <button class="sel-pill" data-v="stainless">Paslanmaz</button>
+            <button class="sel-pill" data-v="aluminum">Alüminyum</button>
+            <button class="sel-pill" data-v="hardox">HARDOX / Aşınma</button>
+            <button class="sel-pill" data-v="pressure">Basınçlı Kap (P)</button>
+          </div>
+        </div>
+
+        <div class="sel-group">
+          <label>Kalınlık</label>
+          <div class="sel-pills" data-param="thick">
+            <button class="sel-pill" data-v="thin">&lt; 3 mm</button>
+            <button class="sel-pill active" data-v="med">3 – 15 mm</button>
+            <button class="sel-pill" data-v="thick">15 – 40 mm</button>
+            <button class="sel-pill" data-v="heavy">&gt; 40 mm</button>
+          </div>
+        </div>
+
+        <div class="sel-group">
+          <label>Ortam</label>
+          <div class="sel-pills" data-param="env">
+            <button class="sel-pill active" data-v="shop">Atölye</button>
+            <button class="sel-pill" data-v="field">Saha / Açık Alan</button>
+          </div>
+        </div>
+
+        <div class="sel-group">
+          <label>Öncelik</label>
+          <div class="sel-pills" data-param="prio">
+            <button class="sel-pill active" data-v="speed">Hız / Verim</button>
+            <button class="sel-pill" data-v="quality">Kalite / Görünüm</button>
+            <button class="sel-pill" data-v="balanced">Dengeli</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sel-out corner-ticks">
+        <div class="sel-rec" id="sel-rec">ÖNERİLEN PROSES</div>
+        <h3 id="sel-name">—</h3>
+        <p class="sel-reason" id="sel-reason">—</p>
+
+        <div class="sel-specs">
+          <div class="sel-spec"><div class="k">ISO Kodu</div><div class="v" id="sel-iso">—</div></div>
+          <div class="sel-spec"><div class="k">Verimlilik</div><div class="v" id="sel-eff">—</div></div>
+          <div class="sel-spec"><div class="k">Dolgu Metali</div><div class="v" id="sel-fm">—</div></div>
+        </div>
+
+        <div class="sel-alt">
+          <span class="lbl">ALTERNATİF:</span>
+          <span class="a" id="sel-alt1">—</span>
+          <span class="a" id="sel-alt2">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIG/MAG Detail -->
+<section class="method-block">
+  <div class="container">
+    <div class="mb-row">
+      <div class="mb-meta">
+        <div class="abbr">MIG / MAG</div>
+        <div class="full">Gaz Metal Ark Kaynağı · ISO 4063 Proses 131/135/136</div>
+        <p class="desc">
+          Sürekli beslenen dolgu teli ile koruyucu gaz altında çalışan, yüksek yığma oranlı
+          yarı-otomatik kaynak yöntemi. Atölyemizin omurgası; vinç gövdeleri, yapısal çelik,
+          iş makinesi şaselerinde ilk tercihimiz.
+        </p>
+
+        <div class="mb-params">
+          <div class="mb-param"><div class="k">Akım</div><div class="v">DC+ · 120 – 320 A</div></div>
+          <div class="mb-param"><div class="k">Gerilim</div><div class="v">18 – 32 V</div></div>
+          <div class="mb-param"><div class="k">Gaz</div><div class="v">Ar + CO₂ (M21)</div></div>
+          <div class="mb-param"><div class="k">Tel Çapı</div><div class="v">0.8 – 1.6 mm</div></div>
+          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %95</div></div>
+          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">1.5 – 5 kg/saat</div></div>
+        </div>
+
+        <div class="mb-pros">
+          <div class="pro">
+            <h5>Avantajları</h5>
+            <ul>
+              <li>Yüksek yığma oranı, seri imalata uygun</li>
+              <li>Kolay otomasyon (robot kaynağı)</li>
+              <li>Tüm pozisyonlarda uygulanabilir</li>
+              <li>Temiz, cürufsuz dikiş</li>
+            </ul>
+          </div>
+          <div class="con">
+            <h5>Sınırlamaları</h5>
+            <ul>
+              <li>Açık alanda gaz dağılımı sorunu</li>
+              <li>Rüzgar ≥ 3 m/s'de uygulanamaz</li>
+              <li>Ekipman daha maliyetli</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-visual">
+        <div class="mv-head">
+          <span class="t">■ MIG / MAG</span>
+          <span class="r">ISO 4063 · 135</span>
+        </div>
+        <div class="mv-big">MIG<span>/MAG</span></div>
+        <div class="mv-sub">Gaz Metal Ark Kaynağı</div>
+
+        <div class="mv-bars">
+          <div class="mv-bar"><div class="bl">Yığma Hızı</div><div class="bt"><i style="width:82%"></i></div><div class="br">1.5–4.5 kg/sa</div></div>
+          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:95%"></i></div><div class="br">%95</div></div>
+          <div class="mv-bar"><div class="bl">Otomasyon</div><div class="bt"><i style="width:90%"></i></div><div class="br">Yüksek</div></div>
+          <div class="mv-bar"><div class="bl">Rüzgar Dir.</div><div class="bt"><i style="width:20%"></i></div><div class="br">Düşük</div></div>
+        </div>
+
+        <div class="mv-tags">
+          <span>KARBON ÇELİK</span><span>DÜŞÜK ALAŞIM</span><span>SERİ İMALAT</span><span>ROBOT</span>
+        </div>
+
+        <div class="mv-foot">
+          <span>DC+ · 120–320 A</span>
+          <span class="ok">● ÖNCELİKLİ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIG Detail -->
+<section class="method-block">
+  <div class="container">
+    <div class="mb-row">
+      <div class="mb-visual">
+        <div class="mv-head">
+          <span class="t">■ TIG</span>
+          <span class="r">ISO 4063 · 141</span>
+        </div>
+        <div class="mv-big">TIG</div>
+        <div class="mv-sub">Gaz Tungsten Ark Kaynağı</div>
+
+        <div class="mv-bars">
+          <div class="mv-bar"><div class="bl">Dikiş Temizliği</div><div class="bt"><i style="width:100%"></i></div><div class="br">En Yüksek</div></div>
+          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:100%"></i></div><div class="br">%100</div></div>
+          <div class="mv-bar"><div class="bl">Hassasiyet</div><div class="bt"><i style="width:98%"></i></div><div class="br">Çok Yüksek</div></div>
+          <div class="mv-bar"><div class="bl">Hız</div><div class="bt"><i style="width:28%"></i></div><div class="br">Yavaş</div></div>
+        </div>
+
+        <div class="mv-tags">
+          <span>PASLANMAZ</span><span>ALÜMİNYUM</span><span>TİTANYUM</span><span>İNCE CİDAR</span><span>GIDA</span>
+        </div>
+
+        <div class="mv-foot">
+          <span>AC/DC · 20–220 A</span>
+          <span class="ok">● HASSAS İŞ</span>
+        </div>
+      </div>
+
+      <div class="mb-meta">
+        <div class="abbr" style="color: var(--arc-2);">TIG</div>
+        <div class="full">Gaz Tungsten Ark Kaynağı · ISO 4063 Proses 141</div>
+        <p class="desc">
+          Erimeyen tungsten elektrod ve saf argon gazı ile çalışan, el ile beslenen dolgu telli,
+          en temiz ve en hassas ark kaynağı. Paslanmaz tanklar, basınçlı kaplar, alüminyum
+          parçalar, sıhhi uygulamalar ve görünür dikişler için ilk tercihimiz.
+        </p>
+
+        <div class="mb-params">
+          <div class="mb-param"><div class="k">Akım</div><div class="v">AC / DC · 20 – 220 A</div></div>
+          <div class="mb-param"><div class="k">Gerilim</div><div class="v">10 – 18 V</div></div>
+          <div class="mb-param"><div class="k">Gaz</div><div class="v">%100 Argon</div></div>
+          <div class="mb-param"><div class="k">Elektrod</div><div class="v">WT20 / WC20</div></div>
+          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %100</div></div>
+          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">0.3 – 0.8 kg/saat</div></div>
+        </div>
+
+        <div class="mb-pros">
+          <div class="pro">
+            <h5>Avantajları</h5>
+            <ul>
+              <li>En temiz, cürufsuz, sıçramasız dikiş</li>
+              <li>Hassas akım kontrolü (ince cidar için)</li>
+              <li>Paslanmaz, alüminyum, titanyum uyumu</li>
+              <li>Görünür / estetik dikişler için ideal</li>
+            </ul>
+          </div>
+          <div class="con">
+            <h5>Sınırlamaları</h5>
+            <ul>
+              <li>Yavaş — seri imalata uygun değil</li>
+              <li>Operatör becerisi kritik</li>
+              <li>Malzeme yüzeyi çok temiz olmalı</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SMAW Detail -->
+<section class="method-block">
+  <div class="container">
+    <div class="mb-row">
+      <div class="mb-meta">
+        <div class="abbr">E-ARC</div>
+        <div class="full">Örtülü Elektrod Ark Kaynağı (SMAW) · ISO 4063 Proses 111</div>
+        <p class="desc">
+          Eriyebilir örtülü elektrod ile çalışan; gaz gerektirmeyen, rüzgara dirençli klasik
+          yöntem. Saha çalışmalarında, açık alanda ve tamir kaynaklarında tercih ediyoruz.
+          Bazik elektrodlarla yüksek tokluk gereken kritik birleştirmelerde de uygundur.
+        </p>
+
+        <div class="mb-params">
+          <div class="mb-param"><div class="k">Akım</div><div class="v">AC / DC · 60 – 300 A</div></div>
+          <div class="mb-param"><div class="k">Gerilim</div><div class="v">20 – 34 V</div></div>
+          <div class="mb-param"><div class="k">Gaz</div><div class="v">Yok (örtüden)</div></div>
+          <div class="mb-param"><div class="k">Elektrod</div><div class="v">Bazik · Rutil · Selülozik</div></div>
+          <div class="mb-param"><div class="k">Verimlilik</div><div class="v">≈ %65</div></div>
+          <div class="mb-param"><div class="k">Yığma Hızı</div><div class="v">0.5 – 2.5 kg/saat</div></div>
+        </div>
+
+        <div class="mb-pros">
+          <div class="pro">
+            <h5>Avantajları</h5>
+            <ul>
+              <li>Rüzgara / açık alana dayanıklı</li>
+              <li>Ekipman basit ve taşınabilir</li>
+              <li>Bazik elektrodla yüksek tokluk</li>
+              <li>Her pozisyonda kullanılabilir</li>
+            </ul>
+          </div>
+          <div class="con">
+            <h5>Sınırlamaları</h5>
+            <ul>
+              <li>Elektrod değişim kesintileri</li>
+              <li>Cüruf temizleme gerekir</li>
+              <li>Verimlilik düşük — fire yüksek</li>
+              <li>Elektrod kuruluk takibi kritik</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-visual">
+        <div class="mv-head">
+          <span class="t">■ E-ARC / SMAW</span>
+          <span class="r">ISO 4063 · 111</span>
+        </div>
+        <div class="mv-big">E-ARC</div>
+        <div class="mv-sub">Örtülü Elektrod Ark Kaynağı</div>
+
+        <div class="mv-bars">
+          <div class="mv-bar"><div class="bl">Rüzgar Dir.</div><div class="bt"><i style="width:95%"></i></div><div class="br">En Yüksek</div></div>
+          <div class="mv-bar"><div class="bl">Taşınabilirlik</div><div class="bt"><i style="width:90%"></i></div><div class="br">Saha Ready</div></div>
+          <div class="mv-bar"><div class="bl">Tokluk (Bazik)</div><div class="bt"><i style="width:85%"></i></div><div class="br">Çok İyi</div></div>
+          <div class="mv-bar"><div class="bl">Verimlilik</div><div class="bt"><i style="width:65%"></i></div><div class="br">%65</div></div>
+        </div>
+
+        <div class="mv-tags">
+          <span>SAHA</span><span>TAMİR</span><span>KALIN KESİT</span><span>AÇIK ALAN</span>
+        </div>
+
+        <div class="mv-foot">
+          <span>AC/DC · 60–300 A</span>
+          <span class="ok">● SAHA / TAMİR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Table -->
+<section style="padding: 120px 0; background: var(--ink-0);">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">04 / Tam Karşılaştırma</div>
+        <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">COMPARE — ALL</p>
+      </div>
+      <h2 class="display h2">
+        Kaynak yöntemleri <span style="color: var(--arc-2);">teknik kriterlerle karşılaştırılır.</span>
+      </h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Özellik</th>
+          <th>MIG/MAG (135)</th>
+          <th>TIG (141)</th>
+          <th>E-ARC (111)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Tam Adı</td><td>Gaz Metal Ark K.</td><td>Gaz Tungsten Ark K.</td><td>Örtülü Elektrod Ark K.</td></tr>
+        <tr><td>Elektrod</td><td>Eriyen tel</td><td>Erimeyen tungsten</td><td>Eriyen örtülü çubuk</td></tr>
+        <tr><td>Koruyucu Gaz</td><td>Ar + CO₂</td><td>%100 Argon</td><td>Yok (örtüden)</td></tr>
+        <tr><td>Akım Aralığı</td><td>120–320 A</td><td>20–220 A</td><td>60–300 A</td></tr>
+        <tr><td>Polarite</td><td>DC+</td><td>AC / DC−</td><td>AC / DC±</td></tr>
+        <tr><td>Verimlilik</td><td>%95</td><td>%100</td><td>%65</td></tr>
+        <tr><td>Yığma Hızı (kg/saat)</td><td>1.5 – 5.0</td><td>0.3 – 0.8</td><td>0.5 – 2.5</td></tr>
+        <tr><td>Min. Kalınlık</td><td>0.8 mm</td><td>0.3 mm</td><td>2.0 mm</td></tr>
+        <tr><td>Maks. Kalınlık (tek paso)</td><td>8 mm</td><td>4 mm</td><td>5 mm</td></tr>
+        <tr><td>Saha Kullanımı</td><td>Sınırlı (rüzgar)</td><td>Yok (rüzgar)</td><td>İdeal</td></tr>
+        <tr><td>Otomasyon</td><td>Yüksek (robot)</td><td>Orta</td><td>Düşük</td></tr>
+        <tr><td>Operatör Becerisi</td><td>Orta</td><td>Yüksek</td><td>Orta–Yüksek</td></tr>
+        <tr><td>Göze Çarpan Alanı</td><td>Seri imalat, yapı</td><td>İnce, görünür</td><td>Saha, tamir</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script src="assets/chrome.js"></script>
+<script>
+mountChrome('kaynak');
+
+// Process selector logic
+const state = { mat: 'carbon', thick: 'med', env: 'shop', prio: 'speed' };
+const PROC = {
+  MIG: { name: 'MIG / MAG', iso: 'ISO 4063 · 135', eff: '≈ %95', fm: 'G3Si1 · G4Si1', arc: true,
+    reasonBase: 'Yüksek yığma oranı ve otomasyon uyumu ile seri imalat için en ekonomik proses. Temiz dikiş verir.'},
+  TIG: { name: 'TIG', iso: 'ISO 4063 · 141', eff: '≈ %100', fm: 'ER70S-2 · ER308L',
+    reasonBase: 'En temiz ve en hassas proses. İnce cidar, paslanmaz ve alüminyumda vazgeçilmez.'},
+  SMAW: { name: 'Örtülü Elektrod (SMAW)', iso: 'ISO 4063 · 111', eff: '≈ %65', fm: 'E7018-H4 · E6013',
+    reasonBase: 'Gaz gerektirmez, rüzgara dayanıklıdır. Saha ve tamir kaynaklarında idealdir.'},
+  FCAW: { name: 'FCAW (Özlü Tel)', iso: 'ISO 4063 · 136', eff: '≈ %85', fm: 'T46 / T55',
+    reasonBase: 'Yüksek yığma + saha toleransı. Büyük yapısal kaynaklarda seçilir.'},
+};
+
+function chooseProc() {
+  const { mat, thick, env, prio } = state;
+  let choice = 'MIG';
+  let alts = ['TIG', 'SMAW'];
+  let extra = '';
+
+  if (env === 'field') {
+    choice = 'SMAW';
+    alts = ['FCAW', 'MIG'];
+    extra = ' Saha/açık alan koşullarında gaz bazlı prosesler rüzgar nedeniyle güvenilir değildir.';
+  } else if (mat === 'stainless' || mat === 'aluminum') {
+    if (thick === 'thin' || prio === 'quality') {
+      choice = 'TIG'; alts = ['MIG', 'SMAW'];
+      extra = ` ${mat === 'aluminum' ? 'Alüminyum' : 'Paslanmaz'} için oksit temizliği ve hassas ark kontrolü TIG'i öne çıkarır.`;
+    } else {
+      choice = 'MIG'; alts = ['TIG', 'SMAW'];
+      extra = ' Orta/kalın kesitlerde verim için MIG tercih edilir, görünür pasolar TIG ile tamamlanabilir.';
+    }
+  } else if (mat === 'pressure') {
+    choice = 'TIG'; alts = ['MIG', 'SMAW'];
+    extra = ' Basınçlı kap uygulamalarında kök pasosu TIG, dolgu pasoları MIG/MAG ile yapılır (hibrit WPS).';
+  } else if (mat === 'hardox') {
+    choice = 'MIG'; alts = ['SMAW', 'TIG'];
+    extra = ' HARDOX/Raex için pasolar arası sıcaklık kritik; bazik elektrod veya düşük hidrojen kaynağı uygulanır.';
+  } else {
+    if (thick === 'heavy') { choice = 'SMAW'; alts = ['MIG', 'FCAW']; extra = ' Çok kalın plakalarda bazik elektrodla çok pasolu dikiş tercih edilir.'; }
+    else if (prio === 'quality') { choice = 'TIG'; alts = ['MIG', 'SMAW']; }
+    else { choice = 'MIG'; alts = ['SMAW', 'TIG']; }
+  }
+
+  const p = PROC[choice];
+  document.getElementById('sel-name').innerHTML = p.name.replace('/', '<span class="arc"> / </span>');
+  document.getElementById('sel-iso').textContent = p.iso;
+  document.getElementById('sel-eff').textContent = p.eff;
+  document.getElementById('sel-fm').textContent = p.fm;
+  document.getElementById('sel-reason').textContent = p.reasonBase + extra;
+  document.getElementById('sel-alt1').textContent = PROC[alts[0]].name;
+  document.getElementById('sel-alt2').textContent = PROC[alts[1]].name;
+}
+
+document.querySelectorAll('.sel-pills').forEach(group => {
+  const param = group.dataset.param;
+  group.querySelectorAll('.sel-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      group.querySelectorAll('.sel-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      state[param] = pill.dataset.v;
+      chooseProc();
+    });
+  });
+});
+chooseProc();
+</script>
+</body>
+</html>
