@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-i18n-title="blog_kaynak_sembol_title">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kaynak Sembolizasyonu — EN ISO 2553 Sembol Rehberi | ArmaWeld Blog</title>
-  <meta name="description" content="Kaynak sembolleri, EN ISO 2553, AWS A2.4, alın kaynak, köşe kaynak, K-V-X-Y kaynak sembolleri, ölçü gösterimi." />
+<title data-i18n="blog_kaynak_sembol_title_tag">ArmaWeld Blog</title>
+  <meta name="description" data-i18n="blog_kaynak_sembol_meta_desc" content="" />
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -14,10 +14,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#ffffff">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="../android-chrome-192x192.png">
   <link rel="canonical" href="https://www.armaweld.com/blog/kaynak-sembolizasyonu.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Kaynak Sembolizasyonu — EN ISO 2553 Sembol Rehberi" />
-  <meta property="og:description" content="Kaynak sembolleri, EN ISO 2553, AWS A2.4, alın kaynak, köşe kaynak, K-V-X-Y kaynak sembolleri, ölçü gösterimi." />
+  <meta property="og:title" data-i18n="blog_kaynak_sembol_og_title" content="" />
+  <meta property="og:description" data-i18n="blog_kaynak_sembol_meta_desc" content="" />
   <meta property="og:url" content="https://www.armaweld.com/blog/kaynak-sembolizasyonu.html" />
   <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
   <meta property="og:locale" content="tr_TR" />
@@ -93,13 +95,13 @@
 
 <section class="page-hero">
   <div class="hero-inner">
-    <div class="breadcrumb"><a href="../index.html">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html">Blog</a> &nbsp;/&nbsp; <span>KAYNAK SEMBOLIZASYONU</span></div>
-    <div class="article-tag">Teknik Resim</div>
-    <h1>Kaynak Sembolizasyonu Rehberi</h1>
+    <div class="breadcrumb"><a href="../index.html" data-i18n="blog_breadcrumb_home">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html" data-i18n="blog_breadcrumb_blog">Blog</a> &nbsp;/&nbsp; <span data-i18n="blog_kaynak_sembol_breadcrumb3"></span></div>
+    <div class="article-tag" data-i18n="blog_kaynak_sembol_tag"></div>
+    <h1 data-i18n="blog_kaynak_sembol_h1"></h1>
     <div class="article-meta">
       <span>2026-03-17</span>
-      <span>8 dk okuma</span>
-      <span>ArmaWeld Mühendislik</span>
+      <span data-i18n="blog_kaynak_sembol_read"></span>
+      <span data-i18n="blog_kaynak_sembol_author"></span>
     </div>
   </div>
 </section>
@@ -107,129 +109,29 @@
 <section class="article-wrap">
   <div class="article-body">
 
-    <p>Kaynak sembolizasyonu, teknik resimde kaynak bağlantısını standart sembollerle tanımlama sistemidir. Avrupa'da <strong>EN ISO 2553</strong>, Amerika'da <strong>AWS A2.4</strong> kullanılır. İki sistem arasında okuma yönü farkları vardır.</p>
-
-    <h2>Temel Sembol Yapısı</h2>
-
-    <p>Bir kaynak sembolü dört ana parçadan oluşur:</p>
-
-    <ol>
-      <li><strong>Referans çizgisi:</strong> Yatay ana çizgi</li>
-      <li><strong>Ok:</strong> Birleşim noktasını gösterir</li>
-      <li><strong>Temel sembol:</strong> Kaynak türünü gösteren geometrik şekil</li>
-      <li><strong>Tamamlayıcı semboller:</strong> Yüzey işlemi, çevreleyen kaynak, saha kaynağı vb.</li>
-    </ol>
-
-    <h2>Temel Kaynak Sembolleri</h2>
-
-    <table class="data-table">
-      <thead><tr><th>Sembol</th><th>Anlamı</th><th>Açıklama</th></tr></thead>
-      <tbody>
-        <tr><td>I</td><td>I-kaynak (kapalı)</td><td>Kök açıklıksız, ince levha</td></tr>
-        <tr><td>V</td><td>V-kaynak</td><td>Tek taraflı V hazırlık</td></tr>
-        <tr><td>Y</td><td>Y-kaynak</td><td>V + kök yüzü</td></tr>
-        <tr><td>X (çift V)</td><td>Çift V kaynak</td><td>Kalın plaka, simetrik</td></tr>
-        <tr><td>U</td><td>U-kaynak</td><td>Çok kalın plaka, az kaynak metali</td></tr>
-        <tr><td>K (Üçgen)</td><td>Köşe kaynak</td><td>T birleşim, dolgu kaynağı</td></tr>
-        <tr><td>Yarım V</td><td>Yarım V kaynak</td><td>Tek taraflı eğik hazırlık</td></tr>
-        <tr><td>Daire (kapalı)</td><td>Çevreleyen kaynak (ALL-AROUND)</td><td>Tüm çevreyi kaynaklar</td></tr>
-        <tr><td>Bayrak</td><td>Saha kaynağı (FIELD)</td><td>Üretim tesisi dışında uygulanır</td></tr>
-      </tbody>
-    </table>
-
-    <h2>Sembol Yerleşimi: EN ISO 2553</h2>
-
-    <p>EN ISO 2553'te iki yöntem vardır:</p>
-
-    <ul>
-      <li><strong>Sistem A (Avrupa):</strong> Ok tarafı sembol referans çizgisi <em>üstünde</em>, ok karşı tarafı <em>altta</em></li>
-      <li><strong>Sistem B (ISO standartlaştırılmış):</strong> Çift referans çizgisi (kesikli üstte) — uluslararası işbirliklerinde tercih</li>
-    </ul>
-
-    <div class="callout">
-      <p><strong>AWS A2.4 ile fark:</strong> AWS'te ok tarafı sembol her zaman referans çizgisi <em>altında</em> yazılır. EN ISO 2553'ün tersidir. Tek bir teknik resimde iki standart karıştırılmamalıdır.</p>
-    </div>
-
-    <h2>Boyutsal Bilgiler</h2>
-
-    <p>Kaynak sembolünün etrafında şu boyutlar yer alır:</p>
-
-    <ul>
-      <li><strong>a:</strong> Kaynak boğaz kalınlığı (köşe kaynakta)</li>
-      <li><strong>z:</strong> Kaynak ayağı (köşe kaynakta, bacak boyu)</li>
-      <li><strong>s:</strong> Kaynak derinliği (alın kaynakta nüfuziyet derinliği)</li>
-      <li><strong>L:</strong> Kaynak uzunluğu (kesintili kaynaklarda)</li>
-      <li><strong>e:</strong> İki kaynak arası boşluk (kesintili kaynak)</li>
-      <li><strong>n:</strong> Kaynak sayısı (kesintili kaynak)</li>
-    </ul>
-
-    <h2>Pratik Örnekler</h2>
-
-    <h3>Örnek 1: T Birleşimde Çift Köşe Kaynak</h3>
-
-    <p>Sembol: <span class="tag-inline">a5 ▽ ⌒</span> (referans çizgisi her iki tarafında köşe sembol)</p>
-
-    <p><strong>Anlamı:</strong> 5 mm boğaz kalınlığında, hem ok tarafından hem karşı taraftan, sürekli köşe kaynak.</p>
-
-    <h3>Örnek 2: Kesintili Köşe Kaynak</h3>
-
-    <p>Sembol: <span class="tag-inline">a4 ▽ 6×50 (100)</span></p>
-
-    <p><strong>Anlamı:</strong> 4 mm boğaz, 50 mm uzunluğunda 6 adet kaynak, aralarında 100 mm boşluk.</p>
-
-    <h3>Örnek 3: Çift V Alın Kaynak</h3>
-
-    <p>Sembol: <span class="tag-inline">▽ X ▽</span> + nüfuziyet işareti</p>
-
-    <p><strong>Anlamı:</strong> Tam nüfuziyetli, çift V hazırlıklı alın kaynak.</p>
-
-    <h2>Çevreleyen Kaynak ve Saha Kaynağı</h2>
-
-    <p>Referans çizgisi ile ok arasındaki birleşim noktasında:</p>
-
-    <ul>
-      <li><strong>Daire (○):</strong> Çevreleyen kaynak (parçanın tüm çevresi)</li>
-      <li><strong>Bayrak (▶):</strong> Saha kaynağı — üretim tesisinde değil, montaj yerinde uygulanacak</li>
-    </ul>
-
-    <h2>Yüzey İşleme Sembolleri</h2>
-
-    <p>Sembolün üstüne yazılan tamamlayıcı çizgi:</p>
-
-    <ul>
-      <li><strong>Düz çizgi (—):</strong> Düz yüzey (taşlama)</li>
-      <li><strong>İçbükey kavis (∪):</strong> İçbükey yüzey</li>
-      <li><strong>Dışbükey kavis (∩):</strong> Dışbükey yüzey</li>
-    </ul>
-
-    <h2>Kuyruk (Tail) ve Atıflar</h2>
-
-    <p>Referans çizgisinin sonundaki kuyruk içine:</p>
-
-    <ul>
-      <li>Kaynak prosesi numarası (EN ISO 4063): 135 = MAG, 141 = TIG, 111 = SMAW</li>
-      <li>WPS numarası</li>
-      <li>NDT türü ve oranı: VT 100%, UT 10%</li>
-      <li>Kabul sınıfı: EN ISO 5817 B / C / D</li>
-    </ul>
-
-    <div class="callout">
-      <p><strong>İyi uygulama:</strong> Kuyruk içine süreç numarası, WPS no ve kabul sınıfı bir araya yazılırsa imalatçı tüm bilgiyi tek bakışta okur. Örnek: <em>135 / WPS-022 / EN ISO 5817-B</em></p>
-    </div>
+    <div data-i18n-html="blog_kaynak_sembol_s0"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s1"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s2"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s3"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s4"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s5"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s6"></div>
+    <div data-i18n-html="blog_kaynak_sembol_s7"></div>
 
     <div class="cta-box">
-      <h3>Projeniz için kaynaklı imalat teklifi alın</h3>
-      <p>EN 1090 EXC3 ve EN ISO 3834-2 belgeli, MIG MAG & TIG kaynak hizmetleri. Teknik resim üzerinden 24 saat içinde detaylı maliyet analizi ve üretim planı.</p>
-      <a href="../iletisim.html" class="btn-arc">Teklif İste →</a>
+      <h3 data-i18n="blog_kaynak_sembol_cta_h3"></h3>
+      <p data-i18n="blog_kaynak_sembol_cta_p"></p>
+      <a href="../iletisim.html" class="btn-arc" data-i18n="blog_kaynak_sembol_cta_btn"></a>
     </div>
 
     <div class="article-footer">
-      <a href="index.html" class="back-link">← Blog'a Dön</a>
+      <a href="index.html" class="back-link" data-i18n="blog_back">← Blog'a Dön</a>
     </div>
   </div>
 </section>
 
 <script src="../assets/translations.js"></script>
+<script src="../assets/blog-translations-2026.js"></script>
 <script src="../assets/i18n.js"></script>
 <script src="../assets/chrome.js"></script>
 <script>mountChrome('blog', '../');</script>
