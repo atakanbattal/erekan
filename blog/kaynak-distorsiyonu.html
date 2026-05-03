@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kaynak Distorsiyonu: Türleri, Sebepleri ve Önleme Stratejileri | ArmaWeld Blog</title>
+  <meta name="description" content="Kaynak distorsiyonu nedir, hangi türleri vardır, kontrol stratejileri: kaynak sırası, ters bombe, fikstürlemev e ısı dengeleme." />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://www.armaweld.com/blog/kaynak-distorsiyonu.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Kaynak Distorsiyonu: Türleri, Sebepleri ve Önleme Stratejileri" />
+  <meta property="og:description" content="Kaynak distorsiyonu nedir, hangi türleri vardır, kontrol stratejileri: kaynak sırası, ters bombe, fikstürlemev e ısı dengeleme." />
+  <meta property="og:url" content="https://www.armaweld.com/blog/kaynak-distorsiyonu.html" />
+  <meta property="og:image" content="https://www.armaweld.com/assets/og-image.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="ArmaWeld" />
+  <meta property="article:published_time" content="2026-04-29" />
+  <meta property="article:author" content="ArmaWeld Mühendislik" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="../assets/theme.css" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 64px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,122,26,.10), transparent 60%); }
+  .hero-inner { position: relative; max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 32px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .breadcrumb a:hover { color: var(--arc-2); }
+  .article-tag { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .18em; margin-bottom: 20px; }
+  .page-hero h1 { font-size: clamp(26px, 3.5vw, 52px); font-weight: 900; color: var(--bone); line-height: 1.05; letter-spacing: -.035em; margin-bottom: 24px; }
+  .article-meta { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-1); display: flex; gap: 24px; flex-wrap: wrap; }
+  .article-wrap { padding: 64px 0 120px; background: var(--ink-0); }
+  .article-body { max-width: 860px; margin: 0 auto; padding: 0 var(--gutter); }
+  .article-body h2 { font-size: clamp(20px, 2vw, 28px); font-weight: 800; color: var(--bone); letter-spacing: -.025em; margin: 52px 0 20px; padding-top: 52px; border-top: 1px solid var(--ink-4); }
+  .article-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body h3 { font-size: 18px; font-weight: 700; color: var(--bone); margin: 32px 0 12px; }
+  .article-body p { font-size: 16px; color: var(--steel-3); line-height: 1.75; margin-bottom: 20px; }
+  .article-body ul, .article-body ol { color: var(--steel-3); font-size: 16px; line-height: 1.75; padding-left: 24px; margin-bottom: 20px; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--bone); font-weight: 600; }
+  .tag-inline { background: var(--ink-4); color: var(--arc-3); font-family: var(--ff-mono); font-size: 12px; padding: 2px 8px; border-radius: 2px; display: inline-block; }
+  .callout { background: var(--ink-3); border-left: 3px solid var(--arc-2); padding: 20px 24px; margin: 32px 0; border-radius: 0 4px 4px 0; }
+  .callout p { margin: 0; font-size: 15px; color: var(--steel-2); }
+  .callout strong { color: var(--arc-3); }
+  .data-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+  .data-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .data-table td { padding: 12px 16px; color: var(--steel-3); border-bottom: 1px solid var(--ink-4); vertical-align: top; }
+  .data-table tr:hover td { background: var(--ink-2); }
+  .data-table td:first-child { color: var(--arc-3); font-family: var(--ff-mono); font-weight: 700; white-space: nowrap; }
+  .article-footer { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--ink-4); }
+  .back-link { font-family: var(--ff-mono); font-size: 12px; color: var(--steel-2); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; display: inline-flex; align-items: center; gap: 6px; }
+  .back-link:hover { color: var(--arc-2); }
+  .cta-box { background: var(--ink-2); border: 1px solid var(--ink-5); border-radius: 4px; padding: 32px; margin-top: 48px; }
+  .cta-box h3 { font-size: 20px; font-weight: 800; color: var(--bone); margin-bottom: 10px; }
+  .cta-box p { font-size: 15px; color: var(--steel-2); margin-bottom: 20px; }
+  .btn-arc { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 12px 24px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .btn-arc:hover { background: var(--arc-3); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kaynak Distorsiyonu: Türleri, Sebepleri ve Önleme Stratejileri",
+  "description": "Kaynak distorsiyonu nedir, hangi türleri vardır, kontrol stratejileri: kaynak sırası, ters bombe, fikstürlemev e ısı dengeleme.",
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "author": {"@type": "Organization", "name": "ArmaWeld Mühendislik", "url": "https://www.armaweld.com"},
+  "publisher": {"@id": "https://www.armaweld.com/#organization"},
+  "url": "https://www.armaweld.com/blog/kaynak-distorsiyonu.html",
+  "inLanguage": "tr-TR",
+  "about": [{"@type": "Thing", "name": "Distorsiyon"}, {"@type": "Thing", "name": "Kaynak Çekmesi"}, {"@type": "Thing", "name": "Fikstür"}]
+}
+</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ML770TF8NC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ML770TF8NC');
+  </script>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html">ArmaWeld</a> &nbsp;/&nbsp; <a href="index.html">Blog</a> &nbsp;/&nbsp; <span>KAYNAK DISTORSIYONU</span></div>
+    <div class="article-tag">Üretim Mühendisliği</div>
+    <h1>Kaynak Distorsiyonu ve Önleme</h1>
+    <div class="article-meta">
+      <span>2026-04-29</span>
+      <span>9 dk okuma</span>
+      <span>ArmaWeld Mühendislik</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-wrap">
+  <div class="article-body">
+
+    <p>Kaynak distorsiyonu, kaynak ısısının yarattığı eşit olmayan ısınma ve soğumanın bir sonucudur. Eşit olmayan termal genleşme ve büzülme, parçada kalıcı şekil değişikliklerine — bombelenme, eğilme, çarpılma ve doğrultu sapması — yol açar.</p>
+
+    <h2>Distorsiyon Türleri</h2>
+
+    <p>Kaynak distorsiyonu altı ana türde gözlemlenir:</p>
+
+    <table class="data-table">
+      <thead><tr><th>Tür</th><th>Açıklama</th><th>Tipik Görüldüğü Yer</th></tr></thead>
+      <tbody>
+        <tr><td>Boyuna Çekme</td><td>Kaynak ekseni doğrultusunda kısalma</td><td>Tüm kaynaklarda</td></tr>
+        <tr><td>Enine Çekme</td><td>Kaynak eksenine dik yönde daralma</td><td>Alın kaynakları</td></tr>
+        <tr><td>Açısal Distorsiyon</td><td>Köşe ve T birleşimlerinde "v" şeklinde açılma/kapanma</td><td>Köşe kaynakları</td></tr>
+        <tr><td>Bombelenme</td><td>İnce sac yüzeylerde dalgalanma</td><td>İnce levha (≤6 mm)</td></tr>
+        <tr><td>Eğilme</td><td>Kiriş ve profillerde boyuna eğilme</td><td>I-kiriş, U profil</td></tr>
+        <tr><td>Burulma</td><td>Eksen etrafında dönme</td><td>Asimetrik kaynaklı yapı</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Distorsiyonu Etkileyen Faktörler</h2>
+
+    <ul>
+      <li><strong>Isı girdisi (Q):</strong> Yüksek ısı girdisi → daha fazla distorsiyon. Düşük ısı girdisi süreçler (TIG, lazer) tercih edilir.</li>
+      <li><strong>Kaynak hacmi:</strong> V-kaynak, X-kaynaktan daha çok distorsiyon yaratır (X simetrik).</li>
+      <li><strong>Paso sayısı ve sırası:</strong> Çok pasolu, dengeli sıralı kaynak tek pasodan daha az distorsiyona yol açar.</li>
+      <li><strong>Bağlantı geometrisi:</strong> Kalın kesitler daha rijit, ince kesitler daha esnektir.</li>
+      <li><strong>Malzeme termal genleşme katsayısı:</strong> Paslanmaz çelik (~17×10⁻⁶/K) karbon çelikten (~12×10⁻⁶/K) %40 daha fazla genleşir.</li>
+      <li><strong>Yüklemenin kısıtlama derecesi:</strong> Rijit fikstür distorsiyonu önler, kalıcı gerilme yaratır.</li>
+    </ul>
+
+    <h2>Önleme Stratejileri</h2>
+
+    <h3>1. Tasarım Aşamasında</h3>
+
+    <ul>
+      <li>Mümkün olduğunca <strong>simetrik kaynak</strong> tasarımı (X-kaynak, çift taraflı dolgu)</li>
+      <li>Gereksiz kaynak metalinden kaçının — yarı yarıya azalan kaynak hacmi distorsiyonu da yarıya indirir</li>
+      <li>Bağlantı sayısını minimize edin; mümkünse büküm veya tek parça profil tercih edin</li>
+      <li>Kritik bölgelerden uzakta kaynak yapın (yorulma yüklü zon dışı)</li>
+    </ul>
+
+    <h3>2. Hazırlık Aşamasında</h3>
+
+    <ul>
+      <li><strong>Ters bombe (pre-camber):</strong> Beklenen distorsiyonun aksi yönde önceden form verilir</li>
+      <li><strong>Punto kaynak sıkılığı:</strong> Yeterli sayıda, doğru aralıkta (genelde 50–150 mm)</li>
+      <li><strong>Fikstür ve şablon:</strong> Geometriyi sabit tutar; kaynak sonrası gerilme oluşur ama distorsiyon olmaz</li>
+    </ul>
+
+    <h3>3. Kaynak Sırasında</h3>
+
+    <ul>
+      <li><strong>Atlamalı (skip) kaynak:</strong> Tek bir noktada uzun süre yığınma yerine farklı bölgelere atlanır</li>
+      <li><strong>Geriye kaynak (back-step):</strong> Genel ilerleme ileri yönde, ancak her bir paso geriye doğru yapılır</li>
+      <li><strong>Çift taraflı kaynakçı:</strong> Aynı anda iki taraftan simetrik kaynak (otomotiv, gemi inşa)</li>
+      <li><strong>Düşük ısı girdisi:</strong> Aralıklı paso, daha küçük çap elektrod, daha hızlı ilerleme</li>
+    </ul>
+
+    <h2>Sayısal Tahmin: Enine Çekme</h2>
+
+    <p>Tek paso V-kaynakta enine çekme tahmini:</p>
+
+    <p><span class="tag-inline">ΔS ≈ 0.2 × A<sub>w</sub> / t</span></p>
+
+    <p>Burada A<sub>w</sub> kaynak kesit alanı (mm²), t plaka kalınlığı (mm). Örnek: 10 mm plaka, 60° V kaynak, 2 mm kök açıklığı için A<sub>w</sub> ≈ 60 mm² → ΔS ≈ 1.2 mm enine çekme.</p>
+
+    <h2>Onarım: Distorsiyon Düzeltme</h2>
+
+    <ul>
+      <li><strong>Mekanik düzeltme:</strong> Pres, çekiç (yalnızca ince saclar)</li>
+      <li><strong>Sıcak nokta düzeltmesi (flame straightening):</strong> Hedef bölgenin ~600–650°C'ye ısıtılması, soğuturken kontrollü çekme. Çelikte yaygın, alüminyumda dikkatli kullanılır.</li>
+      <li><strong>Endüksiyon düzeltmesi:</strong> Endüstriyel ortamda hassasiyet için tercih.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>HARDOX ve S960QL gibi suverme-temperlenmiş çeliklerde sıcak düzeltme YASAKTIR.</strong> 200°C üzerinde malzeme sertliği bozulur. Bu çelikler için fikstür + ön bombe tek seçenektir.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Projeniz için kaynaklı imalat teklifi alın</h3>
+      <p>EN 1090 EXC3 ve EN ISO 3834-2 belgeli, MIG MAG & TIG kaynak hizmetleri. Teknik resim üzerinden 24 saat içinde detaylı maliyet analizi ve üretim planı.</p>
+      <a href="../iletisim.html" class="btn-arc">Teklif İste →</a>
+    </div>
+
+    <div class="article-footer">
+      <a href="index.html" class="back-link">← Blog'a Dön</a>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/translations.js"></script>
+<script src="../assets/i18n.js"></script>
+<script src="../assets/chrome.js"></script>
+<script>mountChrome('blog', '../');</script>
+</body>
+</html>

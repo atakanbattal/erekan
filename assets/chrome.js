@@ -92,6 +92,7 @@ function buildFooter(base) {
           <h5 data-i18n="footer_services_h">${t('footer_services_h')}</h5>
           <ul>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s1">${t('footer_s1')}</a></li>
+            <li><a href="${b}hizmetler.html#fason">Fason Kaynaklı İmalat</a></li>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s2">${t('footer_s2')}</a></li>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s3">${t('footer_s3')}</a></li>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s4">${t('footer_s4')}</a></li>
