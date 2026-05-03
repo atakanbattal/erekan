@@ -968,7 +968,7 @@ tr: {
   welding_sel_iso_k: `ISO Kodu`,
   welding_sel_eff_k: `Verimlilik`,
   welding_sel_fm_k: `Dolgu Metali`,
-  welding_mig_full: `Gaz Metal Ark Kaynağı · ISO 4063 Proses 131/135/136`,
+  welding_mig_full: `Gaz Metal Ark Kaynağı · ISO 4063: 131 (MIG) · 135 (MAG) · 136 (FCAW-G)`,
   welding_mig_desc: `Sürekli beslenen dolgu teli ile koruyucu gaz altında çalışan, yüksek yığma oranlı yarı-otomatik kaynak yöntemi. Üretim tesisimizin omurgası; vinç gövdeleri, yapısal çelik, iş makinesi şaselerinde ilk tercihimiz.`,
   welding_mig_sub: `Gaz Metal Ark Kaynağı`,
   welding_pros_h: `Avantajları`,

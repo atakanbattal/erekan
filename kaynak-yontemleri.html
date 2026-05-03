@@ -226,6 +226,16 @@
   .mb-pros .con h5 { color: var(--arc-2); }
   .mb-pros .con li::before { content: '−'; color: var(--arc-2); font-family: var(--ff-mono); }
 
+  /* ISO Proses Tablosu */
+  .mb-iso-table { margin-top: 28px; border: 1px solid var(--ink-4); border-radius: 4px; overflow: hidden; }
+  .mb-iso-table .iso-header { display: grid; grid-template-columns: 52px 1fr 1fr; background: var(--ink-3); padding: 10px 16px; font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .16em; text-transform: uppercase; gap: 12px; }
+  .mb-iso-table .iso-row { display: grid; grid-template-columns: 52px 1fr 1fr; padding: 12px 16px; gap: 12px; border-top: 1px solid var(--ink-4); align-items: center; transition: background .15s; }
+  .mb-iso-table .iso-row:hover { background: var(--ink-2); }
+  .iso-code { font-family: var(--ff-mono); font-size: 14px; font-weight: 700; color: var(--arc-2); }
+  .iso-name { font-size: 13px; font-weight: 600; color: var(--bone); }
+  .iso-name small { display: block; font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); font-weight: 400; margin-top: 2px; }
+  .iso-gas { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-2); line-height: 1.5; }
+
   @media (max-width: 1000px) {
     .sel-wrap { grid-template-columns: 1fr; }
     .mb-row { grid-template-columns: 1fr; gap: 40px; }
@@ -406,7 +416,7 @@
         <div class="mb-params">
           <div class="mb-param"><div class="k" data-i18n="mbpar_amp">Akım</div><div class="v">DC+ · 120 – 320 A</div></div>
           <div class="mb-param"><div class="k" data-i18n="mbpar_volt">Gerilim</div><div class="v">18 – 32 V</div></div>
-          <div class="mb-param"><div class="k" data-i18n="mbpar_gas">Gaz</div><div class="v">Ar + CO₂ (M21)</div></div>
+          <div class="mb-param"><div class="k" data-i18n="mbpar_gas">Gaz</div><div class="v">Ar (131) · Ar+CO₂ (135/136)</div></div>
           <div class="mb-param"><div class="k" data-i18n="mbpar_wire">Tel Çapı</div><div class="v">0.8 – 1.6 mm</div></div>
           <div class="mb-param"><div class="k" data-i18n="mbpar_eff">Verimlilik</div><div class="v">≈ %95</div></div>
           <div class="mb-param"><div class="k" data-i18n="mbpar_dep">Yığma Hızı</div><div class="v">1.5 – 5 kg/saat</div></div>
@@ -431,12 +441,36 @@
             </ul>
           </div>
         </div>
+
+        <!-- ISO 4063 Proses Açıklama Tablosu -->
+        <div class="mb-iso-table">
+          <div class="iso-header">
+            <span>KOD</span>
+            <span>PROSES</span>
+            <span>GAZ / UYGULAMA</span>
+          </div>
+          <div class="iso-row">
+            <span class="iso-code">131</span>
+            <span class="iso-name">MIG — Metal Inert Gas<small>Katı tel · inert gaz</small></span>
+            <span class="iso-gas">Saf Ar / Ar+He<br>Paslanmaz çelik, alüminyum, bakır alaşımları</span>
+          </div>
+          <div class="iso-row">
+            <span class="iso-code">135</span>
+            <span class="iso-name">MAG — Metal Active Gas<small>Katı tel · aktif gaz</small></span>
+            <span class="iso-gas">Ar+CO₂ (M21) / saf CO₂<br>Karbon çelik, düşük alaşımlı çelik, seri imalat</span>
+          </div>
+          <div class="iso-row">
+            <span class="iso-code">136</span>
+            <span class="iso-name">FCAW-G — Özlü Tel + Aktif Gaz<small>Özlü tel · aktif gaz</small></span>
+            <span class="iso-gas">CO₂ / Ar+CO₂<br>Yapısal çelik, kalın kesit, yüksek yığma, saha kaynağı</span>
+          </div>
+        </div>
       </div>
 
       <div class="mb-visual">
         <div class="mv-head">
-          <span class="t">■ MIG / MAG</span>
-          <span class="r">ISO 4063 · 135</span>
+          <span class="t">■ MIG / MAG / FCAW</span>
+          <span class="r">ISO 4063 · 131 / 135 / 136</span>
         </div>
         <div class="mv-big">MIG<span>/MAG</span></div>
         <div class="mv-sub" data-i18n="welding_mig_sub">Gaz Metal Ark Kaynağı</div>
