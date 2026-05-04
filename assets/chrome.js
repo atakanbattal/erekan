@@ -117,7 +117,8 @@ function buildFooter(base) {
             <span data-i18n="footer_addr1">Konya Organize Sanayi Bölgesi</span><br/>
             <span data-i18n="footer_addr2">Fevziçakmak Mah. 10. Cadde No: 24</span><br/>
             <span data-i18n="footer_addr3">Karatay / Konya</span><br/><br/>
-            <a href="mailto:info@armaweld.com">info@armaweld.com</a>
+            <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
+            <a href="tel:+905438400332">+90 543 840 0332</a>
           </p>
         </div>
       </div>
