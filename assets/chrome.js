@@ -114,9 +114,9 @@ function buildFooter(base) {
         <div>
           <h5 data-i18n="footer_contact_h">${t('footer_contact_h')}</h5>
           <p class="footer-contact">
-            <span data-i18n="footer_addr1">Organize Sanayi Bölgesi</span><br/>
-            <span data-i18n="footer_addr2">10. Cadde No: 24</span><br/>
-            <span data-i18n="footer_addr3">Türkiye</span><br/><br/>
+            <span data-i18n="footer_addr1">Konya Organize Sanayi Bölgesi</span><br/>
+            <span data-i18n="footer_addr2">Fevziçakmak Mah. 10. Cadde No: 24</span><br/>
+            <span data-i18n="footer_addr3">Karatay / Konya</span><br/><br/>
             <a href="mailto:info@armaweld.com">info@armaweld.com</a>
           </p>
         </div>
