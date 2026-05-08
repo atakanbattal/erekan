@@ -127,6 +127,7 @@ function buildFooter(base) {
         <span data-i18n="footer_certs">${t('footer_certs')}</span>
         <span data-i18n="footer_ver">${t('footer_ver')}</span>
       </div>
+      <div class="footer-legal" data-i18n="footer_legal">${t('footer_legal')}</div>
     </div>
   </footer>
   `;
