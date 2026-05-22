@@ -30,9 +30,9 @@
   <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero {
     padding: calc(var(--nav-h) + 80px) 0 80px;
@@ -78,7 +78,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .2em;
+    letter-spacing: .05em;
   }
   .svc-idx .t {
     font-family: var(--ff-display);
@@ -106,8 +106,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--steel-1);
-    text-transform: uppercase;
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     margin-bottom: 40px;
   }
   .breadcrumb a { color: var(--steel-2); }
@@ -145,7 +144,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--arc-2);
-    letter-spacing: .24em;
+    letter-spacing: .05em;
     margin-bottom: 24px;
     text-transform: uppercase;
   }
@@ -188,18 +187,18 @@
   .svc-feats li:last-child { border-bottom: 1px solid var(--ink-4); }
 
   .sv-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--ink-4); margin-bottom: 24px; }
-  .sv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
-  .sv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
+  .sv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--arc-2); }
+  .sv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; color: var(--steel-1); }
   .sv-big { font-family: var(--ff-display); font-weight: 700; font-size: clamp(56px, 5.5vw, 92px); line-height: .95; letter-spacing: -.03em; color: var(--paper); }
-  .sv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; color: var(--steel-2); margin-top: 4px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
+  .sv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .05em; color: var(--steel-2); margin-top: 4px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
   .sv-rows { display: flex; flex-direction: column; margin: 20px 0; }
   .sv-rw { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--ink-4); align-items: baseline; }
   .sv-rw:last-child { border-bottom: 0; }
-  .sv-rw .k { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-1); }
+  .sv-rw .k { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .03em; text-transform: uppercase; color: var(--steel-1); }
   .sv-rw .v { font-family: var(--ff-sans); font-size: 13px; color: var(--paper); }
   .sv-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--ink-4); margin-top: 8px; }
-  .sv-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
-  .sv-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--ink-4); display: flex; justify-content: space-between; font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-1); }
+  .sv-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
+  .sv-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--ink-4); display: flex; justify-content: space-between; font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-1); }
   .sv-foot .ok { color: var(--arc-2); }
 
   .svc-visual {
@@ -230,7 +229,7 @@
     font-size: 10px;
     color: var(--steel-2);
     text-transform: uppercase;
-    letter-spacing: .14em;
+    letter-spacing: .04em;
     border-bottom: 1px solid var(--ink-5);
   }
   .svc-table td:first-child { color: var(--bone); }
@@ -243,6 +242,14 @@
     background: var(--ink-5);
     border: 1px solid var(--ink-4);
   }
+  .hs-callout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .hs-callout-grid { grid-template-columns: 1fr; }
+  }
   .mat-wrap {
     overflow: hidden;
     background: var(--ink-1);
@@ -254,7 +261,7 @@
   .mat-table thead th {
     font-family: var(--ff-mono);
     font-size: 9px;
-    letter-spacing: .18em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     color: var(--steel-1);
     padding: 10px 16px;
@@ -277,7 +284,7 @@
     font-family: var(--ff-mono);
     font-size: 8.5px;
     color: var(--steel-1);
-    letter-spacing: .14em;
+    letter-spacing: .04em;
     text-transform: uppercase;
     display: block;
     margin-bottom: 3px;
@@ -315,7 +322,7 @@
   .niche-tag {
     font-family: var(--ff-mono);
     font-size: 7.5px;
-    letter-spacing: .12em;
+    letter-spacing: .03em;
     text-transform: uppercase;
     color: var(--arc-2);
     border: 1px solid rgba(255,122,26,.45);
@@ -376,7 +383,7 @@
   .img-card .ic-badge {
     position: absolute; bottom: 12px; left: 14px;
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase;
     opacity: 0; transform: translateY(6px);
     transition: opacity .4s ease, transform .4s ease;
   }
@@ -391,7 +398,7 @@
 
   /* ── Fason Bölümü ───────────────────────────── */
   .fason-block { padding: 100px 0; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); border-top: 3px solid var(--arc-2); }
-  .fason-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+  .fason-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 16px; }
   .fason-h2 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 3.5vw, 52px); color: var(--bone); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 16px; }
   .fason-h2 span { color: var(--arc-2); }
   .fason-lede { font-size: clamp(14px, 1.1vw, 17px); color: var(--steel-2); max-width: 68ch; margin-bottom: 56px; line-height: 1.65; }
@@ -399,7 +406,7 @@
   @media (max-width: 860px) { .fason-cards { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .fason-cards { grid-template-columns: 1fr; } }
   .fason-card { background: var(--ink-1); padding: 32px 28px; }
-  .fason-card .fc-n { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .2em; margin-bottom: 16px; }
+  .fason-card .fc-n { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .05em; margin-bottom: 16px; }
   .fason-card h3 { font-family: var(--ff-display); font-weight: 800; font-size: 17px; color: var(--bone); margin-bottom: 10px; line-height: 1.2; }
   .fason-card p { font-size: 13px; color: var(--steel-2); line-height: 1.6; }
   .fason-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--ink-4); margin-bottom: 60px; }
@@ -410,9 +417,9 @@
   .fason-step .sn { font-family: var(--ff-mono); font-size: 28px; font-weight: 700; color: var(--ink-4); margin-bottom: 16px; }
   .fason-step h3 { font-family: var(--ff-display); font-weight: 800; font-size: 16px; color: var(--bone); margin-bottom: 8px; }
   .fason-step p { font-size: 13px; color: var(--steel-2); line-height: 1.6; }
-  .fason-sub-h { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+  .fason-sub-h { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 16px; }
   .fason-cmp { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 60px; }
-  .fason-cmp th { background: var(--ink-1); color: var(--arc-2); font-family: var(--ff-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; padding: 14px 18px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .fason-cmp th { background: var(--ink-1); color: var(--arc-2); font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; text-transform: uppercase; padding: 14px 18px; text-align: left; border-bottom: 2px solid var(--arc-2); }
   .fason-cmp td { padding: 12px 18px; border-bottom: 1px solid var(--ink-4); color: var(--steel-2); }
   .fason-cmp tr:hover td { background: var(--ink-1); }
   .fason-cmp td:first-child { color: var(--bone); font-weight: 600; }
@@ -441,6 +448,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    if (localStorage.getItem('armaweld-cookie') === 'all') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
     gtag('config', 'G-ML770TF8NC');
   </script>
 </head>
@@ -536,10 +547,12 @@
         <ul class="svc-feats">
           <li data-i18n="services_s01_f1">EN ISO 9606-1 (çelik) ve 9606-2 (alüminyum) sertifikalı kaynakçı ekibi</li>
           <li data-i18n="services_s01_f2">EN ISO 15614-1 (çelik) ve 15614-2 (alüminyum) WPQR tabanlı WPS kütüphanesi</li>
-          <li data-i18n="services_s01_f3">S690QL · S700MC · S960QL gibi yüksek mukavemetli çeliklerde onaylı WPS ve izlenebilir dikiş</li>
+          <li data-i18n="services_s01_f3">S690QL · Strenx 700/960/1100 · S700MC · S960QL gibi yüksek mukavemetli çeliklerde onaylı WPS ve izlenebilir dikiş</li>
           <li data-i18n="services_s01_f4">Ön ısıtma ve pasolar arası sıcaklık kontrolü; her dikiş kayıt altına alınır</li>
           <li data-i18n="services_s01_f5">Kabul kriteri olarak EN ISO 5817 B sınıfı (yüksek kalite)</li>
         </ul>
+
+        <p class="svc-benefit" data-i18n="services_s01_benefit">Sahada revizyon riskini azaltır — her dikiş onaylı WPS ile kayıt altında.</p>
 
         <a href="#fason" style="display:inline-flex; align-items:center; gap:10px; margin-top:28px; font-family:var(--ff-mono); font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--arc-2); text-decoration:none; border:1px solid var(--arc-2); padding:12px 22px; transition:background .2s,color .2s;">
           Fason Kaynaklı İmalat &amp; Proje Bazlı Üretim
@@ -549,7 +562,7 @@
 
       <div class="svc-visual">
         <div class="img-card reveal" data-d="2">
-          <img src="uploads/kaynak.png" alt="Kaynaklı imalat" loading="lazy" width="1536" height="1024" />
+          <picture><source srcset="uploads/kaynak.webp" type="image/webp"><img src="uploads/kaynak.png" alt="Kaynaklı imalat" loading="lazy" width="1536" height="1024" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="icbadge_kaynak">● Kaynaklı İmalat</span>
         </div>
@@ -561,7 +574,7 @@
         <div class="sv-sub">WELDED FABRICATION</div>
 
         <div class="sv-rows">
-          <div class="sv-rw"><div class="k" data-i18n="svk_methods">Yöntemler</div><div class="v">MIG/MAG · TIG · E-ARC</div></div><div class="sv-rw"><div class="k" data-i18n="svk_wpswpqr">WPS / WPQR</div><div class="v">EN ISO 15614-1 · 15614-2</div></div><div class="sv-rw"><div class="k" data-i18n="svk_welder">Kaynakçı Yeterlilik</div><div class="v">EN ISO 9606-1 · 9606-2 · 100%</div></div><div class="sv-rw"><div class="k" data-i18n="svk_maxsec">Maks. Kesit</div><div class="v" data-i18n="svv_thick">60 mm çelik · 20 mm paslanmaz</div></div><div class="sv-rw"><div class="k" data-i18n="svk_symbol">Sembolizasyon</div><div class="v">EN ISO 2553</div></div><div class="sv-rw"><div class="k" data-i18n="svk_acccls">Kabul Sınıfı</div><div class="v">EN ISO 5817 B/C</div></div>
+          <div class="sv-rw"><div class="k" data-i18n="svk_methods">Yöntemler</div><div class="v">MIG/MAG · TIG · E-ARC</div></div><div class="sv-rw"><div class="k" data-i18n="svk_wpswpqr">WPS / WPQR</div><div class="v">EN ISO 15614-1 · 15614-2</div></div><div class="sv-rw"><div class="k" data-i18n="svk_welder">Kaynakçı Yeterlilik</div><div class="v">EN ISO 9606-1 · 9606-2 · 100%</div></div><div class="sv-rw"><div class="k" data-i18n="svk_maxsec">Maks. Kesit</div><div class="v" data-i18n="svv_thick">Proje gereksinimine göre</div></div><div class="sv-rw"><div class="k" data-i18n="svk_symbol">Sembolizasyon</div><div class="v">EN ISO 2553</div></div><div class="sv-rw"><div class="k" data-i18n="svk_acccls">Kabul Sınıfı</div><div class="v">EN ISO 5817 B/C</div></div>
         </div>
 
         <div class="sv-tags"><span data-i18n="tag_carbon">KARBON ÇELİK</span><span data-i18n="tag_stainless">PASLANMAZ</span><span data-i18n="tag_alu">ALÜMİNYUM</span><span data-i18n="tag_pedcat">PED CAT.II</span><span data-i18n="tag_en1090">EN 1090 EXC3</span></div>
@@ -575,7 +588,7 @@
 
     <!-- Tam genişlik malzeme tablosu -->
     <div style="margin-top: 48px;">
-      <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px;" data-i18n="services_mat_heading">Kaynatabildiğimiz Sac Grupları</div>
+      <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px;" data-i18n="services_mat_heading">Kaynatabildiğimiz Sac Grupları</div>
       <div class="mat-cols">
         <!-- Sol: Yapısal & Yüksek Mukavemet -->
         <div class="mat-wrap">
@@ -597,22 +610,34 @@
                 <td><span class="mat-note" data-i18n="services_mat_n2">EN 1090 EXC3</span></td>
               </tr>
               <tr>
-                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S690 QL</span></td>
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S690 QL · Strenx 700</span></td>
                 <td><span class="mat-desc" data-i18n="services_mat_d3">Su verme + temperleme</span></td>
                 <td><span class="mat-fy">690 MPa</span></td>
                 <td><span class="mat-note" data-i18n="services_mat_n3">Ön ısıtma · EN 1011-2</span></td>
               </tr>
               <tr class="mat-niche">
-                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S960 QL <span class="niche-tag" data-i18n="services_niche">NİŞ</span></span></td>
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">S960 QL · Strenx 960 <span class="niche-tag" data-i18n="services_niche">NİŞ</span></span></td>
                 <td><span class="mat-desc" data-i18n="services_mat_d4">Ultra-yüksek mukavemet</span></td>
                 <td><span class="mat-fy">960 MPa</span></td>
                 <td><span class="mat-note" data-i18n="services_mat_n4">Özel WPS + H5 sarf malzeme</span></td>
               </tr>
               <tr class="mat-niche">
-                <td><span class="mat-cat">Grup 3 · TMCP</span><span class="mat-grade">S700 MC <span class="niche-tag" data-i18n="services_niche">NİŞ</span></span></td>
+                <td><span class="mat-cat">Grup 3 · TMCP</span><span class="mat-grade">S700 MC · Strenx 700MC <span class="niche-tag" data-i18n="services_niche">NİŞ</span></span></td>
                 <td><span class="mat-desc" data-i18n="services_mat_d5">Termomekanik haddeleme</span></td>
                 <td><span class="mat-fy">700 MPa</span></td>
                 <td><span class="mat-note" data-i18n="services_mat_n5">Isı girdisi ≤ 1.5 kJ/mm</span></td>
+              </tr>
+              <tr class="mat-niche">
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">Strenx 900</span></td>
+                <td><span class="mat-desc" data-i18n="services_mat_d11">Yüksek mukavemet · SSAB</span></td>
+                <td><span class="mat-fy">900 MPa</span></td>
+                <td><span class="mat-note" data-i18n="services_mat_n11">Ön ısıtma · EN 1011-2</span></td>
+              </tr>
+              <tr class="mat-niche">
+                <td><span class="mat-cat">Grup 3 · QT</span><span class="mat-grade">Strenx 1100 <span class="niche-tag" data-i18n="services_niche">NİŞ</span></span></td>
+                <td><span class="mat-desc" data-i18n="services_mat_d12">Ekstrem mukavemet · SSAB</span></td>
+                <td><span class="mat-fy">1100 MPa</span></td>
+                <td><span class="mat-note" data-i18n="services_mat_n12">Özel WPS + H5 · sınırlı ısı girdisi</span></td>
               </tr>
             </tbody>
           </table>
@@ -661,15 +686,19 @@
 
       <!-- Yüksek mukavemetli çelik callout -->
       <div style="margin-top: 16px; padding: 18px 20px; background: rgba(255,122,26,.05); border: 1px solid rgba(255,122,26,.2); border-left: 3px solid var(--arc-2);">
-        <div style="font-family: var(--ff-mono); font-size: 9px; color: var(--arc-2); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px;" data-i18n="services_hs_eyebrow">■ YÜKSEK MUKAVEMETLİ ÇELİK KAYNAĞINDA KRİTİK FARKLILIKLAR</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div style="font-family: var(--ff-mono); font-size: 9px; color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px;" data-i18n="services_hs_eyebrow">■ YÜKSEK MUKAVEMETLİ ÇELİK KAYNAĞINDA KRİTİK FARKLILIKLAR</div>
+        <div class="hs-callout-grid">
           <div>
-            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S700MC — TMCP</div>
+            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .04em; margin-bottom: 5px;">S700MC / Strenx 700MC — TMCP</div>
             <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;" data-i18n="services_hs_l1">Isı girdisi ≤ 1.5 kJ/mm · Pasolar arası sıcaklık ≤ 200°C · Karbon eşdeğeri düşük, ön ısıtma çoğu durumda gerekmez.</div>
           </div>
           <div>
-            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .06em; margin-bottom: 5px;">S690QL / S960QL — QT</div>
+            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .04em; margin-bottom: 5px;">S690QL / Strenx 700–900 — QT</div>
             <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;" data-i18n="services_hs_l2">Ön ısıtma zorunlu (EN 1011-2 Metot B) · H5 sarf · WPQR olmadan dikiş atılmaz.</div>
+          </div>
+          <div>
+            <div style="font-family: var(--ff-mono); font-size: 10px; color: var(--bone); letter-spacing: .04em; margin-bottom: 5px;">S960QL / Strenx 960–1100 — QT</div>
+            <div style="font-size: 12px; color: var(--steel-3); line-height: 1.55;" data-i18n="services_hs_l3">Malzemeye özel WPS · Pasolar arası sıcaklık kaydı · PWHT uygulanmaz · H5 sarf zorunlu.</div>
           </div>
         </div>
       </div>
@@ -795,10 +824,9 @@
         <h2 data-i18n-html="services_s02_h2">Sac Kesim<br/>ve Tolerans Yönetimi.</h2>
         <p class="desc" data-i18n="services_s02_desc">
           DXF dosyanızdan başlayıp parçaya ulaşan dijital bir hat. CNC plazma,
-          lazer ve giyotin hatlarımızla 1 mm'den 60 mm'ye kadar her kalınlıkta
-          kesim yaparız. Kesim kenarları, bir sonraki adım olan kaynağa hazır
-          şekilde, gerekiyorsa kaynak ağzı açılmış halde çıkar.
-
+          lazer ve giyotin ekipmanlarımızla proje gereksinimine uygun kesim yaparız.
+          Kesim kenarları, bir sonraki adım olan kaynağa hazır şekilde, gerekiyorsa
+          kaynak ağzı açılmış halde çıkar.
         </p>
 
         <table class="svc-table">
@@ -813,11 +841,12 @@
             <tr><td data-i18n="services_cut_r5_name">Profil Testere</td><td>Ø 20 – 400 mm</td><td data-i18n="services_cut_r5_mat">Her türlü profil</td><td>±0.5 mm</td></tr>
           </tbody>
         </table>
+        <p class="svc-benefit" data-i18n="services_s02_benefit">Kaynağa hazır toleranslı parça — montaj süresini kısaltır.</p>
       </div>
 
       <div class="svc-visual">
         <div class="img-card reveal" data-d="2">
-          <img src="uploads/kesim.png" alt="Sac kesim" loading="lazy" width="1536" height="1024" />
+          <picture><source srcset="uploads/kesim.webp" type="image/webp"><img src="uploads/kesim.png" alt="Sac kesim" loading="lazy" width="1536" height="1024" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="icbadge_kesim">● Hassas Kesim</span>
         </div>
@@ -829,7 +858,7 @@
         <div class="sv-sub">PRECISION CUTTING</div>
 
         <div class="sv-rows">
-          <div class="sv-rw"><div class="k" data-i18n="svk_cncplasma">CNC Plazma</div><div class="v" data-i18n="svv_plasma_max">Maks. 60 mm · ±0.3 mm</div></div><div class="sv-rw"><div class="k" data-i18n="svk_oxy">Oksijen</div><div class="v" data-i18n="svv_oxymax">Maks. 200 mm · kalın kesit</div></div><div class="sv-rw"><div class="k" data-i18n="svk_laser">Lazer</div><div class="v" data-i18n="svv_laser_max">Maks. 20 mm · ±0.1 mm</div></div><div class="sv-rw"><div class="k" data-i18n="svk_guill">Gilyotin</div><div class="v" data-i18n="svv_guill_max">Maks. 12 mm · 3000 mm</div></div><div class="sv-rw"><div class="k" data-i18n="svk_nest">Nesting</div><div class="v" data-i18n="svv_nest_eff">Plaka verimi ≥ %85</div></div><div class="sv-rw"><div class="k" data-i18n="svk_format">Dosya Formatı</div><div class="v">DXF · DWG · STEP</div></div>
+          <div class="sv-rw"><div class="k" data-i18n="svk_cncplasma">CNC Plazma</div><div class="v" data-i18n="svv_plasma_max">CNC plazma · proje bazlı</div></div><div class="sv-rw"><div class="k" data-i18n="svk_oxy">Oksijen</div><div class="v" data-i18n="svv_oxymax">Maks. 200 mm · kalın kesit</div></div><div class="sv-rw"><div class="k" data-i18n="svk_laser">Lazer</div><div class="v" data-i18n="svv_laser_max">Maks. 20 mm · ±0.1 mm</div></div><div class="sv-rw"><div class="k" data-i18n="svk_guill">Gilyotin</div><div class="v" data-i18n="svv_guill_max">Maks. 12 mm · 3000 mm</div></div><div class="sv-rw"><div class="k" data-i18n="svk_nest">Nesting</div><div class="v" data-i18n="svv_nest_eff">Plaka verimi ≥ %85</div></div><div class="sv-rw"><div class="k" data-i18n="svk_format">Dosya Formatı</div><div class="v">DXF · DWG · STEP</div></div>
         </div>
 
         <div class="sv-tags"><span data-i18n="tag_cnc">CNC</span><span data-i18n="tag_nesting">NESTING</span><span data-i18n="tag_single">TEK PARÇA</span><span data-i18n="tag_seriesp">SERİ</span><span data-i18n="tag_kit">KİT</span></div>
@@ -869,11 +898,12 @@
             <tr><td data-i18n="services_bend_r4_name">Profil Büküm</td><td>Ø ≤ 120 mm</td><td>—</td><td>±0.5°</td></tr>
           </tbody>
         </table>
+        <p class="svc-benefit" data-i18n="services_s03_benefit">Programlı büküm — boyutsal sapma ve fire oranını düşürür.</p>
       </div>
 
       <div class="svc-visual">
         <div class="img-card reveal" data-d="2">
-          <img src="uploads/bukum.png" alt="Büküm ve şekillendirme" loading="lazy" width="1536" height="1024" />
+          <picture><source srcset="uploads/bukum.webp" type="image/webp"><img src="uploads/bukum.png" alt="Büküm ve şekillendirme" loading="lazy" width="1536" height="1024" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="icbadge_bukum">● CNC Büküm</span>
         </div>
@@ -907,14 +937,13 @@
         <div class="num" data-i18n="services_s04_num">// 04 · MEKANİK MONTAJ</div>
         <h2 data-i18n-html="services_s04_h2">Mekanik Montaj<br/>ve Alt Sistemler.</h2>
         <p class="desc" data-i18n="services_s04_desc">
-          Büyük yapılar üretim tesisinde parçalı olarak üretildikten sonra, bize ait
-          20 tonluk gezer köprü vinç altında fikstürleyerek ana birleştirmeleri
-          yaparız. Modüler taşıma gerektiren yapılarda, sahaya giden ekibimizle
-          yerinde montajı da üstleniyoruz.
+          Büyük yapılar üretim tesisinde parçalı olarak üretildikten sonra
+          fikstürlenerek ana birleştirmeleri yaparız. Modüler taşıma gerektiren
+          yapılarda, sahaya giden ekibimizle yerinde montajı da üstleniyoruz.
         </p>
 
         <ul class="svc-feats">
-          <li data-i18n="services_s04_f1">Tesis içi 20 ton kapasiteli çift köprü vinç ile büyük yapı kurulumu</li>
+          <li data-i18n="services_s04_f1">Fikstür ve mastar sistemleri ile kontrollü birleştirme</li>
           <li data-i18n="services_s04_f2">Lazer izleme / total station ile yapısal doğrusallık kontrolü</li>
           <li data-i18n="services_s04_f3">Fikstür ve mastar sistemleri ile tekrarlı imalat</li>
           <li data-i18n="services_s04_f4">Saha montaj ekibi: Cıvatalı ve kaynaklı birleştirmeler</li>
@@ -924,7 +953,7 @@
 
       <div class="svc-visual">
         <div class="img-card reveal" data-d="2">
-          <img src="uploads/bom.png" alt="Mekanik montaj" loading="lazy" width="1536" height="1024" />
+          <picture><source srcset="uploads/bom.webp" type="image/webp"><img src="uploads/bom.png" alt="Mekanik montaj" loading="lazy" width="1536" height="1024" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="icbadge_montaj">● Mekanik Montaj</span>
         </div>
@@ -978,7 +1007,7 @@
 
       <div class="svc-visual">
         <div class="img-card reveal" data-d="2">
-          <img src="uploads/ndt-3.jpeg" alt="NDT ve kalite kontrol" loading="lazy" width="2048" height="1365" />
+          <picture><source srcset="uploads/ndt-3.webp" type="image/webp"><img src="uploads/ndt-3.jpeg" alt="NDT ve kalite kontrol" loading="lazy" width="2048" height="1365" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="icbadge_ndt">● NDT · Kalite Kontrol</span>
         </div>
@@ -1012,8 +1041,8 @@
     <h2 class="display h2" style="font-size: clamp(36px, 5vw, 72px); max-width: 18ch; margin: 0 auto 24px; line-height: 1;" data-i18n="services_cta_h2">
       Projeniz için<br/><span style="color:var(--arc-2);">teklif alın.</span>
     </h2>
-    <p style="font-size: clamp(15px,1.2vw,18px); color: var(--steel-2); max-width: 48ch; margin: 0 auto 48px; line-height: 1.65;">
-      Teknik resim veya numune gönderin — 24 saat içinde maliyet analizi ve üretim planı hazırlayalım.
+    <p style="font-size: clamp(15px,1.2vw,18px); color: var(--steel-2); max-width: 48ch; margin: 0 auto 48px; line-height: 1.65;" data-i18n="services_cta_p">
+      Teknik resim veya numune gönderin — 48 saat içinde maliyet analizi ve üretim planı hazırlayalım.
     </p>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="iletisim.html" class="btn btn-primary" style="font-size:13px; padding:16px 40px;" data-i18n="services_cta_btn">Teklif Formu →</a>
@@ -1030,7 +1059,7 @@
       "@type": "Service",
       "@id": "https://www.armaweld.com/hizmetler.html#kaynak",
       "name": "Kaynaklı İmalat",
-      "description": "EN ISO 3834-2 ve EN 1090 EXC3 kapsamında onaylı WPS ile kaynaklı imalat. S235'ten S960QL'ye, alüminyumdan HARDOX'a tüm çelik gruplarında belgeli kaynakçılarla üretim.",
+      "description": "EN ISO 3834-2 ve EN 1090 EXC3 kapsamında onaylı WPS ile kaynaklı imalat. S235'ten S960QL ve Strenx 1100'e, alüminyumdan HARDOX'a tüm çelik gruplarında belgeli kaynakçılarla üretim.",
       "provider": {"@id": "https://www.armaweld.com/#organization"},
       "areaServed": {"@type": "Country", "name": "TR"},
       "url": "https://www.armaweld.com/hizmetler.html"
@@ -1054,9 +1083,10 @@
   ]
 }
 </script>
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>mountChrome('hizmetler');</script>
 <script>
 (function(){

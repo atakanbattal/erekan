@@ -30,14 +30,14 @@
   <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
   .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
   .page-hero-inner { position: relative; }
-  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); letter-spacing: .05em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
   .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
@@ -59,7 +59,7 @@
   .sec-row.reverse .visual { order: 1; }
   .sec-num {
     font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2);
-    letter-spacing: .24em; margin-bottom: 20px; text-transform: uppercase;
+    letter-spacing: .05em; margin-bottom: 20px; text-transform: uppercase;
   }
   .sec-title {
     font-family: var(--ff-display); font-weight: 900;
@@ -87,7 +87,7 @@
     letter-spacing: .02em;
   }
   .sec-apps li:last-child { border-bottom: 1px solid var(--ink-4); }
-  .sec-apps .k { color: var(--arc-2); letter-spacing: .14em; text-transform: uppercase; font-size: 10px; align-self: center; }
+  .sec-apps .k { color: var(--arc-2); letter-spacing: .04em; text-transform: uppercase; font-size: 10px; align-self: center; }
   .sec-apps .v { color: var(--bone); font-family: var(--ff-display); font-weight: 600; font-size: 15px; letter-spacing: -.005em; }
 
   .sec-specs {
@@ -95,7 +95,7 @@
     gap: 1px; background: var(--ink-4); border: 1px solid var(--ink-4);
   }
   .sec-spec { background: var(--ink-0); padding: 16px; }
-  .sec-spec .k { font-family: var(--ff-mono); font-size: 9px; color: var(--steel-1); letter-spacing: .18em; text-transform: uppercase; }
+  .sec-spec .k { font-family: var(--ff-mono); font-size: 9px; color: var(--steel-1); letter-spacing: .05em; text-transform: uppercase; }
   .sec-spec .v { font-family: var(--ff-display); font-weight: 700; font-size: 16px; color: var(--bone); margin-top: 5px; }
 
   .sec-visual {
@@ -108,17 +108,17 @@
     align-self: start;
   }
   .sx-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--ink-4); margin-bottom: 24px; }
-  .sx-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
-  .sx-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
+  .sx-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--arc-2); }
+  .sx-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; color: var(--steel-1); }
   .sx-big { font-family: var(--ff-display); font-weight: 700; font-size: clamp(56px, 5.5vw, 92px); line-height: .95; letter-spacing: -.03em; color: var(--paper); }
-  .sx-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; color: var(--steel-2); margin-top: 6px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
+  .sx-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .05em; color: var(--steel-2); margin-top: 6px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
   .sx-rows { display: flex; flex-direction: column; margin: 20px 0; }
   .sx-rw { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--ink-4); align-items: baseline; }
   .sx-rw:last-child { border-bottom: 0; }
-  .sx-rw .k { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-1); }
+  .sx-rw .k { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .03em; text-transform: uppercase; color: var(--steel-1); }
   .sx-rw .v { font-family: var(--ff-sans); font-size: 13px; color: var(--paper); line-height: 1.4; }
   .sx-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 16px; border-top: 1px solid var(--ink-4); }
-  .sx-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
+  .sx-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
 
   @media (max-width: 1000px) {
     .sec-row, .sec-row.reverse { grid-template-columns: 1fr; gap: 40px; }
@@ -134,6 +134,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    if (localStorage.getItem('armaweld-cookie') === 'all') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
     gtag('config', 'G-ML770TF8NC');
   </script>
 </head>
@@ -183,7 +187,7 @@
         <div class="sx-big">M</div>
         <div class="sx-sub" data-i18n="sec1_sub">MACHINERY MANUFACTURING</div>
         <div class="sx-rows">
-          <div class="sx-rw"><div class="k" data-i18n="sec1_r1k">Örnek Parçalar</div><div class="v" data-i18n="sec1_r1v">Kepçe · İkmal kasası · Şasi · Boom</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r2k">Malzeme</div><div class="v" data-i18n="sec1_r2v">HARDOX 400/500 · S700MC · S355/S460</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r3k">Neden S700MC?</div><div class="v" data-i18n="sec1_r3v">Hafifletilmiş şasi — yüksek mukavemet, ince et, düşük ağırlık</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r4k">Kalite</div><div class="v" data-i18n="sec1_r4v">EN ISO 5817 B-C · CMM kontrol</div></div>
+          <div class="sx-rw"><div class="k" data-i18n="sec1_r1k">Örnek Parçalar</div><div class="v" data-i18n="sec1_r1v">Kepçe · İkmal kasası · Şasi · Boom</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r2k">Malzeme</div><div class="v" data-i18n="sec1_r2v">HARDOX 400/500 · Strenx 700/960 · S700MC · S355/S460</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r3k">Neden S700MC?</div><div class="v" data-i18n="sec1_r3v">Hafifletilmiş şasi — yüksek mukavemet, ince et, düşük ağırlık</div></div><div class="sx-rw"><div class="k" data-i18n="sec1_r4k">Kalite</div><div class="v" data-i18n="sec1_r4v">EN ISO 5817 B-C · CMM kontrol</div></div>
         </div>
         <div class="sx-tags"><span data-i18n="sec1_t1">HARDOX</span><span data-i18n="sec1_t2">AŞINMAYA DAYANIKLI</span><span data-i18n="sec1_t3">KAYNAK+MONTAJ</span><span data-i18n="sec1_t4">SERİ + PROTOTİP</span></div>
       </div>
@@ -352,7 +356,7 @@
         <div class="sx-big">R</div>
         <div class="sx-sub" data-i18n="sec5_sub">RAIL TRANSPORT</div>
         <div class="sx-rows">
-          <div class="sx-rw"><div class="k" data-i18n="sec5_r1k">Uygulama</div><div class="v" data-i18n="sec5_r1v">Bogie çerçevesi · Araç iskeleti · Treyler şasi</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r2k">Malzeme</div><div class="v" data-i18n="sec5_r2v">S690QL · S700MC · HARDOX (zırh)</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r3k">Kaynak Sınıfı</div><div class="v" data-i18n="sec5_r3v">CL1 (en yüksek) · EN ISO 5817 B</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r4k">İzlenebilirlik</div><div class="v" data-i18n="sec5_r4v">Heat-No → Dikiş haritası</div></div>
+          <div class="sx-rw"><div class="k" data-i18n="sec5_r1k">Uygulama</div><div class="v" data-i18n="sec5_r1v">Bogie çerçevesi · Araç iskeleti · Treyler şasi</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r2k">Malzeme</div><div class="v" data-i18n="sec5_r2v">S690QL · Strenx 700/960 · S700MC · HARDOX (zırh)</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r3k">Kaynak Sınıfı</div><div class="v" data-i18n="sec5_r3v">CL1 (en yüksek) · EN ISO 5817 B</div></div><div class="sx-rw"><div class="k" data-i18n="sec5_r4k">İzlenebilirlik</div><div class="v" data-i18n="sec5_r4v">Heat-No → Dikiş haritası</div></div>
         </div>
         <div class="sx-tags"><span data-i18n="sec5_t1">CL1</span><span data-i18n="sec5_t2">FATIGUE</span><span data-i18n="sec5_t3">DIN EN 15085</span><span data-i18n="sec5_t4">DOKÜMANTE</span></div>
       </div>
@@ -372,10 +376,10 @@
     <a href="iletisim.html" class="btn btn-primary"><span data-i18n="sectors_cta_btn">İletişime Geçin</span> <span class="arrow">→</span></a>
   </div>
 </section>
-
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>mountChrome('sektorler');</script>
 </body>
 </html>

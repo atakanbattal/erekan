@@ -2,6 +2,41 @@
 // ArmaWeld — Shared Chrome (Nav + Footer)
 // ============================================
 
+function injectNavTypography() {
+  if (document.getElementById('aw-nav-type')) return;
+  const style = document.createElement('style');
+  style.id = 'aw-nav-type';
+  style.textContent = `
+    .nav .nav-links { gap: 4px; text-transform: none; }
+    .nav .nav-links .nav-link {
+      font-family: 'Archivo', system-ui, -apple-system, sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      font-style: normal !important;
+      letter-spacing: -0.015em !important;
+      text-transform: none !important;
+      font-variant: normal !important;
+      -webkit-font-smoothing: antialiased;
+      color: var(--steel-3) !important;
+    }
+    .nav .nav-links .nav-link:hover,
+    .nav .nav-links .nav-link.active {
+      color: var(--bone) !important;
+      font-weight: 600 !important;
+    }
+    @media (max-width: 1280px) {
+      .nav .nav-links .nav-link { font-size: 13px !important; padding: 8px 9px !important; }
+    }
+    @media (max-width: 1080px) {
+      .nav .nav-links .nav-link {
+        font-size: 16px !important;
+        padding: 14px 0 !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function buildNav(activePage, base) {
   const b = base || '';
   const links = [
@@ -17,10 +52,8 @@ function buildNav(activePage, base) {
     { id: 'blog',      i18n: 'nav_blog',     href: b + 'blog/' },
   ];
 
-  const t = (key) => (window.i18n ? window.i18n.get(key) : key);
-
   const linkHtml = links.map(l =>
-    `<a class="nav-link ${l.id === activePage ? 'active' : ''}" href="${l.href}" data-i18n="${l.i18n}">${t(l.i18n)}</a>`
+    `<a class="nav-link ${l.id === activePage ? 'active' : ''}" href="${l.href}" data-i18n="${l.i18n}"></a>`
   ).join('');
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
@@ -29,14 +62,14 @@ function buildNav(activePage, base) {
   return `
   <nav class="nav">
     <div class="nav-inner">
-      <a href="${b}index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="${t('nav_aria_home')}">
+      <a href="${b}index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="">
         <img id="nav-logo" src="${b}assets/${currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png'}" alt="ArmaWeld" class="logo-img" />
       </a>
       <div class="nav-links">
         ${linkHtml}
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="${t('nav_aria_theme')}" onclick="toggleTheme()" title="Açık / Koyu mod">
+        <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="" onclick="toggleTheme()" title="">
           <svg class="tt-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
             <circle cx="12" cy="12" r="4"/>
             <line x1="12" y1="2" x2="12" y2="5"/>
@@ -54,7 +87,7 @@ function buildNav(activePage, base) {
         </button>
 
         <div class="lang-switcher" id="langSwitcher">
-          <button class="lang-btn" id="lang-current" onclick="toggleLangMenu()" data-i18n-aria="nav_aria_lang" aria-label="${t('nav_aria_lang')}">${(window.i18n ? window.i18n.getLang() : (localStorage.getItem('armaweld-lang') || 'tr')).toUpperCase()}</button>
+          <button class="lang-btn" id="lang-current" onclick="toggleLangMenu()" data-i18n-aria="nav_aria_lang" aria-label=""></button>
           <div class="lang-dropdown" id="langDropdown">
             <button class="lang-option" data-lang="tr" onclick="selectLang('tr')">🇹🇷 Türkçe</button>
             <button class="lang-option" data-lang="en" onclick="selectLang('en')">🇬🇧 English</button>
@@ -64,8 +97,8 @@ function buildNav(activePage, base) {
           </div>
         </div>
 
-        <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta">${t('nav_cta')}</a>
-        <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="${t('nav_aria_menu')}" onclick="document.querySelector('.nav').classList.toggle('open')">
+        <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta"></a>
+        <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" onclick="document.querySelector('.nav').classList.toggle('open')">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -78,54 +111,54 @@ function buildFooter(base) {
   const b = base || '';
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
   const logoSrc = b + 'assets/' + (currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png');
-  const t = (key) => (window.i18n ? window.i18n.get(key) : key);
 
   return `
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <p class="footer-tag" data-i18n="footer_tag">${t('footer_tag')}</p>
-          <p class="footer-contact" data-i18n="footer_desc">${t('footer_desc')}</p>
+          <p class="footer-tag" data-i18n="footer_tag"></p>
+          <p class="footer-contact" data-i18n="footer_desc"></p>
         </div>
         <div>
-          <h5 data-i18n="footer_services_h">${t('footer_services_h')}</h5>
+          <h5 data-i18n="footer_services_h"></h5>
           <ul>
-            <li><a href="${b}hizmetler.html" data-i18n="footer_s1">${t('footer_s1')}</a></li>
-            <li><a href="${b}hizmetler.html#fason">Fason Kaynaklı İmalat</a></li>
-            <li><a href="${b}hizmetler.html" data-i18n="footer_s2">${t('footer_s2')}</a></li>
-            <li><a href="${b}hizmetler.html" data-i18n="footer_s3">${t('footer_s3')}</a></li>
-            <li><a href="${b}hizmetler.html" data-i18n="footer_s4">${t('footer_s4')}</a></li>
-            <li><a href="${b}kaynak-yontemleri.html" data-i18n="footer_s5">${t('footer_s5')}</a></li>
-            <li><a href="${b}ndt.html" data-i18n="footer_s6">${t('footer_s6')}</a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s1"></a></li>
+            <li><a href="${b}hizmetler.html#fason" data-i18n="footer_fason"></a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s2"></a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s3"></a></li>
+            <li><a href="${b}hizmetler.html" data-i18n="footer_s4"></a></li>
+            <li><a href="${b}kaynak-yontemleri.html" data-i18n="footer_s5"></a></li>
+            <li><a href="${b}ndt.html" data-i18n="footer_s6"></a></li>
           </ul>
         </div>
         <div>
-          <h5 data-i18n="footer_corporate_h">${t('footer_corporate_h')}</h5>
+          <h5 data-i18n="footer_corporate_h"></h5>
           <ul>
-            <li><a href="${b}hakkimizda.html" data-i18n="footer_c1">${t('footer_c1')}</a></li>
-            <li><a href="${b}kalite.html" data-i18n="footer_c2">${t('footer_c2')}</a></li>
-            <li><a href="${b}sektorler.html" data-i18n="footer_c3">${t('footer_c3')}</a></li>
-            <li><a href="${b}projeler.html" data-i18n="footer_c4">${t('footer_c4')}</a></li>
-            <li><a href="${b}sss.html" data-i18n="footer_c5">${t('footer_c5')}</a></li>
-            <li><a href="${b}iletisim.html" data-i18n="footer_c6">${t('footer_c6')}</a></li>
+            <li><a href="${b}hakkimizda.html" data-i18n="footer_c1"></a></li>
+            <li><a href="${b}kalite.html" data-i18n="footer_c2"></a></li>
+            <li><a href="${b}sektorler.html" data-i18n="footer_c3"></a></li>
+            <li><a href="${b}projeler.html" data-i18n="footer_c4"></a></li>
+            <li><a href="${b}sss.html" data-i18n="footer_c5"></a></li>
+            <li><a href="${b}iletisim.html" data-i18n="footer_c6"></a></li>
+            <li><a href="${b}gizlilik-kvkk.html" data-i18n="footer_kvkk"></a></li>
+            <li><a href="${b}yetkinlik.html" data-i18n="footer_cap_link">Yetkinlik Profili →</a></li>
           </ul>
         </div>
         <div>
-          <h5 data-i18n="footer_contact_h">${t('footer_contact_h')}</h5>
+          <h5 data-i18n="footer_contact_h"></h5>
           <p class="footer-contact">
-            <span data-i18n="footer_addr1">Konya Organize Sanayi Bölgesi</span><br/>
-            <span data-i18n="footer_addr2">Fevziçakmak Mah. 10. Cadde No: 24</span><br/>
-            <span data-i18n="footer_addr3">Karatay / Konya</span><br/><br/>
+            <span data-i18n="footer_addr1"></span><br/>
+            <span data-i18n="footer_addr2"></span><br/><br/>
             <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
             <a href="tel:+905438400332">+90 543 840 0332</a>
           </p>
         </div>
       </div>
       <div class="footer-bottom">
-        <span data-i18n="footer_copy">${t('footer_copy')}</span>
-        <span data-i18n="footer_certs">${t('footer_certs')}</span>
-        <span data-i18n="footer_ver">${t('footer_ver')}</span>
+        <span data-i18n="footer_copy"></span>
+        <span data-i18n="footer_certs"></span>
+        <span data-i18n="footer_ver"></span>
       </div>
       <div class="footer-legal" data-i18n="footer_legal">${t('footer_legal')}</div>
     </div>
@@ -133,22 +166,31 @@ function buildFooter(base) {
   `;
 }
 
-// Scroll reveal
+// Scroll reveal — unified .in + .visible
 function initReveals() {
-  const els = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  const els = document.querySelectorAll('.reveal:not(.in):not(.visible)');
+  if (!els.length) return;
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
+        e.target.classList.add('in', 'visible');
         io.unobserve(e.target);
       }
     });
   }, { threshold: 0.12 });
-  els.forEach(el => io.observe(el));
+  els.forEach(function (el) { io.observe(el); });
 }
 
 // Animated counter
 function initCounters() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('[data-counter]').forEach(function (el) {
+      const target = parseFloat(el.dataset.counter);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      el.textContent = target.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    });
+    return;
+  }
   const els = document.querySelectorAll('[data-counter]');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -188,14 +230,83 @@ function initScrollBar() {
   update();
 }
 
+function initCookieConsent() {
+  if (document.getElementById('aw-cookie') || localStorage.getItem('armaweld-cookie')) return;
+  const el = document.createElement('div');
+  el.id = 'aw-cookie';
+  el.className = 'cookie-banner';
+  el.innerHTML = `
+    <p data-i18n-html="cookie_text"></p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie="essential" data-i18n="cookie_essential"></button>
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie="all" data-i18n="cookie_accept"></button>
+    </div>`;
+  el.addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-cookie]');
+    if (!btn) return;
+    const choice = btn.dataset.cookie;
+    localStorage.setItem('armaweld-cookie', choice);
+    if (choice === 'all' && typeof gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    el.classList.add('cookie-banner--hide');
+    setTimeout(function () { el.remove(); }, 400);
+  });
+  document.body.appendChild(el);
+  if (window.i18n) window.i18n.apply();
+}
+
+function initStickyCTA() {
+  if (document.querySelector('.sticky-cta') || window.innerWidth > 768) return;
+  const bar = document.createElement('div');
+  bar.className = 'sticky-cta';
+  bar.innerHTML = `
+    <a href="tel:+905438400332" class="sticky-cta__btn sticky-cta__btn--call" data-i18n="sticky_call" aria-label=""></a>
+    <a href="iletisim.html" class="sticky-cta__btn sticky-cta__btn--primary" data-i18n="sticky_quote"></a>`;
+  const base = location.pathname.includes('/blog/') ? '../' : '';
+  bar.querySelector('[href="iletisim.html"]').href = base + 'iletisim.html';
+  document.body.appendChild(bar);
+  document.body.classList.add('has-sticky-cta');
+}
+
+function initBlogSchema() {
+  const published = document.querySelector('meta[property="article:published_time"]');
+  if (!published || document.getElementById('aw-article-schema')) return;
+  const title = document.title || '';
+  const desc = (document.querySelector('meta[name="description"]') || {}).content || '';
+  const url = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: desc,
+    url: url,
+    datePublished: published.content,
+    author: { '@type': 'Organization', name: 'ArmaWeld Mühendislik' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ArmaWeld',
+      logo: { '@type': 'ImageObject', url: 'https://www.armaweld.com/assets/og-image.jpg' }
+    },
+    image: 'https://www.armaweld.com/assets/og-image.jpg'
+  };
+  const el = document.createElement('script');
+  el.id = 'aw-article-schema';
+  el.type = 'application/ld+json';
+  el.textContent = JSON.stringify(schema);
+  document.head.appendChild(el);
+}
+
 function mountChrome(activePage, base) {
+  const doMount = function () {
   const savedTheme = localStorage.getItem('armaweld-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
+  injectNavTypography();
   document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage, base));
   document.body.insertAdjacentHTML('beforeend', buildFooter(base));
 
-  // Apply language translations after DOM is ready
+  // Apply translations to injected chrome
   if (window.i18n) {
     window.i18n.apply();
   }
@@ -204,13 +315,27 @@ function mountChrome(activePage, base) {
     initReveals();
     initCounters();
     initScrollBar();
+    initCookieConsent();
+    initStickyCTA();
+    initBlogSchema();
     if (window.i18n) window.i18n.apply();
   });
   if (document.readyState !== 'loading') {
     initReveals();
     initCounters();
     initScrollBar();
+    initCookieConsent();
+    initStickyCTA();
+    initBlogSchema();
   }
+  document.dispatchEvent(new CustomEvent('armaweld:chrome-ready'));
+  };
+
+  if (window.i18n && window.i18n.ready) {
+    return window.i18n.ready().then(doMount);
+  }
+  doMount();
+  return Promise.resolve();
 }
 
 function toggleTheme() {
@@ -285,8 +410,11 @@ function toggleTheme() {
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(-6px); }
     }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-fab { animation: none; }
+    }
     @media (max-width: 480px) {
-      .wa-fab { bottom: 18px; right: 18px; }
+      .wa-fab { bottom: 78px; right: 18px; }
       .wa-fab__icon { width: 50px; height: 50px; }
       .wa-fab__icon svg { width: 28px; height: 28px; }
     }
@@ -298,9 +426,9 @@ function toggleTheme() {
   a.href = HREF;
   a.target = '_blank';
   a.rel = 'noopener noreferrer';
-  a.setAttribute('aria-label', 'WhatsApp ile iletişime geç');
+  a.setAttribute('aria-label', 'WhatsApp');
   a.innerHTML = `
-    <span class="wa-fab__label">Bize WhatsApp'tan yazın</span>
+    <span class="wa-fab__label" data-i18n="wa_fab_label"></span>
     <span class="wa-fab__icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -310,8 +438,13 @@ function toggleTheme() {
 
   document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(a);
+    if (window.i18n) window.i18n.apply();
   });
   if (document.readyState !== 'loading') {
     document.body.appendChild(a);
+    if (window.i18n) window.i18n.apply();
   }
+  document.addEventListener('armaweld:chrome-ready', function () {
+    if (window.i18n) window.i18n.apply();
+  });
 })();

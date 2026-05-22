@@ -142,13 +142,26 @@ $htmlBody = '<!doctype html>
 </body>
 </html>';
 
-// ── SMTP Ayarları ─────────────────────────────────────────────
-$SMTP_HOST = 'smtp.hostinger.com';
-$SMTP_PORT = 465;
-$SMTP_USER = 'info@armaweld.com';
-$SMTP_PASS = 'Kvmb26Eta4*';   // <-- info@armaweld.com şifresini buraya yaz
-$MAIL_FROM = 'info@armaweld.com';
-$MAIL_TO = 'info@armaweld.com';
+// ── SMTP Ayarları (config/mail.config.php — git dışı) ─────────
+$configPath = __DIR__ . '/config/mail.config.php';
+if (!file_exists($configPath)) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Mail yapilandirmasi eksik']);
+    exit;
+}
+$cfg = require $configPath;
+$SMTP_HOST = $cfg['smtp_host'] ?? 'smtp.hostinger.com';
+$SMTP_PORT = (int)($cfg['smtp_port'] ?? 465);
+$SMTP_USER = $cfg['smtp_user'] ?? '';
+$SMTP_PASS = $cfg['smtp_pass'] ?? '';
+$MAIL_FROM = $cfg['mail_from'] ?? $SMTP_USER;
+$MAIL_TO   = $cfg['mail_to'] ?? $SMTP_USER;
+
+if (!$SMTP_USER || !$SMTP_PASS || $SMTP_PASS === 'BURAYA_SIFRE') {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'SMTP kimlik bilgileri yapilandirilmamis']);
+    exit;
+}
 
 // ── PHPMailer gönderimi ───────────────────────────────────────
 $nameVal = $form['name'] ?? '';
@@ -192,6 +205,33 @@ try {
     }
 
     $mail->send();
+
+    // Otomatik onay e-postası (müşteriye)
+    if ($replyTo) {
+      $auto = new PHPMailer(true);
+      $auto->isSMTP();
+      $auto->Host = $SMTP_HOST;
+      $auto->SMTPAuth = true;
+      $auto->Username = $SMTP_USER;
+      $auto->Password = $SMTP_PASS;
+      $auto->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+      $auto->Port = $SMTP_PORT;
+      $auto->CharSet = 'UTF-8';
+      $auto->setFrom($MAIL_FROM, 'ArmaWeld');
+      $auto->addAddress($replyTo, $nameVal);
+      $auto->Subject = 'ArmaWeld — Teklif talebiniz alındı';
+      $autoBody = '<div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:24px;">'
+        . '<h2 style="color:#111;">Talebiniz alındı</h2>'
+        . '<p>Sayın ' . htmlspecialchars($nameVal, ENT_QUOTES, 'UTF-8') . ',</p>'
+        . '<p>Teklif formunuz başarıyla iletildi. Proje mühendisimiz en geç <strong>48 saat</strong> içinde size dönüş yapacaktır.</p>'
+        . '<p style="font-size:13px;color:#666;">ArmaWeld · Fevziçakmak mah. 10804. Sk. No: 8/B, Karatay / Konya</p>'
+        . '</div>';
+      $auto->isHTML(true);
+      $auto->Body = $autoBody;
+      $auto->AltBody = strip_tags($autoBody);
+      try { $auto->send(); } catch (Exception $ignored) {}
+    }
+
     echo json_encode(['success' => true]);
 
 } catch (Exception $e) {

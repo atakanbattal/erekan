@@ -30,9 +30,9 @@
   <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero {
     padding: calc(var(--nav-h) + 80px) 0 80px;
@@ -42,7 +42,7 @@
   }
   .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
   .page-hero-inner { position: relative; }
-  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); letter-spacing: .05em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
   .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
@@ -80,7 +80,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .22em;
+    letter-spacing: .05em;
     margin-bottom: 8px;
   }
   .cert h3 {
@@ -106,7 +106,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: .14em;
+    letter-spacing: .04em;
   }
   .cert-status .k { color: var(--steel-1); }
   .cert-status .v { color: var(--bone); }
@@ -145,7 +145,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     margin-bottom: 8px;
   }
   .pf-step .t {
@@ -168,7 +168,7 @@
     font-family: var(--ff-mono);
     font-size: 9px;
     color: var(--arc-2);
-    letter-spacing: .14em;
+    letter-spacing: .04em;
     text-transform: uppercase;
     padding-top: 10px;
     border-top: 1px dashed var(--ink-5);
@@ -191,7 +191,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     margin-bottom: 16px;
   }
@@ -205,7 +205,7 @@
     color: var(--steel-2);
     font-family: var(--ff-mono);
     font-size: 11px;
-    letter-spacing: .1em;
+    letter-spacing: .04em;
     text-transform: uppercase;
     margin-bottom: 6px;
     cursor: pointer;
@@ -252,7 +252,7 @@
   .sim-view .doc-title .sub {
     font-family: var(--ff-mono);
     font-size: 9px;
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     color: var(--ink-6);
     margin-top: 4px;
     font-weight: normal;
@@ -267,12 +267,12 @@
     content: ''; width: 14px; height: 14px; background: var(--arc-2);
   }
   .sim-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
-  .sim-row .k { font-size: 8px; text-transform: uppercase; letter-spacing: .2em; color: var(--ink-5); }
+  .sim-row .k { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-5); }
   .sim-row .v { font-size: 12px; font-weight: 600; color: var(--ink-1); }
 
   .sim-tbl { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 10px; }
   .sim-tbl th, .sim-tbl td { border: 1px solid var(--ink-1); padding: 6px 8px; text-align: left; }
-  .sim-tbl th { background: var(--ink-1); color: var(--bone); font-size: 8px; text-transform: uppercase; letter-spacing: .14em; }
+  .sim-tbl th { background: var(--ink-1); color: var(--bone); font-size: 8px; text-transform: uppercase; letter-spacing: .04em; }
 
   .sim-stamp {
     position: absolute;
@@ -296,7 +296,7 @@
     font-weight: 700;
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: .1em;
+    letter-spacing: .04em;
     color: var(--ink-1);
     margin-top: 18px;
     margin-bottom: 8px;
@@ -314,7 +314,7 @@
   }
   .sim-hero-stats > div { background: var(--bone); padding: 10px; }
   .sim-hero-stats .n { font-family: var(--ff-display); font-weight: 800; font-size: 20px; color: var(--ink-1); }
-  .sim-hero-stats .l { font-size: 8px; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-5); margin-top: 2px; }
+  .sim-hero-stats .l { font-size: 8px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-5); margin-top: 2px; }
 
   /* KPIs */
   .kpi-section { padding: 100px 0; background: var(--ink-0); border-top: 1px solid var(--ink-4); }
@@ -329,7 +329,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--steel-1);
-    letter-spacing: .18em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     margin-bottom: 16px;
   }
@@ -380,7 +380,7 @@
   .hero-img-strip .strip-label {
     position: absolute; bottom: 20px; right: 28px;
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--bone); letter-spacing: .2em; text-transform: uppercase;
+    color: var(--bone); letter-spacing: .05em; text-transform: uppercase;
     opacity: .7;
   }
 
@@ -400,7 +400,7 @@
   .img-card .ic-badge {
     position: absolute; bottom: 12px; left: 14px;
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase;
     opacity: 0; transform: translateY(6px);
     transition: opacity .4s ease, transform .4s ease;
   }
@@ -433,6 +433,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    if (localStorage.getItem('armaweld-cookie') === 'all') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
     gtag('config', 'G-ML770TF8NC');
   </script>
 </head>
@@ -450,7 +454,7 @@
 
 <!-- Hero image strip -->
 <div class="hero-img-strip">
-  <img src="uploads/sertifika.png" alt="Kalite belgesi ve sertifika" loading="lazy" width="1536" height="1024" />
+  <picture><source srcset="uploads/sertifika.webp" type="image/webp"><img src="uploads/sertifika.png" alt="Kalite belgesi ve sertifika" loading="lazy" width="1536" height="1024" /></picture>
   <span class="strip-label">Belgelendirme · Standartlara Uygunluk</span>
 </div>
 
@@ -517,7 +521,7 @@
           </div>
           <div class="cert-code">EN ISO 15614-1 · 15614-2</div>
           <h3 data-i18n="quality_cert4_h3">Kaynak Prosedür Onay Kayıtları (WPQR)</h3>
-          <p data-i18n-html="quality_cert4_p1"><strong style="color:var(--bone)">15614-1</strong> — Çelik, nikel ve nikel alaşımları için ark kaynağı WPQR. S235'ten S960QL'e, P-grubu basınçlı kap çeliklerine kadar her malzeme grubu için onaylı prosedür.</p>
+          <p data-i18n-html="quality_cert4_p1"><strong style="color:var(--bone)">15614-1</strong> — Çelik, nikel ve nikel alaşımları için ark kaynağı WPQR. S235'ten Strenx 1100'e, P-grubu basınçlı kap çeliklerine kadar her malzeme grubu için onaylı prosedür.</p>
           <p style="margin-top:8px" data-i18n-html="quality_cert4_p2"><strong style="color:var(--bone)">15614-2</strong> — Alüminyum ve alüminyum alaşımları için ark kaynağı WPQR. EN AW-5754 (AlMg3) ve EN AW-6082 (AlSi1MgMn) kapsamında, TIG (141) yöntemi ile tam nüfuziyetli alın kaynakları.</p>
         </div>
         <div class="cert-status">
@@ -719,10 +723,10 @@
     </div>
   </div>
 </section>
-
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>
   mountChrome('kalite');
 
@@ -993,7 +997,7 @@
           Bu performans beyanı, ArmaWeld'in tek sorumluluğu altında yayımlanmıştır.
         </p>
         <div style="margin-top: 12px;">
-          <div class="k" style="font-size: 8px; text-transform: uppercase; letter-spacing: .2em; color: var(--ink-5);">İmza</div>
+          <div class="k" style="font-size: 8px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-5);">İmza</div>
           <div style="font-family: 'Archivo'; font-style: italic; font-size: 18px; color: var(--ink-1); margin-top: 6px;">Ali Eren</div>
           <div style="font-size: 9px; color: var(--ink-5);">Kurucu · Kalite Yöneticisi · 22.03.2026</div>
         </div>

@@ -1,6 +1,13 @@
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .js .css .html .json
 
+# HTTPS yönlendirme
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
 # Content-Type başlıkları
 <IfModule mod_headers.c>
   <FilesMatch "\.css$">

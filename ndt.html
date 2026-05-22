@@ -30,14 +30,14 @@
   <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
   .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
   .page-hero-inner { position: relative; }
-  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 40px; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); letter-spacing: .05em; margin-bottom: 40px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
   .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: .98; letter-spacing: -.035em; color: var(--bone); margin-bottom: 32px; }
@@ -56,7 +56,7 @@
   .scope-col { background: var(--ink-0); padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; position: relative; }
   .scope-col.in { border-left: 3px solid var(--arc-2); }
   .scope-col.out { border-left: 3px solid var(--steel-1); }
-  .scope-col .k { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .25em; }
+  .scope-col .k { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .05em; }
   .scope-col.in .k { color: var(--arc-2); }
   .scope-col .v { font-family: var(--ff-display); font-weight: 900; font-size: 32px; color: var(--bone); letter-spacing: -.02em; }
   .scope-col .sub { font-size: 13px; color: var(--steel-2); line-height: 1.55; }
@@ -78,7 +78,7 @@
   }
   .ndt-tab:last-child { border-right: 0; }
   .ndt-tab:hover { background: var(--ink-2); }
-  .ndt-tab .code { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .2em; }
+  .ndt-tab .code { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .05em; }
   .ndt-tab .abbr { font-family: var(--ff-display); font-weight: 900; font-size: 32px; color: var(--bone); letter-spacing: -.02em; }
   .ndt-tab .name { font-size: 12px; color: var(--steel-2); }
   .ndt-tab.active { background: var(--ink-0); border-bottom: 3px solid var(--arc-2); }
@@ -98,7 +98,7 @@
     gap: 56px;
     align-items: start;
   }
-  .ndt-head .i { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .2em; margin-bottom: 12px; }
+  .ndt-head .i { font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2); letter-spacing: .05em; margin-bottom: 12px; }
   .ndt-head h2 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(40px, 4vw, 68px); line-height: .95; letter-spacing: -.03em; color: var(--bone); margin-bottom: 20px; }
   .ndt-head p { font-size: 15px; line-height: 1.65; color: var(--steel-3); margin-bottom: 28px; }
 
@@ -108,36 +108,36 @@
     margin-bottom: 24px;
   }
   .ndt-spec > div { background: var(--ink-0); padding: 16px; }
-  .ndt-spec .k { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .16em; text-transform: uppercase; }
+  .ndt-spec .k { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-1); letter-spacing: .04em; text-transform: uppercase; }
   .ndt-spec .v { font-family: var(--ff-display); font-weight: 700; font-size: 15px; color: var(--bone); margin-top: 6px; }
 
-  .ndt-detects h5 { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-2); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 10px; }
+  .ndt-detects h5 { font-family: var(--ff-mono); font-size: 10px; color: var(--steel-2); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; }
   .ndt-detects ul { list-style: none; }
   .ndt-detects li { font-size: 13px; color: var(--steel-3); padding: 8px 0; border-bottom: 1px dashed var(--ink-4); display: grid; grid-template-columns: auto 1fr; gap: 10px; }
   .ndt-detects li::before { content: '●'; color: var(--arc-2); font-size: 8px; align-self: center; }
 
   .ndt-visual { background: var(--ink-1); border: 1px solid var(--ink-4); padding: 32px 28px; position: relative; align-self: start; display: flex; flex-direction: column; }
   .nv-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 18px; border-bottom: 1px solid var(--ink-4); margin-bottom: 24px; }
-  .nv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--arc-2); }
-  .nv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; color: var(--steel-1); }
+  .nv-head .t { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--arc-2); }
+  .nv-head .r { font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; color: var(--steel-1); }
   .nv-big { font-family: var(--ff-display); font-weight: 700; font-size: clamp(52px, 5.5vw, 86px); line-height: .95; letter-spacing: -.02em; color: var(--paper); }
-  .nv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--steel-2); margin-top: 8px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
+  .nv-sub { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-2); margin-top: 8px; padding-bottom: 24px; border-bottom: 1px dashed var(--ink-4); }
   .nv-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 24px 0; border-top: 1px dashed var(--ink-4); }
   .nv-sp { padding: 16px 0; border-bottom: 1px dashed var(--ink-4); }
   .nv-sp:first-child, .nv-sp:nth-child(2) { padding-right: 16px; }
   .nv-sp:nth-child(even) { padding-left: 16px; border-left: 1px dashed var(--ink-4); }
-  .nv-sp .k { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-1); margin-bottom: 6px; }
+  .nv-sp .k { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-1); margin-bottom: 6px; }
   .nv-sp .v { font-family: var(--ff-sans); font-size: 13px; color: var(--paper); line-height: 1.35; }
   .nv-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 20px; border-top: 1px dashed var(--ink-4); }
-  .nv-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
-  .nv-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--ink-4); display: flex; justify-content: space-between; font-family: var(--ff-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-1); }
+  .nv-tags span { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-2); padding: 4px 8px; border: 1px solid var(--ink-4); }
+  .nv-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--ink-4); display: flex; justify-content: space-between; font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-1); }
   .nv-foot .ok { color: var(--arc-2); }
   .nv-foot .ext { color: var(--steel-2); }
 
   /* Expanded NDT card elements */
   .nv-hero-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0; }
   .nv-iso-badge {
-    font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em;
+    font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em;
     color: var(--steel-1); border: 1px solid var(--ink-4);
     padding: 6px 10px; align-self: flex-start; margin-top: 8px;
     text-transform: uppercase;
@@ -153,7 +153,7 @@
   }
   .nv-step:last-child { border-bottom: 0; }
   .nv-step-n {
-    font-family: var(--ff-mono); font-size: 9px; letter-spacing: .1em;
+    font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em;
     color: var(--arc-2); padding: 10px; border-right: 1px solid var(--ink-4);
     display: flex; align-items: center; justify-content: center;
     background: var(--ink-2);
@@ -172,14 +172,14 @@
   }
   .nv-param:nth-child(even) { border-right: 0; }
   .nv-param:nth-last-child(-n+2) { border-bottom: 0; }
-  .nv-param .k { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--steel-1); margin-bottom: 5px; }
+  .nv-param .k { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; text-transform: uppercase; color: var(--steel-1); margin-bottom: 5px; }
   .nv-param .v { font-family: var(--ff-sans); font-size: 12px; color: var(--paper); line-height: 1.35; }
   .nv-caps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
   .nv-cap { display: grid; grid-template-columns: 160px 1fr 90px; gap: 12px; align-items: center; }
-  .nv-cap .cl { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--steel-1); }
+  .nv-cap .cl { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .03em; text-transform: uppercase; color: var(--steel-1); }
   .nv-cap .cb { height: 2px; background: var(--ink-4); position: relative; overflow: hidden; }
   .nv-cap .cb i { position: absolute; top: 0; left: 0; bottom: 0; background: var(--arc-2); display: block; }
-  .nv-cap .cr { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .06em; color: var(--paper); text-align: right; }
+  .nv-cap .cr { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; color: var(--paper); text-align: right; }
 
   /* Defect catalog */
   .catalog { padding: 120px 0; background: var(--ink-0); }
@@ -207,7 +207,7 @@
   }
   .dv-code {
     font-family: var(--ff-mono); font-size: 9px;
-    letter-spacing: .18em; color: var(--steel-1);
+    letter-spacing: .05em; color: var(--steel-1);
     text-transform: uppercase;
   }
   .dv-letter {
@@ -218,12 +218,12 @@
   }
   .dv-name {
     font-family: var(--ff-mono); font-size: 10px;
-    letter-spacing: .18em; color: var(--paper);
+    letter-spacing: .05em; color: var(--paper);
     text-transform: uppercase;
   }
   .def-code {
     font-family: var(--ff-mono); font-size: 10px; color: var(--arc-2);
-    letter-spacing: .2em; margin-bottom: 6px;
+    letter-spacing: .05em; margin-bottom: 6px;
   }
   .def h4 {
     font-family: var(--ff-display); font-weight: 700;
@@ -233,7 +233,7 @@
   .def p { font-size: 13px; color: var(--steel-3); line-height: 1.55; margin-bottom: 12px; }
   .def .ndt-list {
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--steel-2); letter-spacing: .14em;
+    color: var(--steel-2); letter-spacing: .04em;
     padding-top: 12px; border-top: 1px solid var(--ink-4);
   }
   .def .ndt-list .m { color: var(--arc-2); margin-right: 6px; }
@@ -242,7 +242,7 @@
   .accept { padding: 100px 0; background: var(--ink-1); }
   .accept-tbl { width: 100%; border-collapse: collapse; margin-top: 40px; font-family: var(--ff-mono); font-size: 12px; }
   .accept-tbl th, .accept-tbl td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--ink-4); color: var(--steel-3); }
-  .accept-tbl th { background: var(--ink-0); color: var(--steel-1); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid var(--ink-5); }
+  .accept-tbl th { background: var(--ink-0); color: var(--steel-1); font-size: 10px; letter-spacing: .05em; text-transform: uppercase; border-bottom: 1px solid var(--ink-5); }
   .accept-tbl td:first-child { color: var(--bone); }
   .accept-tbl .lv { display: inline-block; padding: 3px 10px; border: 1px solid var(--ink-5); font-size: 10px; }
   .accept-tbl .lv.b { border-color: var(--arc-2); color: var(--arc-2); }
@@ -274,7 +274,7 @@
   .img-card .ic-badge {
     position: absolute; bottom: 14px; left: 16px;
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase;
     opacity: 0; transform: translateY(6px);
     transition: opacity .4s ease, transform .4s ease;
   }
@@ -294,6 +294,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    if (localStorage.getItem('armaweld-cookie') === 'all') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
     gtag('config', 'G-ML770TF8NC');
   </script>
 </head>
@@ -310,7 +314,7 @@
 </section>
 
 <div class="img-card hero-img-strip reveal">
-  <img src="uploads/ndt-4.jpeg" alt="NDT muayene" loading="lazy" width="2048" height="1366" />
+  <picture><source srcset="uploads/ndt-4.webp" type="image/webp"><img src="uploads/ndt-4.jpeg" alt="NDT muayene" loading="lazy" width="2048" height="1366" /></picture>
   <div class="ic-overlay"></div>
   <span class="ic-badge" data-i18n="ndt_badge_hero">● Tahribatsız Muayene · EN ISO 9712</span>
 </div>
@@ -398,7 +402,7 @@
         </div>
         <div class="ndt-visual">
           <div class="img-card ndt-panel-img reveal">
-            <img src="uploads/ndt-vt.png" alt="Gözle muayene" loading="lazy" width="1456" height="816" />
+            <picture><source srcset="uploads/ndt-vt.webp" type="image/webp"><img src="uploads/ndt-vt.png" alt="Gözle muayene" loading="lazy" width="1456" height="816" /></picture>
             <div class="ic-overlay"></div>
             <span class="ic-badge" data-i18n="ndt_badge_vt">● Gözle Muayene · VT</span>
           </div>
@@ -462,7 +466,7 @@
         </div>
         <div class="ndt-visual">
           <div class="img-card ndt-panel-img reveal">
-            <img src="uploads/ndt-pt.png" alt="Penetrant muayene" loading="lazy" width="1456" height="816" />
+            <picture><source srcset="uploads/ndt-pt.webp" type="image/webp"><img src="uploads/ndt-pt.png" alt="Penetrant muayene" loading="lazy" width="1456" height="816" /></picture>
             <div class="ic-overlay"></div>
             <span class="ic-badge" data-i18n="ndt_badge_pt">● Penetrant Muayene · PT</span>
           </div>
@@ -526,7 +530,7 @@
         </div>
         <div class="ndt-visual">
           <div class="img-card ndt-panel-img reveal">
-            <img src="uploads/ndt-mt.png" alt="Manyetik parçacık muayene" loading="lazy" width="1456" height="816" />
+            <picture><source srcset="uploads/ndt-mt.webp" type="image/webp"><img src="uploads/ndt-mt.png" alt="Manyetik parçacık muayene" loading="lazy" width="1456" height="816" /></picture>
             <div class="ic-overlay"></div>
             <span class="ic-badge" data-i18n="ndt_badge_mt">● Manyetik Parçacık · MT</span>
           </div>
@@ -591,7 +595,7 @@
         </div>
         <div class="ndt-visual">
           <div class="img-card ndt-panel-img reveal">
-            <img src="uploads/ndt-3.jpeg" alt="Ultrasonik muayene" loading="lazy" width="2048" height="1365" />
+            <picture><source srcset="uploads/ndt-3.webp" type="image/webp"><img src="uploads/ndt-3.jpeg" alt="Ultrasonik muayene" loading="lazy" width="2048" height="1365" /></picture>
             <div class="ic-overlay"></div>
             <span class="ic-badge" data-i18n="ndt_badge_ut">● Ultrasonik Muayene · UT</span>
           </div>
@@ -655,7 +659,7 @@
         </div>
         <div class="ndt-visual ndt-visual-ext">
           <div class="img-card ndt-panel-img reveal">
-            <img src="uploads/ndt-rt.png" alt="Radyografik muayene" loading="lazy" width="1456" height="816" />
+            <picture><source srcset="uploads/ndt-rt.webp" type="image/webp"><img src="uploads/ndt-rt.png" alt="Radyografik muayene" loading="lazy" width="1456" height="816" /></picture>
             <div class="ic-overlay"></div>
             <span class="ic-badge" data-i18n="ndt_badge_rt">● Radyografik Muayene · RT</span>
           </div>
@@ -877,9 +881,10 @@
   ]
 }
 </script>
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>
 mountChrome('ndt');
 document.querySelectorAll('.ndt-tab').forEach(tab => {

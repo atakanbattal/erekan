@@ -3,3 +3,5 @@
 *.py
 __MACOSX/
 Thumbs.db
+config/mail.config.php
+

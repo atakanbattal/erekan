@@ -20,33 +20,33 @@
 <meta property="og:site_name" content="ArmaWeld" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero { padding: calc(var(--nav-h) + 80px) 0 72px; background: var(--ink-1); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
   .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 20% 50%, rgba(255,122,26,.12), transparent 65%); }
   .hero-inner { position: relative; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
-  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 28px; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); letter-spacing: .05em; margin-bottom: 28px; }
   .breadcrumb a { color: var(--steel-2); }
   .breadcrumb a:hover { color: var(--arc-2); }
-  .page-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 20px; }
+  .page-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 20px; }
   .page-hero h1 { font-size: clamp(32px, 4.5vw, 60px); font-weight: 900; color: var(--bone); line-height: 1.02; letter-spacing: -.04em; margin-bottom: 20px; max-width: 780px; }
   .page-hero h1 span { color: var(--arc-2); }
   .page-hero p { font-size: 18px; color: var(--steel-2); line-height: 1.65; max-width: 620px; margin-bottom: 36px; }
   .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 14px 28px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 700; border-radius: 2px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--arc-2); color: var(--ink-0); padding: 14px 28px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; font-weight: 700; border-radius: 2px; }
   .btn-primary:hover { background: var(--arc-3); }
-  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--steel-2); border: 1px solid var(--ink-5); padding: 14px 28px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; font-weight: 600; border-radius: 2px; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--steel-2); border: 1px solid var(--ink-5); padding: 14px 28px; font-family: var(--ff-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; font-weight: 600; border-radius: 2px; }
   .btn-secondary:hover { color: var(--bone); border-color: var(--steel-1); }
   .trust-row { display: flex; gap: 32px; margin-top: 48px; flex-wrap: wrap; }
-  .trust-item { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .12em; display: flex; align-items: center; gap: 8px; }
+  .trust-item { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .03em; display: flex; align-items: center; gap: 8px; }
   .trust-item::before { content: '✓'; color: var(--arc-2); font-weight: 900; }
 
   .section { padding: 80px 0; }
   .section-alt { background: var(--ink-0); }
   .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
-  .section-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 16px; }
+  .section-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 16px; }
   .section-title { font-size: clamp(24px, 3vw, 38px); font-weight: 900; color: var(--bone); letter-spacing: -.035em; margin-bottom: 16px; }
   .section-desc { font-size: 16px; color: var(--steel-2); line-height: 1.7; max-width: 600px; margin-bottom: 48px; }
 
@@ -54,7 +54,7 @@
   .service-card { background: var(--ink-2); border: 1px solid var(--ink-4); border-radius: 4px; padding: 28px; }
   .service-card h3 { font-size: 16px; font-weight: 800; color: var(--bone); margin-bottom: 10px; }
   .service-card p { font-size: 14px; color: var(--steel-2); line-height: 1.65; margin: 0; }
-  .service-icon { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .15em; margin-bottom: 16px; }
+  .service-icon { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 16px; }
 
   .process-list { display: grid; gap: 0; }
   .process-step { display: grid; grid-template-columns: 56px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--ink-4); align-items: start; }
@@ -64,7 +64,7 @@
   .step-content p { font-size: 14px; color: var(--steel-2); line-height: 1.65; margin: 0; }
 
   .specs-table { width: 100%; border-collapse: collapse; }
-  .specs-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
+  .specs-table th { background: var(--ink-3); color: var(--bone); font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--arc-2); }
   .specs-table td { padding: 12px 16px; color: var(--steel-3); border-bottom: 1px solid var(--ink-4); font-size: 14px; }
   .specs-table tr:hover td { background: var(--ink-2); }
   .specs-table td:first-child { color: var(--arc-3); font-family: var(--ff-mono); font-weight: 700; white-space: nowrap; }
@@ -83,7 +83,7 @@
   .cta-section h2 { font-size: clamp(26px, 3vw, 42px); font-weight: 900; color: var(--bone); letter-spacing: -.035em; margin-bottom: 16px; }
   .cta-section p { font-size: 17px; color: var(--steel-2); margin-bottom: 36px; }
   .cta-badges { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-  .badge { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .12em; border: 1px solid var(--ink-5); padding: 8px 16px; border-radius: 2px; }
+  .badge { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); text-transform: uppercase; letter-spacing: .03em; border: 1px solid var(--ink-5); padding: 8px 16px; border-radius: 2px; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .hero-ctas { flex-direction: column; } }
@@ -118,7 +118,7 @@
         {
           "@type": "Question",
           "name": "Konya'da fason kaynak hizmeti nereden alınır?",
-          "acceptedAnswer": {"@type": "Answer", "text": "ArmaWeld, Konya Organize Sanayi Bölgesi'nde (OSB) faaliyet gösteren EN 1090 ve ISO 3834-2 belgeli bir subcontract kaynaklı imalat firmasıdır. MIG/MAG, TIG ve robot kaynak yöntemleriyle OEM firmalara fason üretim hizmeti sunulmaktadır."}
+          "acceptedAnswer": {"@type": "Answer", "text": "ArmaWeld, Karatay / Konya'da faaliyet gösteren EN 1090 ve ISO 3834-2 belgeli bir subcontract kaynaklı imalat firmasıdır. MIG/MAG, TIG ve robot kaynak yöntemleriyle OEM firmalara fason üretim hizmeti sunulmaktadır."}
         },
         {
           "@type": "Question",
@@ -179,32 +179,32 @@
       <div class="service-card">
         <div class="service-icon">MIG / MAG</div>
         <h3>MIG/MAG Kaynak</h3>
-        <p>Sinerjik kontrolcülü 12 istasyonla karbon çelik, paslanmaz ve yüksek mukavemetli çeliklerde seri fason üretim.</p>
+        <p>Onaylı WPS ve EN ISO 9606-1 belgeli kaynakçılarla karbon çelik, paslanmaz ve yüksek mukavemetli çeliklerde fason üretim.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">TIG</div>
         <h3>TIG Kaynak</h3>
-        <p>DC/AC TIG ile paslanmaz çelik ve alüminyum kaynak. Boru ve ince et uygulamaları dahil kaliteli fason hizmet.</p>
+        <p>DC/AC TIG ile paslanmaz çelik ve alüminyum. Boru ve ince et uygulamalarında kontrollü ısı girdisi yönetimi.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">Robot</div>
-        <h3>Robot Kaynak</h3>
-        <p>6 eksenli 2 robot hücresiyle tekrarlayan parçalarda yüksek hız ve tekrar doğruluğu. Seri fason üretim için idealdir.</p>
+        <div class="service-icon">Kesim</div>
+        <h3>Kesim & Hazırlık</h3>
+        <p>CNC plazma, lazer ve profil kesim — DXF'ten kaynağa hazır parça. Toleranslı hazırlık, kaynak ağzı dahil.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">Lazer / Plazma</div>
-        <h3>Lazer & Plazma Kesim</h3>
-        <p>25 mm karbona kadar lazer, 40 mm karbona kadar plazma kesim. Hazır parçadan kaynak kadar tam fason zinciri.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">CNC</div>
+        <div class="service-icon">Büküm</div>
         <h3>CNC Büküm</h3>
-        <p>320 ton / 4.000 mm abkant pres kapasitesi. Kaynak öncesi hassas şekillendirme ile fason parça kalitesi.</p>
+        <p>200 ton abkant pres ile V/U büküm ve silindir şekillendirme. Programlı açı ve geri yaylanma kompanzasyonu.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">Montaj</div>
+        <h3>Mekanik Montaj</h3>
+        <p>Fason parça montajı, civata tork kontrolü ve sahaya hazır paketleme.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">NDT / Kalite</div>
         <h3>Kalite & NDT</h3>
-        <p>VT, MT, PT ve UT muayene. ISO 3834-2 kapsamında kaynak prosedürü ve kaynakçı yeterlilik belgelendirmesi.</p>
+        <p>VT, PT, MT, UT in-house. ISO 3834-2 kapsamında prosedür, kaynakçı yeterliliği ve teslim dosyası.</p>
       </div>
     </div>
   </div>
@@ -214,21 +214,21 @@
   <div class="container">
     <div class="two-col">
       <div>
-        <div class="section-label">Üretim Altyapısı</div>
-        <h2 class="section-title">Ekipman Kapasitesi</h2>
-        <p class="section-desc">Konya OSB Karatay'daki tesisimizden subcontract müşterilerimize kesimden teslimat dosyasına kadar tam hizmet sunuyoruz.</p>
+        <div class="section-label">Üretim Kapsamı</div>
+        <h2 class="section-title">Süreç Yetkinliği</h2>
+        <p class="section-desc">2026'da devreye alınan Konya tesisimizden fason müşterilerimize kesimden teslimat dosyasına kadar entegre hizmet sunuyoruz. Makine sayısı yerine sertifika ve prosedür kapsamını paylaşıyoruz.</p>
         <table class="specs-table">
-          <thead><tr><th>Ekipman</th><th>Kapasite</th></tr></thead>
+          <thead><tr><th>Alan</th><th>Kapsam</th></tr></thead>
           <tbody>
-            <tr><td>Lazer kesim</td><td>25 mm karbon / 20 mm paslanmaz</td></tr>
-            <tr><td>Plazma kesim</td><td>40 mm karbon</td></tr>
-            <tr><td>Abkant pres</td><td>320 ton / 4.000 mm</td></tr>
-            <tr><td>MIG/MAG istasyonu</td><td>12 adet sinerjik</td></tr>
-            <tr><td>TIG istasyonu</td><td>4 adet DC/AC</td></tr>
-            <tr><td>Robot kaynak</td><td>2 hücre, 6 eksen</td></tr>
-            <tr><td>Max. parça ağırlığı</td><td>8.000 kg</td></tr>
+            <tr><td>Sertifikasyon</td><td>EN 1090 EXC3 · EN ISO 3834-2</td></tr>
+            <tr><td>Kaynak yöntemleri</td><td>MIG/MAG · TIG · FCAW · SAW</td></tr>
+            <tr><td>Malzeme grupları</td><td>S235–S960QL · Strenx/HARDOX · Paslanmaz · Al</td></tr>
+            <tr><td>Kesim & büküm</td><td>CNC plazma/lazer · 200 t abkant · silindir</td></tr>
+            <tr><td>NDT</td><td>VT · PT · MT · UT (ISO 9712 L2)</td></tr>
+            <tr><td>Teklif SLA</td><td>48 saat · NDA standart</td></tr>
           </tbody>
         </table>
+        <p style="margin-top:16px;font-size:14px;color:#888;"><a href="yetkinlik.html" style="color:#ff7a1a;">Tam yetkinlik profili →</a></p>
       </div>
       <div>
         <div class="section-label">Fason Süreç</div>
@@ -291,7 +291,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <h3>Konya'da fason kaynak hizmeti nereden alınır?</h3>
-        <p>ArmaWeld, Konya Organize Sanayi Bölgesi (OSB) Karatay'da faaliyet gösteren EN 1090 ve ISO 3834-2 belgeli bir subcontract kaynaklı imalat firmasıdır. OEM firmalara MIG/MAG, TIG ve robot kaynak yöntemleriyle fason üretim sunulmaktadır.</p>
+        <p>ArmaWeld, Karatay / Konya'da faaliyet gösteren EN 1090 ve ISO 3834-2 belgeli bir subcontract kaynaklı imalat firmasıdır. OEM firmalara MIG/MAG, TIG ve robot kaynak yöntemleriyle fason üretim sunulmaktadır.</p>
       </div>
       <div class="faq-item">
         <h3>Fason kaynak için minimum sipariş miktarı nedir?</h3>
@@ -329,10 +329,10 @@
     </div>
   </div>
 </section>
-
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>mountChrome('landing', '');</script>
 </body>
 </html>

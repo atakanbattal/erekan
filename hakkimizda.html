@@ -30,9 +30,9 @@
   <meta name="twitter:image" content="https://www.armaweld.com/assets/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="assets/theme.css?v=20260525" />
 <style>
   .page-hero {
     padding: calc(var(--nav-h) + 80px) 0 80px;
@@ -51,8 +51,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--steel-1);
-    text-transform: uppercase;
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     margin-bottom: 40px;
   }
   .breadcrumb a { color: var(--steel-2); }
@@ -95,7 +94,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--arc-2);
-    letter-spacing: .24em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     border-top: 1px solid var(--arc-2);
     padding-top: 14px;
@@ -164,7 +163,7 @@
   .mv-card .kt {
     font-size: 9px;
     color: var(--steel-1);
-    letter-spacing: .25em;
+    letter-spacing: .05em;
     margin-bottom: 12px;
     display: flex; justify-content: space-between;
   }
@@ -179,7 +178,7 @@
     line-height: 1;
     margin-bottom: 8px;
   }
-  .mv-card .vw small { font-size: 12px; font-weight: 400; color: var(--arc-2); letter-spacing: 0.1em; margin-left: 6px; }
+  .mv-card .vw small { font-size: 12px; font-weight: 400; color: var(--arc-2); letter-spacing: .04em; margin-left: 6px; }
   .mv-card .sub { font-size: 10px; color: var(--steel-2); line-height: 1.5; letter-spacing: .02em; }
   .mv-card .corners::before,
   .mv-card .corners::after,
@@ -251,7 +250,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .2em;
+    letter-spacing: .05em;
     text-transform: uppercase;
     padding-top: 6px;
   }
@@ -309,7 +308,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--steel-2);
-    letter-spacing: .08em;
+    letter-spacing: .03em;
     line-height: 1.5;
   }
 
@@ -369,7 +368,7 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--arc-2);
-    letter-spacing: .18em;
+    letter-spacing: .04em;
     text-transform: uppercase;
     padding: 6px 10px;
     border: 1px solid var(--arc-2);
@@ -385,11 +384,10 @@
     margin-bottom: 4px;
   }
   .team-role {
-    font-family: var(--ff-mono);
-    font-size: 11px;
+    font-family: var(--ff-sans);
+    font-size: 12px;
     color: var(--arc-2);
-    text-transform: uppercase;
-    letter-spacing: .18em;
+    letter-spacing: .01em;
     margin-bottom: 18px;
   }
   .team-bio {
@@ -423,7 +421,7 @@
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--arc-2);
-    letter-spacing: .24em;
+    letter-spacing: .05em;
     margin-bottom: 20px;
   }
   .val h3 {
@@ -481,18 +479,18 @@
   .fac-stat .n {
     font-family: var(--ff-display);
     font-weight: 800;
-    font-size: 48px;
-    line-height: 1;
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.05;
     color: var(--bone);
     letter-spacing: -.03em;
   }
   .fac-stat .n .u { font-size: 0.45em; color: var(--arc-2); }
   .fac-stat .l {
-    font-family: var(--ff-mono);
-    font-size: 10px;
+    font-family: var(--ff-sans);
+    font-size: 12px;
     color: var(--steel-2);
-    letter-spacing: .16em;
-    text-transform: uppercase;
+    letter-spacing: .01em;
+    line-height: 1.45;
     margin-top: 10px;
   }
 
@@ -514,7 +512,7 @@
   .flow-card-head .t {
     font-family: var(--ff-mono);
     font-size: 11px;
-    letter-spacing: .18em;
+    letter-spacing: .04em;
     text-transform: uppercase;
     color: var(--steel-2);
   }
@@ -523,9 +521,24 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--steel-1);
-    letter-spacing: .1em;
+    letter-spacing: .04em;
   }
-  .flow-stations { display: flex; flex-direction: column; gap: 0; }
+  .flow-stations {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .flow-stations::before {
+    content: '';
+    position: absolute;
+    left: 27px;
+    top: 36px;
+    bottom: 36px;
+    width: 1px;
+    background: var(--ink-4);
+    pointer-events: none;
+  }
   .flow-st {
     display: grid;
     grid-template-columns: 56px 1fr auto;
@@ -534,17 +547,56 @@
     padding: 18px 0;
     border-bottom: 1px dashed var(--ink-4);
     position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: opacity .35s ease;
   }
+  .flow-st::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--arc-2);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .4s cubic-bezier(.4, 0, .2, 1);
+    z-index: 2;
+  }
+  .flow-st::after {
+    content: '';
+    position: absolute;
+    inset: 0 -20px;
+    background: linear-gradient(90deg, rgba(255,122,26,.08), transparent 65%);
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .flow-st > * { position: relative; z-index: 1; }
   .flow-st:last-child { border-bottom: 0; }
-  .flow-st.active { background: linear-gradient(90deg, rgba(255,122,26,.06), transparent 60%); margin: 0 -20px; padding-left: 20px; padding-right: 20px; border-left: 2px solid var(--arc-2); }
+  .flow-st.is-lit::before,
+  .flow-st:hover::before,
+  .flow-st:focus-visible::before { transform: scaleY(1); }
+  .flow-st.is-lit::after,
+  .flow-st:hover::after,
+  .flow-st:focus-visible::after { opacity: 1; }
+  .flow-stations.is-hovering .flow-st:not(:hover):not(.is-lit) { opacity: .45; }
   .flow-st .n {
     font-family: var(--ff-mono);
     font-size: 22px;
     font-weight: 300;
     color: var(--steel-2);
     letter-spacing: .04em;
+    transition: color .3s ease, transform .3s ease;
   }
-  .flow-st.active .n { color: var(--arc-2); }
+  .flow-st.is-lit .n,
+  .flow-st:hover .n,
+  .flow-st:focus-visible .n {
+    color: var(--arc-2);
+    transform: translateX(3px);
+  }
   .flow-st .body .title {
     font-family: var(--ff-sans);
     font-size: 15px;
@@ -552,22 +604,64 @@
     color: var(--paper);
     margin-bottom: 4px;
     letter-spacing: -.005em;
+    transition: color .3s ease;
   }
+  .flow-st.is-lit .body .title,
+  .flow-st:hover .body .title,
+  .flow-st:focus-visible .body .title { color: #fff; }
   .flow-st .body .sub {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    color: var(--steel-1);
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    font-family: var(--ff-sans);
+    font-size: 12px;
+    color: var(--steel-2);
+    letter-spacing: .01em;
+    line-height: 1.45;
+    transition: color .3s ease;
   }
+  .flow-st.is-lit .body .sub,
+  .flow-st:hover .body .sub,
+  .flow-st:focus-visible .body .sub { color: var(--steel-1); }
   .flow-st .kpi {
     font-family: var(--ff-mono);
     font-size: 11px;
     color: var(--paper);
     text-align: right;
     letter-spacing: .04em;
+    transition: color .3s ease, transform .3s ease;
   }
-  .flow-st .kpi .u { color: var(--steel-1); margin-left: 4px; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+  .flow-st.is-lit .kpi,
+  .flow-st:hover .kpi,
+  .flow-st:focus-visible .kpi {
+    color: var(--arc-2);
+    transform: translateX(-3px);
+  }
+  @keyframes flow-pulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 0 rgba(255,122,26,0); }
+    50% { opacity: .55; text-shadow: 0 0 12px rgba(255,122,26,.45); }
+  }
+  @keyframes flow-step-in {
+    from { opacity: 0; transform: translateX(-14px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .flow-card.is-live .flow-card-head .t b { animation: flow-pulse 2.4s ease-in-out infinite; }
+  .flow-card.visible .flow-st {
+    animation: flow-step-in .55s cubic-bezier(.4, 0, .2, 1) both;
+  }
+  .flow-card.visible .flow-st:nth-child(1) { animation-delay: .08s; }
+  .flow-card.visible .flow-st:nth-child(2) { animation-delay: .16s; }
+  .flow-card.visible .flow-st:nth-child(3) { animation-delay: .24s; }
+  .flow-card.visible .flow-st:nth-child(4) { animation-delay: .32s; }
+  .flow-card.visible .flow-st:nth-child(5) { animation-delay: .40s; }
+  .flow-card-foot .ok {
+    color: var(--arc-2);
+    transition: opacity .3s ease;
+  }
+  .flow-card.is-live .flow-card-foot .ok { animation: flow-pulse 2.4s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .flow-card.is-live .flow-card-head .t b,
+    .flow-card.is-live .flow-card-foot .ok,
+    .flow-card.visible .flow-st { animation: none; }
+    .flow-st .n, .flow-st .kpi { transition: none; }
+  }
   .flow-card-foot {
     margin-top: 20px;
     padding-top: 18px;
@@ -577,10 +671,9 @@
     font-family: var(--ff-mono);
     font-size: 10px;
     color: var(--steel-1);
-    letter-spacing: .14em;
+    letter-spacing: .05em;
     text-transform: uppercase;
   }
-  .flow-card-foot .ok { color: var(--arc-2); }
 
   @media (max-width: 1000px) {
     .mani-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -610,7 +703,7 @@
   .img-card .ic-badge {
     position: absolute; bottom: 16px; left: 18px;
     font-family: var(--ff-mono); font-size: 10px;
-    color: var(--arc-2); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase;
     opacity: 0; transform: translateY(6px);
     transition: opacity .4s ease, transform .4s ease;
   }
@@ -635,6 +728,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    if (localStorage.getItem('armaweld-cookie') === 'all') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
     gtag('config', 'G-ML770TF8NC');
   </script>
 </head>
@@ -654,7 +751,7 @@
 </section>
 
 <div class="img-card hero-img-strip reveal">
-  <img src="uploads/fabrika.png" alt="ArmaWeld üretim tesisi" loading="lazy" width="1672" height="941" />
+  <picture><source srcset="uploads/fabrika.webp" type="image/webp"><img src="uploads/fabrika.png" alt="ArmaWeld üretim tesisi" loading="lazy" width="1672" height="941" /></picture>
   <div class="ic-overlay"></div>
   <span class="ic-badge" data-i18n="about_badge_factory">● ArmaWeld Üretim Tesisi</span>
 </div>
@@ -683,7 +780,7 @@
       </div>
       <div class="mani-visual">
         <div class="img-card mani-img reveal" data-d="1">
-          <img src="uploads/welder.png" alt="ArmaWeld kaynakçı" loading="lazy" width="1536" height="1024" />
+          <picture><source srcset="uploads/welder.webp" type="image/webp"><img src="uploads/welder.png" alt="ArmaWeld kaynakçı" loading="lazy" width="1536" height="1024" /></picture>
           <div class="ic-overlay"></div>
           <span class="ic-badge" data-i18n="about_badge_disc">● Mühendislik Disiplini</span>
         </div>
@@ -712,6 +809,22 @@
           <div class="sub" data-i18n="about_mv4_sub">Bünyemizde Seviye 2 NDT · VT · PT · MT · UT muayenesi in-house</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ARMAWELD -->
+<section class="aw-band section-pad" style="background:var(--ink-1); border-top:1px solid var(--ink-4);">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-i18n="why_eyebrow">Neden ArmaWeld?</div></div>
+      <h2 class="display h2" data-i18n-html="why_h2">Ucuz kaynak değil; denetlenebilir kaynak.</h2>
+    </div>
+    <div class="aw-why-grid">
+      <div class="aw-why-item reveal"><h3 data-i18n="why1_t">EN ISO 3834-2 çerçevesi</h3><p data-i18n="why1_d">Kaynak kalitesi prosedürle yönetilir — keyfi uygulama yok.</p></div>
+      <div class="aw-why-item reveal" data-d="1"><h3 data-i18n="why2_t">Parça bazlı izlenebilirlik</h3><p data-i18n="why2_d">Heat no, WPS revizyonu ve operatör kaydı her parçada.</p></div>
+      <div class="aw-why-item reveal" data-d="2"><h3 data-i18n="why3_t">4 NDT yöntemi bünyede</h3><p data-i18n="why3_d">VT, PT, MT, UT — Seviye 2 personel in-house.</p></div>
+      <div class="aw-why-item reveal" data-d="3"><h3 data-i18n="why4_t">48 saat teklif SLA</h3><p data-i18n="why4_d">Teknik dosya ve prosedür seçimi teklifte yazılı.</p></div>
     </div>
   </div>
 </section>
@@ -849,7 +962,7 @@
   <div class="container">
     <div class="section-head">
       <div>
-        <div class="eyebrow" data-i18n="about_fac_eyebrow">03 / Üretim Tesisi & Kapasite</div>
+        <div class="eyebrow" data-i18n="about_fac_eyebrow">03 / Üretim Tesisi & Süreç</div>
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">FAC — LAYOUT.01</p>
       </div>
       <h2 class="display h2" data-i18n-html="about_fac_h2">
@@ -860,28 +973,27 @@
     <div class="fac-wrap">
       <div>
         <p class="lede" data-i18n="about_fac_lede">
-          Üretim tesisimiz; malzeme akışı, kaynak istasyonları, NDT kabini ve sevkiyat
-          bölgesi sırasıyla tek yönlü olarak tasarlanmıştır. Bu, her işin
-          "geri dönüş"süz bir hat içinde ilerlemesini ve izlenebilirliği
-          fiziksel olarak desteklemesini sağlar.
+          Üretim tesisimiz; malzeme kabulünden sevkiyata kadar planlı bir akış üzerine kuruludur.
+          Kesim, kaynak, muayene ve dokümantasyon aynı çatı altında yürütülür; her parça proje
+          gereksinimine göre izlenebilir şekilde ilerler.
         </p>
 
         <div class="fac-stats">
           <div class="fac-stat">
-            <div class="n">2 400<span class="u">m²</span></div>
-            <div class="l" data-i18n="about_fac_s1l">Kapalı Üretim Alanı</div>
+            <div class="n" data-i18n="about_fac_s1n">Entegre</div>
+            <div class="l" data-i18n="about_fac_s1l">Kesim · Kaynak · NDT · Sevkiyat</div>
           </div>
           <div class="fac-stat">
-            <div class="n">12<span class="u">kaynak istasyonu</span></div>
-            <div class="l" data-i18n="about_fac_s2l">MIG/MAG · TIG · E-ARC</div>
+            <div class="n" data-i18n="about_fac_s2n">Kaynak</div>
+            <div class="l" data-i18n="about_fac_s2l">MIG/MAG · TIG · MMA · Onaylı WPS</div>
           </div>
           <div class="fac-stat">
-            <div class="n">60<span class="u">mm</span></div>
-            <div class="l" data-i18n="about_fac_s3l">Maksimum Plaka Kesim</div>
+            <div class="n" data-i18n="about_fac_s3n">Üretim</div>
+            <div class="l" data-i18n="about_fac_s3l">Fason imalat · Tekil parça · Seri</div>
           </div>
           <div class="fac-stat">
-            <div class="n">20<span class="u">ton</span></div>
-            <div class="l" data-i18n="about_fac_s4l">Köprü Vinç Kapasitesi</div>
+            <div class="n" data-i18n="about_fac_s4n">Kalite</div>
+            <div class="l" data-i18n="about_fac_s4l">EN ISO 3834-2 · Belgelenmiş süreç</div>
           </div>
         </div>
       </div>
@@ -892,45 +1004,45 @@
           <div class="r" data-i18n="about_flow_head_r">TEK YÖNLÜ · GERİ-DÖNÜŞSÜZ</div>
         </div>
         <div class="flow-stations">
-          <div class="flow-st">
+          <div class="flow-st" data-step="1" tabindex="0" role="button" aria-label="01 — Malzeme Kabul">
             <div class="n">01</div>
             <div class="body">
               <div class="title" data-i18n="about_flow_st1_title">Malzeme Kabul</div>
               <div class="sub" data-i18n="about_flow_st1_sub">Sertifika · Mill Test · Heat-No eşleşme</div>
             </div>
-            <div class="kpi">100<span class="u">% izlenebilir</span></div>
+            <div class="kpi" data-i18n="about_flow_st1_kpi">EN 10204 · 3.1</div>
           </div>
-          <div class="flow-st">
+          <div class="flow-st" data-step="2" tabindex="0" role="button" aria-label="02 — Sac Kesim">
             <div class="n">02</div>
             <div class="body">
               <div class="title" data-i18n="about_flow_st2_title">Sac Kesim</div>
               <div class="sub" data-i18n="about_flow_st2_sub">CNC Plazma · Gilyotin · Profil</div>
             </div>
-            <div class="kpi">60<span class="u">mm maks.</span></div>
+            <div class="kpi" data-i18n="about_flow_st2_kpi">Kaynağa hazır</div>
           </div>
-          <div class="flow-st active">
+          <div class="flow-st" data-step="3" tabindex="0" role="button" aria-label="03 — Kaynaklı İmalat">
             <div class="n">03</div>
             <div class="body">
               <div class="title" data-i18n="about_flow_st3_title">Kaynaklı İmalat</div>
-              <div class="sub" data-i18n="about_flow_st3_sub">MIG/MAG · TIG · E-ARC · 12 istasyon</div>
+              <div class="sub" data-i18n="about_flow_st3_sub">MIG/MAG · TIG · MMA · Onaylı WPS</div>
             </div>
-            <div class="kpi">EN ISO<span class="u">3834-2</span></div>
+            <div class="kpi" data-i18n="about_flow_st3_kpi">WPS · WPQR</div>
           </div>
-          <div class="flow-st">
+          <div class="flow-st" data-step="4" tabindex="0" role="button" aria-label="04 — NDT ve Muayene">
             <div class="n">04</div>
             <div class="body">
               <div class="title" data-i18n-html="about_flow_st4_title">NDT &amp; Muayene</div>
               <div class="sub" data-i18n="about_flow_st4_sub">VT · PT · MT · UT · Geometrik kontrol</div>
             </div>
-            <div class="kpi">EN ISO<span class="u">9712</span></div>
+            <div class="kpi" data-i18n="about_flow_st4_kpi">VT · UT · PT · MT · RT</div>
           </div>
-          <div class="flow-st">
+          <div class="flow-st" data-step="5" tabindex="0" role="button" aria-label="05 — Sevkiyat">
             <div class="n">05</div>
             <div class="body">
               <div class="title" data-i18n="about_flow_st5_title">Sevkiyat</div>
               <div class="sub" data-i18n="about_flow_st5_sub">Yüzey · Etiket · Sertifika paketi</div>
             </div>
-            <div class="kpi">20<span class="u">ton vinç</span></div>
+            <div class="kpi" data-i18n="about_flow_st5_kpi">Tam teslim dosyası</div>
           </div>
         </div>
         <div class="flow-card-foot">
@@ -952,10 +1064,10 @@
     <a href="iletisim.html" class="btn btn-primary" data-i18n="about_cta_btn">İletişime Geçin →</a>
   </div>
 </section>
-
-<script src="assets/translations.js"></script>
-<script src="assets/i18n.js"></script>
-<script src="assets/chrome.js"></script>
+<script src="assets/lang/tr.js?v=20260525"></script>
+<script src="assets/i18n.js?v=20260525"></script>
+<script src="assets/chrome.js?v=20260525"></script>
+<script src="assets/analytics.js?v=20260525"></script>
 <script>mountChrome('hakkimizda');</script>
 <script>
 (function(){
@@ -963,6 +1075,96 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const card = document.querySelector('.flow-card');
+  if (!card) return;
+
+  const stations = card.querySelector('.flow-stations');
+  const steps = [...card.querySelectorAll('.flow-st')];
+  let idx = -1;
+  let timer = null;
+  let paused = false;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setLit(i) {
+    steps.forEach((s, j) => s.classList.toggle('is-lit', j === i));
+  }
+
+  function cycle() {
+    if (paused || reduced) return;
+    idx = (idx + 1) % steps.length;
+    setLit(idx);
+  }
+
+  function startCycle() {
+    clearInterval(timer);
+    if (paused || reduced) return;
+    timer = setInterval(cycle, 2400);
+  }
+
+  function stopCycle() {
+    clearInterval(timer);
+    timer = null;
+    setLit(-1);
+    idx = -1;
+  }
+
+  stations.addEventListener('mouseenter', () => {
+    paused = true;
+    clearInterval(timer);
+    stations.classList.add('is-hovering');
+    setLit(-1);
+  });
+  stations.addEventListener('mouseleave', () => {
+    paused = false;
+    stations.classList.remove('is-hovering');
+    if (document.activeElement && !stations.contains(document.activeElement)) startCycle();
+  });
+  stations.addEventListener('focusin', () => {
+    paused = true;
+    clearInterval(timer);
+    setLit(-1);
+  });
+  stations.addEventListener('focusout', () => {
+    requestAnimationFrame(() => {
+      if (!stations.contains(document.activeElement) && !stations.matches(':hover')) {
+        paused = false;
+        startCycle();
+      }
+    });
+  });
+
+  steps.forEach((st, i) => {
+    st.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        paused = true;
+        clearInterval(timer);
+        setLit(i);
+      }
+    });
+    st.addEventListener('blur', () => {
+      if (!stations.matches(':hover')) {
+        paused = false;
+        startCycle();
+      }
+    });
+  });
+
+  const flowIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        card.classList.add('is-live');
+        e.target.classList.add('visible');
+        if (!reduced) startCycle();
+      } else {
+        card.classList.remove('is-live');
+        stopCycle();
+      }
+    });
+  }, { threshold: 0.35 });
+
+  flowIo.observe(card);
 })();
 </script>
 </body>
