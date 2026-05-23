@@ -6,3 +6,6 @@ Thumbs.db
 config/mail.config.php
 node_modules/
 
+
+# Local Netlify folder
+.netlify
