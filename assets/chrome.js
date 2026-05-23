@@ -4,6 +4,21 @@
 
 const PORTAL_LOGIN_URL = 'https://portal.armaweld.com/login';
 
+const NAV_LABELS = {
+  nav_home: 'Ana Sayfa',
+  nav_services: 'Hizmetler',
+  nav_engineering: 'Mühendislik',
+  nav_quality: 'Kalite',
+  nav_blog: 'Blog',
+  nav_contact: 'İletişim',
+  nav_about: 'Hakkımızda',
+  nav_welding: 'Kaynak',
+  nav_ndt: 'NDT',
+  nav_sectors: 'Sektörler',
+  nav_projects: 'Projeler',
+  nav_faq: 'SSS',
+};
+
 function getPortalUrl() {
   const host = location.hostname;
   if (host === 'localhost' || host === '127.0.0.1') {
@@ -69,24 +84,6 @@ function injectNavTypography() {
       background: rgba(255,122,26,.1) !important;
       border-color: var(--arc-2) !important;
     }
-    @media (max-width: 640px) {
-      .nav .nav-portal { display: none !important; }
-    }
-    .nav-drawer .nav-portal-mobile {
-      display: none;
-      margin: 16px 20px 0;
-      padding: 14px 16px;
-      text-align: center;
-      font-family: 'Archivo', system-ui, sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--arc-2);
-      border: 1px solid rgba(255,122,26,.35);
-      border-radius: 4px;
-    }
-    @media (max-width: 640px) {
-      .nav-drawer .nav-portal-mobile { display: block; }
-    }
   `;
   document.head.appendChild(style);
 }
@@ -115,7 +112,8 @@ function buildNav(activePage, base) {
   const isMoreActive = moreLinks.some(function (l) { return l.id === activePage; });
 
   function renderLink(l) {
-    return '<a class="nav-link ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" data-i18n="' + l.i18n + '"></a>';
+    const label = NAV_LABELS[l.i18n] || '';
+    return '<a class="nav-link ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" data-i18n="' + l.i18n + '">' + label + '</a>';
   }
 
   const desktopLinksHtml = primaryLinks.map(renderLink).join('') +
@@ -126,7 +124,8 @@ function buildNav(activePage, base) {
       '</button>' +
       '<div class="nav-more-menu" role="menu">' +
         moreLinks.map(function (l) {
-          return '<a class="nav-more-item ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" role="menuitem" data-i18n="' + l.i18n + '"></a>';
+          const label = NAV_LABELS[l.i18n] || '';
+          return '<a class="nav-more-item ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" role="menuitem" data-i18n="' + l.i18n + '">' + label + '</a>';
         }).join('') +
       '</div>' +
     '</div>';
@@ -183,10 +182,13 @@ function buildNav(activePage, base) {
       </div>
     </div>
     <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+      <div class="nav-drawer-actions">
+        <a href="${portalUrl}" class="nav-drawer-btn nav-drawer-btn--portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
+        <a href="${b}iletisim.html" class="nav-drawer-btn nav-drawer-btn--cta" data-i18n="nav_cta">Teklif Al →</a>
+      </div>
       <div class="nav-links">
         ${mobileLinksHtml}
       </div>
-      <a href="${portalUrl}" class="nav-portal-mobile" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
     </div>
   </nav>
   `;
@@ -345,31 +347,6 @@ function initCookieConsent() {
   if (window.i18n) window.i18n.apply();
 }
 
-function initStickyCTA() {
-  const base = location.pathname.includes('/blog/') ? '../' : '';
-  const sync = function () {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    let bar = document.querySelector('.sticky-cta');
-    if (!isMobile) {
-      if (bar) bar.remove();
-      document.body.classList.remove('has-sticky-cta');
-      return;
-    }
-    if (!bar) {
-      bar = document.createElement('div');
-      bar.className = 'sticky-cta';
-      bar.innerHTML = `
-        <a href="${getPortalUrl()}" class="sticky-cta__btn sticky-cta__btn--portal" data-i18n="nav_portal">Müşteri Portalı</a>
-        <a href="tel:+905438400332" class="sticky-cta__btn sticky-cta__btn--call" data-i18n="sticky_call" aria-label=""></a>
-        <a href="${base}iletisim.html" class="sticky-cta__btn sticky-cta__btn--primary" data-i18n="sticky_quote"></a>`;
-      document.body.appendChild(bar);
-      if (window.i18n) window.i18n.apply();
-    }
-    document.body.classList.add('has-sticky-cta');
-  };
-  sync();
-  window.addEventListener('resize', sync, { passive: true });
-}
 
 function initNavMore() {
   document.querySelectorAll('.nav-more-btn').forEach(function (btn) {
@@ -405,7 +382,7 @@ function initNavMore() {
 }
 
 function initMobileNav() {
-  document.querySelectorAll('.nav-link, .nav-cta, .nav-portal-mobile').forEach(function (link) {
+  document.querySelectorAll('.nav-link, .nav-drawer-btn').forEach(function (link) {
     link.addEventListener('click', function () {
       closeMobileNav();
     });
@@ -470,7 +447,7 @@ function injectMobileCSS(base) {
   const link = document.createElement('link');
   link.id = 'aw-mobile-css';
   link.rel = 'stylesheet';
-  link.href = (base || '') + 'assets/mobile.css?v=20260607';
+  link.href = (base || '') + 'assets/mobile.css?v=20260611';
   document.head.appendChild(link);
 }
 
@@ -514,7 +491,6 @@ function mountChrome(activePage, base) {
     initCounters();
     initScrollBar();
     initCookieConsent();
-    initStickyCTA();
     initMobileNav();
     initNavMore();
     initBlogSchema();
@@ -527,7 +503,6 @@ function mountChrome(activePage, base) {
     initCounters();
     initScrollBar();
     initCookieConsent();
-    initStickyCTA();
     initMobileNav();
     initNavMore();
     initBlogSchema();
@@ -572,12 +547,16 @@ function toggleTheme() {
       position: fixed;
       bottom: 28px;
       right: 28px;
-      z-index: 9999;
+      z-index: 9000;
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      animation: wa-bounce 2.4s ease-in-out infinite;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .wa-fab { animation: wa-bounce 2.4s ease-in-out infinite; }
     }
     .wa-fab__label {
       background: #fff;
@@ -621,8 +600,13 @@ function toggleTheme() {
     @media (prefers-reduced-motion: reduce) {
       .wa-fab { animation: none; }
     }
-    @media (max-width: 480px) {
-      .wa-fab { bottom: 78px; right: 18px; }
+    @media (max-width: 768px) {
+      .wa-fab {
+        bottom: 20px;
+        right: 16px;
+        animation: none !important;
+      }
+      .wa-fab__label { display: none !important; }
       .wa-fab__icon { width: 50px; height: 50px; }
       .wa-fab__icon svg { width: 28px; height: 28px; }
     }
@@ -643,6 +627,19 @@ function toggleTheme() {
       </svg>
     </span>
   `;
+
+  let touchMoved = false;
+  a.addEventListener('touchstart', function () {
+    touchMoved = false;
+  }, { passive: true });
+  a.addEventListener('touchmove', function () {
+    touchMoved = true;
+  }, { passive: true });
+  a.addEventListener('click', function (e) {
+    if (touchMoved) {
+      e.preventDefault();
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(a);

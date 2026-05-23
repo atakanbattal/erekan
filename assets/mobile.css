@@ -230,14 +230,13 @@ svg {
   }
 }
 
-/* Sticky CTA touch targets */
+/* Drawer button touch targets */
 @media (max-width: 768px) {
-  .sticky-cta__btn {
-    min-height: 44px;
+  .nav-drawer-btn {
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
   }
 }
 
