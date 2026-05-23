@@ -181,16 +181,16 @@ function buildNav(activePage, base) {
         </button>
       </div>
     </div>
-    <div class="nav-drawer" id="navDrawer" aria-hidden="true">
-      <div class="nav-drawer-actions">
-        <a href="${portalUrl}" class="nav-drawer-btn nav-drawer-btn--portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
-        <a href="${b}iletisim.html" class="nav-drawer-btn nav-drawer-btn--cta" data-i18n="nav_cta">Teklif Al →</a>
-      </div>
-      <div class="nav-links">
-        ${mobileLinksHtml}
-      </div>
-    </div>
   </nav>
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer-actions">
+      <a href="${portalUrl}" class="nav-drawer-btn nav-drawer-btn--portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
+      <a href="${b}iletisim.html" class="nav-drawer-btn nav-drawer-btn--cta" data-i18n="nav_cta">Teklif Al →</a>
+    </div>
+    <div class="nav-links">
+      ${mobileLinksHtml}
+    </div>
+  </div>
   `;
 }
 
@@ -447,7 +447,7 @@ function injectMobileCSS(base) {
   const link = document.createElement('link');
   link.id = 'aw-mobile-css';
   link.rel = 'stylesheet';
-  link.href = (base || '') + 'assets/mobile.css?v=20260611';
+  link.href = (base || '') + 'assets/mobile.css?v=20260612';
   document.head.appendChild(link);
 }
 

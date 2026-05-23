@@ -828,7 +828,8 @@ section { position: relative; }
     top: var(--nav-h);
     left: 0;
     right: 0;
-    bottom: 0;
+    height: calc(100dvh - var(--nav-h));
+    max-height: calc(100dvh - var(--nav-h));
     z-index: 9997;
     background: var(--ink-0);
     border-bottom: 1px solid var(--ink-4);
@@ -837,7 +838,7 @@ section { position: relative; }
     justify-content: flex-start;
     align-items: stretch;
   }
-  .nav.open .nav-drawer { display: flex !important; }
+  body.nav-open .nav-drawer { display: flex !important; }
   .nav-drawer-actions {
     display: flex;
     flex-direction: column;
