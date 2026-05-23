@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
+    "build:hostinger": "next build && node scripts/prepare-hostinger.mjs",
     "start": "next start -p 3001",
-    "lint": "eslint",
-    "deploy": "netlify build && netlify deploy --prod --no-build --dir=.netlify/static --functions=.netlify/functions-internal --skip-functions-cache"
+    "start:hostinger": "node .hostinger-deploy/server.js",
+    "lint": "eslint"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.1",
@@ -20,7 +21,6 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.11",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

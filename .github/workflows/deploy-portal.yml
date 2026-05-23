@@ -1,4 +1,4 @@
-name: Deploy Portal to Netlify
+name: Deploy Portal to Hostinger
 
 on:
   push:
@@ -28,20 +28,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build for Netlify
-        run: npx netlify build
+      - name: Build for Hostinger
+        run: npm run build:hostinger
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Deploy to Netlify
-        run: |
-          npx netlify deploy --prod --no-build \
-            --dir=.netlify/static \
-            --functions=.netlify/functions-internal \
-            --skip-functions-cache
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./portal/.hostinger-deploy/
+          server-dir: ${{ secrets.FTP_PORTAL_DIR }}

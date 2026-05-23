@@ -72,13 +72,34 @@ npm run dev:site
 
 Portal çalışırken tarayıcıda http://localhost:3001/setup adresine gidin ve ilk admin hesabınızı oluşturun.
 
-## Production
+## Production (Hostinger)
 
 | Ortam | Ana site | Portal |
 |-------|----------|--------|
 | Canlı | https://www.armaweld.com | https://portal.armaweld.com |
 
 Ana sitedeki portal linkleri production'da otomatik olarak `portal.armaweld.com` adresine yönlenir. Localhost'ta `localhost:3001` kullanılır.
+
+### Hostinger Node.js kurulumu (tek seferlik)
+
+Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web App** gerektirir (Business / Cloud plan).
+
+1. hPanel → **Websites** → **Add Website** → **Node.js Apps**
+2. Alan adı: `portal.armaweld.com`
+3. GitHub repo: `atakanbattal/ArmaWeld`, kök dizin: `portal`
+4. Ayarlar:
+   - Install: `npm ci`
+   - Build: `npm run build:hostinger`
+   - Start: `npm run start -- -p $PORT` (veya `node server.js`)
+   - Node.js: 20
+5. Ortam değişkenleri (hPanel):
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
+
+Alternatif: GitHub Actions, `portal/.hostinger-deploy/` klasörünü FTP ile yükler (`Deploy Portal to Hostinger` workflow). Bu durumda hPanel'de Node.js uygulamasının kök dizini `FTP_PORTAL_DIR` ile aynı olmalıdır.
+
+GitHub secret: `FTP_PORTAL_DIR` — örn. `/domains/portal.armaweld.com/public_html/`
 
 ## Supabase
 

@@ -7,8 +7,7 @@ function getPortalUrl() {
   if (host === 'localhost' || host === '127.0.0.1') {
     return 'http://localhost:3001/login';
   }
-  // portal.armaweld.com requires Hostinger CNAME → armaweld-portal.netlify.app
-  return 'https://armaweld-portal.netlify.app/login';
+  return 'https://portal.armaweld.com/login';
 }
 
 function injectNavTypography() {
