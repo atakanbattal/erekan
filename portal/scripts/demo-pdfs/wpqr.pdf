@@ -1,0 +1,39 @@
+%PDF-1.4
+1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
+2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
+3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
+4 0 obj<< /Length 336 >>stream
+BT
+/F1 16 Tf
+50 780 Td
+(WPQR — Kaynak Proseduru Onay Raporu) Tj
+0 -28 Td
+/F1 11 Tf
+(ArmaWeld Kaynak Muhendisligi) Tj
+0 -18 Td
+(Standart: EN ISO 15614-1) Tj
+0 -18 Td
+(Malzeme grubu: S355J2 / G3Si1) Tj
+0 -18 Td
+(Kaynak pozisyonu: PA, PB) Tj
+0 -18 Td
+(Sonuc: ONAYLANDI) Tj
+0 -18 Td
+(Imza: Kaynak Muhendisi — ArmaWeld QA) Tj
+0 -18 Td
+ET
+endstream
+endobj
+5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000056 00000 n 
+0000000111 00000 n 
+0000000235 00000 n 
+0000000620 00000 n 
+trailer<< /Size 6 /Root 1 0 R >>
+startxref
+688
+%%EOF

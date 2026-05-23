@@ -4,9 +4,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
   nav_engineering: 'Mühendislik',
   nav_quality: 'Kalite', nav_welding: 'Kaynak', nav_ndt: 'NDT',
   nav_sectors: 'Sektörler', nav_projects: 'Projeler', nav_faq: 'SSS', nav_contact: 'İletişim', nav_blog: 'Blog',
+  nav_portal: 'Müşteri Portalı',
+  nav_more: 'Diğer',
   nav_cta: 'Teklif Al →',
   nav_aria_home: 'ArmaWeld ana sayfa', nav_aria_theme: 'Tema değiştir',
-  nav_aria_menu: 'Menü', nav_aria_lang: 'Dil seç',
+  nav_aria_menu: 'Menü', nav_aria_lang: 'Dil seç', nav_aria_more: 'Diğer menü',
 
   // Footer
   footer_tag: 'Her dikişin arkasında bir mühendis imzası vardır.',
@@ -37,6 +39,9 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
   home_hero_h1: 'Kaynaklı<br/>İmalat.',
   home_hero_lede: 'EN 1090 ve EN ISO 3834-2 sertifikalı kaynaklı imalat, sac kesim, büküm ve NDT hizmetleri. S235\'ten Strenx 1100\'e, alüminyumdan HARDOX\'a — her çelik grubunda onaylı WPS ve belgeli kaynakçılar.',
   home_hero_cta1: 'Teklif Formu', home_hero_cta2: 'Hizmetlerimiz',
+  home_hero_cta_portal: 'Müşteri Portala Giriş',
+  home_trace_portal_h: 'Siparişinizi canlı takip edin.',
+  home_trace_portal_p: 'Müşteri portalından iş emrinizin aşamalarını, operatör kayıtlarını ve teknik belgelerinizi görüntüleyip indirebilirsiniz.',
   home_stat1_lbl: 'YIL DENEYİM', home_stat2_lbl: 'TAMAMLANAN PROJE',
   home_stat3_lbl: 'SERTİFİKA', home_stat4_lbl: 'AKTİF KAYNAKÇI',
   home_svc_eyebrow: '01 / Hizmetler', home_svc_h2: 'Tek çatı altında<br/>tüm metal işleme.',

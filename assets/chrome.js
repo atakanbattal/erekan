@@ -2,12 +2,21 @@
 // ArmaWeld — Shared Chrome (Nav + Footer)
 // ============================================
 
+function getPortalUrl() {
+  const host = location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') {
+    return 'http://localhost:3001/login';
+  }
+  return 'https://portal.armaweld.com/login';
+}
+
 function injectNavTypography() {
   if (document.getElementById('aw-nav-type')) return;
   const style = document.createElement('style');
   style.id = 'aw-nav-type';
   style.textContent = `
-    .nav .nav-links { gap: 4px; text-transform: none; }
+    .nav .nav-links { gap: 2px; text-transform: none; flex-wrap: nowrap; }
+    .nav .nav-desktop .nav-links { overflow: visible; }
     .nav .nav-links .nav-link {
       font-family: 'Archivo', system-ui, -apple-system, sans-serif !important;
       font-size: 14px !important;
@@ -27,11 +36,53 @@ function injectNavTypography() {
     @media (max-width: 1280px) {
       .nav .nav-links .nav-link { font-size: 13px !important; padding: 8px 9px !important; }
     }
-    @media (max-width: 1080px) {
-      .nav .nav-links .nav-link {
+    @media (max-width: 1200px) {
+      .nav-drawer .nav-links .nav-link {
         font-size: 16px !important;
         padding: 14px 0 !important;
       }
+    }
+    .nav .nav-more-menu {
+      left: auto !important;
+      right: 0 !important;
+      transform: none !important;
+    }
+    .nav .nav-portal {
+      font-family: 'Archivo', system-ui, sans-serif !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.01em !important;
+      color: var(--arc-2) !important;
+      padding: 7px 11px !important;
+      border: 1px solid rgba(255,122,26,.35) !important;
+      border-radius: 4px !important;
+      white-space: nowrap !important;
+      transition: background .2s, border-color .2s !important;
+    }
+    @media (max-width: 1400px) {
+      .nav .nav-portal { font-size: 11px !important; padding: 7px 9px !important; }
+    }
+    .nav .nav-portal:hover {
+      background: rgba(255,122,26,.1) !important;
+      border-color: var(--arc-2) !important;
+    }
+    @media (max-width: 640px) {
+      .nav .nav-portal { display: none !important; }
+    }
+    .nav-drawer .nav-portal-mobile {
+      display: none;
+      margin: 16px 20px 0;
+      padding: 14px 16px;
+      text-align: center;
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--arc-2);
+      border: 1px solid rgba(255,122,26,.35);
+      border-radius: 4px;
+    }
+    @media (max-width: 640px) {
+      .nav-drawer .nav-portal-mobile { display: block; }
     }
   `;
   document.head.appendChild(style);
@@ -39,27 +90,47 @@ function injectNavTypography() {
 
 function buildNav(activePage, base) {
   const b = base || '';
-  const links = [
-    { id: 'index',     i18n: 'nav_home',     href: b + 'index.html' },
-    { id: 'hakkimizda',i18n: 'nav_about',    href: b + 'hakkimizda.html' },
-    { id: 'hizmetler', i18n: 'nav_services', href: b + 'hizmetler.html' },
+  const primaryLinks = [
+    { id: 'index',       i18n: 'nav_home',        href: b + 'index.html' },
+    { id: 'hizmetler',   i18n: 'nav_services',    href: b + 'hizmetler.html' },
     { id: 'muhendislik', i18n: 'nav_engineering', href: b + 'muhendislik.html' },
-    { id: 'kalite',    i18n: 'nav_quality',  href: b + 'kalite.html' },
-    { id: 'kaynak',    i18n: 'nav_welding',  href: b + 'kaynak-yontemleri.html' },
-    { id: 'ndt',       i18n: 'nav_ndt',      href: b + 'ndt.html' },
-    { id: 'sektorler', i18n: 'nav_sectors',  href: b + 'sektorler.html' },
-    { id: 'projeler',  i18n: 'nav_projects', href: b + 'projeler.html' },
-    { id: 'sss',       i18n: 'nav_faq',      href: b + 'sss.html' },
-    { id: 'iletisim',  i18n: 'nav_contact',  href: b + 'iletisim.html' },
-    { id: 'blog',      i18n: 'nav_blog',     href: b + 'blog/' },
+    { id: 'kalite',      i18n: 'nav_quality',     href: b + 'kalite.html' },
+    { id: 'blog',        i18n: 'nav_blog',        href: b + 'blog/' },
+    { id: 'iletisim',    i18n: 'nav_contact',     href: b + 'iletisim.html' },
   ];
+  const moreLinks = [
+    { id: 'hakkimizda',  i18n: 'nav_about',    href: b + 'hakkimizda.html' },
+    { id: 'kaynak',      i18n: 'nav_welding',  href: b + 'kaynak-yontemleri.html' },
+    { id: 'ndt',         i18n: 'nav_ndt',      href: b + 'ndt.html' },
+    { id: 'sektorler',   i18n: 'nav_sectors',  href: b + 'sektorler.html' },
+    { id: 'projeler',    i18n: 'nav_projects', href: b + 'projeler.html' },
+    { id: 'sss',         i18n: 'nav_faq',      href: b + 'sss.html' },
+  ];
+  const allLinks = primaryLinks.concat(moreLinks);
 
-  const linkHtml = links.map(l =>
-    `<a class="nav-link ${l.id === activePage ? 'active' : ''}" href="${l.href}" data-i18n="${l.i18n}"></a>`
-  ).join('');
+  const portalUrl = getPortalUrl();
+  const isMoreActive = moreLinks.some(function (l) { return l.id === activePage; });
+
+  function renderLink(l) {
+    return '<a class="nav-link ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" data-i18n="' + l.i18n + '"></a>';
+  }
+
+  const desktopLinksHtml = primaryLinks.map(renderLink).join('') +
+    '<div class="nav-more' + (isMoreActive ? ' active' : '') + '">' +
+      '<button type="button" class="nav-link nav-more-btn' + (isMoreActive ? ' active' : '') + '" aria-expanded="false" aria-haspopup="true" data-i18n-aria="nav_aria_more" aria-label="">' +
+        '<span data-i18n="nav_more">Diğer</span>' +
+        '<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>' +
+      '</button>' +
+      '<div class="nav-more-menu" role="menu">' +
+        moreLinks.map(function (l) {
+          return '<a class="nav-more-item ' + (l.id === activePage ? 'active' : '') + '" href="' + l.href + '" role="menuitem" data-i18n="' + l.i18n + '"></a>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+
+  const mobileLinksHtml = allLinks.map(renderLink).join('');
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('armaweld-theme') || 'light';
-  const logoSrc = (b || 'assets/') + (b ? 'assets/' : '') + (currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png');
 
   return `
   <nav class="nav">
@@ -67,10 +138,16 @@ function buildNav(activePage, base) {
       <a href="${b}index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="">
         <img id="nav-logo" src="${b}assets/${currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png'}" alt="ArmaWeld" class="logo-img" />
       </a>
+      <div class="nav-desktop">
+        <div class="nav-links">
+          ${desktopLinksHtml}
+        </div>
+      </div>
       <div class="nav-drawer" id="navDrawer" aria-hidden="true">
         <div class="nav-links">
-          ${linkHtml}
+          ${mobileLinksHtml}
         </div>
+        <a href="${portalUrl}" class="nav-portal-mobile" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
       </div>
       <div class="nav-right">
         <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="" onclick="toggleTheme()" title="">
@@ -101,6 +178,7 @@ function buildNav(activePage, base) {
           </div>
         </div>
 
+        <a href="${portalUrl}" class="nav-portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
         <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta"></a>
         <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" aria-expanded="false" aria-controls="navDrawer" onclick="toggleMobileNav()">
           <span></span><span></span><span></span>
@@ -278,6 +356,7 @@ function initStickyCTA() {
       bar = document.createElement('div');
       bar.className = 'sticky-cta';
       bar.innerHTML = `
+        <a href="${getPortalUrl()}" class="sticky-cta__btn sticky-cta__btn--portal" data-i18n="nav_portal">Müşteri Portalı</a>
         <a href="tel:+905438400332" class="sticky-cta__btn sticky-cta__btn--call" data-i18n="sticky_call" aria-label=""></a>
         <a href="${base}iletisim.html" class="sticky-cta__btn sticky-cta__btn--primary" data-i18n="sticky_quote"></a>`;
       document.body.appendChild(bar);
@@ -289,8 +368,41 @@ function initStickyCTA() {
   window.addEventListener('resize', sync, { passive: true });
 }
 
+function initNavMore() {
+  document.querySelectorAll('.nav-more-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wrap = btn.closest('.nav-more');
+      if (!wrap) return;
+      var open = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.querySelectorAll('.nav-more-menu').forEach(function (menu) {
+    menu.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.nav-more.open').forEach(function (el) {
+      el.classList.remove('open');
+      var btn = el.querySelector('.nav-more-btn');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.nav-more.open').forEach(function (el) {
+        el.classList.remove('open');
+        var btn = el.querySelector('.nav-more-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+}
+
 function initMobileNav() {
-  document.querySelectorAll('.nav-link, .nav-cta').forEach(function (link) {
+  document.querySelectorAll('.nav-link, .nav-cta, .nav-portal-mobile').forEach(function (link) {
     link.addEventListener('click', function () {
       closeMobileNav();
     });
@@ -385,6 +497,10 @@ function mountChrome(activePage, base) {
   document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage, base));
   document.body.insertAdjacentHTML('beforeend', buildFooter(base));
 
+  document.querySelectorAll('[data-portal-link]').forEach(function (a) {
+    a.href = getPortalUrl();
+  });
+
   // Apply translations to injected chrome
   if (window.i18n) {
     window.i18n.apply();
@@ -397,6 +513,7 @@ function mountChrome(activePage, base) {
     initCookieConsent();
     initStickyCTA();
     initMobileNav();
+    initNavMore();
     initBlogSchema();
     initMobileEnhancements();
     if (window.i18n) window.i18n.apply();
@@ -409,6 +526,7 @@ function mountChrome(activePage, base) {
     initCookieConsent();
     initStickyCTA();
     initMobileNav();
+    initNavMore();
     initBlogSchema();
     initMobileEnhancements();
   }

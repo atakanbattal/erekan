@@ -1,0 +1,15 @@
+{
+  "name": "armaweld",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n site,portal -c blue,orange \"npm run dev:site\" \"npm run dev:portal\"",
+    "dev:site": "serve -l 3000",
+    "dev:portal": "npm run dev --prefix portal",
+    "build:portal": "npm run build --prefix portal",
+    "start:portal": "npm run start --prefix portal"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.4"
+  }
+}
