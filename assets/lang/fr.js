@@ -1,7 +1,7 @@
 window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.fr={
   nav_home: 'Accueil', nav_about: 'À propos', nav_services: 'Services',
   nav_quality: 'Qualité', nav_welding: 'Soudage', nav_ndt: 'CND',
-  nav_sectors: 'Secteurs', nav_projects: 'Projets', nav_faq: 'FAQ', nav_blog: 'Blog',
+  nav_sectors: 'Secteurs', nav_projects: 'Projets', nav_faq: 'FAQ', nav_contact: 'Contact', nav_blog: 'Blog',
   nav_cta: 'Devis →',
   nav_aria_home: 'Page d\'accueil ArmaWeld', nav_aria_theme: 'Changer le thème',
   nav_aria_menu: 'Menu', nav_aria_lang: 'Sélectionner la langue',
@@ -1854,4 +1854,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.fr={
 
   services_cta_p: 'Envoyez plans ou échantillon — analyse des coûts et plan de production sous 48 heures.',
 
+  footer_legal: 'Les contenus, images et marques de ce site sont la propriété d\'ArmaWeld. Toute reproduction ou utilisation sans autorisation est interdite.',
+  home_ref_q1: 'Des fournisseurs précédents ont soudé du S960QL sans préchauffage — des fissures sont apparues. Chez ArmaWeld le WPS et le protocole de préchauffage étaient complets.',
+  home_ref_q1_who: 'RESP. ACHATS · OEM VÉHICULES LOURDS',
+  home_ref_q2: 'Nous avons demandé le dossier EN 1090 EXC3. Dossier CE, liste WPQR, enregistrements CND — tout prêt dès la première livraison.',
+  home_ref_q2_who: 'INGÉNIEUR QUALITÉ · CENTRALE ÉNERGIE',
+  home_ref_q3: 'Nous passons des commandes de bennes en série chaque année depuis trois ans. L\'écart qualité par pièce est quasi nul — cette discipline est difficile à tenir.',
+  home_ref_q3_who: 'DG · CONSTRUCTION MÉCANIQUE',
 };

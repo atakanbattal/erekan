@@ -1,7 +1,7 @@
 window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.en={
   nav_home: 'Home', nav_about: 'About', nav_services: 'Services',
   nav_quality: 'Quality', nav_welding: 'Welding', nav_ndt: 'NDT',
-  nav_sectors: 'Sectors', nav_projects: 'Projects', nav_faq: 'FAQ', nav_blog: 'Blog',
+  nav_sectors: 'Sectors', nav_projects: 'Projects', nav_faq: 'FAQ', nav_contact: 'Contact', nav_blog: 'Blog',
   nav_cta: 'Get Quote →',
   nav_aria_home: 'ArmaWeld homepage', nav_aria_theme: 'Toggle theme',
   nav_aria_menu: 'Menu', nav_aria_lang: 'Select language',
@@ -1862,4 +1862,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.en={
 
   services_cta_p: 'Send drawings or a sample — we\'ll prepare cost analysis and a production plan within 48 hours.',
 
+  footer_legal: 'Content, images and trademarks on this website are the property of ArmaWeld. Reproduction or use without permission is prohibited.',
+  home_ref_q1: 'Previous suppliers welding S960QL skipped preheat — we had cracks. At ArmaWeld the WPS and preheat protocol were complete.',
+  home_ref_q1_who: 'PROCUREMENT MGR · HEAVY VEHICLE OEM',
+  home_ref_q2: 'We requested the EN 1090 EXC3 document package. CE dossier, WPQR list, NDT records — all ready on first delivery.',
+  home_ref_q2_who: 'QUALITY ENGINEER · ENERGY PLANT',
+  home_ref_q3: 'We have placed serial bucket orders every year for three years. Per-part quality variation is near zero — that discipline is hard to maintain.',
+  home_ref_q3_who: 'GENERAL MANAGER · MACHINERY MANUFACTURING',
 };

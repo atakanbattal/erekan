@@ -1,7 +1,7 @@
 window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.es={
   nav_home: 'Inicio', nav_about: 'Nosotros', nav_services: 'Servicios',
   nav_quality: 'Calidad', nav_welding: 'Soldadura', nav_ndt: 'END',
-  nav_sectors: 'Sectores', nav_projects: 'Proyectos', nav_faq: 'FAQ', nav_blog: 'Blog',
+  nav_sectors: 'Sectores', nav_projects: 'Proyectos', nav_faq: 'FAQ', nav_contact: 'Contacto', nav_blog: 'Blog',
   nav_cta: 'Cotización →',
   nav_aria_home: 'Página principal ArmaWeld', nav_aria_theme: 'Cambiar tema',
   nav_aria_menu: 'Menú', nav_aria_lang: 'Seleccionar idioma',
@@ -1854,4 +1854,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.es={
 
   services_cta_p: 'Envíe planos o una muestra — análisis de costes y plan de producción en 48 horas.',
 
+  footer_legal: 'Los contenidos, imágenes y marcas de este sitio son propiedad de ArmaWeld. Se prohíbe su reproducción o uso sin autorización.',
+  home_ref_q1: 'Proveedores anteriores soldaron S960QL sin precalentamiento — aparecieron grietas. En ArmaWeld el WPS y el protocolo de precalentamiento fueron completos.',
+  home_ref_q1_who: 'DIR. COMPRAS · OEM VEHÍCULOS PESADOS',
+  home_ref_q2: 'Solicitamos el paquete documental EN 1090 EXC3. Dossier CE, lista WPQR, registros END — todo listo en la primera entrega.',
+  home_ref_q2_who: 'ING. CALIDAD · PLANTA ENERGÉTICA',
+  home_ref_q3: 'Llevamos tres años pidiendo cucharones en serie cada año. La variación de calidad por pieza es casi cero — mantener esa disciplina no es fácil.',
+  home_ref_q3_who: 'DIR. GENERAL · FABRICACIÓN DE MAQUINARIA',
 };

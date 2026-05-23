@@ -2,7 +2,7 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
   // Nav
   nav_home: 'Ana Sayfa', nav_about: 'Hakkımızda', nav_services: 'Hizmetler',
   nav_quality: 'Kalite', nav_welding: 'Kaynak', nav_ndt: 'NDT',
-  nav_sectors: 'Sektörler', nav_projects: 'Projeler', nav_faq: 'SSS', nav_blog: 'Blog',
+  nav_sectors: 'Sektörler', nav_projects: 'Projeler', nav_faq: 'SSS', nav_contact: 'İletişim', nav_blog: 'Blog',
   nav_cta: 'Teklif Al →',
   nav_aria_home: 'ArmaWeld ana sayfa', nav_aria_theme: 'Tema değiştir',
   nav_aria_menu: 'Menü', nav_aria_lang: 'Dil seç',
@@ -27,6 +27,7 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
   sticky_quote: 'Teklif Al',
   wa_fab_label: 'Bize WhatsApp\'tan yazın',
   footer_ver: 'Ver. 2026.01 — Türkiye',
+  footer_legal: 'Bu web sitesindeki içerikler, görseller ve ticari markalar ArmaWeld\'e aittir. İzinsiz kopyalanamaz, çoğaltılamaz veya kullanılamaz.',
 
   // ── Home ──
   home_hero_eyebrow: 'EN 1090 · EN ISO 3834-2 · ISO 9001',
@@ -1907,4 +1908,10 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
 
   services_cta_p: 'Teknik resim veya numune gönderin — 48 saat içinde maliyet analizi ve üretim planı hazırlayalım.',
 
+  home_ref_q1: 'S960QL ile daha önce kaynak yaptıran firmalar ön ısıtma yapmamıştı, çatlak çıkmıştı. ArmaWeld\'de WPS\'i ve ön ısıtma protokolü eksiksizdi.',
+  home_ref_q1_who: 'SATIN ALMA MÜD. · AĞIR ARAÇ OEM',
+  home_ref_q2: 'EN 1090 EXC3 kapsamında belge paketi talep ettik. CE dosyası, WPQR listesi, NDT kayıtları — hepsi ilk teslimde hazırdı.',
+  home_ref_q2_who: 'KALİTE MÜHENDİSİ · ENERJİ TESİSİ',
+  home_ref_q3: '3 yıldır her yıl seri kepçe siparişimizi veriyoruz. Adet başı kalite sapması neredeyse sıfır — bu disiplini sürdürmek kolay değil.',
+  home_ref_q3_who: 'GENEL MÜDÜR · MAKİNE İMALAT SANAYİ',
 };

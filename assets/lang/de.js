@@ -1,7 +1,7 @@
 window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.de={
   nav_home: 'Startseite', nav_about: 'Über uns', nav_services: 'Leistungen',
   nav_quality: 'Qualität', nav_welding: 'Schweißen', nav_ndt: 'ZfP',
-  nav_sectors: 'Branchen', nav_projects: 'Projekte', nav_faq: 'FAQ', nav_blog: 'Blog',
+  nav_sectors: 'Branchen', nav_projects: 'Projekte', nav_faq: 'FAQ', nav_contact: 'Kontakt', nav_blog: 'Blog',
   nav_cta: 'Angebot →',
   nav_aria_home: 'ArmaWeld Startseite', nav_aria_theme: 'Design wechseln',
   nav_aria_menu: 'Menü', nav_aria_lang: 'Sprache wählen',
@@ -1854,4 +1854,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.de={
 
   services_cta_p: 'Senden Sie Zeichnungen oder ein Muster — Kostenanalyse und Produktionsplan innerhalb von 48 Stunden.',
 
+  footer_legal: 'Inhalte, Bilder und Marken dieser Website sind Eigentum von ArmaWeld. Vervielfältigung oder Verwendung ohne Genehmigung ist untersagt.',
+  home_ref_q1: 'Frühere Lieferanten schweißten S960QL ohne Vorwärmen — Risse entstanden. Bei ArmaWeld waren WPS und Vorwärmprotokoll vollständig.',
+  home_ref_q1_who: 'EINKAUFSLEITUNG · NUTZFAHRZEUG-OEM',
+  home_ref_q2: 'Wir forderten das EN 1090 EXC3-Dokumentenpaket. CE-Akte, WPQR-Liste, ZfP-Aufzeichnungen — alles bei der ersten Lieferung bereit.',
+  home_ref_q2_who: 'QUALITÄTSINGENIEUR · ENERGIEANLAGE',
+  home_ref_q3: 'Seit drei Jahren bestellen wir jährlich Serienlöffel. Qualitätsabweichung pro Stück nahe null — diese Disziplin ist schwer durchzuhalten.',
+  home_ref_q3_who: 'GESCHÄFTSFÜHRER · MASCHINENBAU',
 };

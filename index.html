@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css?v=20260525" />
+<link rel="stylesheet" href="assets/theme.css?v=20260526" />
 <style>
   /* ===== Hero ===== */
   .hero {
@@ -1828,57 +1828,51 @@
     </div>
 
     <!-- Sektör rozetleri -->
-    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px;">
-      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+    <div class="ref-sector-pills">
+      <span class="ref-sector-pill">
         <span style="color:var(--arc-2);">■</span> İŞ MAKİNELERİ
-        <span style="color:var(--steel-1);">/ HARDOX · Strenx · S700MC</span>
+        <span class="sub">/ HARDOX · Strenx · S700MC</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+      <span class="ref-sector-pill">
         <span style="color:var(--arc-2);">■</span> YAPISAL ÇELİK
-        <span style="color:var(--steel-1);">/ S355 · S690QL · Strenx</span>
+        <span class="sub">/ S355 · S690QL · Strenx</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+      <span class="ref-sector-pill">
         <span style="color:var(--arc-2);">■</span> ENERJİ / GES
-        <span style="color:var(--steel-1);">/ S275 · HDG</span>
+        <span class="sub">/ S275 · HDG</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+      <span class="ref-sector-pill">
         <span style="color:var(--arc-2);">■</span> DEMİRYOLU
-        <span style="color:var(--steel-1);">/ EN 15085 CL1</span>
+        <span class="sub">/ EN 15085 CL1</span>
       </span>
-      <span style="display:inline-flex; align-items:center; gap:10px; background:var(--ink-0); border:1px solid var(--ink-4); padding:12px 20px; font-family:var(--ff-mono); font-size:11px; color:var(--bone); letter-spacing:.1em;">
+      <span class="ref-sector-pill">
         <span style="color:var(--arc-2);">■</span> PROSES / BASINÇLI KAP
-        <span style="color:var(--steel-1);">/ PED · RT %100</span>
+        <span class="sub">/ PED · RT %100</span>
       </span>
     </div>
 
     <!-- Müşteri sözleri -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--ink-4); border:1px solid var(--ink-4);">
-      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
-        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
-        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+    <div class="ref-quotes-grid">
+      <div class="ref-quote-card">
+        <div class="ref-quote-mark">"</div>
+        <p class="ref-quote-text" data-i18n="home_ref_q1">
           S960QL ile daha önce kaynak yaptıran firmalar ön ısıtma yapmamıştı, çatlak çıkmıştı. ArmaWeld'de WPS'i ve ön ısıtma protokolü eksiksizdi.
         </p>
-        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
-          SATIN ALMA MÜD. · AĞIR ARAÇ OEM
-        </div>
+        <div class="ref-quote-who" data-i18n="home_ref_q1_who">SATIN ALMA MÜD. · AĞIR ARAÇ OEM</div>
       </div>
-      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
-        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
-        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+      <div class="ref-quote-card">
+        <div class="ref-quote-mark">"</div>
+        <p class="ref-quote-text" data-i18n="home_ref_q2">
           EN 1090 EXC3 kapsamında belge paketi talep ettik. CE dosyası, WPQR listesi, NDT kayıtları — hepsi ilk teslimde hazırdı.
         </p>
-        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
-          KALİTE MÜHENDİSİ · ENERJİ TESİSİ
-        </div>
+        <div class="ref-quote-who" data-i18n="home_ref_q2_who">KALİTE MÜHENDİSİ · ENERJİ TESİSİ</div>
       </div>
-      <div style="background:var(--ink-0); padding:36px 32px; display:flex; flex-direction:column; gap:16px;">
-        <div style="font-family:var(--ff-display); font-weight:900; font-size:60px; line-height:.6; color:var(--arc-2);">"</div>
-        <p style="font-family:var(--ff-display); font-size:17px; line-height:1.4; color:var(--bone); flex:1;">
+      <div class="ref-quote-card">
+        <div class="ref-quote-mark">"</div>
+        <p class="ref-quote-text" data-i18n="home_ref_q3">
           3 yıldır her yıl seri kepçe siparişimizi veriyoruz. Adet başı kalite sapması neredeyse sıfır — bu disiplini sürdürmek kolay değil.
         </p>
-        <div style="border-top:1px solid var(--ink-4); padding-top:16px; font-family:var(--ff-mono); font-size:10px; color:var(--steel-2); letter-spacing:.1em;">
-          GENEL MÜDÜR · MAKİNE İMALAT SANAYİ
-        </div>
+        <div class="ref-quote-who" data-i18n="home_ref_q3_who">GENEL MÜDÜR · MAKİNE İMALAT SANAYİ</div>
       </div>
     </div>
 
@@ -1930,10 +1924,10 @@
     </div>
   </div>
 </section>
-<script src="assets/lang/tr.js?v=20260525"></script>
-<script src="assets/i18n.js?v=20260525"></script>
-<script src="assets/chrome.js?v=20260525"></script>
-<script src="assets/analytics.js?v=20260525"></script>
+<script src="assets/lang/tr.js?v=20260526"></script>
+<script src="assets/i18n.js?v=20260526"></script>
+<script src="assets/chrome.js?v=20260526"></script>
+<script src="assets/analytics.js?v=20260526"></script>
 <script>
   mountChrome('index').then(function () {
 

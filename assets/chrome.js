@@ -49,6 +49,7 @@ function buildNav(activePage, base) {
     { id: 'sektorler', i18n: 'nav_sectors',  href: b + 'sektorler.html' },
     { id: 'projeler',  i18n: 'nav_projects', href: b + 'projeler.html' },
     { id: 'sss',       i18n: 'nav_faq',      href: b + 'sss.html' },
+    { id: 'iletisim',  i18n: 'nav_contact',  href: b + 'iletisim.html' },
     { id: 'blog',      i18n: 'nav_blog',     href: b + 'blog/' },
   ];
 
@@ -160,7 +161,7 @@ function buildFooter(base) {
         <span data-i18n="footer_certs"></span>
         <span data-i18n="footer_ver"></span>
       </div>
-      <div class="footer-legal" data-i18n="footer_legal">${t('footer_legal')}</div>
+      <div class="footer-legal" data-i18n="footer_legal"></div>
     </div>
   </footer>
   `;
@@ -250,23 +251,46 @@ function initCookieConsent() {
       gtag('consent', 'update', { analytics_storage: 'granted' });
     }
     el.classList.add('cookie-banner--hide');
+    document.body.classList.remove('has-cookie-banner');
     setTimeout(function () { el.remove(); }, 400);
   });
   document.body.appendChild(el);
+  document.body.classList.add('has-cookie-banner');
   if (window.i18n) window.i18n.apply();
 }
 
 function initStickyCTA() {
-  if (document.querySelector('.sticky-cta') || window.innerWidth > 768) return;
-  const bar = document.createElement('div');
-  bar.className = 'sticky-cta';
-  bar.innerHTML = `
-    <a href="tel:+905438400332" class="sticky-cta__btn sticky-cta__btn--call" data-i18n="sticky_call" aria-label=""></a>
-    <a href="iletisim.html" class="sticky-cta__btn sticky-cta__btn--primary" data-i18n="sticky_quote"></a>`;
   const base = location.pathname.includes('/blog/') ? '../' : '';
-  bar.querySelector('[href="iletisim.html"]').href = base + 'iletisim.html';
-  document.body.appendChild(bar);
-  document.body.classList.add('has-sticky-cta');
+  const sync = function () {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let bar = document.querySelector('.sticky-cta');
+    if (!isMobile) {
+      if (bar) bar.remove();
+      document.body.classList.remove('has-sticky-cta');
+      return;
+    }
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'sticky-cta';
+      bar.innerHTML = `
+        <a href="tel:+905438400332" class="sticky-cta__btn sticky-cta__btn--call" data-i18n="sticky_call" aria-label=""></a>
+        <a href="${base}iletisim.html" class="sticky-cta__btn sticky-cta__btn--primary" data-i18n="sticky_quote"></a>`;
+      document.body.appendChild(bar);
+      if (window.i18n) window.i18n.apply();
+    }
+    document.body.classList.add('has-sticky-cta');
+  };
+  sync();
+  window.addEventListener('resize', sync, { passive: true });
+}
+
+function initMobileNav() {
+  document.querySelectorAll('.nav-link, .nav-cta').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var nav = document.querySelector('.nav');
+      if (nav) nav.classList.remove('open');
+    });
+  });
 }
 
 function initBlogSchema() {
@@ -317,6 +341,7 @@ function mountChrome(activePage, base) {
     initScrollBar();
     initCookieConsent();
     initStickyCTA();
+    initMobileNav();
     initBlogSchema();
     if (window.i18n) window.i18n.apply();
   });
@@ -326,6 +351,7 @@ function mountChrome(activePage, base) {
     initScrollBar();
     initCookieConsent();
     initStickyCTA();
+    initMobileNav();
     initBlogSchema();
   }
   document.dispatchEvent(new CustomEvent('armaweld:chrome-ready'));

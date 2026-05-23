@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css?v=20260525" />
+<link rel="stylesheet" href="assets/theme.css?v=20260526" />
 <style>
   .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
   .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
@@ -171,8 +171,9 @@
     background: var(--ink-4);
     border: 1px solid var(--ink-4);
     margin-top: 48px;
+    min-width: 0;
   }
-  .tm { background: var(--ink-1); padding: 40px 32px; display: flex; flex-direction: column; gap: 20px; }
+  .tm { background: var(--ink-1); padding: 40px 32px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
   .tm-mark {
     font-family: var(--ff-display);
     font-weight: 900;
@@ -228,6 +229,8 @@
 
   @media (max-width: 1000px) {
     .proj-grid, .testim-grid, .num-row { grid-template-columns: 1fr; }
+    .tm { padding: 28px 20px; }
+    .tm-quote { font-size: clamp(16px, 4.2vw, 19px); line-height: 1.4; }
   }
 
   /* Image effect system */
@@ -532,10 +535,10 @@
     </div>
   </div>
 </section>
-<script src="assets/lang/tr.js?v=20260525"></script>
-<script src="assets/i18n.js?v=20260525"></script>
-<script src="assets/chrome.js?v=20260525"></script>
-<script src="assets/analytics.js?v=20260525"></script>
+<script src="assets/lang/tr.js?v=20260526"></script>
+<script src="assets/i18n.js?v=20260526"></script>
+<script src="assets/chrome.js?v=20260526"></script>
+<script src="assets/analytics.js?v=20260526"></script>
 <script>
 mountChrome('projeler');
 document.querySelectorAll('.f-pill').forEach(p => {
