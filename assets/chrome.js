@@ -2,12 +2,14 @@
 // ArmaWeld — Shared Chrome (Nav + Footer)
 // ============================================
 
+const PORTAL_LOGIN_URL = 'https://portal.armaweld.com/login';
+
 function getPortalUrl() {
   const host = location.hostname;
   if (host === 'localhost' || host === '127.0.0.1') {
     return 'http://localhost:3001/login';
   }
-  return 'https://portal.armaweld.com/login';
+  return PORTAL_LOGIN_URL;
 }
 
 function injectNavTypography() {

@@ -13,3 +13,4 @@ node_modules/
 # Hostinger deploy bundle
 portal/.hostinger-deploy/
 portal/supabase/.temp/
+portal.zip

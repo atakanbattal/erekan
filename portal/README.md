@@ -97,9 +97,7 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
 
-Alternatif: GitHub Actions, `portal/.hostinger-deploy/` klasörünü FTP ile yükler (`Deploy Portal to Hostinger` workflow). Bu durumda hPanel'de Node.js uygulamasının kök dizini `FTP_PORTAL_DIR` ile aynı olmalıdır.
-
-GitHub secret: `FTP_PORTAL_DIR` — örn. `/domains/portal.armaweld.com/public_html/`
+Alternatif: GitHub Actions her `main` push'unda ana site ve portalı birlikte deploy eder (`.github/workflows/deploy.yml`).
 
 ## Supabase
 
