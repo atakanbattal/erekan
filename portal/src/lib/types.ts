@@ -80,3 +80,23 @@ export interface OrderActivity {
   actor_role: string | null;
   created_at: string;
 }
+
+export type MessageCategory = 'general' | 'support' | 'order';
+export type MessageSender = 'customer' | 'admin';
+
+export interface PortalMessage {
+  id: string;
+  customer_id: string;
+  order_id: string | null;
+  thread_id: string;
+  category: MessageCategory;
+  subject: string;
+  body: string;
+  sender_type: MessageSender;
+  sender_name: string | null;
+  is_read_by_admin: boolean;
+  is_read_by_customer: boolean;
+  created_at: string;
+  orders?: Pick<Order, 'job_number' | 'title'> | null;
+  customers?: Pick<Customer, 'company_name' | 'contact_name' | 'email'> | null;
+}

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { Package, Users, Plus, ArrowRight } from 'lucide-react';
+import { Package, Users, Plus, ArrowRight, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { Header } from '@/components/Header';
 import { StatusBadge } from '@/components/StatusBadge';
@@ -24,7 +24,7 @@ export default async function AdminPage() {
 
   if (!staff?.is_admin) redirect('/dashboard');
 
-  const [{ count: orderCount }, { count: customerCount }, { data: recentOrders }] =
+  const [{ count: orderCount }, { count: customerCount }, { data: recentOrders }, { count: unreadMessages }] =
     await Promise.all([
       supabase.from('orders').select('*', { count: 'exact', head: true }),
       supabase.from('customers').select('*', { count: 'exact', head: true }),
@@ -33,6 +33,11 @@ export default async function AdminPage() {
         .select('*, customers(company_name)')
         .order('updated_at', { ascending: false })
         .limit(5),
+      supabase
+        .from('portal_messages')
+        .select('*', { count: 'exact', head: true })
+        .eq('sender_type', 'customer')
+        .eq('is_read_by_admin', false),
     ]);
 
   const activeOrders =
@@ -57,7 +62,7 @@ export default async function AdminPage() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4 mb-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <div className="card p-5">
             <div className="flex items-center gap-3 mb-2">
               <Package size={20} className="text-arc-2" />
@@ -75,6 +80,18 @@ export default async function AdminPage() {
             </div>
             <div className="text-3xl font-black text-bone">{customerCount ?? 0}</div>
           </div>
+          <Link href="/admin/messages" className="card p-5 hover:border-arc-2/40 transition-colors group relative">
+            <div className="flex items-center gap-3 mb-2">
+              <MessageSquare size={20} className="text-arc-2" />
+              <span className="label">{t('messages.adminInbox')}</span>
+              {(unreadMessages ?? 0) > 0 && (
+                <span className="portal-sidebar-badge ml-auto">{unreadMessages}</span>
+              )}
+            </div>
+            <div className="text-lg font-bold text-bone group-hover:text-arc-2 transition-colors flex items-center gap-2">
+              {t('nav.messages')} <ArrowRight size={18} />
+            </div>
+          </Link>
           <Link href="/admin/orders" className="card p-5 hover:border-arc-2/40 transition-colors group">
             <div className="label mb-2">{t('admin.quickAccess')}</div>
             <div className="text-lg font-bold text-bone group-hover:text-arc-2 transition-colors flex items-center gap-2">

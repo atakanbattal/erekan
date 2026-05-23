@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LogOut, Shield, LayoutDashboard, Package, Users } from 'lucide-react';
+import { LogOut, Shield, LayoutDashboard, Package, Users, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
 import { LangSwitcher } from './LangSwitcher';
@@ -37,6 +37,7 @@ export function Header({ isAdmin, userName, companyName }: HeaderProps) {
         { href: '/admin', label: t('nav.admin'), icon: Shield },
         { href: '/admin/orders', label: t('nav.orders'), icon: Package },
         { href: '/admin/customers', label: t('nav.customers'), icon: Users },
+        { href: '/admin/messages', label: t('nav.messages'), icon: MessageSquare },
       ]
     : [{ href: '/dashboard', label: t('nav.myOrders'), icon: LayoutDashboard }];
 
