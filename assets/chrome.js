@@ -67,8 +67,13 @@ function buildNav(activePage, base) {
       <a href="${b}index.html" class="logo" data-i18n-aria="nav_aria_home" aria-label="">
         <img id="nav-logo" src="${b}assets/${currentTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png'}" alt="ArmaWeld" class="logo-img" />
       </a>
-      <div class="nav-links">
-        ${linkHtml}
+      <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+        <div class="nav-links">
+          ${linkHtml}
+        </div>
+        <div class="nav-drawer-foot">
+          <a href="${b}iletisim.html" class="nav-drawer-cta" data-i18n="nav_cta"></a>
+        </div>
       </div>
       <div class="nav-right">
         <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="" onclick="toggleTheme()" title="">
@@ -100,7 +105,7 @@ function buildNav(activePage, base) {
         </div>
 
         <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta"></a>
-        <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" onclick="document.querySelector('.nav').classList.toggle('open')">
+        <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" aria-expanded="false" aria-controls="navDrawer" onclick="toggleMobileNav()">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -288,12 +293,36 @@ function initStickyCTA() {
 }
 
 function initMobileNav() {
-  document.querySelectorAll('.nav-link, .nav-cta').forEach(function (link) {
+  document.querySelectorAll('.nav-link, .nav-cta, .nav-drawer-cta').forEach(function (link) {
     link.addEventListener('click', function () {
-      var nav = document.querySelector('.nav');
-      if (nav) nav.classList.remove('open');
+      closeMobileNav();
     });
   });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMobileNav();
+  });
+}
+
+function toggleMobileNav() {
+  var nav = document.querySelector('.nav');
+  if (!nav) return;
+  var open = nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open', open);
+  var drawer = document.getElementById('navDrawer');
+  var burger = document.querySelector('.nav-burger');
+  if (drawer) drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+function closeMobileNav() {
+  var nav = document.querySelector('.nav');
+  if (!nav || !nav.classList.contains('open')) return;
+  nav.classList.remove('open');
+  document.body.classList.remove('nav-open');
+  var drawer = document.getElementById('navDrawer');
+  var burger = document.querySelector('.nav-burger');
+  if (drawer) drawer.setAttribute('aria-hidden', 'true');
+  if (burger) burger.setAttribute('aria-expanded', 'false');
 }
 
 function initBlogSchema() {
@@ -329,7 +358,7 @@ function injectMobileCSS(base) {
   const link = document.createElement('link');
   link.id = 'aw-mobile-css';
   link.rel = 'stylesheet';
-  link.href = (base || '') + 'assets/mobile.css?v=20260605';
+  link.href = (base || '') + 'assets/mobile.css?v=20260606';
   document.head.appendChild(link);
 }
 

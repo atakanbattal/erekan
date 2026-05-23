@@ -299,6 +299,8 @@ img { max-width: 100%; display: block; }
   align-items: center;
   text-transform: none;
 }
+.nav-drawer { display: contents; }
+.nav-drawer-foot { display: none; }
 .nav-link {
   padding: 8px 12px;
   font-family: var(--ff-display);
@@ -706,23 +708,40 @@ section { position: relative; }
 @media (max-width: 1080px) {
   .nav-meta { display: none; }
   .nav-burger { display: flex; }
-  .nav-links {
-    position: absolute;
-    top: var(--nav-h); left: 0; right: 0;
+  body.nav-open { overflow: hidden; }
+  .nav-drawer {
+    display: none;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9997;
     background: var(--ink-0);
     border-bottom: 1px solid var(--ink-4);
+    display: none;
+    flex-direction: column;
+  }
+  .nav.open .nav-drawer { display: flex; }
+  .nav-links {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    background: transparent;
+    border-bottom: none;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px 24px 16px;
+    padding: 8px 24px 0;
     display: none;
-  }
-  .nav.open .nav-links { display: flex; }
-  .nav-links {
-    max-height: calc(100dvh - var(--nav-h));
+    flex: 1;
+    min-height: 0;
+    max-height: none;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .nav.open .nav-links { display: flex; }
   .nav-link {
     padding: 14px 0;
     border-bottom: 1px solid var(--ink-3);
@@ -732,6 +751,31 @@ section { position: relative; }
   }
   .nav-link.active { font-weight: 600; }
   .nav-link.active::after { left: 0; right: auto; width: 24px; bottom: 6px; }
+  .nav-drawer-foot {
+    display: block;
+    flex-shrink: 0;
+    padding: 16px 24px calc(16px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--ink-4);
+    background: var(--ink-0);
+  }
+  .nav-drawer-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 14px 20px;
+    background: var(--arc-2);
+    color: var(--ink-0);
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .nav-drawer-cta:hover { background: var(--arc-3); color: var(--ink-0); }
 }
 @media (max-width: 900px) {
   .section-head { grid-template-columns: 1fr; gap: 16px; }
