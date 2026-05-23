@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr" data-i18n-title="eng_page_title">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mühendislik Hizmetleri — ArmaWeld</title>
+<meta name="description" data-i18n="eng_meta_desc" content="Tersine mühendislik, WPS hazırlama, FEA analizi, DFM review ve kaynak simülasyonu — IWE/IWT mühendis kadrosu." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.armaweld.com/muhendislik.html" />
+<link rel="stylesheet" href="assets/theme.css?v=20260604" />
+<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
+<style>
+  .page-hero { padding: calc(var(--nav-h) + 80px) 0 80px; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(255,122,26,.15), transparent 60%); }
+  .page-hero-inner { position: relative; }
+  .breadcrumb { font-family: var(--ff-mono); font-size: 11px; color: var(--steel-1); letter-spacing: .05em; margin-bottom: 40px; }
+  .breadcrumb a { color: var(--steel-2); }
+  .page-hero h1 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 4vw, 62px); line-height: 1.05; color: var(--bone); margin-bottom: 24px; }
+  .page-hero h1 .arc { color: var(--arc-2); }
+  .page-hero .lede { font-size: clamp(16px, 1.3vw, 20px); color: var(--steel-3); max-width: 62ch; line-height: 1.65; }
+</style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">ArmaWeld</a> &nbsp;/&nbsp; <span data-i18n="nav_engineering">Mühendislik</span></div>
+    <h1 data-i18n-html="eng_h1">Mühendislik<br/><span class="arc">Hizmetleri.</span></h1>
+    <p class="lede" data-i18n="eng_lede">Kaynak mühendisliği, tersine mühendislik, FEA analizi ve üretilebilirlik değerlendirmesi — üretim öncesi teknik riskleri azaltın.</p>
+  </div>
+</section>
+
+<section class="deep-section">
+  <div class="container">
+    <div data-i18n-html="eng_services_html"></div>
+  </div>
+</section>
+
+<section class="deep-section alt">
+  <div class="container">
+    <div data-i18n-html="eng_team_html"></div>
+  </div>
+</section>
+
+<section class="deep-section">
+  <div class="container">
+    <div data-i18n-html="eng_software_html"></div>
+  </div>
+</section>
+
+<section class="tools-section">
+  <div class="container">
+    <div class="deep-head">
+      <div class="eyebrow" data-i18n="tool_section_eyebrow">Mühendislik Araçları</div>
+      <h2 data-i18n="tool_section_h2">Teknik hesaplayıcılar ve proje checklist'i.</h2>
+      <p data-i18n="tool_section_lede">Isı girdisi, ön ısıtma tahmini, sektöre göre malzeme önerisi ve proje tipine göre belge listesi.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-panel">
+        <h3 data-i18n="tool_hi_title">Isı Girdisi Hesaplayıcı</h3>
+        <p class="tool-desc" data-i18n="tool_hi_desc">Q = (U × I × 60) / (v × 1000) kJ/mm</p>
+        <div class="tool-row">
+          <div class="tool-field"><label data-i18n="tool_hi_voltage">Gerilim (V)</label><input type="number" id="hi-voltage" value="24" step="0.1"></div>
+          <div class="tool-field"><label data-i18n="tool_hi_current">Akım (A)</label><input type="number" id="hi-current" value="220"></div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-field"><label data-i18n="tool_hi_speed">Hız (cm/dk)</label><input type="number" id="hi-speed" value="35"></div>
+          <div class="tool-field"><label data-i18n="tool_hi_limit">Limit (kJ/mm)</label><input type="number" id="hi-limit" value="1.5" step="0.1"></div>
+        </div>
+        <button type="button" class="btn btn-primary" data-tool="heat" data-i18n="tool_hi_btn">Hesapla</button>
+        <div id="hi-result" class="tool-result"><div class="val">—</div><div class="note"></div></div>
+      </div>
+      <div class="tool-panel">
+        <h3 data-i18n="tool_ph_title">Ön Isıtma Tahmini</h3>
+        <p class="tool-desc" data-i18n="tool_ph_desc">EN 1011-2 Metot B — tahmini değer.</p>
+        <div class="tool-row">
+          <div class="tool-field"><label data-i18n="tool_ph_cev">CEV</label><input type="number" id="ph-cev" value="0.42" step="0.01"></div>
+          <div class="tool-field"><label data-i18n="tool_ph_thickness">Kalınlık (mm)</label><input type="number" id="ph-thickness" value="25"></div>
+        </div>
+        <div class="tool-field"><label data-i18n="tool_ph_material">Malzeme</label>
+          <select id="ph-material"></select>
+        </div>
+        <button type="button" class="btn btn-primary" data-tool="preheat" data-i18n="tool_ph_btn">Tahmin et</button>
+        <div id="ph-result" class="tool-result"><div class="val">—</div><div class="note"></div></div>
+      </div>
+      <div class="tool-panel">
+        <h3 data-i18n="tool_ms_title">Malzeme Seçim Rehberi</h3>
+        <p class="tool-desc" data-i18n="tool_ms_desc">Sektör seçin.</p>
+        <div class="tool-field"><label data-i18n="tool_ms_sector">Sektör</label>
+          <select id="ms-sector"></select>
+        </div>
+        <div id="ms-result"></div>
+      </div>
+      <div class="tool-panel">
+        <h3 data-i18n="tool_dc_title">Proje Belge Checklist</h3>
+        <p class="tool-desc" data-i18n="tool_dc_desc">Teslim belge seti.</p>
+        <div class="tool-field"><label data-i18n="tool_dc_type">Proje tipi</label>
+          <select id="dc-type"></select>
+        </div>
+        <div id="dc-list" class="tool-checklist-wrap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deep-section alt" style="text-align:center;">
+  <div class="container">
+    <h2 class="display h2" style="margin-bottom:24px;" data-i18n="eng_cta_h2">Teknik dosyanızı gönderin — mühendis ekibimiz 48 saat içinde değerlendirsin.</h2>
+    <a href="iletisim.html" class="btn btn-primary" data-i18n="nav_cta">Teklif Al →</a>
+  </div>
+</section>
+
+<script src="assets/lang/tr.js?v=20260604"></script>
+<script src="assets/i18n.js?v=20260604"></script>
+<script src="assets/chrome.js?v=20260604"></script>
+<script src="assets/tools.js?v=20260604"></script>
+<script src="assets/analytics.js?v=20260604"></script>
+<script>mountChrome('muhendislik');</script>
+</body>
+</html>

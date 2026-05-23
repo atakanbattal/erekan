@@ -1,0 +1,255 @@
+/* ArmaWeld — Site-wide mobile enhancements */
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Horizontal scroll wrappers (also applied by chrome.js) */
+.table-scroll,
+.deep-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.table-scroll {
+  margin-top: 24px;
+}
+
+.table-scroll .accept-tbl,
+.table-scroll .doc-table,
+.table-scroll .svc-table,
+.table-scroll .specs-table,
+.table-scroll .table,
+.table-scroll .mat-table {
+  min-width: 520px;
+}
+
+/* Deep sections & tools */
+@media (max-width: 768px) {
+  .deep-section,
+  .tools-section {
+    padding: 64px 0;
+  }
+
+  .deep-head {
+    margin-bottom: 32px;
+  }
+
+  .ba-split {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ba-split img {
+    height: 180px;
+  }
+
+  .tool-result .val {
+    font-size: 22px;
+  }
+
+  .cert-badge {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .deep-section,
+  .tools-section {
+    padding: 48px 0;
+  }
+
+  .kpi-bar-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .kpi-bar-row .pct {
+    text-align: left;
+  }
+}
+
+/* Projects */
+@media (max-width: 600px) {
+  .proj-meta {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .proj-meta {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Quality page */
+@media (max-width: 640px) {
+  .process-flow {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sim-hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .sim-view {
+    min-height: auto !important;
+    padding: 16px !important;
+  }
+
+  .dl-cta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 32px 24px !important;
+  }
+}
+
+/* Sectors */
+@media (max-width: 640px) {
+  .sx-rw {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+}
+
+/* NDT */
+@media (max-width: 768px) {
+  .ndt-tabs {
+    grid-template-columns: 1fr !important;
+  }
+
+  .nv-cap {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .nv-cap .cr {
+    text-align: left;
+  }
+}
+
+/* Welding methods */
+@media (max-width: 480px) {
+  .mv-bar {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+  .mv-bar .br {
+    text-align: left;
+  }
+}
+
+/* FAQ */
+@media (max-width: 640px) {
+  details.q .a {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    max-width: none;
+  }
+
+  details.q > summary {
+    grid-template-columns: 1fr auto !important;
+    gap: 12px;
+  }
+
+  details.q .num {
+    display: none;
+  }
+
+  .faq-nav a {
+    grid-template-columns: 24px 1fr !important;
+  }
+}
+
+/* Blog index */
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* Home comparison bars */
+@media (max-width: 480px) {
+  .comp-bar {
+    grid-template-columns: 64px 1fr 28px !important;
+    gap: 8px !important;
+  }
+
+  .readout {
+    position: static !important;
+    margin: 12px 0 0 !important;
+    text-align: left !important;
+    max-width: none !important;
+  }
+}
+
+/* Landing / specs */
+@media (max-width: 768px) {
+  .specs-table td:first-child {
+    white-space: normal !important;
+  }
+}
+
+/* About — production flow */
+@media (max-width: 640px) {
+  .flow-st {
+    grid-template-columns: 40px 1fr !important;
+    gap: 12px !important;
+  }
+
+  .flow-st .kpi,
+  .flow-st .auto {
+    display: none;
+  }
+}
+
+/* Contact form grids */
+@media (max-width: 480px) {
+  .svc-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .step-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Sticky CTA touch targets */
+@media (max-width: 768px) {
+  .sticky-cta__btn {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+}
+
+/* Prevent long strings from breaking layout */
+p,
+li,
+td,
+th,
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

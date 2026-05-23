@@ -224,7 +224,7 @@ try {
         . '<h2 style="color:#111;">Talebiniz alındı</h2>'
         . '<p>Sayın ' . htmlspecialchars($nameVal, ENT_QUOTES, 'UTF-8') . ',</p>'
         . '<p>Teklif formunuz başarıyla iletildi. Proje mühendisimiz en geç <strong>48 saat</strong> içinde size dönüş yapacaktır.</p>'
-        . '<p style="font-size:13px;color:#666;">ArmaWeld · Fevziçakmak mah. 10804. Sk. No: 8/B, Karatay / Konya</p>'
+        . '<p style="font-size:13px;color:#666;">ArmaWeld · Fevziçakmak Mah. 10758. Sk. No: 25/H · Karatay / Konya</p>'
         . '</div>';
       $auto->isHTML(true);
       $auto->Body = $autoBody;

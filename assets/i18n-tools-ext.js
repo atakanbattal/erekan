@@ -1,0 +1,230 @@
+// ArmaWeld — Tool UI & extended technical translations
+(function () {
+  var ext = {
+    tr: {
+      tool_ms_alt: 'Alternatif:',
+      tool_ms_note: 'Not:',
+      tool_ph_mat_s355: 'S355 / Karbon çeliği',
+      tool_ph_mat_s700mc: 'S700MC (TMCP)',
+      tool_ph_mat_s960: 'S960QL (QT)',
+      tool_ph_mat_hardox: 'HARDOX / RAEX',
+      tool_ph_mat_ss: 'Paslanmaz (304/316L)',
+      tool_ph_mat_alu: 'Alüminyum (6082)',
+      tool_ph_alu: 'Alüminyum — genelde ön ısıtma gerekmez; interpass ≤100°C.',
+      tool_ph_ss: 'Paslanmaz — düşük ısı girdisi; kalın plakta (t≥12 mm) hafif ön ısıtma.',
+      tool_ms_sec_bucket: 'Kepçe / İş makinesi / Aşınma',
+      tool_ms_sec_structural: 'Yapısal çelik (EN 1090)',
+      tool_ms_sec_pressure: 'Basınçlı kap / Proses (PED)',
+      tool_ms_sec_energy: 'Enerji / GES / Dış mekan',
+      tool_ms_sec_rail: 'Demiryolu (EN 15085)',
+      tool_ms_sec_stainless: 'Paslanmaz tank / Gıda-kimya',
+      tool_ms_sec_defense: 'Savunma / Zırhlı platform',
+      tool_ms_sec_mining: 'Madencilik / Konveyör',
+      tool_ms_sec_crane: 'Vinç / Kaldırma (FEM)',
+      tool_ms_sec_automotive: 'Otomotiv yan sanayi',
+      tool_ms_sec_hydraulics: 'Hidrolik sistem / Boru hattı',
+      tool_ms_sec_alu: 'Alüminyum konstrüksiyon',
+      tool_dc_type_structural: 'Yapısal çelik (EN 1090)',
+      tool_dc_type_pressure: 'Basınçlı kap (PED)',
+      tool_dc_type_machine: 'Makine / OEM',
+      tool_dc_type_export: 'İhracat sevkiyatı',
+      tool_ms_bucket_mat: 'HARDOX 450/500 (aşınma) + S355J2+N (gövde)',
+      tool_ms_bucket_alt: 'Strenx 700/960 (hafifletme) · RAEX 400/450',
+      tool_ms_bucket_proc: 'MAG 135 · düşük ısı girdisi ≤1,2 kJ/mm · max 2 paso',
+      tool_ms_bucket_ndt: 'VT %100 · MT %20 kritik birleşim (ferromanyetik)',
+      tool_ms_bucket_note: 'Aşınma plakası birleşimlerinde interpass ≤150°C; distorsiyon jig ile kontrol.',
+      tool_ms_structural_mat: 'S355J2+N (ana taşıyıcı) · S275JR (ikincil)',
+      tool_ms_structural_alt: 'S690QL (ağırlık optimizasyonu) · S460M',
+      tool_ms_structural_proc: 'MAG 135 / TIG 141 kök + MAG dolgu · EN 1090 EXC2/3',
+      tool_ms_structural_ndt: 'VT %100 · UT %5–10 tam nüfuziyet birleşimlerde (t≥8 mm)',
+      tool_ms_structural_note: 'Fillet/köşe kaynakta UT yalnızca tam nüfuziyet ve erişilebilir hazırlık varsa; aksi halde MT veya VT.',
+      tool_ms_pressure_mat: 'P265GH / P355NH (karbon) · 316L (paslanmaz)',
+      tool_ms_pressure_alt: 'Duplex 2205 · P11/P22 (Cr-Mo proses)',
+      tool_ms_pressure_proc: 'TIG 141 kök + MAG 135 dolgu · tam nüfuziyon',
+      tool_ms_pressure_ndt: 'VT+PT %100 · UT %100 tam pen. · RT %100 kritik dikiş (PED Cat. II+)',
+      tool_ms_pressure_note: 'Paslanmazda MT uygulanmaz — PT tercih edilir. PWHT Cr-Mo ve kalın plaklarda zorunlu.',
+      tool_ms_energy_mat: 'S275JR / S355J2+N + sıcak daldırma galvaniz',
+      tool_ms_energy_alt: '316L (C5 korozyon) · S355J2+N + ISO 12944 C5 boya',
+      tool_ms_energy_proc: 'MAG 135 · galvaniz sonrası touch-up · delik kapatma',
+      tool_ms_energy_ndt: 'VT %100 · DFT ölçüm · galvaniz kalınlık (≥85 µm C5)',
+      tool_ms_energy_note: 'Kaynak sonrası galvaniz bölgelerinde boya tamir prosedürü uygulanır.',
+      tool_ms_rail_mat: 'S355J2+N · S690QL (yük taşıyan elemanlar)',
+      tool_ms_rail_alt: 'S700MC (hafif şasi) · 16MnCr5 (tren bileşenleri)',
+      tool_ms_rail_proc: 'MAG 135 / SAW 121 · EN 15085 CL1 prosedürü',
+      tool_ms_rail_ndt: 'VT+UT %100 · EN 15085 kabul · EN ISO 11666',
+      tool_ms_rail_note: 'Yorulma sınıfı birleşimlerde UT zorunlu; VT tek başına yeterli değildir.',
+      tool_ms_stainless_mat: '316L (1.4404) · 304L (1.4307)',
+      tool_ms_stainless_alt: 'Duplex 2205 · 316Ti (yüksek sıcaklık)',
+      tool_ms_stainless_proc: 'TIG 141 · ayrı kaynak alanı · kontaminasyon sıfır',
+      tool_ms_stainless_ndt: 'VT %100 · PT %100 kritik · PMI doğrulama',
+      tool_ms_stainless_note: 'MT ferromanyetik olmayan malzemede uygulanmaz — PT veya UT tercih edilir.',
+      tool_ms_defense_mat: 'HARDOX 500/600 (zırh) · S690QL (şasi)',
+      tool_ms_defense_alt: 'Strenx 700 · RAEX 500',
+      tool_ms_defense_proc: 'Düşük ısı girdisi MAG · TIG kök kritik birleşimler',
+      tool_ms_defense_ndt: 'VT %100 · UT %100 kritik · MT %20 (ferromanyetik plaka)',
+      tool_ms_defense_note: 'NDA kapsamında prosedür; balistik birleşimlerde ısı girdisi sıkı kontrol.',
+      tool_ms_mining_mat: 'HARDOX 450/500 · RAEX 400/450',
+      tool_ms_mining_alt: 'S355J2+N (ana gövde) · Creusabro 8000',
+      tool_ms_mining_proc: 'MAG 135 · aşınma plakası ≤2 paso · düşük HAZ',
+      tool_ms_mining_ndt: 'VT %100 · MT %20 birleşim (HARDOX ferromanyetik)',
+      tool_ms_mining_note: 'Abrasion zone: MT veya VT; kalın plak birleşimde UT (t≥12 mm, tam pen.).',
+      tool_ms_crane_mat: 'S355J2+N · S690QL (bom/kiriş)',
+      tool_ms_crane_alt: 'S460M · Strenx 700',
+      tool_ms_crane_proc: 'MAG/SAW · FEM 1.001 referans · tam pen. birleşimler',
+      tool_ms_crane_ndt: 'VT %100 · UT %100 birincil taşıyıcı · EN 5817 B',
+      tool_ms_crane_note: 'Vinç kaldırma elemanlarında UT zorunlu; köşe fillet tek başına UT\'ye uygun değilse MT.',
+      tool_ms_automotive_mat: 'S355MC / S500MC (TMCP gövde)',
+      tool_ms_automotive_alt: 'S235JR (braket) · DP600 (özel OEM spes)',
+      tool_ms_automotive_proc: 'MAG 135 robot · spot jig · seri üretim',
+      tool_ms_automotive_ndt: 'VT %100 · MT %10 (ferromanyetik) · proje ITP',
+      tool_ms_automotive_note: 'Seri hat: istatistiksel NDT örnekleme OEM spesifikasyonuna göre.',
+      tool_ms_hydraulics_mat: 'P355NH / 316L (tank) · St52.3 (boru)',
+      tool_ms_hydraulics_alt: 'E355 (hidrolik boru) · 304L (gıda grade)',
+      tool_ms_hydraulics_proc: 'TIG 141 boru kök · MAG dolgu · %100 pen. boru kaynağı',
+      tool_ms_hydraulics_ndt: 'VT+PT %100 · hidrostatik test · UT boru dikiş (t≥6 mm)',
+      tool_ms_hydraulics_note: 'Basınçlı hidrolik hatlarda test basıncı ×1,5; sızıntı testi zorunlu.',
+      tool_ms_alu_mat: 'EN AW-6082-T6 · EN AW-5754',
+      tool_ms_alu_alt: '5083 (deniz) · 6061 (profil)',
+      tool_ms_alu_proc: 'TIG 141 AC/DC · ER5356/4043 · interpass ≤100°C',
+      tool_ms_alu_ndt: 'VT %100 · PT kritik · UT (t≥8 mm, tam erişim)',
+      tool_ms_alu_note: 'MT uygulanmaz; alüminyumda PT veya UT. Ayrı WPQR (15614-2) zorunlu.',
+      tool_dc_structural_html: '<ul class="tool-checklist-detail"><li><strong>WPS / WPQR özeti</strong><span>Onaylı prosedür no., malzeme grubu, kalınlık aralığı, pozisyonlar</span></li><li><strong>Kaynakçı sertifikaları (EN ISO 9606-1)</strong><span>Proje kapsamındaki proses ve pozisyonlar; geçerlilik tarihi</span></li><li><strong>MTC 3.1 (heat no.)</strong><span>EN 10204 3.1; heat number → iş emri eşleştirmesi</span></li><li><strong>VT raporları (%100)</strong><span>EN ISO 17637; kabul EN ISO 5817 B/C — VT için geçerli sınıf</span></li><li><strong>UT raporları (tam nüfuziyet birleşimler, t≥8 mm)</strong><span>EN ISO 17640 / 11666; köşe/fillet kaynakta tam pen. yoksa UT uygulanmaz</span></li><li><strong>MT raporları (ferromanyetik, kritik %10)</strong><span>EN ISO 17638; yalnızca erişilebilir yüzey çatlakları; paslanmaz/alüminyumda PT</span></li><li><strong>Boyutsal kontrol (EN ISO 13920)</strong><span>Class B/C; çapraz, düzlemsellik, delik konumu</span></li><li><strong>CE DoP (EN 1090-1)</strong><span>EXC sınıfı, performans beyanı, FPC referansı</span></li><li><strong>Yüzey işleme raporu</strong><span>Kumlama Sa 2½ / boya DFT / galvaniz kalınlık</span></li></ul>',
+      tool_dc_pressure_html: '<ul class="tool-checklist-detail"><li><strong>WPS (TIG kök + MAG dolgu)</strong><span>Tam nüfuziyon; interpass sıcaklık kaydı</span></li><li><strong>WPQR (EN ISO 15614-1)</strong><span>Malzeme grubu, kalınlık, destrüktif test sonuçları</span></li><li><strong>MTC 3.1 + PMI (paslanmaz)</strong><span>Kimyasal analiz; duplex/paslanmazda ferrit ölçümü</span></li><li><strong>VT + PT (%100)</strong><span>PT: paslanmaz, alüminyum, Cr-Ni alaşımları — MT yerine</span></li><li><strong>UT (%100 tam pen.)</strong><span>EN ISO 17640; yalnızca erişilebilir tam nüfuziyet dikişlerde</span></li><li><strong>RT (%100 kritik dikiş — PED Cat. II+)</strong><span>Partner lab; EN ISO 17636; film/dijital arşiv</span></li><li><strong>Hidrostatik / pnömatik test</strong><span>Test basıncı ×1,5; tutma süresi; sızdırmazlık</span></li><li><strong>PWHT chart (Cr-Mo, kalın plak)</strong><span>Zaman-sıcaklık grafiği; soğuma hızı kaydı</span></li><li><strong>PED uygunluk dosyası</strong><span>Kategori, modül, risk analizi, CE işaretleme</span></li><li><strong>ITP (Inspection Test Plan)</strong><span>Hold point\'ler; müşteri/NO gözetim noktaları</span></li></ul>',
+      tool_dc_machine_html: '<ul class="tool-checklist-detail"><li><strong>WPS (HARDOX/Strenx/S355)</strong><span>Isı girdisi limiti; ön ısıtma kaydı (QT çeliklerde)</span></li><li><strong>Kaynak parametre kayıtları</strong><span>Akım, gerilim, hız, ısı girdisi (kJ/mm) — LOT bazlı</span></li><li><strong>VT %100 + MT planı</strong><span>MT yalnızca ferromanyetik (HARDOX, karbon); paslanmazda PT</span></li><li><strong>UT (kalın birleşim, t≥12 mm, tam pen.)</strong><span>Köşe kaynakta UT yalnızca hazırlık ve erişim uygunsa</span></li><li><strong>Boyutsal rapor</strong><span>Kritik ölçüler; montaj uyumu</span></li><li><strong>Montaj listesi (BOM)</strong><span>Parça no., heat no., revizyon</span></li><li><strong>Fonksiyon testi (gerekirse)</strong><span>Hidrolik/pnömatik; mekanik hareket</span></li><li><strong>Sevkiyat fotoğrafları + paketleme listesi</strong><span>ISPM-15; hasar önleme</span></li></ul>',
+      tool_dc_export_html: '<ul class="tool-checklist-detail"><li><strong>Teknik dosya seti (NDA onaylı)</strong><span>WPS, MTC, NDT, boyutsal — müşteri dilinde</span></li><li><strong>CE DoP + teknik dosya</strong><span>EN 1090 / PED kapsamında</span></li><li><strong>EUR.1 / ATR / Menşe şahadetnamesi</strong><span>Gümrük tercihli menşe belgesi</span></li><li><strong>ISPM-15 ambalaj sertifikası</strong><span>Isıtılmış ahşap palet damgası</span></li><li><strong>Paketleme listesi + ağırlık</strong><span>Brüt/net; parça no. eşleştirmesi</span></li><li><strong>Ticari fatura + konşimento</strong><span>Incoterms (EXW/FOB/CIF/DAP)</span></li><li><strong>NDT raporları (hedef ülke formatı)</strong><span>EN/ASME format dönüşümü gerekirse</span></li></ul>',
+      deep_ndt_matrix_html: '<div class="deep-table-wrap"><table class="deep-table deep-table-wide"><thead><tr><th>Sektör / Standart</th><th>VT</th><th>PT</th><th>MT</th><th>UT</th><th>RT</th><th>VT Kabul</th><th>UT Kabul</th><th>MT Kabul</th><th>PT Kabul</th><th>RT Kabul</th><th>Uygulama Notu</th></tr></thead><tbody><tr><td>EN 1090 EXC3</td><td>%100</td><td>—</td><td>%10 kritik</td><td>%5 tam pen.</td><td>—</td><td>EN ISO 5817 B</td><td>EN ISO 11666 Sev. B</td><td>EN ISO 17638</td><td>—</td><td>—</td><td>5817 yalnızca VT. UT: t≥8 mm, tam pen., erişilebilir hazırlık. Fillet/köşe: MT veya VT.</td></tr><tr><td>PED Cat. II–III</td><td>%100</td><td>%100 (SS/Al)</td><td>—</td><td>%100 tam pen.</td><td>%100 dikiş</td><td>EN ISO 5817 B</td><td>EN ISO 11666 / 17640</td><td>—</td><td>EN ISO 23277</td><td>EN ISO 17636 / EN 13445</td><td>Paslanmaz/alüminyumda MT yerine PT. RT partner lab (TÜRKAK).</td></tr><tr><td>EN 15085 CL1</td><td>%100</td><td>—</td><td>—</td><td>%100</td><td>—</td><td>EN ISO 5817 B</td><td>EN ISO 11666 + EN 15085</td><td>—</td><td>—</td><td>—</td><td>Yorulma birleşimlerinde UT zorunlu; VT tek başına yeterli değil.</td></tr><tr><td>HARDOX kepçe</td><td>%100</td><td>—</td><td>%20</td><td>—</td><td>—</td><td>EN ISO 5817 C</td><td>—</td><td>EN ISO 17638</td><td>—</td><td>—</td><td>UT genelde uygulanmaz (t&lt;12 mm fillet). MT ferromanyetik HARDOX için.</td></tr><tr><td>Paslanmaz proses</td><td>%100</td><td>%100 kritik</td><td>—</td><td>Proje bazlı</td><td>Partner lab</td><td>EN ISO 5817 B</td><td>EN ISO 11666 / 17640</td><td>—</td><td>EN ISO 23277 / 3452-1</td><td>EN ISO 17636</td><td>MT uygulanmaz (non-magnetic). PT veya UT tercih edilir.</td></tr><tr><td>Genel makine</td><td>%100</td><td>SS/Al kritik</td><td>%10 (CS)</td><td>t≥8 mm tam pen.</td><td>Partner lab</td><td>EN ISO 5817 B/C</td><td>EN ISO 11666 (proje)</td><td>EN ISO 17638</td><td>EN ISO 23277</td><td>EN ISO 17636 (proje)</td><td>NDT kapsamı ITP\'de tanımlanır; yöntem malzeme ve birleşim tipine göre seçilir.</td></tr></tbody></table></div><div class="deep-callout"><p><strong>Önemli:</strong> EN ISO 5817 yalnızca görsel muayene (VT) kabul sınıfıdır. UT → EN ISO 11666/17640, MT → EN ISO 17638, PT → EN ISO 23277/3452-1, RT → EN ISO 17636. Köşe/fillet kaynaklarda tam nüfuziyet yoksa UT yapılmaz.</p></div>',
+      deep_kpi_ext_html: '<div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">NDT ilk geçiş oranı</span><div class="track"><div class="fill" style="width:99.2%"></div></div><span class="pct">%99,2</span></div><div class="kpi-bar-row"><span class="lbl">İzlenebilirlik</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="pct">%100</span></div><div class="kpi-bar-row"><span class="lbl">Teklif SLA (48 saat)</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="pct">%96</span></div><div class="kpi-bar-row"><span class="lbl">Zamanında sevkiyat</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="pct">%94</span></div></div><p style="margin-top:32px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--steel-2)">Hata türü dağılımı (2026 Q1 ret analizi)</p><div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">Porozite</span><div class="track"><div class="fill" style="width:35%"></div></div><span class="pct">%35</span></div><div class="kpi-bar-row"><span class="lbl">Eksik nüfuziyet</span><div class="track"><div class="fill" style="width:28%"></div></div><span class="pct">%28</span></div><div class="kpi-bar-row"><span class="lbl">Yetersiz birleşme</span><div class="track"><div class="fill" style="width:18%"></div></div><span class="pct">%18</span></div><div class="kpi-bar-row"><span class="lbl">Çatlak / diğer</span><div class="track"><div class="fill" style="width:19%"></div></div><span class="pct">%19</span></div></div>',
+      deep_before_after_html: '<div class="deep-grid-3"><div class="deep-card"><h3>Distorsiyon düzeltme</h3><p class="ba-label">Önce / Sonra</p><div class="ba-split"><img src="uploads/bom-2.webp" alt="Kaynak öncesi distorsiyon" loading="lazy" /><img src="uploads/bom.webp" alt="Düzeltme sonrası" loading="lazy" /></div></div><div class="deep-card"><h3>Yüzey işleme</h3><p class="ba-label">Kumlama öncesi / Sa 2½</p><div class="ba-split"><img src="uploads/kaynak.webp" alt="Kumlama öncesi" loading="lazy" /><img src="uploads/taslama.webp" alt="Sa 2½ sonrası" loading="lazy" /></div></div><div class="deep-card"><h3>NDT onarım</h3><p class="ba-label">UT ret / Onarım sonrası onay</p><div class="ba-split"><img src="uploads/ut.jpeg" alt="UT muayene" loading="lazy" /><img src="uploads/ndt-3.webp" alt="Onarım sonrası onay" loading="lazy" /></div></div></div>'
+    },
+    en: {
+      tool_ms_alt: 'Alternative:',
+      tool_ms_note: 'Note:',
+      tool_ph_mat_s355: 'S355 / Carbon steel',
+      tool_ph_mat_s700mc: 'S700MC (TMCP)',
+      tool_ph_mat_s960: 'S960QL (QT)',
+      tool_ph_mat_hardox: 'HARDOX / RAEX',
+      tool_ph_mat_ss: 'Stainless (304/316L)',
+      tool_ph_mat_alu: 'Aluminium (6082)',
+      tool_ph_alu: 'Aluminium — usually no preheat; interpass ≤100°C.',
+      tool_ph_ss: 'Stainless — low heat input; light preheat on thick plate (t≥12 mm).',
+      tool_ms_sec_bucket: 'Bucket / Earthmoving / Wear',
+      tool_ms_sec_structural: 'Structural steel (EN 1090)',
+      tool_ms_sec_pressure: 'Pressure vessel / Process (PED)',
+      tool_ms_sec_energy: 'Energy / Solar / Outdoor',
+      tool_ms_sec_rail: 'Railway (EN 15085)',
+      tool_ms_sec_stainless: 'Stainless tank / Food-chemical',
+      tool_ms_sec_defense: 'Defence / Armoured platform',
+      tool_ms_sec_mining: 'Mining / Conveyor',
+      tool_ms_sec_crane: 'Crane / Lifting (FEM)',
+      tool_ms_sec_automotive: 'Automotive supplier',
+      tool_ms_sec_hydraulics: 'Hydraulic system / Piping',
+      tool_ms_sec_alu: 'Aluminium structure',
+      tool_dc_type_structural: 'Structural steel (EN 1090)',
+      tool_dc_type_pressure: 'Pressure vessel (PED)',
+      tool_dc_type_machine: 'Machinery / OEM',
+      tool_dc_type_export: 'Export shipment',
+      tool_ms_bucket_mat: 'HARDOX 450/500 (wear) + S355J2+N (body)',
+      tool_ms_bucket_alt: 'Strenx 700/960 (lightweight) · RAEX 400/450',
+      tool_ms_bucket_proc: 'MAG 135 · low heat input ≤1.2 kJ/mm · max 2 passes',
+      tool_ms_bucket_ndt: 'VT 100% · MT 20% critical joints (ferromagnetic)',
+      tool_ms_bucket_note: 'Interpass ≤150°C on wear plate joints; distortion controlled by jig.',
+      tool_ms_structural_mat: 'S355J2+N (primary) · S275JR (secondary)',
+      tool_ms_structural_alt: 'S690QL (weight opt.) · S460M',
+      tool_ms_structural_proc: 'MAG 135 / TIG 141 root + MAG fill · EN 1090 EXC2/3',
+      tool_ms_structural_ndt: 'VT 100% · UT 5–10% on full-pen. joints (t≥8 mm)',
+      tool_ms_structural_note: 'UT on fillet/corner only with full penetration and access; otherwise MT or VT.',
+      tool_ms_pressure_mat: 'P265GH / P355NH (carbon) · 316L (stainless)',
+      tool_ms_pressure_alt: 'Duplex 2205 · P11/P22 (Cr-Mo process)',
+      tool_ms_pressure_proc: 'TIG 141 root + MAG 135 fill · full penetration',
+      tool_ms_pressure_ndt: 'VT+PT 100% · UT 100% full pen. · RT 100% critical (PED Cat. II+)',
+      tool_ms_pressure_note: 'MT not used on stainless — PT preferred. PWHT mandatory on Cr-Mo and thick plate.',
+      tool_ms_energy_mat: 'S275JR / S355J2+N + hot-dip galvanizing',
+      tool_ms_energy_alt: '316L (C5 corrosion) · S355J2+N + ISO 12944 C5 paint',
+      tool_ms_energy_proc: 'MAG 135 · post-galv touch-up · hole sealing',
+      tool_ms_energy_ndt: 'VT 100% · DFT measurement · galvanize thickness (≥85 µm C5)',
+      tool_ms_energy_note: 'Post-weld paint repair procedure applied in galvanized zones.',
+      tool_ms_rail_mat: 'S355J2+N · S690QL (load-bearing)',
+      tool_ms_rail_alt: 'S700MC (light chassis) · 16MnCr5 (rail components)',
+      tool_ms_rail_proc: 'MAG 135 / SAW 121 · EN 15085 CL1 procedure',
+      tool_ms_rail_ndt: 'VT+UT 100% · EN 15085 acceptance · EN ISO 11666',
+      tool_ms_rail_note: 'UT mandatory on fatigue class joints; VT alone is not sufficient.',
+      tool_ms_stainless_mat: '316L (1.4404) · 304L (1.4307)',
+      tool_ms_stainless_alt: 'Duplex 2205 · 316Ti (high temp.)',
+      tool_ms_stainless_proc: 'TIG 141 · separate bay · zero contamination',
+      tool_ms_stainless_ndt: 'VT 100% · PT 100% critical · PMI verification',
+      tool_ms_stainless_note: 'MT not applicable on non-magnetic materials — PT or UT preferred.',
+      tool_ms_defense_mat: 'HARDOX 500/600 (armour) · S690QL (chassis)',
+      tool_ms_defense_alt: 'Strenx 700 · RAEX 500',
+      tool_ms_defense_proc: 'Low heat input MAG · TIG root on critical joints',
+      tool_ms_defense_ndt: 'VT 100% · UT 100% critical · MT 20% (ferromagnetic plate)',
+      tool_ms_defense_note: 'NDA-covered procedures; strict heat input control on ballistic joints.',
+      tool_ms_mining_mat: 'HARDOX 450/500 · RAEX 400/450',
+      tool_ms_mining_alt: 'S355J2+N (body) · Creusabro 8000',
+      tool_ms_mining_proc: 'MAG 135 · wear plate ≤2 passes · low HAZ',
+      tool_ms_mining_ndt: 'VT 100% · MT 20% joints (ferromagnetic HARDOX)',
+      tool_ms_mining_note: 'UT on thick plate joints (t≥12 mm, full pen.); MT on ferromagnetic wear zones.',
+      tool_ms_crane_mat: 'S355J2+N · S690QL (boom/girder)',
+      tool_ms_crane_alt: 'S460M · Strenx 700',
+      tool_ms_crane_proc: 'MAG/SAW · FEM 1.001 ref. · full pen. joints',
+      tool_ms_crane_ndt: 'VT 100% · UT 100% primary load path · EN 5817 B',
+      tool_ms_crane_note: 'UT mandatory on crane load elements; MT if fillet not suitable for UT.',
+      tool_ms_automotive_mat: 'S355MC / S500MC (TMCP body)',
+      tool_ms_automotive_alt: 'S235JR (bracket) · DP600 (OEM spec)',
+      tool_ms_automotive_proc: 'MAG 135 robot · spot jig · series production',
+      tool_ms_automotive_ndt: 'VT 100% · MT 10% (ferromagnetic) · per OEM ITP',
+      tool_ms_automotive_note: 'Series line: statistical NDT sampling per OEM specification.',
+      tool_ms_hydraulics_mat: 'P355NH / 316L (tank) · St52.3 (pipe)',
+      tool_ms_hydraulics_alt: 'E355 (hydraulic tube) · 304L (food grade)',
+      tool_ms_hydraulics_proc: 'TIG 141 pipe root · MAG fill · 100% pen. pipe weld',
+      tool_ms_hydraulics_ndt: 'VT+PT 100% · hydrostatic test · UT pipe seam (t≥6 mm)',
+      tool_ms_hydraulics_note: 'Hydraulic lines: test pressure ×1.5; leak test mandatory.',
+      tool_ms_alu_mat: 'EN AW-6082-T6 · EN AW-5754',
+      tool_ms_alu_alt: '5083 (marine) · 6061 (profile)',
+      tool_ms_alu_proc: 'TIG 141 AC/DC · ER5356/4043 · interpass ≤100°C',
+      tool_ms_alu_ndt: 'VT 100% · PT critical · UT (t≥8 mm, full access)',
+      tool_ms_alu_note: 'MT not applicable; PT or UT on aluminium. Separate WPQR (15614-2) required.',
+      tool_dc_structural_html: '<ul class="tool-checklist-detail"><li><strong>WPS / WPQR summary</strong><span>Approved procedure no., material group, thickness range, positions</span></li><li><strong>Welder certificates (EN ISO 9606-1)</strong><span>Process and positions in scope; validity date</span></li><li><strong>MTC 3.1 (heat no.)</strong><span>EN 10204 3.1; heat number → work order match</span></li><li><strong>VT reports (100%)</strong><span>EN ISO 17637; acceptance EN ISO 5817 B/C — VT class only</span></li><li><strong>UT reports (full-pen. joints, t≥8 mm)</strong><span>EN ISO 17640 / 11666; no UT on fillet without full penetration</span></li><li><strong>MT reports (ferromagnetic, 10% critical)</strong><span>EN ISO 17638; PT on stainless/aluminium instead of MT</span></li><li><strong>Dimensional check (EN ISO 13920)</strong><span>Class B/C; squareness, flatness, hole position</span></li><li><strong>CE DoP (EN 1090-1)</strong><span>EXC class, declaration of performance</span></li><li><strong>Surface treatment report</strong><span>Blasting Sa 2½ / DFT / galvanize thickness</span></li></ul>',
+      tool_dc_pressure_html: '<ul class="tool-checklist-detail"><li><strong>WPS (TIG root + MAG fill)</strong><span>Full penetration; interpass temperature log</span></li><li><strong>WPQR (EN ISO 15614-1)</strong><span>Material group, thickness, destructive test results</span></li><li><strong>MTC 3.1 + PMI (stainless)</strong><span>Chemical analysis; ferrite on duplex/stainless</span></li><li><strong>VT + PT (100%)</strong><span>PT for stainless, aluminium, Cr-Ni — not MT</span></li><li><strong>UT (100% full pen.)</strong><span>EN ISO 17640; accessible full-penetration welds only</span></li><li><strong>RT (100% critical — PED Cat. II+)</strong><span>Partner lab; EN ISO 17636</span></li><li><strong>Hydrostatic / pneumatic test</strong><span>Test pressure ×1.5; hold time; leak check</span></li><li><strong>PWHT chart (Cr-Mo, thick plate)</strong><span>Time-temperature graph; cooling rate log</span></li><li><strong>PED conformity file</strong><span>Category, module, risk analysis, CE marking</span></li><li><strong>ITP (Inspection Test Plan)</strong><span>Hold points; customer/NO witness</span></li></ul>',
+      tool_dc_machine_html: '<ul class="tool-checklist-detail"><li><strong>WPS (HARDOX/Strenx/S355)</strong><span>Heat input limit; preheat log on QT steels</span></li><li><strong>Weld parameter records</strong><span>Current, voltage, speed, heat input (kJ/mm) per LOT</span></li><li><strong>VT 100% + MT plan</strong><span>MT only ferromagnetic; PT on stainless</span></li><li><strong>UT (thick joints, t≥12 mm, full pen.)</strong><span>No UT on fillet without suitable prep and access</span></li><li><strong>Dimensional report</strong><span>Critical dimensions; assembly fit</span></li><li><strong>BOM / assembly list</strong><span>Part no., heat no., revision</span></li><li><strong>Functional test (if required)</strong><span>Hydraulic/pneumatic; mechanical movement</span></li><li><strong>Shipment photos + packing list</strong><span>ISPM-15; damage prevention</span></li></ul>',
+      tool_dc_export_html: '<ul class="tool-checklist-detail"><li><strong>Technical file set (NDA approved)</strong><span>WPS, MTC, NDT, dimensional — customer language</span></li><li><strong>CE DoP + technical file</strong><span>EN 1090 / PED scope</span></li><li><strong>EUR.1 / ATR / Certificate of Origin</strong><span>Customs preferential origin</span></li><li><strong>ISPM-15 packaging certificate</strong><span>Heat-treated pallet stamp</span></li><li><strong>Packing list + weight</strong><span>Gross/net; part no. matching</span></li><li><strong>Commercial invoice + B/L</strong><span>Incoterms (EXW/FOB/CIF/DAP)</span></li><li><strong>NDT reports (destination format)</strong><span>EN/ASME format conversion if required</span></li></ul>',
+      deep_ndt_matrix_html: '<div class="deep-table-wrap"><table class="deep-table deep-table-wide"><thead><tr><th>Sector / Standard</th><th>VT</th><th>PT</th><th>MT</th><th>UT</th><th>RT</th><th>VT Accept.</th><th>UT Accept.</th><th>MT Accept.</th><th>PT Accept.</th><th>RT Accept.</th><th>Application Note</th></tr></thead><tbody><tr><td>EN 1090 EXC3</td><td>100%</td><td>—</td><td>10% critical</td><td>5% full pen.</td><td>—</td><td>EN ISO 5817 B</td><td>EN ISO 11666 Level B</td><td>EN ISO 17638</td><td>—</td><td>—</td><td>5817 applies to VT only. UT: t≥8 mm, full pen., accessible prep. Fillet/corner: MT or VT.</td></tr><tr><td>PED Cat. II–III</td><td>100%</td><td>100% (SS/Al)</td><td>—</td><td>100% full pen.</td><td>100% weld</td><td>EN ISO 5817 B</td><td>EN ISO 11666 / 17640</td><td>—</td><td>EN ISO 23277</td><td>EN ISO 17636 / EN 13445</td><td>PT instead of MT on stainless/aluminium. RT via partner lab.</td></tr><tr><td>EN 15085 CL1</td><td>100%</td><td>—</td><td>—</td><td>100%</td><td>—</td><td>EN ISO 5817 B</td><td>EN ISO 11666 + EN 15085</td><td>—</td><td>—</td><td>—</td><td>UT mandatory on fatigue joints; VT alone insufficient.</td></tr><tr><td>HARDOX bucket</td><td>100%</td><td>—</td><td>20%</td><td>—</td><td>—</td><td>EN ISO 5817 C</td><td>—</td><td>EN ISO 17638</td><td>—</td><td>—</td><td>UT rarely applied (t&lt;12 mm fillet). MT for ferromagnetic HARDOX.</td></tr><tr><td>Stainless process</td><td>100%</td><td>100% critical</td><td>—</td><td>Project-based</td><td>Partner lab</td><td>EN ISO 5817 B</td><td>EN ISO 11666 / 17640</td><td>—</td><td>EN ISO 23277 / 3452-1</td><td>EN ISO 17636</td><td>MT not applicable (non-magnetic). PT or UT preferred.</td></tr><tr><td>General machinery</td><td>100%</td><td>SS/Al critical</td><td>10% (CS)</td><td>t≥8 mm full pen.</td><td>Partner lab</td><td>EN ISO 5817 B/C</td><td>EN ISO 11666 (project)</td><td>EN ISO 17638</td><td>EN ISO 23277</td><td>EN ISO 17636 (project)</td><td>NDT scope defined in ITP; method selected by material and joint type.</td></tr></tbody></table></div><div class="deep-callout"><p><strong>Important:</strong> EN ISO 5817 is the VT acceptance class only. UT → EN ISO 11666/17640, MT → EN ISO 17638, PT → EN ISO 23277/3452-1, RT → EN ISO 17636. No UT on fillet/corner welds without full penetration.</p></div>',
+      deep_kpi_ext_html: '<div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">NDT first-pass rate</span><div class="track"><div class="fill" style="width:99.2%"></div></div><span class="pct">99.2%</span></div><div class="kpi-bar-row"><span class="lbl">Traceability</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="pct">100%</span></div><div class="kpi-bar-row"><span class="lbl">Quote SLA (48h)</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="pct">96%</span></div><div class="kpi-bar-row"><span class="lbl">On-time delivery</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="pct">94%</span></div></div><p style="margin-top:32px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--steel-2)">Defect type distribution (2026 Q1 reject analysis)</p><div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">Porosity</span><div class="track"><div class="fill" style="width:35%"></div></div><span class="pct">35%</span></div><div class="kpi-bar-row"><span class="lbl">Lack of penetration</span><div class="track"><div class="fill" style="width:28%"></div></div><span class="pct">28%</span></div><div class="kpi-bar-row"><span class="lbl">Lack of fusion</span><div class="track"><div class="fill" style="width:18%"></div></div><span class="pct">18%</span></div><div class="kpi-bar-row"><span class="lbl">Crack / other</span><div class="track"><div class="fill" style="width:19%"></div></div><span class="pct">19%</span></div></div>',
+      deep_before_after_html: '<div class="deep-grid-3"><div class="deep-card"><h3>Distortion correction</h3><p class="ba-label">Before / After</p><div class="ba-split"><img src="uploads/bom-2.webp" alt="Before weld distortion" loading="lazy" /><img src="uploads/bom.webp" alt="After straightening" loading="lazy" /></div></div><div class="deep-card"><h3>Surface treatment</h3><p class="ba-label">Before blasting / Sa 2½</p><div class="ba-split"><img src="uploads/kaynak.webp" alt="Before blasting" loading="lazy" /><img src="uploads/taslama.webp" alt="After Sa 2½" loading="lazy" /></div></div><div class="deep-card"><h3>NDT repair</h3><p class="ba-label">UT reject / Post-repair approval</p><div class="ba-split"><img src="uploads/ut.jpeg" alt="UT inspection" loading="lazy" /><img src="uploads/ndt-3.webp" alt="Post-repair approval" loading="lazy" /></div></div></div>'
+    }
+  };
+
+  // DE/ES/FR inherit EN tool strings for HTML blocks
+  ['de', 'es', 'fr'].forEach(function (code) {
+    ext[code] = Object.assign({}, ext.en);
+    if (code === 'de') {
+      ext.de.tool_ms_alt = 'Alternative:';
+      ext.de.tool_ms_note = 'Hinweis:';
+      ext.de.tool_ph_mat_s355 = 'S355 / Kohlenstoffstahl';
+      ext.de.tool_ph_mat_s700mc = 'S700MC (TMCP)';
+      ext.de.tool_ph_mat_s960 = 'S960QL (QT)';
+      ext.de.tool_ph_mat_hardox = 'HARDOX / RAEX';
+      ext.de.tool_ph_mat_ss = 'Edelstahl (304/316L)';
+      ext.de.tool_ph_mat_alu = 'Aluminium (6082)';
+      ext.de.deep_kpi_ext_html = '<div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">ZfP Erstprüfungsrate</span><div class="track"><div class="fill" style="width:99.2%"></div></div><span class="pct">99,2%</span></div><div class="kpi-bar-row"><span class="lbl">Rückverfolgbarkeit</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="pct">100%</span></div><div class="kpi-bar-row"><span class="lbl">Angebots-SLA (48h)</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="pct">96%</span></div><div class="kpi-bar-row"><span class="lbl">Pünktliche Lieferung</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="pct">94%</span></div></div>';
+      ext.de.deep_before_after_html = ext.en.deep_before_after_html;
+      ext.de.deep_ndt_matrix_html = ext.en.deep_ndt_matrix_html;
+    }
+    if (code === 'es') {
+      ext.es.deep_kpi_ext_html = '<div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">Tasa END primer intento</span><div class="track"><div class="fill" style="width:99.2%"></div></div><span class="pct">99,2%</span></div><div class="kpi-bar-row"><span class="lbl">Trazabilidad</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="pct">100%</span></div><div class="kpi-bar-row"><span class="lbl">SLA cotización (48h)</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="pct">96%</span></div><div class="kpi-bar-row"><span class="lbl">Entrega a tiempo</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="pct">94%</span></div></div>';
+      ext.es.deep_before_after_html = ext.en.deep_before_after_html;
+      ext.es.deep_ndt_matrix_html = ext.en.deep_ndt_matrix_html;
+    }
+    if (code === 'fr') {
+      ext.fr.deep_kpi_ext_html = '<div class="kpi-bars"><div class="kpi-bar-row"><span class="lbl">Taux CND premier passage</span><div class="track"><div class="fill" style="width:99.2%"></div></div><span class="pct">99,2%</span></div><div class="kpi-bar-row"><span class="lbl">Traçabilité</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="pct">100%</span></div><div class="kpi-bar-row"><span class="lbl">SLA devis (48h)</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="pct">96%</span></div><div class="kpi-bar-row"><span class="lbl">Livraison à temps</span><div class="track"><div class="fill" style="width:94%"></div></div><span class="pct">94%</span></div></div>';
+      ext.fr.deep_before_after_html = ext.en.deep_before_after_html;
+      ext.fr.deep_ndt_matrix_html = ext.en.deep_ndt_matrix_html;
+    }
+  });
+
+  window.__AW_TOOLS_EXT__ = ext;
+  window.TRANSLATIONS = window.TRANSLATIONS || {};
+  for (var l in ext) {
+    if (!window.TRANSLATIONS[l]) window.TRANSLATIONS[l] = {};
+    Object.assign(window.TRANSLATIONS[l], ext[l]);
+  }
+})();

@@ -358,9 +358,11 @@
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .sim-view { padding: 20px; }
+    .sim-view { padding: 20px; min-height: auto; }
     .sim-tab .code { display: none; }
     .cert-grid { grid-template-columns: 1fr; }
+    .process-flow { grid-template-columns: 1fr; }
+    .sim-hero-stats { grid-template-columns: repeat(2, 1fr); }
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
     .kpi { padding: 24px 16px; }
     .dl-cta-grid { grid-template-columns: 1fr !important; gap: 24px !important; padding: 32px 24px !important; }
@@ -697,6 +699,21 @@
         <div class="delta down" data-i18n="quality_kpi4_delta">▼ 0.2 pp — iyileşme</div>
       </div>
     </div>
+    <div class="reveal" style="margin-top:48px" data-i18n-html="deep_kpi_ext_html"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
+<section class="deep-section alt">
+  <div class="container">
+    <div class="reveal" data-i18n-html="deep_certs_badges_html"></div>
+  </div>
+</section>
+
+<section class="deep-section">
+  <div class="container">
+    <div class="deep-head reveal"><div class="eyebrow">04 / İndirilebilir</div><h2 data-i18n="deep_downloads_h2">İndirilebilir Dokümanlar</h2></div>
+    <div class="reveal" data-i18n-html="deep_downloads_html"></div>
   </div>
 </section>
 
@@ -723,10 +740,10 @@
     </div>
   </div>
 </section>
-<script src="assets/lang/tr.js?v=20260526"></script>
-<script src="assets/i18n.js?v=20260526"></script>
-<script src="assets/chrome.js?v=20260526"></script>
-<script src="assets/analytics.js?v=20260526"></script>
+<script src="assets/lang/tr.js?v=20260604"></script>
+<script src="assets/i18n.js?v=20260604"></script>
+<script src="assets/chrome.js?v=20260604"></script>
+<script src="assets/analytics.js?v=20260604"></script>
 <script>
   mountChrome('kalite');
 

@@ -43,6 +43,7 @@ function buildNav(activePage, base) {
     { id: 'index',     i18n: 'nav_home',     href: b + 'index.html' },
     { id: 'hakkimizda',i18n: 'nav_about',    href: b + 'hakkimizda.html' },
     { id: 'hizmetler', i18n: 'nav_services', href: b + 'hizmetler.html' },
+    { id: 'muhendislik', i18n: 'nav_engineering', href: b + 'muhendislik.html' },
     { id: 'kalite',    i18n: 'nav_quality',  href: b + 'kalite.html' },
     { id: 'kaynak',    i18n: 'nav_welding',  href: b + 'kaynak-yontemleri.html' },
     { id: 'ndt',       i18n: 'nav_ndt',      href: b + 'ndt.html' },
@@ -129,6 +130,7 @@ function buildFooter(base) {
             <li><a href="${b}hizmetler.html" data-i18n="footer_s2"></a></li>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s3"></a></li>
             <li><a href="${b}hizmetler.html" data-i18n="footer_s4"></a></li>
+            <li><a href="${b}muhendislik.html" data-i18n="footer_s7"></a></li>
             <li><a href="${b}kaynak-yontemleri.html" data-i18n="footer_s5"></a></li>
             <li><a href="${b}ndt.html" data-i18n="footer_s6"></a></li>
           </ul>
@@ -137,6 +139,7 @@ function buildFooter(base) {
           <h5 data-i18n="footer_corporate_h"></h5>
           <ul>
             <li><a href="${b}hakkimizda.html" data-i18n="footer_c1"></a></li>
+            <li><a href="${b}muhendislik.html" data-i18n="footer_c7"></a></li>
             <li><a href="${b}kalite.html" data-i18n="footer_c2"></a></li>
             <li><a href="${b}sektorler.html" data-i18n="footer_c3"></a></li>
             <li><a href="${b}projeler.html" data-i18n="footer_c4"></a></li>
@@ -149,8 +152,8 @@ function buildFooter(base) {
         <div>
           <h5 data-i18n="footer_contact_h"></h5>
           <p class="footer-contact">
-            <span data-i18n="footer_addr1"></span><br/>
-            <span data-i18n="footer_addr2"></span><br/><br/>
+            <span class="footer-addr-line" data-i18n="footer_addr1"></span>
+            <span class="footer-addr-line" data-i18n="footer_addr2"></span><br/><br/>
             <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
             <a href="tel:+905438400332">+90 543 840 0332</a>
           </p>
@@ -321,11 +324,37 @@ function initBlogSchema() {
   document.head.appendChild(el);
 }
 
+function injectMobileCSS(base) {
+  if (document.getElementById('aw-mobile-css')) return;
+  const link = document.createElement('link');
+  link.id = 'aw-mobile-css';
+  link.rel = 'stylesheet';
+  link.href = (base || '') + 'assets/mobile.css?v=20260605';
+  document.head.appendChild(link);
+}
+
+function wrapWideTables() {
+  const sel = '.accept-tbl, .doc-table, .svc-table, .specs-table, table.table, .mat-table, .deep-table:not(.deep-table-wide)';
+  document.querySelectorAll(sel).forEach(function (tbl) {
+    const parent = tbl.parentElement;
+    if (!parent || parent.classList.contains('table-scroll') || parent.classList.contains('deep-table-wrap') || parent.classList.contains('mat-wrap')) return;
+    const wrap = document.createElement('div');
+    wrap.className = tbl.classList.contains('deep-table') ? 'deep-table-wrap' : 'table-scroll';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+}
+
+function initMobileEnhancements() {
+  wrapWideTables();
+}
+
 function mountChrome(activePage, base) {
   const doMount = function () {
   const savedTheme = localStorage.getItem('armaweld-theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
+  injectMobileCSS(base);
   injectNavTypography();
   document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage, base));
   document.body.insertAdjacentHTML('beforeend', buildFooter(base));
@@ -343,7 +372,9 @@ function mountChrome(activePage, base) {
     initStickyCTA();
     initMobileNav();
     initBlogSchema();
+    initMobileEnhancements();
     if (window.i18n) window.i18n.apply();
+    requestAnimationFrame(initMobileEnhancements);
   });
   if (document.readyState !== 'loading') {
     initReveals();
@@ -353,7 +384,11 @@ function mountChrome(activePage, base) {
     initStickyCTA();
     initMobileNav();
     initBlogSchema();
+    initMobileEnhancements();
   }
+  document.addEventListener('langchange', () => {
+    requestAnimationFrame(initMobileEnhancements);
+  });
   document.dispatchEvent(new CustomEvent('armaweld:chrome-ready'));
   };
 

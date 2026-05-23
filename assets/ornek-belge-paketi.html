@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>ArmaWeld — Örnek Teknik Belge Paketi</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,6 +32,13 @@
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .page { padding: 15mm 14mm; }
   }
+  @media (max-width: 768px) {
+    .page { width: 100%; min-height: auto; padding: 24px 16px; }
+    .hdr { flex-direction: column; gap: 16px; }
+    .hdr-meta { text-align: left; }
+    .sig-row { grid-template-columns: 1fr; gap: 16px; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
 </style>
 </head>
 <body>
@@ -43,6 +51,8 @@
     </div>
     <div class="hdr-meta">
       <strong>ÖRNEK TEKNİK BELGE PAKETİ</strong><br/>
+      Fevziçakmak Mah. 10758. Sk. No: 25/H<br/>
+      Karatay / Konya · Türkiye<br/>
       Belge No: ARMAWELD-ÖRNEK-001<br/>
       Revizyon: 00 &nbsp;|&nbsp; Tarih: 2026-01<br/>
       Durum: ÖRNEK / REFERANS AMAÇLI
@@ -133,7 +143,7 @@
   </div>
 
   <div class="ftr">
-    <span>ArmaWeld Çelik İmalat San. Tic. A.Ş. · info@armaweld.com</span>
+    <span>ArmaWeld Çelik İmalat San. Tic. A.Ş. · Fevziçakmak Mah. 10758. Sk. No: 25/H · Karatay / Konya · info@armaweld.com</span>
     <span>ARMAWELD-ÖRNEK-001 · Rev.00 · Sayfa 1/1</span>
   </div>
 
