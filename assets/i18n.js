@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'armaweld-lang';
   const DEFAULT = 'tr';
   const SUPPORTED = ['tr', 'en', 'de', 'es', 'fr'];
-  const BUNDLE_V = '20260523';
+  const BUNDLE_V = '20260607';
 
   let lang = localStorage.getItem(STORAGE_KEY) || DEFAULT;
   if (!SUPPORTED.includes(lang)) lang = DEFAULT;
@@ -120,17 +120,23 @@
     });
   }
 
-  function get(key) {
+  function resolve(key) {
     var t = window.TRANSLATIONS;
-    if (!t) return key;
-    return (t[lang] && t[lang][key]) || (t[DEFAULT] && t[DEFAULT][key]) || key;
+    if (!t) return null;
+    if (t[lang] && t[lang][key]) return t[lang][key];
+    if (t[DEFAULT] && t[DEFAULT][key]) return t[DEFAULT][key];
+    return null;
+  }
+
+  function get(key) {
+    return resolve(key) || key;
   }
 
   function apply() {
     document.documentElement.lang = lang;
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var v = get(el.dataset.i18n);
+      var v = resolve(el.dataset.i18n);
       if (v) {
         if (el.tagName === 'META') el.setAttribute('content', v);
         else if (el.tagName === 'TITLE') el.textContent = v;
@@ -138,29 +144,29 @@
       }
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
-      var v = get(el.dataset.i18nHtml);
+      var v = resolve(el.dataset.i18nHtml);
       if (v) el.innerHTML = v;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
-      var v = get(el.dataset.i18nPlaceholder);
+      var v = resolve(el.dataset.i18nPlaceholder);
       if (v) el.placeholder = v;
     });
     document.querySelectorAll('[data-i18n-value]').forEach(function (el) {
-      var v = get(el.dataset.i18nValue);
+      var v = resolve(el.dataset.i18nValue);
       if (v) el.value = v;
     });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
-      var v = get(el.dataset.i18nAria);
+      var v = resolve(el.dataset.i18nAria);
       if (v) el.setAttribute('aria-label', v);
     });
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
-      var v = get(el.dataset.i18nTitle);
+      var v = resolve(el.dataset.i18nTitle);
       if (v) el.title = v;
     });
 
     var titleKey = document.documentElement.dataset.i18nTitle;
     if (titleKey) {
-      var tv = get(titleKey);
+      var tv = resolve(titleKey);
       if (tv) document.title = tv;
     }
 

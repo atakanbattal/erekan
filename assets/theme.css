@@ -250,6 +250,9 @@ img { max-width: 100%; display: block; }
   gap: 12px;
   min-width: 0;
 }
+.logo { grid-column: 1; }
+.nav-desktop { grid-column: 2; }
+.nav-right { grid-column: 3; justify-self: end; }
 .logo {
   display: flex;
   align-items: center;
@@ -308,10 +311,16 @@ img { max-width: 100%; display: block; }
   flex: 1;
   justify-content: center;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   padding-right: 4px;
 }
+.nav-desktop .nav-links {
+  max-width: 100%;
+  overflow: hidden;
+}
 .nav-drawer {
-  display: none;
+  display: none !important;
   align-items: stretch;
   flex-direction: column;
   min-width: 0;
@@ -340,7 +349,7 @@ img { max-width: 100%; display: block; }
   transform: rotate(180deg);
 }
 .nav-more-menu {
-  display: none;
+  display: none !important;
   position: absolute;
   top: calc(100% + 8px);
   left: auto;
@@ -359,7 +368,7 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 12px 40px rgba(0,0,0,.1);
 }
 .nav-more.open .nav-more-menu {
-  display: block;
+  display: block !important;
 }
 .nav-more-item {
   display: block;
@@ -792,12 +801,17 @@ section { position: relative; }
   transform: translateY(0);
 }
 
-@media (max-width: 1280px) {
+@media (min-width: 1281px) {
+  .nav-drawer { display: none !important; }
+  .nav-burger { display: none !important; }
+}
+
+@media (max-width: 1320px) {
   .nav-link { padding: 8px 8px; font-size: 13px; }
   .nav-portal { font-size: 12px !important; padding: 7px 10px !important; }
 }
-@media (max-width: 1200px) {
-  .nav-desktop { display: none; }
+@media (max-width: 1280px) {
+  .nav-desktop { display: none !important; }
   .nav-right {
     margin-left: 0;
     padding-left: 0;
@@ -807,7 +821,7 @@ section { position: relative; }
   .nav-burger { display: flex; }
   body.nav-open { overflow: hidden; }
   .nav-drawer {
-    display: none;
+    display: none !important;
     position: fixed;
     top: var(--nav-h);
     left: 0;
@@ -821,7 +835,7 @@ section { position: relative; }
     justify-content: flex-start;
     align-items: stretch;
   }
-  .nav.open .nav-drawer { display: flex; }
+  .nav.open .nav-drawer { display: flex !important; }
   .nav-drawer .nav-links {
     position: static;
     top: auto;
@@ -1042,7 +1056,7 @@ section { position: relative; }
 @media (max-width: 1280px) {
   .nav-link { font-size: 13px !important; }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .nav-drawer .nav-link { font-size: 16px !important; }
 }
 

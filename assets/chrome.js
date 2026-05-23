@@ -16,7 +16,8 @@ function injectNavTypography() {
   style.id = 'aw-nav-type';
   style.textContent = `
     .nav .nav-links { gap: 2px; text-transform: none; flex-wrap: nowrap; }
-    .nav .nav-desktop .nav-links { overflow: visible; }
+    .nav .nav-desktop { min-width: 0; overflow: hidden; }
+    .nav .nav-desktop .nav-links { overflow: hidden; max-width: 100%; }
     .nav .nav-links .nav-link {
       font-family: 'Archivo', system-ui, -apple-system, sans-serif !important;
       font-size: 14px !important;
@@ -143,12 +144,6 @@ function buildNav(activePage, base) {
           ${desktopLinksHtml}
         </div>
       </div>
-      <div class="nav-drawer" id="navDrawer" aria-hidden="true">
-        <div class="nav-links">
-          ${mobileLinksHtml}
-        </div>
-        <a href="${portalUrl}" class="nav-portal-mobile" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
-      </div>
       <div class="nav-right">
         <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="" onclick="toggleTheme()" title="">
           <svg class="tt-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -179,11 +174,17 @@ function buildNav(activePage, base) {
         </div>
 
         <a href="${portalUrl}" class="nav-portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
-        <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta"></a>
+        <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta">Teklif Al →</a>
         <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" aria-expanded="false" aria-controls="navDrawer" onclick="toggleMobileNav()">
           <span></span><span></span><span></span>
         </button>
       </div>
+    </div>
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+      <div class="nav-links">
+        ${mobileLinksHtml}
+      </div>
+      <a href="${portalUrl}" class="nav-portal-mobile" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
     </div>
   </nav>
   `;
