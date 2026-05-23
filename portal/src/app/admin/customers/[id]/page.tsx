@@ -2,7 +2,6 @@ import { redirect, notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { EditCustomerForm } from '@/components/admin/EditCustomerForm';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Customer } from '@/lib/types';
@@ -35,9 +34,7 @@ export default async function EditCustomerPage({ params }: PageProps) {
     .eq('customer_id', id);
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <Link href="/admin/customers" className="inline-flex items-center gap-2 text-sm text-steel-2 hover:text-arc-2 mb-6">
           <ArrowLeft size={16} /> {t('admin.backToCustomers')}
         </Link>
@@ -49,7 +46,6 @@ export default async function EditCustomerPage({ params }: PageProps) {
           </p>
         </div>
         <EditCustomerForm customer={customer as Customer} />
-      </main>
-    </>
+    </div>
   );
 }

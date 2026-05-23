@@ -2,7 +2,6 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { NewOrderForm } from '@/components/admin/NewOrderForm';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Customer } from '@/lib/types';
@@ -31,9 +30,7 @@ export default async function NewOrderPage() {
     .order('company_name');
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <Link
           href="/admin/orders"
           className="inline-flex items-center gap-2 text-sm text-steel-2 hover:text-arc-2 mb-6"
@@ -45,7 +42,6 @@ export default async function NewOrderPage() {
           <h1 className="text-2xl font-black text-bone">{t('admin.newOrderPage')}</h1>
         </div>
         <NewOrderForm customers={(customers ?? []) as Customer[]} staffName={staff.full_name} />
-      </main>
-    </>
+    </div>
   );
 }

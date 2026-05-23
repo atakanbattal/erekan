@@ -2,22 +2,26 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, Menu, Bell } from 'lucide-react';
+import { LogOut, Menu, Bell, PanelLeftOpen } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
 import { LangSwitcher } from '../LangSwitcher';
 
 interface PortalTopBarProps {
+  variant?: 'customer' | 'admin';
   userName: string;
   companyName: string;
   unreadMessages: number;
+  sidebarOpen: boolean;
   onMenuToggle: () => void;
 }
 
 export function PortalTopBar({
+  variant = 'customer',
   userName,
   companyName,
   unreadMessages,
+  sidebarOpen,
   onMenuToggle,
 }: PortalTopBarProps) {
   const router = useRouter();
@@ -33,18 +37,30 @@ export function PortalTopBar({
   return (
     <header className="portal-topbar">
       <div className="portal-topbar-left">
-        <button type="button" className="portal-topbar-menu" onClick={onMenuToggle}>
-          <Menu size={20} />
+        <button
+          type="button"
+          className={`portal-topbar-menu ${sidebarOpen ? '' : 'portal-topbar-menu--highlight'}`}
+          onClick={onMenuToggle}
+          aria-label={sidebarOpen ? t('sidebar.collapse') : t('sidebar.expand')}
+          aria-expanded={sidebarOpen}
+        >
+          {sidebarOpen ? <Menu size={20} /> : <PanelLeftOpen size={20} />}
         </button>
         <div>
-          <div className="portal-topbar-eyebrow">{t('common.portal')}</div>
+          <div className="portal-topbar-eyebrow">
+            {variant === 'admin' ? t('admin.panelEyebrow') : t('common.portal')}
+          </div>
           <div className="portal-topbar-title">{companyName}</div>
         </div>
       </div>
 
       <div className="portal-topbar-right">
         <LangSwitcher />
-        <Link href="/messages" className="portal-topbar-bell" aria-label={t('sidebar.messages')}>
+        <Link
+          href={variant === 'admin' ? '/admin/messages' : '/messages'}
+          className="portal-topbar-bell"
+          aria-label={t('sidebar.messages')}
+        >
           <Bell size={18} />
           {unreadMessages > 0 && <span className="portal-topbar-bell-dot" />}
         </Link>

@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { AdminMessageInbox } from '@/components/admin/AdminMessageInbox';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { PortalMessage } from '@/lib/types';
@@ -34,9 +33,7 @@ export default async function AdminMessagesPage() {
     .eq('is_read_by_admin', false);
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
             <div className="eyebrow">{t('admin.panelEyebrow')}</div>
@@ -52,7 +49,6 @@ export default async function AdminMessagesPage() {
           threads={(messages ?? []) as PortalMessage[]}
           staffName={staff.full_name}
         />
-      </main>
-    </>
+    </div>
   );
 }

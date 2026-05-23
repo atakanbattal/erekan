@@ -2,7 +2,6 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { NewCustomerForm } from '@/components/admin/NewCustomerForm';
 import { getServerI18n } from '@/lib/i18n/server';
 
@@ -24,9 +23,7 @@ export default async function NewCustomerPage() {
   if (!staff?.is_admin) redirect('/dashboard');
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <Link
           href="/admin/customers"
           className="inline-flex items-center gap-2 text-sm text-steel-2 hover:text-arc-2 mb-6"
@@ -39,7 +36,6 @@ export default async function NewCustomerPage() {
           <p className="text-sm text-steel-2 mt-1">{t('admin.createCustomerDesc')}</p>
         </div>
         <NewCustomerForm />
-      </main>
-    </>
+    </div>
   );
 }

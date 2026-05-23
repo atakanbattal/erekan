@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { StatusBadge } from '@/components/StatusBadge';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Order } from '@/lib/types';
@@ -30,9 +29,7 @@ export default async function AdminOrdersPage() {
     .order('updated_at', { ascending: false });
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="eyebrow mb-2">{t('common.admin')}</div>
@@ -93,7 +90,6 @@ export default async function AdminOrdersPage() {
             </table>
           </div>
         </div>
-      </main>
-    </>
+    </div>
   );
 }

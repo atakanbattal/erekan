@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Package, Users, Plus, ArrowRight, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { StatusBadge } from '@/components/StatusBadge';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Order } from '@/lib/types';
@@ -44,9 +43,7 @@ export default async function AdminPage() {
     recentOrders?.filter((o) => o.status === 'active').length ?? 0;
 
   return (
-    <>
-      <Header isAdmin userName={staff.full_name} />
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="portal-page">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <div className="eyebrow mb-2">{t('admin.panelEyebrow')}</div>
@@ -135,7 +132,6 @@ export default async function AdminPage() {
             )}
           </div>
         </div>
-      </main>
-    </>
+    </div>
   );
 }

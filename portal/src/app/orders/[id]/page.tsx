@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Hash, Thermometer } from 'lucide-react';
 import { format } from 'date-fns';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/Header';
 import { PortalShell } from '@/components/portal/PortalShell';
 import { StatusBadge } from '@/components/StatusBadge';
 import { ProcessFlow } from '@/components/ProcessFlow';
@@ -80,6 +79,13 @@ export default async function OrderDetailPage({ params }: PageProps) {
       .eq('customer_id', customer.id)
       .eq('sender_type', 'admin')
       .eq('is_read_by_customer', false);
+    unreadMessages = count ?? 0;
+  } else if (staff?.is_admin) {
+    const { count } = await supabase
+      .from('portal_messages')
+      .select('*', { count: 'exact', head: true })
+      .eq('sender_type', 'customer')
+      .eq('is_read_by_admin', false);
     unreadMessages = count ?? 0;
   }
 
@@ -212,13 +218,13 @@ export default async function OrderDetailPage({ params }: PageProps) {
   }
 
   return (
-    <>
-      <Header
-        isAdmin
-        userName={staff?.full_name ?? user.email ?? ''}
-        companyName={t('nav.adminCompany')}
-      />
-      <main className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 lg:px-8">{content}</main>
-    </>
+    <PortalShell
+      variant="admin"
+      userName={staff?.full_name ?? user.email ?? ''}
+      companyName={t('nav.adminCompany')}
+      unreadMessages={unreadMessages}
+    >
+      <div className="portal-page">{content}</div>
+    </PortalShell>
   );
 }
