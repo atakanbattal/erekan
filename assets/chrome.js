@@ -71,9 +71,6 @@ function buildNav(activePage, base) {
         <div class="nav-links">
           ${linkHtml}
         </div>
-        <div class="nav-drawer-foot">
-          <a href="${b}iletisim.html" class="nav-drawer-cta" data-i18n="nav_cta"></a>
-        </div>
       </div>
       <div class="nav-right">
         <button class="theme-toggle" data-i18n-aria="nav_aria_theme" aria-label="" onclick="toggleTheme()" title="">
@@ -293,7 +290,7 @@ function initStickyCTA() {
 }
 
 function initMobileNav() {
-  document.querySelectorAll('.nav-link, .nav-cta, .nav-drawer-cta').forEach(function (link) {
+  document.querySelectorAll('.nav-link, .nav-cta').forEach(function (link) {
     link.addEventListener('click', function () {
       closeMobileNav();
     });
@@ -358,7 +355,7 @@ function injectMobileCSS(base) {
   const link = document.createElement('link');
   link.id = 'aw-mobile-css';
   link.rel = 'stylesheet';
-  link.href = (base || '') + 'assets/mobile.css?v=20260606';
+  link.href = (base || '') + 'assets/mobile.css?v=20260607';
   document.head.appendChild(link);
 }
 
