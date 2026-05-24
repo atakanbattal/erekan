@@ -86,6 +86,65 @@ export const DOCUMENT_TYPES = {
 
 export type DocumentType = keyof typeof DOCUMENT_TYPES;
 
+export type NotificationType =
+  | 'message_reply'
+  | 'stage_changed'
+  | 'document_uploaded'
+  | 'delivery_reminder'
+  | 'delivery_overdue'
+  | 'support_request'
+  | 'rfq_submitted'
+  | 'quote_ready'
+  | 'shipment_updated'
+  | 'ndt_result';
+
+export type NotificationAudience = 'customer' | 'admin';
+
+export type CustomerUserRole = 'admin' | 'quality' | 'procurement' | 'viewer';
+
+export type NdtMethod = 'ut' | 'mt' | 'pt' | 'vt' | 'rt';
+
+export type NdtResult = 'pass' | 'conditional' | 'fail' | 'pending';
+
+export type RfqStatus =
+  | 'submitted'
+  | 'reviewing'
+  | 'quoted'
+  | 'approved'
+  | 'rejected'
+  | 'converted';
+
+export const NDT_METHOD_LABELS: Record<NdtMethod, string> = {
+  ut: 'UT — Ultrasonik',
+  mt: 'MT — Manyetik Parçacık',
+  pt: 'PT — Sıvı Penetrant',
+  vt: 'VT — Görsel Muayene',
+  rt: 'RT — Radyografi',
+};
+
+export const NDT_RESULT_LABELS: Record<NdtResult, string> = {
+  pass: 'Uygun',
+  conditional: 'Şartlı Uygun',
+  fail: 'Red',
+  pending: 'Bekliyor',
+};
+
+export const RFQ_STATUS_LABELS: Record<RfqStatus, string> = {
+  submitted: 'Gönderildi',
+  reviewing: 'İnceleniyor',
+  quoted: 'Teklif Verildi',
+  approved: 'Onaylandı',
+  rejected: 'Reddedildi',
+  converted: 'Siparişe Dönüştü',
+};
+
+export const CUSTOMER_ROLE_LABELS: Record<CustomerUserRole, string> = {
+  admin: 'Firma Yöneticisi',
+  quality: 'Kalite',
+  procurement: 'Satın Alma',
+  viewer: 'Görüntüleyici',
+};
+
 export const STAGE_DOCUMENT_TYPES: Record<number, DocumentType[]> = {
   1: ['wps', 'wpqr', 'dimension_report', 'photo', 'other'],
   2: ['mtc', 'incoming_inspection', 'photo', 'other'],

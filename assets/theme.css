@@ -312,12 +312,12 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   min-width: 0;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
   padding-right: 4px;
 }
 .nav-desktop .nav-links {
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 .nav-drawer {
   display: none !important;
@@ -328,6 +328,7 @@ img { max-width: 100%; display: block; }
 .nav-more {
   position: relative;
   flex-shrink: 0;
+  z-index: 160;
 }
 .nav-more-btn {
   display: inline-flex;

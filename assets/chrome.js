@@ -19,12 +19,31 @@ const NAV_LABELS = {
   nav_faq: 'SSS',
 };
 
+function isLocalDevHost() {
+  var host = location.hostname;
+  return host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+}
+
 function getPortalUrl() {
-  const host = location.hostname;
-  if (host === 'localhost' || host === '127.0.0.1') {
-    return 'http://localhost:3001/login';
+  if (isLocalDevHost()) {
+    return location.protocol + '//' + location.host + '/login';
   }
   return PORTAL_LOGIN_URL;
+}
+
+function applyPortalLinks() {
+  var url = getPortalUrl();
+  var sameTab = isLocalDevHost();
+  document.querySelectorAll('[data-portal-link], .nav-portal, .nav-drawer-btn--portal').forEach(function (a) {
+    a.href = url;
+    if (sameTab) {
+      a.removeAttribute('target');
+      a.removeAttribute('rel');
+    } else {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
 }
 
 function injectNavTypography() {
@@ -33,8 +52,9 @@ function injectNavTypography() {
   style.id = 'aw-nav-type';
   style.textContent = `
     .nav .nav-links { gap: 2px; text-transform: none; flex-wrap: nowrap; }
-    .nav .nav-desktop { min-width: 0; overflow: hidden; }
-    .nav .nav-desktop .nav-links { overflow: hidden; max-width: 100%; }
+    .nav .nav-desktop { min-width: 0; overflow: visible; }
+    .nav .nav-desktop .nav-links { overflow: visible; max-width: 100%; }
+    .nav .nav-inner { overflow: visible; }
     .nav .nav-links .nav-link {
       font-family: 'Archivo', system-ui, -apple-system, sans-serif !important;
       font-size: 14px !important;
@@ -174,7 +194,7 @@ function buildNav(activePage, base) {
           </div>
         </div>
 
-        <a href="${portalUrl}" class="nav-portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
+        <a href="${portalUrl}" class="nav-portal" data-portal-link data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
         <a href="${b}iletisim.html" class="nav-cta" data-i18n="nav_cta">Teklif Al →</a>
         <button class="nav-burger" data-i18n-aria="nav_aria_menu" aria-label="" aria-expanded="false" aria-controls="navDrawer" onclick="toggleMobileNav()">
           <span></span><span></span><span></span>
@@ -184,7 +204,7 @@ function buildNav(activePage, base) {
   </nav>
   <div class="nav-drawer" id="navDrawer" aria-hidden="true">
     <div class="nav-drawer-actions">
-      <a href="${portalUrl}" class="nav-drawer-btn nav-drawer-btn--portal" data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
+      <a href="${portalUrl}" class="nav-drawer-btn nav-drawer-btn--portal" data-portal-link data-i18n="nav_portal" target="_blank" rel="noopener noreferrer">Müşteri Portalı</a>
       <a href="${b}iletisim.html" class="nav-drawer-btn nav-drawer-btn--cta" data-i18n="nav_cta">Teklif Al →</a>
     </div>
     <div class="nav-links">
@@ -350,20 +370,29 @@ function initCookieConsent() {
 
 function initNavMore() {
   document.querySelectorAll('.nav-more-btn').forEach(function (btn) {
+    if (btn.dataset.navMoreBound === '1') return;
+    btn.dataset.navMoreBound = '1';
     btn.addEventListener('click', function (e) {
+      e.preventDefault();
       e.stopPropagation();
       var wrap = btn.closest('.nav-more');
       if (!wrap) return;
-      var open = wrap.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var wasOpen = wrap.classList.contains('open');
+      document.querySelectorAll('.nav-more.open').forEach(function (el) {
+        el.classList.remove('open');
+        var otherBtn = el.querySelector('.nav-more-btn');
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        wrap.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        btn.setAttribute('aria-expanded', 'false');
+      }
     });
   });
-  document.querySelectorAll('.nav-more-menu').forEach(function (menu) {
-    menu.addEventListener('click', function (e) {
-      e.stopPropagation();
-    });
-  });
-  document.addEventListener('click', function () {
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.nav-more')) return;
     document.querySelectorAll('.nav-more.open').forEach(function (el) {
       el.classList.remove('open');
       var btn = el.querySelector('.nav-more-btn');
@@ -477,9 +506,7 @@ function mountChrome(activePage, base) {
   document.body.insertAdjacentHTML('afterbegin', buildScrollBar() + buildNav(activePage, base));
   document.body.insertAdjacentHTML('beforeend', buildFooter(base));
 
-  document.querySelectorAll('[data-portal-link]').forEach(function (a) {
-    a.href = getPortalUrl();
-  });
+  applyPortalLinks();
 
   // Apply translations to injected chrome
   if (window.i18n) {
@@ -515,7 +542,10 @@ function mountChrome(activePage, base) {
   };
 
   if (window.i18n && window.i18n.ready) {
-    return window.i18n.ready().then(doMount);
+    return Promise.race([
+      window.i18n.ready(),
+      new Promise(function (resolve) { setTimeout(resolve, 4000); }),
+    ]).then(doMount);
   }
   doMount();
   return Promise.resolve();

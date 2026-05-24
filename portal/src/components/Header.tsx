@@ -1,9 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { LogOut, Shield, LayoutDashboard, Package, Users, MessageSquare } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
 import { LangSwitcher } from './LangSwitcher';
 
@@ -15,8 +14,6 @@ interface HeaderProps {
 
 export function Header({ isAdmin, userName, companyName }: HeaderProps) {
   const pathname = usePathname();
-  const router = useRouter();
-  const supabase = createClient();
   const { t } = useI18n();
 
   const displayCompany =
@@ -25,12 +22,6 @@ export function Header({ isAdmin, userName, companyName }: HeaderProps) {
       : isAdmin && !companyName
         ? t('nav.adminCompany')
         : companyName;
-
-  async function handleLogout() {
-    await supabase.auth.signOut();
-    router.push('/login');
-    router.refresh();
-  }
 
   const navItems = isAdmin
     ? [
@@ -80,15 +71,16 @@ export function Header({ isAdmin, userName, companyName }: HeaderProps) {
                 <div className="header-user-meta">{displayCompany}</div>
               )}
             </div>
-            <button
-              type="button"
-              onClick={handleLogout}
-              className="header-logout"
-              title={t('nav.logoutTitle')}
-            >
-              <LogOut size={17} />
-              <span className="hidden sm:inline">{t('nav.logout')}</span>
-            </button>
+            <form action="/auth/signout" method="POST">
+              <button
+                type="submit"
+                className="header-logout"
+                title={t('nav.logoutTitle')}
+              >
+                <LogOut size={17} />
+                <span className="hidden sm:inline">{t('nav.logout')}</span>
+              </button>
+            </form>
           </div>
         </div>
       </div>

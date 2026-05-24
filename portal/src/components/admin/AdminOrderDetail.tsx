@@ -10,8 +10,11 @@ import { StageManager } from './StageManager';
 import { ActivityFeed } from '../ActivityFeed';
 import { StatusBadge } from '../StatusBadge';
 import { OrderFilesSection } from '../OrderFilesSection';
+import { NdtRecordsPanel } from '../portal/NdtRecordsPanel';
+import { ShipmentPanel } from '../portal/ShipmentPanel';
 import { useI18n } from '@/lib/i18n/context';
 import { getOrderStatusLabel } from '@/lib/i18n/helpers';
+import type { NdtRecord, Shipment } from '@/lib/portal/types-ext';
 
 interface AdminOrderDetailProps {
   order: Order & { customers: { company_name: string; email: string } };
@@ -19,6 +22,8 @@ interface AdminOrderDetailProps {
   documents: OrderDocument[];
   staffName: string;
   activities?: OrderActivity[];
+  ndtRecords?: NdtRecord[];
+  shipments?: Shipment[];
 }
 
 export function AdminOrderDetail({
@@ -27,6 +32,8 @@ export function AdminOrderDetail({
   documents,
   staffName,
   activities = [],
+  ndtRecords = [],
+  shipments = [],
 }: AdminOrderDetailProps) {
   const { t } = useI18n();
   const [status, setStatus] = useState(order.status);
@@ -114,6 +121,20 @@ export function AdminOrderDetail({
       {activities.length > 0 && (
         <ActivityFeed activities={activities} isCustomerView={false} />
       )}
+
+      <NdtRecordsPanel
+        records={ndtRecords}
+        mode="admin"
+        orderId={order.id}
+        staffName={staffName}
+      />
+
+      <ShipmentPanel
+        shipments={shipments}
+        mode="admin"
+        orderId={order.id}
+        staffName={staffName}
+      />
     </div>
   );
 }

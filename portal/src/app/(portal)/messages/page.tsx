@@ -1,4 +1,6 @@
+import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { resolveCustomerContext } from '@/lib/portal/customer-context';
 import { MessagesPageClient } from './MessagesPageClient';
 import type { Order, PortalMessage } from '@/lib/types';
 
@@ -8,29 +10,28 @@ export default async function MessagesPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data: customer } = await supabase
-    .from('customers')
-    .select('*')
-    .eq('auth_user_id', user!.id)
-    .single();
+  if (!user) redirect('/login');
+
+  const ctx = await resolveCustomerContext(user.id);
+  if (!ctx) redirect('/dashboard');
 
   const [{ data: messages }, { data: orders }] = await Promise.all([
     supabase
       .from('portal_messages')
       .select('*')
-      .eq('customer_id', customer!.id)
+      .eq('customer_id', ctx.customerId)
       .order('created_at', { ascending: false }),
     supabase
       .from('orders')
       .select('id, job_number, title')
-      .eq('customer_id', customer!.id)
+      .eq('customer_id', ctx.customerId)
       .order('created_at', { ascending: false }),
   ]);
 
   return (
     <MessagesPageClient
-      customerId={customer!.id}
-      senderName={customer!.contact_name ?? user!.email ?? ''}
+      customerId={ctx.customerId}
+      senderName={ctx.contactName}
       messages={(messages ?? []) as PortalMessage[]}
       orders={(orders ?? []) as Pick<Order, 'id' | 'job_number' | 'title'>[]}
     />

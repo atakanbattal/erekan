@@ -1,17 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { LogOut, Menu, Bell, PanelLeftOpen } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
+import { LogOut, Menu, Bell, PanelLeftOpen, Settings } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
 import { LangSwitcher } from '../LangSwitcher';
+import { AdminGlobalSearch } from '../admin/AdminGlobalSearch';
 
 interface PortalTopBarProps {
   variant?: 'customer' | 'admin';
   userName: string;
   companyName: string;
   unreadMessages: number;
+  unreadNotifications?: number;
   sidebarOpen: boolean;
   onMenuToggle: () => void;
 }
@@ -21,18 +21,13 @@ export function PortalTopBar({
   userName,
   companyName,
   unreadMessages,
+  unreadNotifications = 0,
   sidebarOpen,
   onMenuToggle,
 }: PortalTopBarProps) {
-  const router = useRouter();
-  const supabase = createClient();
   const { t } = useI18n();
-
-  async function handleLogout() {
-    await supabase.auth.signOut();
-    router.push('/login');
-    router.refresh();
-  }
+  const notifHref = variant === 'admin' ? '/admin/notifications' : '/notifications';
+  const totalAlerts = unreadMessages + unreadNotifications;
 
   return (
     <header className="portal-topbar">
@@ -46,7 +41,7 @@ export function PortalTopBar({
         >
           {sidebarOpen ? <Menu size={20} /> : <PanelLeftOpen size={20} />}
         </button>
-        <div>
+        <div className="portal-topbar-brand">
           <div className="portal-topbar-eyebrow">
             {variant === 'admin' ? t('admin.panelEyebrow') : t('common.portal')}
           </div>
@@ -54,29 +49,40 @@ export function PortalTopBar({
         </div>
       </div>
 
+      <div className="portal-topbar-center">
+        {variant === 'admin' ? <AdminGlobalSearch /> : null}
+      </div>
+
       <div className="portal-topbar-right">
         <LangSwitcher />
         <Link
-          href={variant === 'admin' ? '/admin/messages' : '/messages'}
+          href={notifHref}
           className="portal-topbar-bell"
-          aria-label={t('sidebar.messages')}
+          aria-label={t('notifications.title')}
         >
           <Bell size={18} />
-          {unreadMessages > 0 && <span className="portal-topbar-bell-dot" />}
+          {totalAlerts > 0 && (
+            <span className="portal-topbar-bell-dot">
+              {totalAlerts > 9 ? '9+' : totalAlerts}
+            </span>
+          )}
         </Link>
-        <div className="portal-topbar-user">
-          <div className="portal-topbar-user-name">{userName}</div>
-          <div className="portal-topbar-user-company">{companyName}</div>
-        </div>
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="portal-topbar-logout"
-          title={t('nav.logoutTitle')}
-        >
-          <LogOut size={17} />
-          <span className="hidden lg:inline">{t('nav.logout')}</span>
-        </button>
+        {variant === 'customer' && (
+          <Link href="/settings" className="portal-topbar-bell" aria-label={t('settingsPage.title')}>
+            <Settings size={18} />
+          </Link>
+        )}
+        <span className="portal-topbar-user-name">{userName}</span>
+        <form action="/auth/signout" method="POST" className="portal-topbar-logout-form">
+          <button
+            type="submit"
+            className="portal-topbar-logout"
+            title={t('nav.logoutTitle')}
+          >
+            <LogOut size={17} />
+            <span className="portal-topbar-logout-label">{t('nav.logout')}</span>
+          </button>
+        </form>
       </div>
     </header>
   );

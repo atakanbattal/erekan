@@ -13,6 +13,10 @@ import {
   Shield,
   X,
   PanelLeftClose,
+  Bell,
+  FileQuestion,
+  Settings,
+  LayoutTemplate,
   type LucideIcon,
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
@@ -45,30 +49,28 @@ export function PortalSidebar({
     { href: '/dashboard', label: t('sidebar.home'), icon: Home },
     { href: '/orders', label: t('sidebar.orders'), icon: Package },
     { href: '/documents', label: t('sidebar.documents'), icon: FileText },
-    {
-      href: '/messages',
-      label: t('sidebar.messages'),
-      icon: MessageSquare,
-      badge: unreadMessages,
-    },
+    { href: '/messages', label: t('sidebar.messages'), icon: MessageSquare },
+    { href: '/notifications', label: t('notifications.title'), icon: Bell },
+    { href: '/rfq', label: t('rfqPage.title'), icon: FileQuestion },
     { href: '/support', label: t('sidebar.support'), icon: HeadphonesIcon },
+    { href: '/team', label: t('teamPage.title'), icon: Users },
     { href: '/company', label: t('sidebar.company'), icon: Building2 },
+    { href: '/settings', label: t('settingsPage.title'), icon: Settings },
   ];
 
   const adminItems: { href: string; label: string; icon: LucideIcon; badge?: number }[] = [
     { href: '/admin', label: t('nav.admin'), icon: Shield },
     { href: '/admin/orders', label: t('nav.orders'), icon: Package },
     { href: '/admin/customers', label: t('nav.customers'), icon: Users },
-    {
-      href: '/admin/messages',
-      label: t('nav.messages'),
-      icon: MessageSquare,
-      badge: unreadMessages,
-    },
+    { href: '/admin/messages', label: t('nav.messages'), icon: MessageSquare },
+    { href: '/admin/notifications', label: t('notifications.title'), icon: Bell },
+    { href: '/admin/rfq', label: t('adminRfqPage.title'), icon: FileQuestion },
+    { href: '/admin/templates', label: t('templatesPage.title'), icon: LayoutTemplate },
   ];
 
   const navItems = variant === 'admin' ? adminItems : customerItems;
   const brandHref = homeHref ?? defaultHome;
+  const messageBadge = unreadMessages;
 
   function isActive(href: string) {
     if (href === '/dashboard' || href === '/admin') {
@@ -111,7 +113,7 @@ export function PortalSidebar({
         </div>
 
         <nav className="portal-sidebar-nav" aria-label="Portal">
-          {navItems.map(({ href, label, icon: Icon, badge }) => (
+          {navItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
               href={href}
@@ -120,8 +122,8 @@ export function PortalSidebar({
             >
               <Icon size={18} />
               <span>{label}</span>
-              {badge != null && badge > 0 && (
-                <span className="portal-sidebar-badge">{badge > 99 ? '99+' : badge}</span>
+              {href === '/messages' && messageBadge > 0 && (
+                <span className="portal-sidebar-badge">{messageBadge > 99 ? '99+' : messageBadge}</span>
               )}
             </Link>
           ))}

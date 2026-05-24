@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { PortalShell } from '@/components/portal/PortalShell';
 import { getServerI18n } from '@/lib/i18n/server';
+import { getAdminUnreadMessageCount, getUnreadNotificationCount } from '@/lib/portal/customer-context';
 
 export default async function AdminLayout({
   children,
@@ -24,18 +25,18 @@ export default async function AdminLayout({
 
   if (!staff?.is_admin) redirect('/dashboard');
 
-  const { count } = await supabase
-    .from('portal_messages')
-    .select('*', { count: 'exact', head: true })
-    .eq('sender_type', 'customer')
-    .eq('is_read_by_admin', false);
+  const [unreadMessages, unreadNotifications] = await Promise.all([
+    getAdminUnreadMessageCount(),
+    getUnreadNotificationCount('admin'),
+  ]);
 
   return (
     <PortalShell
       variant="admin"
       userName={staff.full_name}
       companyName={t('nav.adminCompany')}
-      unreadMessages={count ?? 0}
+      unreadMessages={unreadMessages}
+      unreadNotifications={unreadNotifications}
     >
       {children}
     </PortalShell>

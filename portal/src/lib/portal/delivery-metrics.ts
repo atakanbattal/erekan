@@ -5,7 +5,9 @@ export interface DeliveryMetrics {
   onTimeCount: number;
   finishedWithDate: number;
   avgProductionProgress: number;
+  avgProgress: number;
   activeOrders: number;
+  totalOrders: number;
   upcomingDeliveries: number;
   documentCount: number;
 }
@@ -48,7 +50,9 @@ export function computeDeliveryMetrics(
     onTimeCount,
     finishedWithDate: finishedWithDate.length,
     avgProductionProgress,
+    avgProgress: avgProductionProgress,
     activeOrders: activeOrdersList.length,
+    totalOrders: orders.length,
     upcomingDeliveries,
     documentCount,
   };

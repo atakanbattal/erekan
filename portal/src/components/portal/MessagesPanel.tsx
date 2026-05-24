@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useDebouncedRouterRefresh } from '@/hooks/useDebouncedRouterRefresh';
 import { formatDistanceToNow } from 'date-fns';
 import { Send, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
@@ -31,8 +31,8 @@ export function MessageComposer({
   parentSubject,
   onSent,
 }: MessageComposerProps) {
-  const { t, dateLocale } = useI18n();
-  const router = useRouter();
+  const { t } = useI18n();
+  const refresh = useDebouncedRouterRefresh();
   const supabase = createClient();
   const [subject, setSubject] = useState(parentSubject ?? defaultSubject);
   const [body, setBody] = useState('');
@@ -74,7 +74,20 @@ export function MessageComposer({
     setBody('');
     setSuccess(true);
     onSent?.();
-    router.refresh();
+
+    void fetch('/api/notifications/trigger', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'customer_message',
+        customerId,
+        orderId: orderId || null,
+        subject: subject.trim(),
+        messageBody: body.trim(),
+      }),
+    });
+
+    refresh();
     setTimeout(() => setSuccess(false), 4000);
   }
 
@@ -134,69 +147,105 @@ export function MessageComposer({
   );
 }
 
+export function buildMessageThreads(messages: PortalMessage[]) {
+  const threadMap = messages.reduce((acc, msg) => {
+    if (!acc.has(msg.thread_id)) acc.set(msg.thread_id, []);
+    acc.get(msg.thread_id)!.push(msg);
+    return acc;
+  }, new Map<string, PortalMessage[]>());
+
+  return Array.from(threadMap.entries())
+    .map(([threadId, msgs]) => {
+      const sorted = [...msgs].sort(
+        (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+      const latest = sorted[sorted.length - 1];
+      const unread = msgs.some(
+        (m) => m.sender_type === 'admin' && !m.is_read_by_customer
+      );
+      return { threadId, msgs: sorted, latest, unread, count: msgs.length };
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.latest.created_at).getTime() - new Date(a.latest.created_at).getTime()
+    );
+}
+
+export async function markCustomerThreadRead(threadId: string) {
+  const supabase = createClient();
+  await supabase
+    .from('portal_messages')
+    .update({ is_read_by_customer: true })
+    .eq('thread_id', threadId)
+    .eq('sender_type', 'admin');
+}
+
 interface MessageThreadListProps {
   messages: PortalMessage[];
   onSelectThread?: (threadId: string) => void;
   selectedThreadId?: string;
+  searchQuery?: string;
+  categoryFilter?: MessageCategory | 'all';
 }
 
 export function MessageThreadList({
   messages,
   onSelectThread,
   selectedThreadId,
+  searchQuery = '',
+  categoryFilter = 'all',
 }: MessageThreadListProps) {
   const { t, dateLocale } = useI18n();
 
-  const threads = messages.reduce(
-    (acc, msg) => {
-      if (!acc.has(msg.thread_id)) acc.set(msg.thread_id, msg);
-      return acc;
-    },
-    new Map<string, PortalMessage>()
-  );
-
-  const threadList = Array.from(threads.values()).sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-  );
+  const query = searchQuery.trim().toLowerCase();
+  const threadList = buildMessageThreads(messages).filter(({ latest, msgs }) => {
+    if (categoryFilter !== 'all' && latest.category !== categoryFilter) return false;
+    if (!query) return true;
+    const haystack = [
+      latest.subject,
+      ...msgs.map((m) => m.body),
+    ]
+      .join(' ')
+      .toLowerCase();
+    return haystack.includes(query);
+  });
 
   if (threadList.length === 0) {
     return (
       <div className="card p-8 text-center text-steel-2">
         <MessageSquare size={32} className="mx-auto mb-3 opacity-40" />
-        {t('messages.noMessages')}
+        {query || categoryFilter !== 'all' ? t('messages.noSearchResults') : t('messages.noMessages')}
       </div>
     );
   }
 
   return (
     <div className="message-thread-list">
-      {threadList.map((msg) => {
-        const unread =
-          msg.sender_type === 'admin' && !msg.is_read_by_customer;
-        return (
-          <button
-            key={msg.thread_id}
-            type="button"
-            onClick={() => onSelectThread?.(msg.thread_id)}
-            className={`message-thread-item ${selectedThreadId === msg.thread_id ? 'message-thread-item--active' : ''} ${unread ? 'message-thread-item--unread' : ''}`}
-          >
-            <div className="message-thread-item-top">
-              <span className="message-thread-subject">{msg.subject}</span>
-              {unread && <span className="message-thread-unread">{t('messages.unread')}</span>}
-            </div>
-            <p className="message-thread-preview">{msg.body.slice(0, 100)}</p>
-            <div className="message-thread-meta">
-              <span>{t(`messages.categories.${msg.category}`)}</span>
-              <span>
-                {formatDistanceToNow(new Date(msg.created_at), {
-                  addSuffix: true,
-                  locale: dateLocale,
-                })}
-              </span>
-            </div>
-          </button>
-        );
-      })}
+      {threadList.map(({ threadId, latest, unread, count }) => (
+        <button
+          key={threadId}
+          type="button"
+          onClick={() => onSelectThread?.(threadId)}
+          className={`message-thread-item ${selectedThreadId === threadId ? 'message-thread-item--active' : ''} ${unread ? 'message-thread-item--unread' : ''}`}
+        >
+          <div className="message-thread-item-top">
+            <span className="message-thread-subject">{latest.subject}</span>
+            {unread && <span className="message-thread-unread">{t('messages.unread')}</span>}
+          </div>
+          <p className="message-thread-preview">{latest.body.slice(0, 100)}</p>
+          <div className="message-thread-meta">
+            <span>{t(`messages.categories.${latest.category}`)}</span>
+            <span>
+              {t('messages.messageCount', { count })}
+              {' · '}
+              {formatDistanceToNow(new Date(latest.created_at), {
+                addSuffix: true,
+                locale: dateLocale,
+              })}
+            </span>
+          </div>
+        </button>
+      ))}
     </div>
   );
 }
@@ -207,6 +256,7 @@ interface MessageThreadViewProps {
   customerId: string;
   senderName: string;
   orders?: Pick<Order, 'id' | 'job_number' | 'title'>[];
+  onBack?: () => void;
 }
 
 export function MessageThreadView({
@@ -215,6 +265,7 @@ export function MessageThreadView({
   customerId,
   senderName,
   orders,
+  onBack,
 }: MessageThreadViewProps) {
   const { t, dateLocale } = useI18n();
   const threadMessages = messages
@@ -225,15 +276,20 @@ export function MessageThreadView({
   if (!first) return null;
 
   return (
-    <div className="message-thread-view">
+    <div className="message-thread-view card">
       <div className="message-thread-view-header">
+        {onBack && (
+          <button type="button" className="message-thread-back" onClick={onBack}>
+            ← {t('messages.backToList')}
+          </button>
+        )}
         <h3 className="font-bold text-bone">{first.subject}</h3>
         <span className="text-xs text-steel-2">
           {t(`messages.categories.${first.category}`)}
         </span>
       </div>
 
-      <div className="message-bubbles">
+      <div className="message-bubbles message-bubbles--scroll">
         {threadMessages.map((msg) => (
           <div
             key={msg.id}
@@ -256,15 +312,17 @@ export function MessageThreadView({
         ))}
       </div>
 
-      <MessageComposer
-        customerId={customerId}
-        senderName={senderName}
-        orders={orders}
-        threadId={threadId}
-        parentSubject={first.subject}
-        defaultCategory={first.category}
-        defaultOrderId={first.order_id ?? ''}
-      />
+      <div className="message-thread-reply">
+        <MessageComposer
+          customerId={customerId}
+          senderName={senderName}
+          orders={orders}
+          threadId={threadId}
+          parentSubject={first.subject}
+          defaultCategory={first.category}
+          defaultOrderId={first.order_id ?? ''}
+        />
+      </div>
     </div>
   );
 }

@@ -29,13 +29,15 @@ export function I18nProvider({
 
   useEffect(() => {
     const stored = readStoredLocale();
-    if (stored && stored !== initialLocale) {
-      setLocaleCookie(stored);
-      router.refresh();
-    } else if (!stored) {
+    if (!stored) {
       setLocaleCookie(initialLocale);
+      return;
     }
-  }, [initialLocale, router]);
+    if (stored !== locale) {
+      setLocaleCookie(stored);
+      setLocaleState(stored);
+    }
+  }, [initialLocale, locale]);
 
   const setLocale = useCallback(
     (next: Locale) => {

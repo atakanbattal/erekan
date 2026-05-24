@@ -2,6 +2,11 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { PortalShell } from '@/components/portal/PortalShell';
 import { getServerI18n } from '@/lib/i18n/server';
+import {
+  resolveCustomerContext,
+  getUnreadMessageCount,
+  getUnreadNotificationCount,
+} from '@/lib/portal/customer-context';
 
 export default async function PortalLayout({
   children,
@@ -16,21 +21,18 @@ export default async function PortalLayout({
 
   if (!user) redirect('/login');
 
-  const { data: staff } = await supabase
-    .from('staff_profiles')
-    .select('is_admin')
-    .eq('auth_user_id', user.id)
-    .single();
+  const [{ data: staff }, ctx] = await Promise.all([
+    supabase
+      .from('staff_profiles')
+      .select('is_admin')
+      .eq('auth_user_id', user.id)
+      .maybeSingle(),
+    resolveCustomerContext(user.id),
+  ]);
 
   if (staff?.is_admin) redirect('/admin');
 
-  const { data: customer } = await supabase
-    .from('customers')
-    .select('*')
-    .eq('auth_user_id', user.id)
-    .single();
-
-  if (!customer) {
+  if (!ctx) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="card p-8 text-center max-w-md">
@@ -41,18 +43,17 @@ export default async function PortalLayout({
     );
   }
 
-  const { count } = await supabase
-    .from('portal_messages')
-    .select('*', { count: 'exact', head: true })
-    .eq('customer_id', customer.id)
-    .eq('sender_type', 'admin')
-    .eq('is_read_by_customer', false);
+  const [unreadMessages, unreadNotifications] = await Promise.all([
+    getUnreadMessageCount(ctx.customerId),
+    getUnreadNotificationCount('customer', ctx.customerId),
+  ]);
 
   return (
     <PortalShell
-      userName={customer.contact_name ?? user.email ?? ''}
-      companyName={customer.company_name}
-      unreadMessages={count ?? 0}
+      userName={ctx.contactName}
+      companyName={ctx.companyName}
+      unreadMessages={unreadMessages}
+      unreadNotifications={unreadNotifications}
     >
       {children}
     </PortalShell>

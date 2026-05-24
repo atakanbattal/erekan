@@ -11,6 +11,7 @@ interface PortalShellProps {
   userName: string;
   companyName: string;
   unreadMessages: number;
+  unreadNotifications?: number;
   homeHref?: string;
   children: React.ReactNode;
 }
@@ -20,10 +21,12 @@ export function PortalShell({
   userName,
   companyName,
   unreadMessages,
+  unreadNotifications = 0,
   homeHref,
   children,
 }: PortalShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const totalBadge = unreadMessages + unreadNotifications;
 
   useEffect(() => {
     const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
@@ -55,7 +58,7 @@ export function PortalShell({
     >
       <PortalSidebar
         variant={variant}
-        unreadMessages={unreadMessages}
+        unreadMessages={totalBadge}
         homeHref={homeHref}
         isOpen={sidebarOpen}
         onClose={closeSidebar}
@@ -67,6 +70,7 @@ export function PortalShell({
           userName={userName}
           companyName={companyName}
           unreadMessages={unreadMessages}
+          unreadNotifications={unreadNotifications}
           sidebarOpen={sidebarOpen}
           onMenuToggle={toggleSidebar}
         />

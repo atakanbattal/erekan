@@ -10,8 +10,15 @@ import { Timeline } from '@/components/Timeline';
 import { ActivityFeed } from '@/components/ActivityFeed';
 import { OrderFilesSection } from '@/components/OrderFilesSection';
 import { MessageComposer } from '@/components/portal/MessagesPanel';
+import { OrderStatusSummary } from '@/components/portal/OrderStatusSummary';
+import { DossierDownloadButton } from '@/components/portal/DossierDownloadButton';
+import { CustomerUploadSection } from '@/components/portal/CustomerUploadSection';
+import { NdtRecordsPanel } from '@/components/portal/NdtRecordsPanel';
+import { ShipmentPanel } from '@/components/portal/ShipmentPanel';
+import { resolveCustomerContext } from '@/lib/portal/customer-context';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Order, OrderActivity, OrderDocument, OrderStage } from '@/lib/types';
+import type { NdtRecord, Shipment } from '@/lib/portal/types-ext';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -48,10 +55,14 @@ export default async function OrderDetailPage({ params }: PageProps) {
     .single();
 
   if (!staff?.is_admin && customer?.id !== order.customer_id) {
-    notFound();
+    const customerId = (await supabase.rpc('get_customer_id')).data;
+    if (customerId !== order.customer_id) notFound();
   }
 
-  const [{ data: stages }, { data: documents }, { data: activities }] = await Promise.all([
+  const ctx = await resolveCustomerContext(user.id);
+
+  const [{ data: stages }, { data: documents }, { data: activities }, { data: ndtRecords }, { data: shipments }, { data: latestMsg }] =
+    await Promise.all([
     supabase.from('order_stages').select('*').eq('order_id', id).order('stage_number'),
     supabase
       .from('order_documents')
@@ -63,6 +74,15 @@ export default async function OrderDetailPage({ params }: PageProps) {
       .select('*')
       .eq('order_id', id)
       .order('created_at', { ascending: false }),
+    supabase.from('ndt_records').select('*').eq('order_id', id).order('created_at', { ascending: false }),
+    supabase.from('shipments').select('*').eq('order_id', id).order('created_at', { ascending: false }),
+    supabase
+      .from('portal_messages')
+      .select('subject')
+      .eq('order_id', id)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
   const typedOrder = order as Order & {
@@ -70,13 +90,14 @@ export default async function OrderDetailPage({ params }: PageProps) {
   };
 
   const isCustomerView = !staff?.is_admin;
+  const customerId = ctx?.customerId ?? customer?.id;
 
   let unreadMessages = 0;
-  if (isCustomerView && customer) {
+  if (isCustomerView && customerId) {
     const { count } = await supabase
       .from('portal_messages')
       .select('*', { count: 'exact', head: true })
-      .eq('customer_id', customer.id)
+      .eq('customer_id', customerId)
       .eq('sender_type', 'admin')
       .eq('is_read_by_customer', false);
     unreadMessages = count ?? 0;
@@ -115,6 +136,21 @@ export default async function OrderDetailPage({ params }: PageProps) {
         </div>
         <StatusBadge status={typedOrder.status} />
       </div>
+
+      {isCustomerView && (
+        <div className="mb-8 space-y-4">
+          <OrderStatusSummary
+            order={typedOrder}
+            stages={(stages ?? []) as OrderStage[]}
+            documents={(documents ?? []) as OrderDocument[]}
+            unreadCount={unreadMessages}
+            latestMessage={latestMsg?.subject}
+          />
+          <div className="flex flex-wrap gap-3">
+            <DossierDownloadButton orderId={id} jobNumber={typedOrder.job_number} />
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {typedOrder.material && (
@@ -189,12 +225,32 @@ export default async function OrderDetailPage({ params }: PageProps) {
           documents={(documents ?? []) as OrderDocument[]}
         />
 
-        {isCustomerView && customer && (
+        {isCustomerView && ctx?.canUpload && (
+          <CustomerUploadSection orderId={id} />
+        )}
+
+        {(ndtRecords ?? []).length > 0 && (
+          <NdtRecordsPanel
+            records={(ndtRecords ?? []) as NdtRecord[]}
+            mode="customer"
+            orderId={id}
+          />
+        )}
+
+        {(shipments ?? []).length > 0 && (
+          <ShipmentPanel
+            shipments={(shipments ?? []) as Shipment[]}
+            mode="customer"
+            orderId={id}
+          />
+        )}
+
+        {isCustomerView && ctx && (
           <div>
             <h2 className="text-lg font-bold text-bone mb-4">{t('messages.title')}</h2>
             <MessageComposer
-              customerId={customer.id}
-              senderName={customer.contact_name ?? user.email ?? ''}
+              customerId={ctx.customerId}
+              senderName={ctx.contactName}
               defaultCategory="order"
               defaultOrderId={id}
               defaultSubject={`${typedOrder.job_number} — ${typedOrder.title}`}
@@ -205,11 +261,11 @@ export default async function OrderDetailPage({ params }: PageProps) {
     </>
   );
 
-  if (isCustomerView && customer) {
+  if (isCustomerView && ctx) {
     return (
       <PortalShell
-        userName={customer.contact_name ?? user.email ?? ''}
-        companyName={customer.company_name}
+        userName={ctx.contactName}
+        companyName={ctx.companyName}
         unreadMessages={unreadMessages}
       >
         <div className="portal-page">{content}</div>

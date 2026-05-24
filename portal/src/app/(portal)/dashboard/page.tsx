@@ -3,6 +3,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { FileText, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { getServerI18n } from '@/lib/i18n/server';
+import { resolveCustomerContext } from '@/lib/portal/customer-context';
 import { DashboardStatCards } from '@/components/portal/DashboardStatCards';
 import { OrderStatusChart } from '@/components/portal/OrderStatusChart';
 import { OrderTrackingList } from '@/components/portal/OrderTrackingList';
@@ -18,41 +19,39 @@ export default async function DashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data: customer } = await supabase
-    .from('customers')
-    .select('*')
-    .eq('auth_user_id', user!.id)
-    .single();
+  const ctx = await resolveCustomerContext(user!.id);
+  if (!ctx) return null;
 
   const [{ data: orders }, { data: messages }, { data: documents }] = await Promise.all([
     supabase
       .from('orders')
       .select('*')
-      .eq('customer_id', customer!.id)
+      .eq('customer_id', ctx.customerId)
       .order('updated_at', { ascending: false }),
     supabase
       .from('portal_messages')
-      .select('*')
-      .eq('customer_id', customer!.id)
+      .select('thread_id, subject, body, created_at')
+      .eq('customer_id', ctx.customerId)
       .order('created_at', { ascending: false })
-      .limit(20),
+      .limit(10),
     supabase
       .from('order_documents')
-      .select('*, orders!inner(customer_id, job_number)')
-      .eq('orders.customer_id', customer!.id)
+      .select('id, name, created_at, orders!inner(customer_id, job_number)')
+      .eq('orders.customer_id', ctx.customerId)
       .eq('is_visible_to_customer', true)
-      .order('created_at', { ascending: false }),
+      .order('created_at', { ascending: false })
+      .limit(5),
   ]);
 
   const orderList = (orders ?? []) as Order[];
-  const orderIds = orderList.map((o) => o.id);
+  const trackedOrderIds = orderList.slice(0, 10).map((o) => o.id);
 
   let allStages: OrderStage[] = [];
-  if (orderIds.length > 0) {
+  if (trackedOrderIds.length > 0) {
     const { data } = await supabase
       .from('order_stages')
-      .select('*')
-      .in('order_id', orderIds)
+      .select('id, order_id, stage_number, stage_code, title, status, completed_at')
+      .in('order_id', trackedOrderIds)
       .order('stage_number');
     allStages = (data ?? []) as OrderStage[];
   }
@@ -78,8 +77,18 @@ export default async function DashboardPage() {
     {} as Record<string, number>
   );
 
-  const docList = (documents ?? []) as OrderDocument[];
-  const deliveryMetrics = computeDeliveryMetrics(orderList, docList.length);
+  const docList = documents ?? [];
+  let docCount = docList.length;
+  if (orderList.length > 0) {
+    const { count } = await supabase
+      .from('order_documents')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_visible_to_customer', true)
+      .in('order_id', orderList.map((o) => o.id));
+    docCount = count ?? docList.length;
+  }
+
+  const deliveryMetrics = computeDeliveryMetrics(orderList, docCount);
 
   const recentMessages = (messages ?? []) as PortalMessage[];
   const threadPreviews = recentMessages.reduce((acc, msg) => {
@@ -87,12 +96,10 @@ export default async function DashboardPage() {
     return acc;
   }, new Map<string, PortalMessage>());
 
-  const displayName = customer?.contact_name ?? user?.email ?? '';
-
   return (
     <div className="portal-page">
       <div className="portal-page-header">
-        <h1 className="portal-page-title">{t('dashboard.welcome', { name: displayName })}</h1>
+        <h1 className="portal-page-title">{t('dashboard.welcome', { name: ctx.contactName })}</h1>
         <p className="portal-page-subtitle">{t('dashboard.welcomeSubtitle')}</p>
       </div>
 
@@ -128,7 +135,10 @@ export default async function DashboardPage() {
           <div className="portal-empty-state">{t('dashboard.noActiveOrder')}</div>
         ) : (
           <>
-            <OrderTrackingList orders={orderList} stagesByOrderId={stagesByOrderId} />
+            <OrderTrackingList
+              orders={orderList.slice(0, 10)}
+              stagesByOrderId={stagesByOrderId}
+            />
 
             <div className="order-overview-status">
               <h3 className="order-overview-status-title">{t('dashboard.statusDistribution')}</h3>
@@ -184,18 +194,23 @@ export default async function DashboardPage() {
             <div className="portal-empty-state">{t('documentsPage.noDocuments')}</div>
           ) : (
             <ul className="portal-mini-list">
-              {(docList.slice(0, 5) as (OrderDocument & { orders: { job_number: string } })[]).map(
-                (doc) => (
+              {(docList as { id: string; name: string; orders: { job_number: string } | { job_number: string }[] }[]).map(
+                (doc) => {
+                  const jobNumber = Array.isArray(doc.orders)
+                    ? doc.orders[0]?.job_number
+                    : doc.orders?.job_number;
+                  return (
                   <li key={doc.id}>
                     <Link href="/documents" className="portal-mini-list-item">
                       <FileText size={16} className="text-success shrink-0" />
                       <div className="min-w-0">
                         <div className="font-medium text-bone truncate">{doc.name}</div>
-                        <div className="text-xs text-steel-2">{doc.orders?.job_number}</div>
+                        <div className="text-xs text-steel-2">{jobNumber}</div>
                       </div>
                     </Link>
                   </li>
-                )
+                  );
+                }
               )}
             </ul>
           )}

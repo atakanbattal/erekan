@@ -52,19 +52,31 @@ export function DeliveryPerformancePanel({ metrics }: DeliveryPerformancePanelPr
   ];
 
   return (
-    <div className="delivery-performance-grid">
-      {cards.map(({ icon: Icon, color, label, value, hint }) => (
-        <div key={label} className={`delivery-performance-card delivery-performance-card--${color}`}>
-          <div className="delivery-performance-icon">
-            <Icon size={20} />
+    <div>
+      <div className="delivery-performance-grid">
+        {cards.map(({ icon: Icon, color, label, value, hint }) => (
+          <div key={label} className={`delivery-performance-card delivery-performance-card--${color}`}>
+            <div className="delivery-performance-icon">
+              <Icon size={20} />
+            </div>
+            <div className="delivery-performance-body">
+              <div className="delivery-performance-value">{value}</div>
+              <div className="delivery-performance-label">{label}</div>
+              <div className="delivery-performance-hint">{hint}</div>
+            </div>
           </div>
-          <div className="delivery-performance-body">
-            <div className="delivery-performance-value">{value}</div>
-            <div className="delivery-performance-label">{label}</div>
-            <div className="delivery-performance-hint">{hint}</div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className="mt-4 text-right">
+        <a
+          href="/api/reports/delivery-performance"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-arc-2 hover:underline"
+        >
+          {t('dashboard.downloadReport')} →
+        </a>
+      </div>
     </div>
   );
 }

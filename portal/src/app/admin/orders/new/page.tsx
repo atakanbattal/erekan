@@ -23,11 +23,10 @@ export default async function NewOrderPage() {
 
   if (!staff?.is_admin) redirect('/dashboard');
 
-  const { data: customers } = await supabase
-    .from('customers')
-    .select('*')
-    .eq('is_active', true)
-    .order('company_name');
+  const [{ data: customers }, { data: templates }] = await Promise.all([
+    supabase.from('customers').select('*').eq('is_active', true).order('company_name'),
+    supabase.from('order_templates').select('*').order('name'),
+  ]);
 
   return (
     <div className="portal-page">
@@ -41,7 +40,11 @@ export default async function NewOrderPage() {
           <div className="eyebrow mb-2">{t('admin.newOrder')}</div>
           <h1 className="text-2xl font-black text-bone">{t('admin.newOrderPage')}</h1>
         </div>
-        <NewOrderForm customers={(customers ?? []) as Customer[]} staffName={staff.full_name} />
+        <NewOrderForm
+          customers={(customers ?? []) as Customer[]}
+          staffName={staff.full_name}
+          templates={templates ?? []}
+        />
     </div>
   );
 }

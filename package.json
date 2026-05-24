@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently -n site,portal -c blue,orange \"npm run dev:site\" \"npm run dev:portal\"",
-    "dev:site": "serve -l 3000",
+    "dev:site": "node scripts/dev-server.mjs",
     "dev:portal": "npm run dev --prefix portal",
     "build:portal": "npm run build --prefix portal",
     "start:portal": "npm run start --prefix portal"

@@ -12,9 +12,10 @@ import { useI18n } from '@/lib/i18n/context';
 interface NewOrderFormProps {
   customers: Customer[];
   staffName: string;
+  templates?: { id: string; name: string; title_template: string; material: string | null; standard: string | null; description: string | null }[];
 }
 
-export function NewOrderForm({ customers, staffName }: NewOrderFormProps) {
+export function NewOrderForm({ customers, staffName, templates = [] }: NewOrderFormProps) {
   const { t } = useI18n();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,8 +23,21 @@ export function NewOrderForm({ customers, staffName }: NewOrderFormProps) {
   const [serialNumber, setSerialNumber] = useState('');
   const [heatNumber, setHeatNumber] = useState('');
   const [wpsRef, setWpsRef] = useState('');
+  const [title, setTitle] = useState('');
+  const [material, setMaterial] = useState('');
+  const [standard, setStandard] = useState('');
+  const [description, setDescription] = useState('');
   const router = useRouter();
   const supabase = createClient();
+
+  function applyTemplate(templateId: string) {
+    const tpl = templates.find((t) => t.id === templateId);
+    if (!tpl) return;
+    setTitle(tpl.title_template);
+    setMaterial(tpl.material ?? '');
+    setStandard(tpl.standard ?? '');
+    setDescription(tpl.description ?? '');
+  }
 
   useEffect(() => {
     async function loadNumbers() {
@@ -123,20 +137,32 @@ export function NewOrderForm({ customers, staffName }: NewOrderFormProps) {
         </div>
       </div>
 
+      {templates.length > 0 && (
+        <div>
+          <label className="label">{t('templatesPage.title')}</label>
+          <select className="input" onChange={(e) => applyTemplate(e.target.value)} defaultValue="">
+            <option value="">{t('forms.selectPlaceholder')}</option>
+            {templates.map((tpl) => (
+              <option key={tpl.id} value={tpl.id}>{tpl.name}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <div>
         <label className="label">{t('forms.projectTitle')}</label>
-        <input name="title" className="input" placeholder={t('forms.projectTitlePlaceholder')} required />
+        <input name="title" className="input" placeholder={t('forms.projectTitlePlaceholder')} required value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
 
       <div>
         <label className="label">{t('forms.description')}</label>
-        <textarea name="description" className="input min-h-[80px]" />
+        <textarea name="description" className="input min-h-[80px]" value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label className="label">{t('common.material')}</label>
-          <input name="material" className="input" placeholder={t('forms.materialPlaceholder')} />
+          <input name="material" className="input" placeholder={t('forms.materialPlaceholder')} value={material} onChange={(e) => setMaterial(e.target.value)} />
         </div>
         <div>
           <label className="label">{t('forms.quantity')}</label>
@@ -147,7 +173,7 @@ export function NewOrderForm({ customers, staffName }: NewOrderFormProps) {
       <div className="grid sm:grid-cols-3 gap-4">
         <div>
           <label className="label">{t('common.standard')}</label>
-          <input name="standard" className="input" defaultValue={t('forms.standardDefault')} />
+          <input name="standard" className="input" value={standard} onChange={(e) => setStandard(e.target.value)} />
         </div>
         <div>
           <label className="label">{t('forms.heatNumberAuto')}</label>

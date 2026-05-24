@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
@@ -12,7 +11,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const router = useRouter();
+  const [resetSent, setResetSent] = useState(false);
   const supabase = createClient();
   const { t } = useI18n();
 
@@ -21,31 +20,54 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (authError) {
-      setError(t('login.error'));
-      setLoading(false);
-      return;
-    }
+      if (authError) {
+        setError(t('login.error'));
+        return;
+      }
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+      const userId = data.user?.id;
+      if (!userId) {
+        setError(t('login.error'));
+        return;
+      }
 
-    if (user) {
       const { data: staff } = await supabase
         .from('staff_profiles')
         .select('is_admin')
-        .eq('auth_user_id', user.id)
-        .single();
+        .eq('auth_user_id', userId)
+        .maybeSingle();
 
-      router.push(staff?.is_admin ? '/admin' : '/dashboard');
-      router.refresh();
+      // Full page navigation — reliable with :3000 proxy and SSR cookies
+      window.location.assign(staff?.is_admin ? '/admin' : '/dashboard');
+    } catch {
+      setError(t('login.error'));
+    } finally {
+      setLoading(false);
     }
+  }
+
+  async function handleForgotPassword() {
+    if (!email.trim()) {
+      setError(t('login.resetEmailRequired'));
+      return;
+    }
+    setLoading(true);
+    setError('');
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/settings`,
+    });
+    setLoading(false);
+    if (resetError) {
+      setError(resetError.message);
+      return;
+    }
+    setResetSent(true);
   }
 
   return (
@@ -108,6 +130,19 @@ export default function LoginPage() {
             <button type="submit" className="btn-primary w-full" disabled={loading}>
               {loading ? t('login.submitting') : t('login.submit')}
             </button>
+
+            <button
+              type="button"
+              className="text-sm text-arc-2 hover:underline w-full text-center"
+              onClick={handleForgotPassword}
+              disabled={loading}
+            >
+              {t('login.forgotPassword')}
+            </button>
+
+            {resetSent && (
+              <p className="text-sm text-success text-center">{t('login.resetSent')}</p>
+            )}
           </form>
 
           <p className="text-center text-xs text-steel-2 mt-6">

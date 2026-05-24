@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 import { AdminOrderDetail } from '@/components/admin/AdminOrderDetail';
 import { getServerI18n } from '@/lib/i18n/server';
 import type { Order, OrderActivity, OrderDocument, OrderStage } from '@/lib/types';
+import type { NdtRecord, Shipment } from '@/lib/portal/types-ext';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -36,7 +37,8 @@ export default async function AdminOrderDetailPage({ params }: PageProps) {
 
   if (!order) notFound();
 
-  const [{ data: stages }, { data: documents }, { data: activities }] = await Promise.all([
+  const [{ data: stages }, { data: documents }, { data: activities }, { data: ndtRecords }, { data: shipments }] =
+    await Promise.all([
     supabase.from('order_stages').select('*').eq('order_id', id).order('stage_number'),
     supabase
       .from('order_documents')
@@ -48,6 +50,8 @@ export default async function AdminOrderDetailPage({ params }: PageProps) {
       .select('*')
       .eq('order_id', id)
       .order('created_at', { ascending: false }),
+    supabase.from('ndt_records').select('*').eq('order_id', id).order('created_at', { ascending: false }),
+    supabase.from('shipments').select('*').eq('order_id', id).order('created_at', { ascending: false }),
   ]);
 
   return (
@@ -64,6 +68,8 @@ export default async function AdminOrderDetailPage({ params }: PageProps) {
           documents={(documents ?? []) as OrderDocument[]}
           staffName={staff.full_name}
           activities={(activities ?? []) as OrderActivity[]}
+          ndtRecords={(ndtRecords ?? []) as NdtRecord[]}
+          shipments={(shipments ?? []) as Shipment[]}
         />
     </div>
   );

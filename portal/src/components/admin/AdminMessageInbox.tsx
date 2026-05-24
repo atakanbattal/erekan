@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+import { useDebouncedRouterRefresh } from '@/hooks/useDebouncedRouterRefresh';
 import { formatDistanceToNow } from 'date-fns';
 import { Send } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
@@ -15,7 +15,7 @@ interface AdminMessageInboxProps {
 
 export function AdminMessageInbox({ threads, staffName }: AdminMessageInboxProps) {
   const { t, dateLocale } = useI18n();
-  const router = useRouter();
+  const refresh = useDebouncedRouterRefresh();
   const supabase = createClient();
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(
     threads[0]?.thread_id ?? null
@@ -49,19 +49,25 @@ export function AdminMessageInbox({ threads, staffName }: AdminMessageInboxProps
 
   const selected = selectedThreadId ? threadMap.get(selectedThreadId) : null;
 
-  async function markThreadRead(threadId: string) {
-    await supabase
-      .from('portal_messages')
-      .update({ is_read_by_admin: true })
-      .eq('thread_id', threadId)
-      .eq('sender_type', 'customer');
-  }
+  const markThreadRead = useCallback(
+    async (threadId: string) => {
+      await supabase
+        .from('portal_messages')
+        .update({ is_read_by_admin: true })
+        .eq('thread_id', threadId)
+        .eq('sender_type', 'customer');
+    },
+    [supabase]
+  );
 
-  async function selectThread(threadId: string) {
+  const selectThread = useCallback((threadId: string) => {
     setSelectedThreadId(threadId);
-    await markThreadRead(threadId);
-    router.refresh();
-  }
+  }, []);
+
+  useEffect(() => {
+    if (!selectedThreadId) return;
+    void markThreadRead(selectedThreadId);
+  }, [selectedThreadId, markThreadRead]);
 
   async function handleReply(e: React.FormEvent) {
     e.preventDefault();
@@ -85,7 +91,21 @@ export function AdminMessageInbox({ threads, staffName }: AdminMessageInboxProps
 
     setReply('');
     setSending(false);
-    router.refresh();
+
+    void fetch('/api/notifications/trigger', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'admin_reply',
+        customerId: first.customer_id,
+        orderId: first.order_id,
+        subject: first.subject,
+        messageBody: reply.trim(),
+        customerEmail: first.customers?.email,
+      }),
+    });
+
+    refresh();
   }
 
   return (
