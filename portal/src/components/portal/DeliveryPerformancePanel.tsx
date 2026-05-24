@@ -67,16 +67,6 @@ export function DeliveryPerformancePanel({ metrics }: DeliveryPerformancePanelPr
           </div>
         ))}
       </div>
-      <div className="mt-4 text-right">
-        <a
-          href="/api/reports/delivery-performance"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-arc-2 hover:underline"
-        >
-          {t('dashboard.downloadReport')} →
-        </a>
-      </div>
     </div>
   );
 }

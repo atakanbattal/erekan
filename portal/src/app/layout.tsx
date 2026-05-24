@@ -1,10 +1,16 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { cookies } from 'next/headers';
 import './globals.css';
 import { I18nProvider } from '@/lib/i18n/context';
 import { messages } from '@/lib/i18n/messages';
 import { normalizeLocale } from '@/lib/i18n/locale';
 import { LOCALE_COOKIE } from '@/lib/i18n/types';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();

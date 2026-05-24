@@ -99,13 +99,13 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
 
 Alternatif: GitHub Actions her `main` push'unda ana site ve portalı birlikte deploy eder (`.github/workflows/deploy.yml`).
 
-### Portal'ı canlıya alma (ZIP)
+### Portal'ı canlıya alma (ZIP — standalone)
 
 ```bash
 cd portal && npm run zip:hostinger
 ```
 
-Repo kökünde **`portal.zip`** (~1–2 MB, kaynak kod) oluşur. **macOS'te derlenmiş node_modules içermez** — Hostinger Linux'ta build alır (503 önlenir).
+Repo kökünde **`portal.zip`** (~12 MB) oluşur. Zip **kökünde** doğrudan şunlar bulunur: `server.js`, `package.json`, `node_modules/`, `.next/`
 
 1. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım**
 2. **"Yeni dosyaları yükleyin"** seçin (önceki dosyaları DEĞİL)
@@ -116,14 +116,13 @@ Repo kökünde **`portal.zip`** (~1–2 MB, kaynak kod) oluşur. **macOS'te derl
 |------|-------|
 | Framework | **Diğer / Other** (Next.js preset değil) |
 | Giriş dosyası | `server.js` |
-| Install | `npm ci` |
-| Build | `npm run build` |
-| Start | `npm start` |
+| Build | `npm run build` (no-op, zaten derlenmiş) |
+| Start | `node server.js` |
 | Node.js | 20.x |
 
 5. Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
 
-> **503 alıyorsanız:** Next.js preset veya macOS'te derlenmiş standalone zip kullanıyorsunuz demektir. Yukarıdaki kaynak zip + `Other` framework kombinasyonunu kullanın.
+> **503 alıyorsanız:** Zip içinde `portal/` veya `.hostinger-deploy/` alt klasörü varsa yanlış pakettir — `server.js` zip kökünde olmalı. Next.js preset kullanmayın.
 
 ## Supabase
 
