@@ -165,12 +165,12 @@ export default async function DashboardPage() {
                 .map((msg) => (
                   <li key={msg.thread_id}>
                     <Link href="/messages" className="portal-mini-list-item">
-                      <MessageSquare size={16} className="text-arc-2 shrink-0" />
-                      <div className="min-w-0">
+                      <MessageSquare size={16} className="text-arc-2 shrink-0 mt-0.5" />
+                      <div className="portal-mini-list-content">
                         <div className="font-medium text-bone truncate">{msg.subject}</div>
                         <div className="text-xs text-steel-2 truncate">{msg.body}</div>
                       </div>
-                      <span className="text-xs text-steel-2 shrink-0">
+                      <span className="portal-mini-list-meta">
                         {formatDistanceToNow(new Date(msg.created_at), {
                           addSuffix: true,
                           locale: dateLocale,
@@ -202,10 +202,10 @@ export default async function DashboardPage() {
                   return (
                   <li key={doc.id}>
                     <Link href="/documents" className="portal-mini-list-item">
-                      <FileText size={16} className="text-success shrink-0" />
-                      <div className="min-w-0">
+                      <FileText size={16} className="text-success shrink-0 mt-0.5" />
+                      <div className="portal-mini-list-content">
                         <div className="font-medium text-bone truncate">{doc.name}</div>
-                        <div className="text-xs text-steel-2">{jobNumber}</div>
+                        <div className="text-xs text-steel-2 truncate">{jobNumber}</div>
                       </div>
                     </Link>
                   </li>
