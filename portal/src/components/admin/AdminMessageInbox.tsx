@@ -11,7 +11,6 @@ import {
   FileAttachmentPicker,
   uploadMessageAttachments,
 } from '@/components/portal/FileAttachments';
-import { RealtimeProvider } from '@/components/portal/RealtimeProvider';
 import type { PortalMessage } from '@/lib/types';
 
 interface AdminMessageInboxProps {
@@ -160,9 +159,7 @@ export function AdminMessageInbox({ threads, staffName }: AdminMessageInboxProps
   }
 
   return (
-    <>
-      <RealtimeProvider variant="admin" />
-      <div className="admin-message-inbox">
+    <div className="admin-message-inbox">
         <div className="admin-message-threads">
           {threadList.length === 0 ? (
             <div className="p-8 text-center text-steel-2">{t('messages.noThreads')}</div>
@@ -266,7 +263,6 @@ export function AdminMessageInbox({ threads, staffName }: AdminMessageInboxProps
             </form>
           </div>
         )}
-      </div>
-    </>
+    </div>
   );
 }
