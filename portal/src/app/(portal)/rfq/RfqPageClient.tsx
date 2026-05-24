@@ -6,6 +6,11 @@ import { format } from 'date-fns';
 import { Download, FileText } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
+import {
+  AttachmentList,
+  FileAttachmentPicker,
+  uploadRfqAttachments,
+} from '@/components/portal/FileAttachments';
 import type { RfqRequest } from '@/lib/portal/types-ext';
 import type { RfqStatus } from '@/lib/stages';
 
@@ -25,6 +30,7 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
   const [quantity, setQuantity] = useState('');
   const [standard, setStandard] = useState('');
   const [deadline, setDeadline] = useState('');
+  const [pendingFiles, setPendingFiles] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -52,9 +58,23 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
       .select('id, title')
       .single();
 
-    if (insertError) {
+    if (insertError || !inserted) {
       setSubmitting(false);
-      setError(t('rfqPage.submitError', { message: insertError.message }));
+      setError(t('rfqPage.submitError', { message: insertError?.message ?? 'Unknown error' }));
+      return;
+    }
+
+    try {
+      if (pendingFiles.length > 0) {
+        await uploadRfqAttachments(inserted.id, pendingFiles);
+      }
+    } catch (uploadErr) {
+      setSubmitting(false);
+      setError(
+        t('rfqPage.submitError', {
+          message: uploadErr instanceof Error ? uploadErr.message : 'Upload failed',
+        })
+      );
       return;
     }
 
@@ -76,6 +96,7 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
     setQuantity('');
     setStandard('');
     setDeadline('');
+    setPendingFiles([]);
     router.refresh();
   }
 
@@ -157,6 +178,15 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
           </div>
         </div>
 
+        <div>
+          <label className="label">{t('attachments.title')}</label>
+          <FileAttachmentPicker
+            files={pendingFiles}
+            onChange={setPendingFiles}
+            disabled={submitting}
+          />
+        </div>
+
         {error && <p className="text-sm text-danger">{error}</p>}
         {success && <p className="text-sm text-success">{t('rfqPage.submitSuccess')}</p>}
 
@@ -202,6 +232,13 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
                     </span>
                   )}
                 </div>
+
+                {rfq.attachments && rfq.attachments.length > 0 && (
+                  <div className="mt-3">
+                    <p className="text-xs text-steel-2 mb-1">{t('attachments.submittedFiles')}</p>
+                    <AttachmentList attachments={rfq.attachments} compact />
+                  </div>
+                )}
 
                 {rfq.quote_file_path && (
                   <button

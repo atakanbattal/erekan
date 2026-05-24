@@ -23,7 +23,7 @@ export default async function AdminRfqPage() {
 
   const { data: requests } = await supabase
     .from('rfq_requests')
-    .select('*, customers(company_name, contact_name, email)')
+    .select('*, customers(company_name, contact_name, email), attachments:rfq_attachments(*)')
     .order('created_at', { ascending: false });
 
   return (

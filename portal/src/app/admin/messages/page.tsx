@@ -23,8 +23,8 @@ export default async function AdminMessagesPage() {
 
   const { data: messages } = await supabase
     .from('portal_messages')
-    .select('*, customers(company_name, contact_name, email), orders(job_number, title)')
-    .order('created_at', { ascending: false });
+    .select('*, customers(company_name, contact_name, email), orders(job_number, title), attachments:portal_message_attachments(*)')
+    .order('created_at', { ascending: true });
 
   const { count: unreadCount } = await supabase
     .from('portal_messages')

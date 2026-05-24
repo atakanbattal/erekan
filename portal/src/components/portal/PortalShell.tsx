@@ -27,7 +27,6 @@ export function PortalShell({
   children,
 }: PortalShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const totalBadge = unreadMessages + unreadNotifications;
 
   useEffect(() => {
     const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
@@ -60,7 +59,7 @@ export function PortalShell({
       <RealtimeProvider variant={variant} />
       <PortalSidebar
         variant={variant}
-        unreadMessages={totalBadge}
+        unreadMessages={unreadMessages}
         homeHref={homeHref}
         isOpen={sidebarOpen}
         onClose={closeSidebar}

@@ -6,7 +6,7 @@ interface RealtimeProviderProps {
   variant: 'customer' | 'admin';
 }
 
-/** Mounts global realtime subscriptions — wired in PortalShell for all pages. */
+/** Lightweight realtime — only on pages that opt in (messages, notifications). */
 export function RealtimeProvider({ variant }: RealtimeProviderProps) {
   useRealtimeRefresh(variant);
   return null;

@@ -87,6 +87,18 @@ export interface RfqRequest {
   created_at: string;
   updated_at: string;
   customers?: Pick<import('@/lib/types').Customer, 'company_name' | 'contact_name' | 'email'>;
+  attachments?: RfqAttachment[];
+}
+
+export interface RfqAttachment {
+  id: string;
+  rfq_id: string;
+  file_path: string;
+  file_name: string;
+  mime_type: string | null;
+  file_size: number | null;
+  uploaded_by: 'customer' | 'admin';
+  created_at: string;
 }
 
 export interface CompanyCertification {

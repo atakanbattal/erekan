@@ -18,9 +18,9 @@ export default async function MessagesPage() {
   const [{ data: messages }, { data: orders }] = await Promise.all([
     supabase
       .from('portal_messages')
-      .select('*')
+      .select('*, attachments:portal_message_attachments(*)')
       .eq('customer_id', ctx.customerId)
-      .order('created_at', { ascending: false }),
+      .order('created_at', { ascending: true }),
     supabase
       .from('orders')
       .select('id, job_number, title')

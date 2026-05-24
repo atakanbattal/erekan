@@ -1,11 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDebouncedRouterRefresh } from '@/hooks/useDebouncedRouterRefresh';
 import { formatDistanceToNow } from 'date-fns';
 import { Send, MessageSquare } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
+import {
+  AttachmentList,
+  FileAttachmentPicker,
+  uploadMessageAttachments,
+} from '@/components/portal/FileAttachments';
 import type { MessageCategory, Order, PortalMessage } from '@/lib/types';
 
 interface MessageComposerProps {
@@ -38,40 +43,63 @@ export function MessageComposer({
   const [body, setBody] = useState('');
   const [orderId, setOrderId] = useState(defaultOrderId);
   const [category] = useState<MessageCategory>(defaultCategory);
+  const [pendingFiles, setPendingFiles] = useState<File[]>([]);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!body.trim() || !subject.trim()) return;
+    const trimmedBody = body.trim();
+    if (!trimmedBody && pendingFiles.length === 0) return;
+    if (!threadId && !subject.trim()) return;
 
     setSending(true);
     setError('');
 
     const newThreadId = threadId ?? crypto.randomUUID();
+    const messageBody = trimmedBody || t('attachments.filesOnly');
 
-    const { error: insertError } = await supabase.from('portal_messages').insert({
-      customer_id: customerId,
-      order_id: orderId || null,
-      thread_id: newThreadId,
-      category,
-      subject: subject.trim(),
-      body: body.trim(),
-      sender_type: 'customer',
-      sender_name: senderName,
-      is_read_by_admin: false,
-      is_read_by_customer: true,
-    });
+    const { data: inserted, error: insertError } = await supabase
+      .from('portal_messages')
+      .insert({
+        customer_id: customerId,
+        order_id: orderId || null,
+        thread_id: newThreadId,
+        category,
+        subject: (parentSubject ?? subject).trim(),
+        body: messageBody,
+        sender_type: 'customer',
+        sender_name: senderName,
+        is_read_by_admin: false,
+        is_read_by_customer: true,
+      })
+      .select('id')
+      .single();
 
-    setSending(false);
-
-    if (insertError) {
-      setError(t('messages.sendError', { message: insertError.message }));
+    if (insertError || !inserted) {
+      setSending(false);
+      setError(t('messages.sendError', { message: insertError?.message ?? 'Unknown error' }));
       return;
     }
 
+    try {
+      if (pendingFiles.length > 0) {
+        await uploadMessageAttachments(inserted.id, pendingFiles);
+      }
+    } catch (uploadErr) {
+      setSending(false);
+      setError(
+        t('messages.sendError', {
+          message: uploadErr instanceof Error ? uploadErr.message : 'Upload failed',
+        })
+      );
+      return;
+    }
+
+    setSending(false);
     setBody('');
+    setPendingFiles([]);
     setSuccess(true);
     onSent?.();
 
@@ -82,8 +110,8 @@ export function MessageComposer({
         type: 'customer_message',
         customerId,
         orderId: orderId || null,
-        subject: subject.trim(),
-        messageBody: body.trim(),
+        subject: (parentSubject ?? subject).trim(),
+        messageBody,
       }),
     });
 
@@ -132,14 +160,25 @@ export function MessageComposer({
           value={body}
           onChange={(e) => setBody(e.target.value)}
           placeholder={threadId ? t('messages.replyPlaceholder') : t('messages.messagePlaceholder')}
-          required
+        />
+      </div>
+
+      <div className="mb-4">
+        <FileAttachmentPicker
+          files={pendingFiles}
+          onChange={setPendingFiles}
+          disabled={sending}
         />
       </div>
 
       {error && <p className="text-sm text-danger mb-3">{error}</p>}
       {success && <p className="text-sm text-success mb-3">{t('messages.sent')}</p>}
 
-      <button type="submit" className="btn-primary flex items-center gap-2" disabled={sending}>
+      <button
+        type="submit"
+        className="btn-primary flex items-center gap-2"
+        disabled={sending || (!body.trim() && pendingFiles.length === 0)}
+      >
         <Send size={16} />
         {sending ? t('messages.sending') : threadId ? t('messages.reply') : t('messages.send')}
       </button>
@@ -204,6 +243,7 @@ export function MessageThreadList({
     const haystack = [
       latest.subject,
       ...msgs.map((m) => m.body),
+      ...msgs.flatMap((m) => (m.attachments ?? []).map((a) => a.file_name)),
     ]
       .join(' ')
       .toLowerCase();
@@ -232,7 +272,11 @@ export function MessageThreadList({
             <span className="message-thread-subject">{latest.subject}</span>
             {unread && <span className="message-thread-unread">{t('messages.unread')}</span>}
           </div>
-          <p className="message-thread-preview">{latest.body.slice(0, 100)}</p>
+          <p className="message-thread-preview">
+            {(latest.attachments?.length ?? 0) > 0 && !latest.body
+              ? t('attachments.fileAttached')
+              : latest.body.slice(0, 100)}
+          </p>
           <div className="message-thread-meta">
             <span>{t(`messages.categories.${latest.category}`)}</span>
             <span>
@@ -268,11 +312,21 @@ export function MessageThreadView({
   onBack,
 }: MessageThreadViewProps) {
   const { t, dateLocale } = useI18n();
+  const bubblesRef = useRef<HTMLDivElement>(null);
+
   const threadMessages = messages
     .filter((m) => m.thread_id === threadId)
     .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 
   const first = threadMessages[0];
+
+  useEffect(() => {
+    const el = bubblesRef.current;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [threadMessages.length, threadId]);
+
   if (!first) return null;
 
   return (
@@ -289,7 +343,7 @@ export function MessageThreadView({
         </span>
       </div>
 
-      <div className="message-bubbles message-bubbles--scroll">
+      <div ref={bubblesRef} className="message-bubbles message-bubbles--scroll">
         {threadMessages.map((msg) => (
           <div
             key={msg.id}
@@ -307,7 +361,10 @@ export function MessageThreadView({
                 })}
               </span>
             </div>
-            <p className="message-bubble-body">{msg.body}</p>
+            {msg.body && <p className="message-bubble-body">{msg.body}</p>}
+            {msg.attachments && msg.attachments.length > 0 && (
+              <AttachmentList attachments={msg.attachments} compact />
+            )}
           </div>
         ))}
       </div>

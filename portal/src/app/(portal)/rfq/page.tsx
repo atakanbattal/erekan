@@ -19,7 +19,7 @@ export default async function RfqPage() {
 
   const { data: requests } = await supabase
     .from('rfq_requests')
-    .select('*')
+    .select('*, attachments:rfq_attachments(*)')
     .eq('customer_id', ctx.customerId)
     .order('created_at', { ascending: false });
 

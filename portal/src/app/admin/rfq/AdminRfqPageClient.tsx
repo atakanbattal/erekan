@@ -6,6 +6,11 @@ import { format } from 'date-fns';
 import { Download, FileUp, Upload } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
+import {
+  AttachmentList,
+  FileAttachmentPicker,
+  uploadRfqAttachments,
+} from '@/components/portal/FileAttachments';
 import type { RfqRequest } from '@/lib/portal/types-ext';
 import type { RfqStatus } from '@/lib/stages';
 
@@ -32,6 +37,8 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
   );
   const [savingId, setSavingId] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [extraFilesById, setExtraFilesById] = useState<Record<string, File[]>>({});
+  const [uploadingExtraId, setUploadingExtraId] = useState<string | null>(null);
   const [error, setError] = useState('');
   const [successId, setSuccessId] = useState<string | null>(null);
 
@@ -99,6 +106,29 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
 
     setSuccessId(id);
     router.refresh();
+  }
+
+  async function uploadExtraFiles(id: string) {
+    const files = extraFilesById[id] ?? [];
+    if (files.length === 0) return;
+
+    setUploadingExtraId(id);
+    setError('');
+
+    try {
+      await uploadRfqAttachments(id, files);
+      setExtraFilesById((prev) => ({ ...prev, [id]: [] }));
+      setSuccessId(id);
+      router.refresh();
+    } catch (uploadErr) {
+      setError(
+        t('adminRfqPage.saveError', {
+          message: uploadErr instanceof Error ? uploadErr.message : 'Upload failed',
+        })
+      );
+    }
+
+    setUploadingExtraId(null);
   }
 
   async function downloadQuote(rfq: RfqRequest) {
@@ -183,7 +213,14 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
               </button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-ink-4">
+            {rfq.attachments && rfq.attachments.length > 0 && (
+              <div>
+                <label className="label">{t('attachments.submittedFiles')}</label>
+                <AttachmentList attachments={rfq.attachments} />
+              </div>
+            )}
+
+            <div className="flex flex-wrap items-end gap-3 pt-2 border-t border-ink-4">
               {rfq.quote_file_path && (
                 <button
                   type="button"
@@ -222,6 +259,29 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
 
               {successId === rfq.id && (
                 <span className="text-xs text-success">{t('adminRfqPage.quoteUploaded')}</span>
+              )}
+            </div>
+
+            <div className="pt-3 border-t border-ink-4 space-y-2">
+              <label className="label">{t('attachments.addSupplementary')}</label>
+              <FileAttachmentPicker
+                files={extraFilesById[rfq.id] ?? []}
+                onChange={(files) =>
+                  setExtraFilesById((prev) => ({ ...prev, [rfq.id]: files }))
+                }
+                disabled={uploadingExtraId === rfq.id}
+              />
+              {(extraFilesById[rfq.id]?.length ?? 0) > 0 && (
+                <button
+                  type="button"
+                  className="btn-secondary text-xs"
+                  disabled={uploadingExtraId === rfq.id}
+                  onClick={() => uploadExtraFiles(rfq.id)}
+                >
+                  {uploadingExtraId === rfq.id
+                    ? t('adminRfqPage.uploading')
+                    : t('attachments.uploadFiles')}
+                </button>
               )}
             </div>
           </div>

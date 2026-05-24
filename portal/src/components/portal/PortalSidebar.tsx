@@ -70,7 +70,11 @@ export function PortalSidebar({
 
   const navItems = variant === 'admin' ? adminItems : customerItems;
   const brandHref = homeHref ?? defaultHome;
-  const messageBadge = unreadMessages;
+  const messagePaths = ['/messages', '/admin/messages'];
+
+  function isMessageNav(href: string) {
+    return messagePaths.includes(href);
+  }
 
   function isActive(href: string) {
     if (href === '/dashboard' || href === '/admin') {
@@ -122,8 +126,10 @@ export function PortalSidebar({
             >
               <Icon size={18} />
               <span>{label}</span>
-              {href === '/messages' && messageBadge > 0 && (
-                <span className="portal-sidebar-badge">{messageBadge > 99 ? '99+' : messageBadge}</span>
+              {isMessageNav(href) && unreadMessages > 0 && (
+                <span className="portal-sidebar-badge">
+                  {unreadMessages > 99 ? '99+' : unreadMessages}
+                </span>
               )}
             </Link>
           ))}
