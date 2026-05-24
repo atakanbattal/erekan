@@ -1,11 +1,21 @@
 import { execSync } from 'node:child_process';
-import { cpSync, existsSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const portalDir = dirname(dirname(fileURLToPath(import.meta.url)));
-const deployDir = join(portalDir, '.hostinger-deploy');
 const zipPath = join(portalDir, '..', 'portal.zip');
+const stagingDir = join(portalDir, '.hostinger-zip-staging');
+
+const SOURCE_EXCLUDES = new Set([
+  'node_modules',
+  '.next',
+  '.hostinger-deploy',
+  '.hostinger-zip-staging',
+  '.env.local',
+  '.git',
+  '.netlify',
+]);
 
 function loadEnvLocal() {
   const envPath = join(portalDir, '.env.local');
@@ -21,47 +31,106 @@ function loadEnvLocal() {
   }
 }
 
-console.log('1/4 Bağımlılıklar yükleniyor...');
-execSync('npm ci', { cwd: portalDir, stdio: 'inherit' });
+function copyPortalSource(targetDir) {
+  for (const entry of readdirSafe(portalDir)) {
+    if (SOURCE_EXCLUDES.has(entry)) continue;
+    cpSync(join(portalDir, entry), join(targetDir, entry), { recursive: true });
+  }
+}
 
-console.log('2/4 Production build alınıyor...');
-loadEnvLocal();
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-  console.error('Hata: NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY gerekli (.env.local).');
+function readdirSafe(dir) {
+  return execSync(`ls -A "${dir}"`, { encoding: 'utf8' })
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function writeHostingerPackageJson(targetDir) {
+  const pkg = JSON.parse(readFileSync(join(portalDir, 'package.json'), 'utf8'));
+  writeFileSync(
+    join(targetDir, 'package.json'),
+    `${JSON.stringify(
+      {
+        ...pkg,
+        scripts: {
+          ...pkg.scripts,
+          build: 'npm run build:hostinger',
+          start: 'node server.js',
+        },
+        engines: { node: '20.x' },
+      },
+      null,
+      2,
+    )}\n`,
+  );
+}
+
+function writeHostingerServerBootstrap(targetDir) {
+  writeFileSync(
+    join(targetDir, 'server.js'),
+    `'use strict';
+const path = require('path');
+require(path.join(__dirname, '.hostinger-deploy', 'server.js'));
+`,
+  );
+}
+
+function writeHostingerReadme(targetDir) {
+  writeFileSync(
+    join(targetDir, 'HOSTINGER.txt'),
+    `ArmaWeld Portal — Hostinger ZIP (kaynak kod, Linux'ta derlenir)
+
+hPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım → portal.zip
+
+ÖNEMLİ: "Yeni dosyaları yükleyin" seçin (önceki dosyaları DEĞİL).
+
+Ayarlar:
+  Framework: Diğer / Other  (Next.js preset KULLANMAYIN)
+  Giriş dosyası: server.js
+  Install: npm ci
+  Build: npm run build
+  Start: npm start
+  Node.js: 20.x
+
+Ortam değişkenleri (hPanel):
+  NEXT_PUBLIC_SUPABASE_URL
+  NEXT_PUBLIC_SUPABASE_ANON_KEY
+  SUPABASE_SERVICE_ROLE_KEY
+
+Not: Bu zip macOS'te derlenmiş node_modules İÇERMEZ.
+Hostinger build adımı Linux'ta standalone bundle oluşturur → 503 önlenir.
+`,
+  );
+}
+
+console.log('1/3 Portal kaynak dosyaları hazırlanıyor...');
+if (existsSync(stagingDir)) rmSync(stagingDir, { recursive: true, force: true });
+mkdirSync(stagingDir, { recursive: true });
+copyPortalSource(stagingDir);
+writeHostingerPackageJson(stagingDir);
+writeHostingerServerBootstrap(stagingDir);
+writeHostingerReadme(stagingDir);
+
+console.log('2/3 package-lock.json kopyalanıyor...');
+if (!existsSync(join(stagingDir, 'package-lock.json'))) {
+  console.error('package-lock.json bulunamadı.');
   process.exit(1);
 }
-execSync('npm run build:next', { cwd: portalDir, stdio: 'inherit', env: process.env });
 
-console.log('3/4 Standalone bundle hazırlanıyor...');
-execSync('node scripts/prepare-hostinger.mjs', { cwd: portalDir, stdio: 'inherit' });
-
-writeFileSync(
-  join(deployDir, 'package.json'),
-  JSON.stringify(
-    {
-      name: 'portal',
-      private: true,
-      scripts: { start: 'node server.js' },
-      engines: { node: '20.x' },
-    },
-    null,
-    2
-  )
-);
-
-console.log('4/4 portal.zip oluşturuluyor...');
+console.log('3/3 portal.zip oluşturuluyor...');
 if (existsSync(zipPath)) rmSync(zipPath);
-
-execSync(`zip -r "${zipPath}" . -x ".DS_Store"`, { cwd: deployDir, stdio: 'inherit' });
+execSync(`zip -r "${zipPath}" . -x ".DS_Store" "*/.DS_Store"`, {
+  cwd: stagingDir,
+  stdio: 'inherit',
+});
+rmSync(stagingDir, { recursive: true, force: true });
 
 const size = (statSync(zipPath).size / 1024 / 1024).toFixed(2);
 console.log(`\nportal.zip hazır: ${zipPath} (${size} MB)`);
-console.log('\nHostinger hPanel — ÖNEMLİ:');
-console.log('  1. "Yeni dosyaları yükleyin" seçin (Önceki dosyaları DEĞİL)');
-console.log('  2. portal.zip yükleyin');
-console.log('  3. Framework: Diğer / Other');
-console.log('  4. Giriş dosyası: server.js');
-console.log('  5. Install: true  (veya boş)');
-console.log('  6. Build: true');
-console.log('  7. Start: node server.js');
-console.log('  8. Node.js: 20.x');
+console.log('\nHostinger hPanel ayarları (HOSTINGER.txt dosyasına bakın):');
+console.log('  Framework: Diğer / Other');
+console.log('  Install: npm ci');
+console.log('  Build: npm run build');
+console.log('  Start: npm start');
+console.log('  Node.js: 20.x');
+console.log('\nOrtam değişkenlerini hPanel\'de tanımlamayı unutmayın.');

@@ -7,12 +7,11 @@
   },
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "node scripts/hostinger-build.mjs",
-    "build:next": "next build",
+    "build": "next build",
     "build:hostinger": "next build && node scripts/prepare-hostinger.mjs",
-    "zip:hostinger": "node scripts/zip-hostinger.mjs",
     "start": "next start -H 0.0.0.0 -p ${PORT:-3001}",
-    "start:standalone": "node .hostinger-deploy/server.js",
+    "start:hostinger": "node .hostinger-deploy/server.js",
+    "zip:hostinger": "node scripts/zip-hostinger.mjs",
     "lint": "eslint"
   },
   "dependencies": {

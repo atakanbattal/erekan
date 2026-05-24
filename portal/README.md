@@ -87,39 +87,43 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
 1. hPanel → **Websites** → **Add Website** → **Node.js Apps**
 2. Alan adı: `portal.armaweld.com`
 3. GitHub repo: `atakanbattal/ArmaWeld`, kök dizin: `portal`
-4. Ayarlar (hPanel → Deployments → Settings and redeploy):
-   - **Root directory:** `portal`
+4. Ayarlar:
    - Install: `npm ci`
-   - Build: `npm run build`
-   - Start: `npm run start -- -p $PORT`
+   - Build: `npm run build:hostinger`
+   - Start: `npm run start -- -p $PORT` (veya `node server.js`)
    - Node.js: 20
 5. Ortam değişkenleri (hPanel):
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
 
-### Portal'ı canlıya alma (ZIP — standalone)
+Alternatif: GitHub Actions her `main` push'unda ana site ve portalı birlikte deploy eder (`.github/workflows/deploy.yml`).
 
-1. `cd portal && npm run zip:hostinger` → repo kökünde **`portal.zip`** (~12 MB, `server.js` kökte)
-2. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım**
-3. **"Yeni dosyaları yükleyin"** seçin — **"Önceki dosyaları kullanın" DEĞİL**
-4. `portal.zip` yükleyin
-5. Ayarlar:
+### Portal'ı canlıya alma (ZIP)
+
+```bash
+cd portal && npm run zip:hostinger
+```
+
+Repo kökünde **`portal.zip`** (~1–2 MB, kaynak kod) oluşur. **macOS'te derlenmiş node_modules içermez** — Hostinger Linux'ta build alır (503 önlenir).
+
+1. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım**
+2. **"Yeni dosyaları yükleyin"** seçin (önceki dosyaları DEĞİL)
+3. `portal.zip` yükleyin
+4. Ayarlar:
 
 | Alan | Değer |
 |------|-------|
 | Framework | **Diğer / Other** (Next.js preset değil) |
 | Giriş dosyası | `server.js` |
-| Install | `true` |
-| Build | `true` |
-| Start | `node server.js` |
+| Install | `npm ci` |
+| Build | `npm run build` |
+| Start | `npm start` |
 | Node.js | 20.x |
 
-6. Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+5. Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
 
-> Loglarda port 3000 görünüp 503 alıyorsanız: Next.js preset `next start` kullanır, Hostinger'ın `$PORT` değişkenini kaçırır. **Standalone + `node server.js`** bunu düzeltir.
-
-**Netlify artık kullanılmıyor** (`portal.armaweld.com` → Hostinger). Netlify panelindeki son deploy tarihi güncellenmez; bu normaldir.
+> **503 alıyorsanız:** Next.js preset veya macOS'te derlenmiş standalone zip kullanıyorsunuz demektir. Yukarıdaki kaynak zip + `Other` framework kombinasyonunu kullanın.
 
 ## Supabase
 

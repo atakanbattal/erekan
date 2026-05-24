@@ -1,4 +1,4 @@
-import { cpSync, existsSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
@@ -21,5 +21,22 @@ const publicDir = join(root, 'public');
 if (existsSync(publicDir)) {
   cpSync(publicDir, join(deployDir, 'public'), { recursive: true });
 }
+
+writeFileSync(
+  join(deployDir, 'package.json'),
+  `${JSON.stringify(
+    {
+      name: 'portal',
+      private: true,
+      scripts: {
+        build: 'echo "pre-built standalone bundle"',
+        start: 'node server.js',
+      },
+      engines: { node: '20.x' },
+    },
+    null,
+    2,
+  )}\n`,
+);
 
 console.log('Hostinger deploy bundle ready at .hostinger-deploy/');
