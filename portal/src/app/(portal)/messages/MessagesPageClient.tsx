@@ -10,7 +10,6 @@ import {
   buildMessageThreads,
   markCustomerThreadRead,
 } from '@/components/portal/MessagesPanel';
-import { RealtimeProvider } from '@/components/portal/RealtimeProvider';
 import { useI18n } from '@/lib/i18n/context';
 import type { MessageCategory, Order, PortalMessage } from '@/lib/types';
 import { useRouter } from 'next/navigation';
@@ -54,7 +53,6 @@ export function MessagesPageClient({
 
   return (
     <div className="portal-page">
-      <RealtimeProvider variant="customer" />
       <div className="portal-page-header flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="portal-page-title">{t('messages.title')}</h1>

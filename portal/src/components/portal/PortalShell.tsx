@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { PortalSidebar, type SidebarVariant } from './PortalSidebar';
 import { PortalTopBar } from './PortalTopBar';
+import { RealtimeProvider } from './RealtimeProvider';
 
 const SIDEBAR_STORAGE_KEY = 'armaweld-sidebar-open';
 
@@ -56,6 +57,7 @@ export function PortalShell({
     <div
       className={`portal-layout ${sidebarOpen ? 'portal-layout--sidebar-open' : 'portal-layout--sidebar-closed'}`}
     >
+      <RealtimeProvider variant={variant} />
       <PortalSidebar
         variant={variant}
         unreadMessages={totalBadge}
