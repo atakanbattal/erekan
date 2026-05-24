@@ -44,7 +44,7 @@
   .page-hero h1 .arc { color: var(--arc-2); }
 
   /* Methods tabs */
-  .methods { padding: 120px 0; background: var(--ink-1); }
+  .methods { padding: 80px 0; background: var(--ink-1); }
   .ndt-scope {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -182,7 +182,7 @@
   .nv-cap .cr { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .04em; color: var(--paper); text-align: right; }
 
   /* Defect catalog */
-  .catalog { padding: 120px 0; background: var(--ink-0); }
+  .catalog { padding: 80px 0; background: var(--ink-0); }
   .def-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -239,7 +239,7 @@
   .def .ndt-list .m { color: var(--arc-2); margin-right: 6px; }
 
   /* Acceptance matrix */
-  .accept { padding: 100px 0; background: var(--ink-1); }
+  .accept { padding: 72px 0; background: var(--ink-1); }
   .accept-tbl { width: 100%; border-collapse: collapse; margin-top: 40px; font-family: var(--ff-mono); font-size: 12px; }
   .accept-tbl th, .accept-tbl td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--ink-4); color: var(--steel-3); }
   .accept-tbl th { background: var(--ink-0); color: var(--steel-1); font-size: 10px; letter-spacing: .05em; text-transform: uppercase; border-bottom: 1px solid var(--ink-5); }
@@ -852,26 +852,23 @@
   </div>
 </section>
 
-<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
+<link rel="stylesheet" href="assets/deep-sections.css?v=202605243" />
 <section class="deep-section alt">
   <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">04 / Sektör Matrisi</div><h2 data-i18n="deep_ndt_matrix_h2">NDT Kapsam Matrisi</h2></div>
-    <div class="reveal" data-i18n-html="deep_ndt_matrix_html"></div>
-  </div>
-</section>
-
-<section class="deep-section">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">05 / Personel</div><h2 data-i18n="deep_ndt_personnel_h2">NDT Personel Yetkinlik Tablosu</h2></div>
-    <div class="reveal" data-i18n-html="deep_ndt_personnel_html"></div>
-  </div>
-</section>
-
-<section class="deep-section alt">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">06 / FAT</div><h2 data-i18n="deep_fat_h2">FAT — Fabrika Kabul Testi</h2></div>
-    <div class="reveal" data-i18n-html="deep_fat_html"></div>
-    <div class="deep-links reveal"><a href="kalite.html">Belge simülatörü →</a><a href="blog/kaynak-kalite-kontrol.html">Kalite kontrol rehberi →</a></div>
+    <div class="deep-head reveal"><div class="eyebrow">04 / Teknik Derinlik</div><h2>NDT kapsamı ve kabul testleri</h2></div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Matris</div><h2 data-i18n="deep_ndt_matrix_h2">NDT Kapsam Matrisi</h2></div>
+      <div data-i18n-html="deep_ndt_matrix_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Personel</div><h2 data-i18n="deep_ndt_personnel_h2">NDT Personel Yetkinlik Tablosu</h2></div>
+      <div data-i18n-html="deep_ndt_personnel_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">FAT</div><h2 data-i18n="deep_fat_h2">FAT — Fabrika Kabul Testi</h2></div>
+      <div data-i18n-html="deep_fat_html"></div>
+      <div class="deep-links"><a href="kalite.html">Belge simülatörü →</a><a href="blog/kaynak-kalite-kontrol.html">Kalite kontrol rehberi →</a></div>
+    </div>
   </div>
 </section>
 

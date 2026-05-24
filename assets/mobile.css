@@ -42,7 +42,7 @@ svg {
 @media (max-width: 768px) {
   .deep-section,
   .tools-section {
-    padding: 64px 0;
+    padding: 48px 0;
   }
 
   .deep-head {
@@ -61,8 +61,8 @@ svg {
     font-size: 22px;
   }
 
-  .cert-badge {
-    flex: 1 1 100%;
+  .cert-card {
+    min-height: 0;
   }
 }
 

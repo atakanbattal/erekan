@@ -124,7 +124,7 @@
 
   /* Service block */
   .svc-block {
-    padding: 120px 0;
+    padding: 80px 0;
     border-bottom: 1px solid var(--ink-4);
   }
   .svc-block:nth-child(odd) { background: var(--ink-1); }
@@ -397,7 +397,7 @@
   .reveal[data-d="3"] { transition-delay: .36s; }
 
   /* ── Fason Bölümü ───────────────────────────── */
-  .fason-block { padding: 100px 0; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); border-top: 3px solid var(--arc-2); }
+  .fason-block { padding: 72px 0; background: var(--ink-0); border-bottom: 1px solid var(--ink-4); border-top: 3px solid var(--arc-2); }
   .fason-label { font-family: var(--ff-mono); font-size: 11px; color: var(--arc-2); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 16px; }
   .fason-h2 { font-family: var(--ff-display); font-weight: 900; font-size: clamp(28px, 3.5vw, 52px); color: var(--bone); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 16px; }
   .fason-h2 span { color: var(--arc-2); }
@@ -429,7 +429,7 @@
   .fason-faq-item h3 { font-family: var(--ff-display); font-weight: 700; font-size: clamp(15px, 1.1vw, 17px); color: var(--bone); margin-bottom: 10px; }
   .fason-faq-item p { font-size: 13px; color: var(--steel-2); line-height: 1.7; max-width: 76ch; }
 </style>
-<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
+<link rel="stylesheet" href="assets/deep-sections.css?v=202605243" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1039,46 +1039,44 @@
   <div class="container">
     <div class="deep-head reveal"><div class="eyebrow">06 / Malzeme Mühendisliği</div><h2 data-i18n="deep_mat_compat_h2">Malzeme Uyumluluk Matrisi</h2></div>
     <div class="reveal" data-i18n-html="deep_mat_compat_html"></div>
-    <div class="deep-head reveal" style="margin-top:64px"><h2 data-i18n="deep_mat_select_h2">Sektöre Göre Malzeme Seçim Rehberi</h2></div>
-    <div class="reveal" data-i18n-html="deep_mat_select_html"></div>
-    <div class="deep-head reveal" style="margin-top:64px"><h2 data-i18n="deep_mat_supplier_h2">Tedarikçi &amp; Malzeme Sertifikasyonu</h2></div>
-    <div class="reveal" data-i18n-html="deep_mat_supplier_html"></div>
-    <div class="reveal" style="margin-top:32px" data-i18n-html="deep_new_materials_html"></div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><h2 data-i18n="deep_mat_select_h2">Sektöre Göre Malzeme Seçim Rehberi</h2></div>
+      <div data-i18n-html="deep_mat_select_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><h2 data-i18n="deep_mat_supplier_h2">Tedarikçi &amp; Malzeme Sertifikasyonu</h2></div>
+      <div data-i18n-html="deep_mat_supplier_html"></div>
+      <div style="margin-top:24px" data-i18n-html="deep_new_materials_html"></div>
+    </div>
     <div class="deep-links reveal"><a href="blog/paslanmaz-celik-imalat.html">Paslanmaz →</a><a href="blog/s960ql-kaynak-parametreleri.html">S960QL →</a><a href="blog/hardox-kaynak.html">HARDOX →</a><a href="muhendislik.html">Mühendislik →</a></div>
   </div>
 </section>
 
-<section class="deep-section" id="s-tolerance">
+<section class="deep-section" id="s-tech-deep">
   <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">07 / Boyutsal Yetkinlik</div><h2 data-i18n="deep_tolerance_h2">Tolerans Referans Tablosu</h2></div>
-    <div class="reveal" data-i18n-html="deep_tolerance_html"></div>
-  </div>
-</section>
-
-<section class="deep-section alt" id="s-assembly">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">08 / Montaj</div><h2 data-i18n="deep_assembly_h2">Montaj &amp; Hizalama Ekipmanları</h2></div>
-    <div class="reveal" data-i18n-html="deep_assembly_html"></div>
-  </div>
-</section>
-
-<section class="deep-section" id="s-surface">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">09 / Yüzey İşleme</div><h2 data-i18n="deep_surface_h2">Yüzey İşleme &amp; Korozyon Koruması</h2></div>
-    <div class="reveal" data-i18n-html="deep_surface_html"></div>
-  </div>
-</section>
-
-<section class="deep-section alt" id="s-pwht">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">10 / Termal İşlem</div><h2 data-i18n="deep_pwht_h2">PWHT — Gerilim Giderme</h2></div>
-    <div class="reveal" data-i18n-html="deep_pwht_html"></div>
-    <div class="deep-links reveal"><a href="blog/kaynak-sonrasi-isil-islem-pwht.html">PWHT rehberi →</a></div>
+    <div class="deep-head reveal"><div class="eyebrow">07 / Teknik Yetkinlik</div><h2>Üretim ve teslim detayları</h2></div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Boyutsal</div><h2 data-i18n="deep_tolerance_h2">Tolerans Referans Tablosu</h2></div>
+      <div data-i18n-html="deep_tolerance_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Montaj</div><h2 data-i18n="deep_assembly_h2">Montaj &amp; Hizalama Ekipmanları</h2></div>
+      <div data-i18n-html="deep_assembly_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Yüzey</div><h2 data-i18n="deep_surface_h2">Yüzey İşleme &amp; Korozyon Koruması</h2></div>
+      <div data-i18n-html="deep_surface_html"></div>
+    </div>
+    <div class="deep-subsection reveal">
+      <div class="deep-head"><div class="eyebrow">Termal</div><h2 data-i18n="deep_pwht_h2">PWHT — Gerilim Giderme</h2></div>
+      <div data-i18n-html="deep_pwht_html"></div>
+      <div class="deep-links"><a href="blog/kaynak-sonrasi-isil-islem-pwht.html">PWHT rehberi →</a></div>
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section style="padding: 120px 0; background: var(--ink-1); border-top: 3px solid var(--arc-2); position: relative; overflow: hidden;">
+<section class="section-cta" style="background: var(--ink-1); border-top: 3px solid var(--arc-2); position: relative; overflow: hidden;">
   <div style="position:absolute; inset:0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(255,122,26,.12), transparent 70%); pointer-events:none;"></div>
   <div class="container" style="text-align: center; position: relative;">
     <div style="font-family:var(--ff-mono); font-size:11px; color:var(--arc-2); letter-spacing:.22em; text-transform:uppercase; margin-bottom:24px;">Hızlı Teklif</div>

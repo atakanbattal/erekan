@@ -1,7 +1,8 @@
 /* ArmaWeld — Deep technical content sections */
-.deep-section { padding: 100px 0; border-bottom: 1px solid var(--ink-4); }
+.deep-section { padding: 72px 0; border-bottom: 1px solid var(--ink-4); }
+.deep-section.compact { padding: 56px 0; }
 .deep-section.alt { background: var(--ink-1); }
-.deep-head { margin-bottom: 48px; max-width: 720px; }
+.deep-head { margin-bottom: 32px; max-width: 720px; }
 .deep-head .eyebrow { margin-bottom: 16px; }
 .deep-head h2 { font-family: var(--ff-display); font-weight: 800; font-size: clamp(28px, 3.5vw, 48px); color: var(--bone); line-height: 1.08; letter-spacing: -.03em; margin-bottom: 16px; }
 .deep-head h2 .arc { color: var(--arc-2); }
@@ -35,7 +36,7 @@
 .deep-links a:hover { border-color: var(--arc-2); background: rgba(255,122,26,.06); }
 
 /* Tools */
-.tools-section { padding: 100px 0; background: var(--ink-0); border-top: 1px solid var(--ink-4); }
+.tools-section { padding: 72px 0; background: var(--ink-0); border-top: 1px solid var(--ink-4); }
 .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .tool-panel { background: var(--ink-1); border: 1px solid var(--ink-4); padding: 28px; }
 .tool-panel.full { grid-column: 1 / -1; }
@@ -77,10 +78,131 @@
 .deep-table-wide td:last-child { white-space: normal; min-width: 200px; }
 
 /* Cert badges */
-.cert-badges { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-.cert-badge { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--ink-4); background: var(--ink-1); font-family: var(--ff-mono); font-size: 10px; letter-spacing: .04em; color: var(--steel-3); }
-.cert-badge strong { color: var(--bone); font-size: 11px; display: block; }
-.cert-badge .dot { width: 8px; height: 8px; background: var(--arc-2); border-radius: 50%; flex-shrink: 0; }
+.certs-lede {
+  max-width: 52ch;
+  margin: -16px 0 40px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--steel-3);
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--ink-4);
+  border: 1px solid var(--ink-4);
+}
+.cert-card {
+  background: var(--ink-1);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.cert-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.cert-card-idx {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: .05em;
+  color: var(--steel-1);
+}
+.cert-card-status {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--arc-2);
+}
+.cert-card-status::before {
+  content: '●';
+  margin-right: 5px;
+  font-size: 8px;
+}
+.cert-card-code {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  color: var(--bone);
+  margin: 0 0 10px;
+}
+.cert-card-code em {
+  font-style: normal;
+  color: var(--arc-2);
+}
+.cert-card-scope {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: .03em;
+  line-height: 1.45;
+  color: var(--steel-2);
+  margin: 0 0 18px;
+}
+.cert-card-desc {
+  margin: auto 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink-4);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--steel-3);
+}
+.cert-cta {
+  margin-top: 36px;
+  text-align: center;
+}
+.certs-section.alt { background: var(--ink-1); }
+
+.deep-subsection {
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid var(--ink-4);
+}
+.deep-subsection:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.deep-subsection .deep-head {
+  margin-bottom: 20px;
+}
+.deep-subsection .deep-head h2 {
+  font-size: clamp(20px, 2.2vw, 28px);
+}
+.deep-subsection .deep-head .eyebrow {
+  margin-bottom: 10px;
+}
+
+.tools-teaser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(32px, 4vw, 48px);
+  background: var(--ink-1);
+  border: 1px solid var(--ink-4);
+}
+.tools-teaser h2 {
+  font-size: clamp(22px, 2.8vw, 32px);
+  margin: 8px 0 0;
+}
+.tools-teaser p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--steel-3);
+  max-width: 48ch;
+}
+
+/* Legacy alias */
+.cert-badges { display: contents; }
+.cert-badge { display: none; }
 
 /* Sector logos / refs */
 .sector-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ink-4); border: 1px solid var(--ink-4); margin-top: 32px; }
@@ -112,7 +234,12 @@
 
 @media (max-width: 900px) {
   .deep-grid-2, .deep-grid-3, .deep-grid-4, .tools-grid, .dl-grid, .sector-logos, .weld-pos-grid { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
   .tool-row { grid-template-columns: 1fr; }
   .kpi-bar-row { grid-template-columns: 1fr; gap: 8px; }
   .ba-split { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .cert-grid { grid-template-columns: 1fr; }
+  .cert-card { min-height: 0; }
 }

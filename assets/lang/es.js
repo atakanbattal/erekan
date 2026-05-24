@@ -1799,6 +1799,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.es={
 
   home_blog3_d: 'VT, PT, MT, UT — qué método para qué defecto.',
 
+  home_certs_eyebrow: '07 / Certificaciones',
+  home_certs_h2: 'La <span style="color:var(--arc-2)">base documental</span> de una producción auditable.',
+  home_certs_lede: 'Cada proyecto se apoya en WPS aprobada, personal certificado y registros de calidad trazables. Los estándares siguientes se mantienen activos.',
+  home_certs_link: 'Proceso de calidad y paquete documental →',
+
   proj1_outcome: 'Producción en serie de cucharas con WPS repetible y plan VT/MT por pieza.',
 
   proj2_outcome: 'Estructura de almacén con dossier EXC2/EXC3 e informe dimensional.',

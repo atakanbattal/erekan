@@ -44,7 +44,7 @@
   .page-hero h1 .arc { color: var(--arc-2); }
 
   /* Method selector (interactive) */
-  .selector { padding: 120px 0; background: var(--ink-1); }
+  .selector { padding: 80px 0; background: var(--ink-1); }
   .sel-wrap {
     display: grid;
     grid-template-columns: 340px 1fr;
@@ -132,7 +132,7 @@
   .sel-alt .a { padding: 4px 10px; border: 1px solid var(--ink-5); color: var(--steel-2); }
 
   /* Detail sections per method */
-  .method-block { padding: 100px 0; border-bottom: 1px solid var(--ink-4); }
+  .method-block { padding: 72px 0; border-bottom: 1px solid var(--ink-4); }
   .method-block:nth-child(odd) { background: var(--ink-1); }
   .method-block:nth-child(even) { background: var(--ink-0); }
   .mb-row {
@@ -659,52 +659,39 @@
   </div>
 </section>
 
-<!-- SAW -->
-<section class="method-block deep-section alt" id="s-saw">
+<!-- Advanced methods -->
+<section class="deep-section alt" id="s-advanced">
   <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">05 / SAW</div><h2 data-i18n="deep_saw_h2">Tozaltı Ark Kaynağı (SAW · ISO 121)</h2></div>
-    <div class="reveal" data-i18n-html="deep_saw_html"></div>
-    <div class="deep-links reveal"><a href="blog/saw-tozalti-kaynagi.html">SAW teknik rehber →</a></div>
-  </div>
-</section>
-
-<!-- Robot -->
-<section class="method-block deep-section" id="s-robot">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">06 / Robot</div><h2 data-i18n="deep_robot_h2">Robot Kaynak Hücresi</h2></div>
-    <div class="reveal" data-i18n-html="deep_robot_html"></div>
-    <div class="deep-links reveal"><a href="blog/robotik-kaynak-uretim.html">Robotik kaynak →</a></div>
-  </div>
-</section>
-
-<!-- WPS Library -->
-<section class="deep-section alt" id="s-wps">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">07 / WPS</div><h2 data-i18n="deep_wps_lib_h2">WPQR Kapsam Özeti</h2></div>
-    <div class="reveal" data-i18n-html="deep_wps_lib_html"></div>
-    <div class="deep-links reveal"><a href="blog/wps-nedir.html">WPS nedir? →</a><a href="blog/wpqr-nedir.html">WPQR nedir? →</a><a href="kalite.html">Belge simülatörü →</a></div>
-  </div>
-</section>
-
-<!-- Distortion -->
-<section class="deep-section" id="s-distortion">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">08 / Distorsiyon</div><h2 data-i18n="deep_distortion_h2">Distorsiyon Kontrol Metodolojisi</h2></div>
-    <div class="reveal" data-i18n-html="deep_distortion_html"></div>
-    <div class="deep-links reveal"><a href="blog/kaynak-distorsiyonu.html">Distorsiyon rehberi →</a></div>
-  </div>
-</section>
-
-<!-- Stud welding -->
-<section class="deep-section" id="s-stud">
-  <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">10 / Stud</div><h2 data-i18n="deep_stud_h2">Stud Kaynak</h2></div>
-    <div class="reveal" data-i18n-html="deep_stud_html"></div>
+    <div class="deep-head reveal"><div class="eyebrow">05 / İleri Yöntemler</div><h2>SAW, robot ve WPS kapsamı</h2></div>
+    <div class="deep-subsection reveal" id="s-saw">
+      <div class="deep-head"><div class="eyebrow">SAW</div><h2 data-i18n="deep_saw_h2">Tozaltı Ark Kaynağı (SAW · ISO 121)</h2></div>
+      <div data-i18n-html="deep_saw_html"></div>
+      <div class="deep-links"><a href="blog/saw-tozalti-kaynagi.html">SAW teknik rehber →</a></div>
+    </div>
+    <div class="deep-subsection reveal" id="s-robot">
+      <div class="deep-head"><div class="eyebrow">Robot</div><h2 data-i18n="deep_robot_h2">Robot Kaynak Hücresi</h2></div>
+      <div data-i18n-html="deep_robot_html"></div>
+      <div class="deep-links"><a href="blog/robotik-kaynak-uretim.html">Robotik kaynak →</a></div>
+    </div>
+    <div class="deep-subsection reveal" id="s-wps">
+      <div class="deep-head"><div class="eyebrow">WPS</div><h2 data-i18n="deep_wps_lib_h2">WPQR Kapsam Özeti</h2></div>
+      <div data-i18n-html="deep_wps_lib_html"></div>
+      <div class="deep-links"><a href="blog/wps-nedir.html">WPS nedir? →</a><a href="blog/wpqr-nedir.html">WPQR nedir? →</a><a href="kalite.html">Belge simülatörü →</a></div>
+    </div>
+    <div class="deep-subsection reveal" id="s-distortion">
+      <div class="deep-head"><div class="eyebrow">Distorsiyon</div><h2 data-i18n="deep_distortion_h2">Distorsiyon Kontrol Metodolojisi</h2></div>
+      <div data-i18n-html="deep_distortion_html"></div>
+      <div class="deep-links"><a href="blog/kaynak-distorsiyonu.html">Distorsiyon rehberi →</a></div>
+    </div>
+    <div class="deep-subsection reveal" id="s-stud">
+      <div class="deep-head"><div class="eyebrow">Stud</div><h2 data-i18n="deep_stud_h2">Stud Kaynak</h2></div>
+      <div data-i18n-html="deep_stud_html"></div>
+    </div>
   </div>
 </section>
 
 <!-- Tools -->
-<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
+<link rel="stylesheet" href="assets/deep-sections.css?v=202605243" />
 <section class="tools-section" id="tools">
   <div class="container">
     <div class="deep-head"><div class="eyebrow" data-i18n="tool_section_eyebrow">Araçlar</div><h2 data-i18n="tool_section_h2">Teknik hesaplayıcılar.</h2><p data-i18n="tool_section_lede">Isı girdisi ve ön ısıtma tahmini.</p></div>
@@ -728,7 +715,7 @@
 </section>
 
 <!-- Comparison Table -->
-<section style="padding: 120px 0; background: var(--ink-0);">
+<section style="padding: 80px 0; background: var(--ink-0);">
   <div class="container">
     <div class="section-head">
       <div>

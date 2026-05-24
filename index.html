@@ -907,7 +907,7 @@
     position: relative;
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: clamp(80px,10vw,140px) var(--gutter);
+    padding: clamp(56px, 8vw, 96px) var(--gutter);
     text-align: center;
   }
   .cta-inner h2 {
@@ -1879,9 +1879,9 @@
 </section>
 
 <!-- REFERANSLAR -->
-<section style="padding:100px 0; background:var(--ink-1); border-top:1px solid var(--ink-4);">
+<section class="section-pad-sm" style="background:var(--ink-1); border-top:1px solid var(--ink-4);">
   <div class="container">
-    <div class="section-head" style="margin-bottom:56px;">
+    <div class="section-head" style="margin-bottom:40px;">
       <div>
         <div class="eyebrow" data-i18n="home_ref_eyebrow">Referanslar</div>
         <p class="idx mono" style="margin-top:12px; color:var(--steel-1);">CLT — REFERANS</p>
@@ -1967,33 +1967,36 @@
         <p data-i18n="home_blog3_d">VT, PT, MT, UT — hangi kusur için hangi yöntem.</p>
       </a>
     </div>
-    <div class="reveal" style="margin-top:32px" data-i18n-html="deep_blog_links_html"></div>
   </div>
 </section>
 
-<link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
-<section class="deep-section alt" style="padding:80px 0">
-  <div class="container">
-    <div class="reveal" data-i18n-html="deep_certs_badges_html"></div>
-  </div>
-</section>
+<link rel="stylesheet" href="assets/deep-sections.css?v=202605243" />
 
-<section class="tools-section" id="tools">
+<!-- CERTIFICATIONS -->
+<section class="deep-section compact certs-section alt">
   <div class="container">
-    <div class="deep-head"><div class="eyebrow" data-i18n="tool_section_eyebrow">Mühendislik Araçları</div><h2 data-i18n="tool_section_h2">Teknik hesaplayıcılar.</h2></div>
-    <div class="tools-grid">
-      <div class="tool-panel"><h3 data-i18n="tool_hi_title">Isı Girdisi</h3>
-        <div class="tool-row"><div class="tool-field"><label>V</label><input type="number" id="hi-voltage" value="24"></div><div class="tool-field"><label>A</label><input type="number" id="hi-current" value="220"></div></div>
-        <div class="tool-row"><div class="tool-field"><label>cm/dk</label><input type="number" id="hi-speed" value="35"></div><div class="tool-field"><label>Limit</label><input type="number" id="hi-limit" value="1.5"></div></div>
-        <button type="button" class="btn btn-primary" data-tool="heat" data-i18n="tool_hi_btn">Hesapla</button>
-        <div id="hi-result" class="tool-result"><div class="val">—</div><div class="note"></div></div>
-      </div>
-      <div class="tool-panel"><h3 data-i18n="tool_ms_title">Malzeme Seçici</h3>
-        <div class="tool-field"><select id="ms-sector"></select></div>
-        <div id="ms-result"></div>
-      </div>
+    <div class="section-head">
+      <div><div class="eyebrow" data-i18n="home_certs_eyebrow">07 / Sertifikalar</div></div>
+      <h2 class="display h2" data-i18n-html="home_certs_h2">Denetlenebilir üretimin <span style="color:var(--arc-2)">belge altyapısı.</span></h2>
     </div>
-    <p style="margin-top:24px;text-align:center"><a href="muhendislik.html" class="btn btn-ghost" data-i18n="nav_engineering">Tüm mühendislik araçları →</a></p>
+    <p class="certs-lede reveal" data-i18n="home_certs_lede">Her proje; onaylı WPS, belgeli personel ve denetlenebilir kalite kayıtları üzerine kurulur. Aşağıdaki standartlar aktif olarak sürdürülür.</p>
+    <div class="reveal" data-i18n-html="deep_certs_badges_html"></div>
+    <div class="cert-cta reveal">
+      <a href="kalite.html" class="btn btn-ghost" data-i18n="home_certs_link">Kalite süreci ve belge paketi →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad-sm" style="background:var(--ink-0); border-top:1px solid var(--ink-4);">
+  <div class="container">
+    <div class="tools-teaser reveal">
+      <div>
+        <div class="eyebrow" data-i18n="tool_section_eyebrow">Mühendislik Araçları</div>
+        <h2 class="display h2" data-i18n="tool_section_h2">Teknik hesaplayıcılar.</h2>
+        <p data-i18n="tool_section_lede">Isı girdisi, ön ısıtma tahmini, sektöre göre malzeme önerisi ve proje tipine göre belge listesi — WPS hazırlığına hızlı başlangıç.</p>
+      </div>
+      <a href="muhendislik.html#tools" class="btn btn-primary" data-i18n="home_tools_btn">Tüm araçları aç →</a>
+    </div>
   </div>
 </section>
 
@@ -2016,9 +2019,8 @@
   </div>
 </section>
 <script src="assets/lang/tr.js?v=20260604"></script>
-<script src="assets/i18n.js?v=20260607"></script>
+<script src="assets/i18n.js?v=202605243"></script>
 <script src="assets/chrome.js?v=20260624"></script>
-<script src="assets/tools.js?v=20260604"></script>
 <script src="assets/analytics.js?v=20260604"></script>
 <script>
   mountChrome('index').then(function () {

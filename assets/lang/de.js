@@ -1799,6 +1799,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.de={
 
   home_blog3_d: 'VT, PT, MT, UT — welches Verfahren für welchen Fehler.',
 
+  home_certs_eyebrow: '07 / Zertifizierungen',
+  home_certs_h2: 'Das <span style="color:var(--arc-2)">Dokumentenfundament</span> prüfbarer Produktion.',
+  home_certs_lede: 'Jedes Projekt basiert auf genehmigter WPS, zertifiziertem Personal und nachvollziehbaren Qualitätsunterlagen. Die folgenden Standards werden aktiv gepflegt.',
+  home_certs_link: 'Qualitätsprozess und Dokumentenpaket →',
+
   proj1_outcome: 'Serienlöffel mit wiederholbarem WPS und VT/MT-Plan pro Teil.',
 
   proj2_outcome: 'Lagertragwerk mit EXC2/EXC3-Dossier und Maßprotokoll.',

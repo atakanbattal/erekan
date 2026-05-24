@@ -640,14 +640,16 @@ img { max-width: 100%; display: block; }
 
 /* ===== Section scaffolding ===== */
 section { position: relative; }
-.section-pad { padding: clamp(80px, 10vw, 160px) 0; }
+.section-pad { padding: clamp(56px, 7vw, 96px) 0; }
+.section-pad-sm { padding: clamp(40px, 5vw, 64px) 0; }
+.section-cta { padding: clamp(48px, 6vw, 72px) 0; }
 
 .section-head {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: 48px;
+  gap: 32px;
   align-items: end;
-  margin-bottom: 64px;
+  margin-bottom: 44px;
 }
 .section-head .label {
   font-family: var(--ff-mono);

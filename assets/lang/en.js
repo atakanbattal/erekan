@@ -1808,6 +1808,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.en={
 
   home_blog3_d: 'VT, PT, MT, UT — which method for which defect.',
 
+  home_certs_eyebrow: '07 / Certifications',
+  home_certs_h2: 'The <span style="color:var(--arc-2)">document backbone</span> of auditable production.',
+  home_certs_lede: 'Every project is built on approved WPS, certified personnel and traceable quality records. The standards below are actively maintained.',
+  home_certs_link: 'Quality process and document pack →',
+
   proj1_outcome: 'Serial bucket production with repeatable WPS and per-part VT/MT plan.',
 
   proj2_outcome: 'Warehouse primary structure with EXC2/EXC3 dossier and dimensional report.',

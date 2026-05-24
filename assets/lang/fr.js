@@ -1799,6 +1799,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.fr={
 
   home_blog3_d: 'VT, PT, MT, UT — quelle méthode pour quel défaut.',
 
+  home_certs_eyebrow: '07 / Certifications',
+  home_certs_h2: 'Le <span style="color:var(--arc-2)">socle documentaire</span> d\'une production auditable.',
+  home_certs_lede: 'Chaque projet repose sur WPS approuvée, personnel certifié et dossiers qualité traçables. Les normes ci-dessous sont activement maintenues.',
+  home_certs_link: 'Processus qualité et dossier documentaire →',
+
   proj1_outcome: 'Production série de godets avec WPS reproductible et plan VT/MT par pièce.',
 
   proj2_outcome: 'Structure de hall avec dossier EXC2/EXC3 et rapport dimensionnel.',

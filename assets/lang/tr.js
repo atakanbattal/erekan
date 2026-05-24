@@ -1854,6 +1854,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
 
   home_blog3_d: 'VT, PT, MT, UT — hangi kusur için hangi yöntem.',
 
+  home_certs_eyebrow: '07 / Sertifikalar',
+  home_certs_h2: 'Denetlenebilir üretimin <span style="color:var(--arc-2)">belge altyapısı.</span>',
+  home_certs_lede: 'Her proje; onaylı WPS, belgeli personel ve denetlenebilir kalite kayıtları üzerine kurulur. Aşağıdaki standartlar aktif olarak sürdürülür.',
+  home_certs_link: 'Kalite süreci ve belge paketi →',
+
   proj1_outcome: 'Tekrarlanabilir WPS ve adet başı VT/MT planı ile seri kepçe üretimi.',
 
   proj2_outcome: 'EXC2/EXC3 belge paketi ve boyutsal kontrol raporu ile depo taşıyıcısı.',
