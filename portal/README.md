@@ -108,11 +108,13 @@ Hostinger Node.js paneli ZIP yüklemesi kullanır. Build **yerelde** alınır; s
    - `.next` dahil **`portal.zip`** üretilir (repo kökünde)
    - ZIP kökünde doğrudan `package.json` olmalı — `portal/` klasörü sarmalayıcısı **olmasın**
 3. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım** → **Yeni dosyaları yükleyin** → `portal.zip`
-4. Dağıtım ayarları:
+4. Dağıtım ayarları (varsayılan Next.js preset yeterli):
    - **Install:** `npm ci --omit=dev`
-   - **Build:** `true` (build ZIP içinde hazır)
+   - **Build:** `npm run build` (ZIP'te `.next` varsa sunucuda otomatik atlanır)
    - **Node.js:** 20.x
    - Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+
+> MB küçülmesi normal: `node_modules` ZIP'e dahil değil (Hostinger kuruyor). `.next` build çıktısı ZIP'te kalır — silinmedi.
 
 > "Önceki dosyaları kullanın" eski kodu tekrar build eder — her zaman **yeni ZIP yükleyin**.
 >

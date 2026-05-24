@@ -32,7 +32,7 @@ if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_A
   console.error('Hata: NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY gerekli (.env.local veya ortam).');
   process.exit(1);
 }
-execSync('npm run build', { cwd: portalDir, stdio: 'inherit', env: process.env });
+execSync('npm run build:next', { cwd: portalDir, stdio: 'inherit', env: process.env });
 
 console.log('3/3 portal.zip oluşturuluyor...');
 if (existsSync(zipPath)) rmSync(zipPath);
@@ -43,6 +43,9 @@ const excludes = [
   '.env.*',
   '.hostinger-deploy/*',
   '.turbo/*',
+  '.next/cache/*',
+  '.next/trace',
+  '.next/trace-build',
   'tsconfig.tsbuildinfo',
   '.DS_Store',
   '*/.DS_Store',
@@ -54,8 +57,8 @@ execSync(`zip -r "${zipPath}" . ${excludes}`, { cwd: portalDir, stdio: 'inherit'
 
 const size = (statSync(zipPath).size / 1024 / 1024).toFixed(2);
 console.log(`\nportal.zip hazır: ${zipPath} (${size} MB)`);
-console.log('\nHostinger hPanel ayarları:');
-console.log('  Install: npm ci --omit=dev');
-console.log('  Build:   true');
-console.log('  Start:   (Next.js preset — otomatik npm run start -- -p $PORT)');
+console.log('\nHostinger hPanel ayarları (varsayılan Next.js preset OK):');
+console.log('  Install: npm ci --omit=dev  (veya npm ci)');
+console.log('  Build:   npm run build       (ZIP içinde .next varsa otomatik atlanır)');
+console.log('  Start:   otomatik — npm run start -- -p $PORT');
 console.log('\nhPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım → portal.zip yükle');
