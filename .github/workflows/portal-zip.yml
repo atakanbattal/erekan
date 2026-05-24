@@ -1,0 +1,85 @@
+name: Build portal.zip (Linux)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'portal/**'
+      - '.github/workflows/portal-zip.yml'
+
+jobs:
+  build-portal-zip:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: portal
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: portal/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build standalone bundle
+        run: npm run build:hostinger
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: Write Hostinger package.json
+        run: |
+          cat > .hostinger-deploy/package.json <<'EOF'
+          {
+            "name": "portal",
+            "private": true,
+            "scripts": {
+              "build": "echo \"pre-built standalone bundle\"",
+              "start": "node server.js"
+            },
+            "engines": { "node": "20.x" }
+          }
+          EOF
+
+      - name: Write Hostinger deploy notes
+        run: |
+          cat > .hostinger-deploy/HOSTINGER.txt <<'EOF'
+          ArmaWeld Portal — Linux standalone bundle
+
+          hPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım → portal.zip
+          "Yeni dosyaları yükleyin" seçin.
+
+          Framework: Diğer / Other
+          Giriş dosyası: server.js
+          Install: (BOŞ / kapalı — node_modules zip içinde)
+          Build: (BOŞ / kapalı — zaten derlenmiş)
+          Start: node server.js
+          Node.js: 20.x
+
+          Ortam değişkenleri:
+          NEXT_PUBLIC_SUPABASE_URL
+          NEXT_PUBLIC_SUPABASE_ANON_KEY
+          SUPABASE_SERVICE_ROLE_KEY
+          EOF
+
+      - name: Create portal.zip
+        run: |
+          cd .hostinger-deploy
+          zip -r ../portal.zip . -x ".DS_Store" "*/.DS_Store"
+          ls -lh ../portal.zip
+          unzip -l ../portal.zip | head -8
+
+      - name: Upload portal.zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portal-linux-zip
+          path: portal/portal.zip
+          retention-days: 30

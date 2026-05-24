@@ -39,4 +39,30 @@ writeFileSync(
   )}\n`,
 );
 
+writeFileSync(
+  join(deployDir, 'HOSTINGER.txt'),
+  `ArmaWeld Portal — standalone bundle (server.js zip kökünde)
+
+hPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım
+"Yeni dosyaları yükleyin" seçin (önceki dosyaları DEĞİL).
+
+Framework: Diğer / Other  (Next.js preset KULLANMAYIN)
+Giriş dosyası: server.js
+Install: BOŞ / kapalı  (node_modules zip içinde gelir)
+Build: BOŞ / kapalı  (zaten derlenmiş)
+Start: node server.js
+Node.js: 20.x
+
+Ortam değişkenleri (hPanel):
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
+
+503 alıyorsanız:
+- Install/Build adımlarını kapatın (npm ci node_modules siler)
+- macOS zip yerine GitHub Actions "portal-linux-zip" artifact kullanın
+- Start mutlaka "node server.js" olmalı
+`,
+);
+
 console.log('Hostinger deploy bundle ready at .hostinger-deploy/');

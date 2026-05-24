@@ -68,8 +68,9 @@ console.log('  1. "Yeni dosyaları yükleyin" seçin (Önceki dosyaları DEĞİL
 console.log('  2. portal.zip yükleyin');
 console.log('  3. Framework: Diğer / Other  (Next.js preset DEĞİL)');
 console.log('  4. Giriş dosyası: server.js');
-console.log('  5. Install: true  (veya npm ci — package.json\'da dependency yok, atlanabilir)');
-console.log('  6. Build: true  (no-op: echo pre-built)');
+console.log('  5. Install: BOŞ / kapalı  (node_modules zip içinde)');
+console.log('  6. Build: BOŞ / kapalı');
 console.log('  7. Start: node server.js');
 console.log('  8. Node.js: 20.x');
+console.log('\nLinux zip için: GitHub Actions → Build portal.zip (Linux) → portal-linux-zip artifact');
 console.log('\nOrtam değişkenleri: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY');
