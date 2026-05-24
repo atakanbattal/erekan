@@ -1,10 +1,10 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Paperclip, X, FileText, ImageIcon } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
-import { UPLOAD_ACCEPT, canPreviewMime } from '@/lib/documents';
+import { Paperclip, X, FileText, ImageIcon, Loader2 } from 'lucide-react';
+import { UPLOAD_ACCEPT, canPreviewMime, mimeFromFileName } from '@/lib/documents';
 import { useI18n } from '@/lib/i18n/context';
+import { DocumentPreviewModal } from '@/components/DocumentPreviewModal';
 
 export interface FileAttachmentRecord {
   id: string;
@@ -146,42 +146,94 @@ interface AttachmentListProps {
 
 export function AttachmentList({ attachments, compact }: AttachmentListProps) {
   const { t } = useI18n();
-  const supabase = createClient();
+  const [loading, setLoading] = useState<string | null>(null);
+  const [preview, setPreview] = useState<{ url: string; name: string; mime: string } | null>(null);
 
   if (attachments.length === 0) return null;
 
   async function openAttachment(att: FileAttachmentRecord) {
-    const { data, error } = await supabase.storage
-      .from('order-documents')
-      .createSignedUrl(att.file_path, 3600);
+    const canPreview = canPreviewMime(att.mime_type, att.file_name);
+    setLoading(att.id);
 
-    if (error || !data?.signedUrl) return;
-    window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
+    try {
+      if (canPreview) {
+        const res = await fetch(`/api/attachments/${att.id}?inline=1`);
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error((data as { error?: string }).error ?? t('documents.previewFailed'));
+        }
+
+        const mime = att.mime_type || mimeFromFileName(att.file_name);
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        setPreview({ url: blobUrl, name: att.file_name, mime });
+        return;
+      }
+
+      const res = await fetch(`/api/attachments/${att.id}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? t('documents.fetchError'));
+
+      const response = await fetch(data.url);
+      if (!response.ok) throw new Error(t('documents.downloadError'));
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = blobUrl;
+      anchor.download = att.file_name;
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : t('documents.fetchError'));
+    } finally {
+      setLoading(null);
+    }
+  }
+
+  function closePreview() {
+    if (preview?.url.startsWith('blob:')) {
+      URL.revokeObjectURL(preview.url);
+    }
+    setPreview(null);
   }
 
   return (
-    <ul className={`message-attachments ${compact ? 'message-attachments--compact' : ''}`}>
-      {attachments.map((att) => {
-        const isImage = canPreviewMime(att.mime_type, att.file_name) && att.mime_type?.startsWith('image/');
-        return (
-          <li key={att.id}>
-            <button
-              type="button"
-              className="message-attachment-link"
-              onClick={() => openAttachment(att)}
-            >
-              {isImage ? <ImageIcon size={14} /> : <FileText size={14} />}
-              <span className="truncate">{att.file_name}</span>
-              {att.file_size != null && (
-                <span className="message-attachment-size">
-                  {formatFileSize(att.file_size)}
-                </span>
-              )}
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <ul className={`message-attachments ${compact ? 'message-attachments--compact' : ''}`}>
+        {attachments.map((att) => {
+          const isImage =
+            canPreviewMime(att.mime_type, att.file_name) && att.mime_type?.startsWith('image/');
+          const isLoading = loading === att.id;
+
+          return (
+            <li key={att.id}>
+              <button
+                type="button"
+                className="message-attachment-link"
+                disabled={isLoading}
+                onClick={() => openAttachment(att)}
+              >
+                {isLoading ? (
+                  <Loader2 size={14} className="animate-spin shrink-0" />
+                ) : isImage ? (
+                  <ImageIcon size={14} />
+                ) : (
+                  <FileText size={14} />
+                )}
+                <span className="truncate">{att.file_name}</span>
+                {att.file_size != null && (
+                  <span className="message-attachment-size">{formatFileSize(att.file_size)}</span>
+                )}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      {preview && <DocumentPreviewModal preview={preview} onClose={closePreview} />}
+    </>
   );
 }
 
