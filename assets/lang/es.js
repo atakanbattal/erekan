@@ -22,9 +22,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.es={
 
   footer_fason: 'Fabricación por contrato',
   footer_kvkk: 'Privacidad / RGPD',
-  cookie_text: 'Este sitio utiliza cookies esenciales y (con su consentimiento) cookies analíticas. <a href="/gizlilik-kvkk.html">Aviso de privacidad</a>',
+  cookie_title: 'Preferencias de cookies',
+  cookie_text: 'Las cookies esenciales son necesarias para el funcionamiento del sitio. Las cookies analíticas solo se activan con su consentimiento y nos ayudan a medir el uso de forma anónima.',
+  cookie_privacy_link: '<a href="/gizlilik-kvkk.html">Aviso de privacidad e información KVKK →</a>',
   cookie_essential: 'Solo esenciales',
-  cookie_accept: 'Aceptar',
+  cookie_accept: 'Aceptar todas',
   sticky_call: 'Llamar',
   sticky_quote: 'Cotización',
   wa_fab_label: 'Escríbanos por WhatsApp',

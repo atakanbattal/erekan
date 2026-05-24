@@ -25,9 +25,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.tr={
 
   footer_fason: 'Fason Kaynaklı İmalat',
   footer_kvkk: 'KVKK / Gizlilik',
-  cookie_text: 'Bu sitede deneyiminizi iyileştirmek için zorunlu çerezler ve (onayınızla) analitik çerezler kullanılır. <a href="/gizlilik-kvkk.html">KVKK metni</a>',
+  cookie_title: 'Çerez tercihleri',
+  cookie_text: 'Sitemizin çalışması için zorunlu çerezler kullanılır. Analitik çerezler yalnızca onayınızla etkinleşir ve site kullanımını anonim olarak ölçmemize yardımcı olur.',
+  cookie_privacy_link: '<a href="/gizlilik-kvkk.html">KVKK aydınlatma metni ve gizlilik politikası →</a>',
   cookie_essential: 'Yalnızca zorunlu',
-  cookie_accept: 'Kabul et',
+  cookie_accept: 'Tümünü kabul et',
   sticky_call: 'Ara',
   sticky_quote: 'Teklif Al',
   wa_fab_label: 'Bize WhatsApp\'tan yazın',

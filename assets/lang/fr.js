@@ -22,9 +22,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.fr={
 
   footer_fason: 'Fabrication en sous-traitance',
   footer_kvkk: 'Confidentialité / RGPD',
-  cookie_text: 'Ce site utilise des cookies essentiels et (avec votre consentement) des cookies analytiques. <a href="/gizlilik-kvkk.html">Notice de confidentialité</a>',
+  cookie_title: 'Préférences cookies',
+  cookie_text: 'Les cookies essentiels sont nécessaires au fonctionnement du site. Les cookies analytiques ne sont activés qu\'avec votre consentement et nous aident à mesurer l\'usage de façon anonyme.',
+  cookie_privacy_link: '<a href="/gizlilik-kvkk.html">Notice de confidentialité et information KVKK →</a>',
   cookie_essential: 'Essentiels uniquement',
-  cookie_accept: 'Accepter',
+  cookie_accept: 'Tout accepter',
   sticky_call: 'Appeler',
   sticky_quote: 'Devis',
   wa_fab_label: 'Écrivez-nous sur WhatsApp',

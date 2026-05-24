@@ -23,9 +23,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.en={
 
   footer_fason: 'Contract Welded Fabrication',
   footer_kvkk: 'Privacy / GDPR',
-  cookie_text: 'This site uses essential cookies and (with your consent) analytics cookies to improve your experience. <a href="/gizlilik-kvkk.html">Privacy notice</a>',
+  cookie_title: 'Cookie preferences',
+  cookie_text: 'Essential cookies are required for the site to work. Analytics cookies are only enabled with your consent and help us measure site usage anonymously.',
+  cookie_privacy_link: '<a href="/gizlilik-kvkk.html">Privacy notice and KVKK disclosure →</a>',
   cookie_essential: 'Essential only',
-  cookie_accept: 'Accept',
+  cookie_accept: 'Accept all',
   sticky_call: 'Call',
   sticky_quote: 'Get Quote',
   wa_fab_label: 'Message us on WhatsApp',

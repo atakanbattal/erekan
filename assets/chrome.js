@@ -345,7 +345,11 @@ function initCookieConsent() {
   el.id = 'aw-cookie';
   el.className = 'cookie-banner';
   el.innerHTML = `
-    <p data-i18n-html="cookie_text"></p>
+    <div class="cookie-banner__body">
+      <p class="cookie-banner__title" data-i18n="cookie_title">Çerez tercihleri</p>
+      <p class="cookie-banner__text" data-i18n="cookie_text"></p>
+      <p class="cookie-banner__legal" data-i18n-html="cookie_privacy_link"></p>
+    </div>
     <div class="cookie-banner__actions">
       <button type="button" class="cookie-banner__btn cookie-banner__btn--ghost" data-cookie="essential" data-i18n="cookie_essential"></button>
       <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" data-cookie="all" data-i18n="cookie_accept"></button>

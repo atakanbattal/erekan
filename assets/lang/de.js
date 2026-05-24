@@ -22,9 +22,11 @@ window.TRANSLATIONS=window.TRANSLATIONS||{};window.TRANSLATIONS.de={
 
   footer_fason: 'Lohnfertigung Schweißen',
   footer_kvkk: 'Datenschutz / DSGVO',
-  cookie_text: 'Diese Website verwendet notwendige Cookies und (mit Ihrer Einwilligung) Analyse-Cookies. <a href="/gizlilik-kvkk.html">Datenschutzhinweis</a>',
+  cookie_title: 'Cookie-Einstellungen',
+  cookie_text: 'Notwendige Cookies sind für den Betrieb der Website erforderlich. Analyse-Cookies werden nur mit Ihrer Einwilligung aktiviert und helfen uns, die Nutzung anonym zu messen.',
+  cookie_privacy_link: '<a href="/gizlilik-kvkk.html">Datenschutzhinweis und KVKK-Information →</a>',
   cookie_essential: 'Nur notwendige',
-  cookie_accept: 'Akzeptieren',
+  cookie_accept: 'Alle akzeptieren',
   sticky_call: 'Anrufen',
   sticky_quote: 'Angebot',
   wa_fab_label: 'Schreiben Sie uns auf WhatsApp',
