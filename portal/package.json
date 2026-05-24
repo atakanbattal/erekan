@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
     "build:hostinger": "next build && node scripts/prepare-hostinger.mjs",
-    "start": "next start -p ${PORT:-3001}",
-    "start:hostinger": "node .hostinger-deploy/server.js",
+    "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {

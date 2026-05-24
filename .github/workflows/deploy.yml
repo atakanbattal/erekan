@@ -51,31 +51,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build for Hostinger
-        run: npm run build:hostinger
+      - name: Verify portal build
+        run: npm run build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-
-      - name: Deploy portal via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./portal/.hostinger-deploy/
-          server-dir: ${{ secrets.FTP_PORTAL_DIR }}
-
-      - name: Trigger Hostinger portal redeploy
-        continue-on-error: true
-        env:
-          DEPLOY_HOOK: ${{ secrets.HOSTINGER_PORTAL_DEPLOY_HOOK }}
-        run: |
-          if [ -z "$DEPLOY_HOOK" ]; then
-            echo "HOSTINGER_PORTAL_DEPLOY_HOOK not set — redeploy manually in hPanel"
-            exit 0
-          fi
-          curl -fsS -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"ref":"refs/heads/main"}' \
-            "$DEPLOY_HOOK"
