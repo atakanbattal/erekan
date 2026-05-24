@@ -14,3 +14,4 @@ node_modules/
 portal/.hostinger-deploy/
 portal/supabase/.temp/
 portal.zip
+portal-linux.zip
