@@ -101,35 +101,30 @@ Alternatif: GitHub Actions her `main` push'unda ana site ve portalı birlikte de
 
 ### Portal'ı canlıya alma (ZIP — standalone)
 
-**Önerilen:** GitHub → Actions → **Build portal.zip (Linux)** → `portal-linux-zip` artifact indir (Linux binary, macOS zip 503 verir).
-
-Yerel zip (sadece test):
-
 ```bash
 cd portal && npm run zip:hostinger
 ```
 
-Zip **kökünde:** `server.js`, `package.json`, `node_modules/`, `.next/`
+Repo kökünde **`portal.zip`** (~12 MB) oluşur. Zip **kökünde** doğrudan: `server.js`, `package.json`, `node_modules/`, `.next/`
+
+> **503 alıyorsanız:** Zip içinde `portal/` veya `.hostinger-deploy/` alt klasörü olmamalı — `server.js` zip kökünde olmalı.
 
 1. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım**
-2. **"Yeni dosyaları yükleyin"** seçin
+2. **"Yeni dosyaları yükleyin"** seçin (önceki dosyaları DEĞİL)
 3. `portal.zip` yükleyin
 4. Ayarlar:
 
 | Alan | Değer |
 |------|-------|
-| Framework | **Diğer / Other** |
-| Giriş dosyası | `server.js` |
-| Install | **Boş / kapalı** |
-| Build | **Boş / kapalı** |
-| Start | `node server.js` |
+| Framework | Next.js (veya Other) |
+| Entry file | `server.js` |
+| Build | `npm run build` |
+| Start | `npm start` |
 | Node.js | 20.x |
 
 5. Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
 
-> **503 alıyorsanız:** Install/Build açıksa Hostinger `node_modules` siler. Start `node server.js` olmalı. macOS zip yerine GitHub **portal-linux-zip** artifact kullanın.
-
-**Git deploy (alternatif):** Repo kökü `portal`, Install `npm ci`, Build `npm run build:hostinger`, Start `npm run start:hostinger`, Node 20.
+6. **Dağıt**'a tıklayın
 
 ## Supabase
 

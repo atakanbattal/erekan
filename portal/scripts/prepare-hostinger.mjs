@@ -41,27 +41,23 @@ writeFileSync(
 
 writeFileSync(
   join(deployDir, 'HOSTINGER.txt'),
-  `ArmaWeld Portal — standalone bundle (server.js zip kökünde)
+  `ArmaWeld Portal — standalone bundle
+
+Zip kökünde: server.js, package.json, node_modules/, .next/
 
 hPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım
 "Yeni dosyaları yükleyin" seçin (önceki dosyaları DEĞİL).
 
-Framework: Diğer / Other  (Next.js preset KULLANMAYIN)
-Giriş dosyası: server.js
-Install: BOŞ / kapalı  (node_modules zip içinde gelir)
-Build: BOŞ / kapalı  (zaten derlenmiş)
-Start: node server.js
+Framework: Next.js (veya Other)
+Entry file: server.js
+Build: npm run build
+Start: npm start
 Node.js: 20.x
 
-Ortam değişkenleri (hPanel):
+Ortam değişkenleri:
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY
-
-503 alıyorsanız:
-- Install/Build adımlarını kapatın (npm ci node_modules siler)
-- macOS zip yerine GitHub Actions "portal-linux-zip" artifact kullanın
-- Start mutlaka "node server.js" olmalı
 `,
 );
 
