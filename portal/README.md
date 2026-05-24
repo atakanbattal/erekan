@@ -91,14 +91,16 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
    - **Root directory:** `portal`
    - Install: `npm ci`
    - Build: `npm run build`
-   - Start: `npm run start`
+   - Start: `npm run start -- -p $PORT`
    - Node.js: 20
 5. Ortam değişkenleri (hPanel):
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
 
-Alternatif: GitHub Actions ana siteyi FTP ile deploy eder; portal **Hostinger Node.js Git deploy** ile güncellenir (`.github/workflows/deploy.yml`). Netlify artık kullanılmıyor.
+Alternatif: GitHub Actions ana siteyi ve portal build çıktısını FTP ile yükler (`.github/workflows/deploy.yml`). Portal Node.js sürecinin yeni kodu alması için hPanel'den **Redeploy** gerekir — FTP dosya yükler ama uygulamayı yeniden başlatmaz.
+
+**Netlify artık kullanılmıyor** (`portal.armaweld.com` → Hostinger). Netlify panelindeki son deploy tarihi güncellenmez; bu normaldir.
 
 ## Supabase
 
