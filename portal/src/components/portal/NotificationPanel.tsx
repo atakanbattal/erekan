@@ -9,6 +9,7 @@ import { useI18n } from '@/lib/i18n/context';
 import { useDebouncedRouterRefresh } from '@/hooks/useDebouncedRouterRefresh';
 import type { NotificationAudience } from '@/lib/stages';
 import type { PortalNotification } from '@/lib/portal/types-ext';
+import { RealtimeProvider } from '@/components/portal/RealtimeProvider';
 
 interface NotificationPanelProps {
   notifications: PortalNotification[];
@@ -43,6 +44,7 @@ export function NotificationPanel({ notifications, audience }: NotificationPanel
 
   return (
     <div className="card p-5" data-audience={audience}>
+      <RealtimeProvider variant={audience === 'admin' ? 'admin' : 'customer'} />
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-2">
           <Bell size={18} className="text-arc-2" />
