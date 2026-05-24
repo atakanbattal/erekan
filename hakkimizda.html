@@ -221,6 +221,54 @@
     .mani-body p { margin-bottom: 22px; }
   }
 
+  .mv-section {
+    padding: 100px 0;
+    background: var(--ink-0);
+    border-top: 1px solid var(--ink-4);
+  }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--ink-4);
+    border: 1px solid var(--ink-4);
+    margin-top: 56px;
+  }
+  .mv-block {
+    background: var(--ink-1);
+    padding: 48px 40px;
+    position: relative;
+  }
+  .mv-block-label {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--arc-2);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .mv-block h3 {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(28px, 2.8vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    color: var(--bone);
+    margin-bottom: 24px;
+    max-width: 14ch;
+  }
+  .mv-block p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--steel-3);
+    max-width: 52ch;
+  }
+  @media (max-width: 768px) {
+    .mv-grid { grid-template-columns: 1fr; }
+    .mv-section { padding: 64px 0; }
+    .mv-block { padding: 36px 28px; }
+  }
+
   .team { padding: 120px 0; background: var(--ink-0); }
 
   /* Discipline cards (names-free staff overview) */
@@ -813,6 +861,27 @@
   </div>
 </section>
 
+<section class="mv-section">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow" data-i18n="about_mv_eyebrow">Misyon & Vizyon</div></div>
+      <h2 class="display h2" data-i18n-html="about_mv_h2">Üretim felsefemizin <span style="color:var(--arc-2)">temeli.</span></h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-block reveal">
+        <div class="mv-block-label" data-i18n="about_mission_label">Misyonumuz</div>
+        <h3 data-i18n="about_mission_h">Mühendislik disiplinini üretime taşımak.</h3>
+        <p data-i18n="about_mission_p">Kaynaklı imalat ve metal işlemede onaylı WPS, belgeli personel ve tam izlenebilirlik ile her parçayı güvenilir bir mühendislik çıktısı olarak teslim etmek. Yalnızca çelik değil; üretim geçmişi ve kalite kayıtlarını da birlikte sunmak.</p>
+      </div>
+      <div class="mv-block reveal" data-d="1">
+        <div class="mv-block-label" data-i18n="about_vision_label">Vizyonumuz</div>
+        <h3 data-i18n="about_vision_h">Belge disipliniyle tanınan referans üretici olmak.</h3>
+        <p data-i18n="about_vision_p">Ulusal ve uluslararası projelerde süreç kalitesi ve izlenebilirlik ile öne çıkan bir metal işleme tesisi olarak konumlanmak; EN 1090, ISO 3834 ve sektör standartlarında Avrupa ve global pazarlarda güvenilir tedarikçi olmaya devam etmek.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHY ARMAWELD -->
 <section class="aw-band section-pad" style="background:var(--ink-1); border-top:1px solid var(--ink-4);">
   <div class="container">
@@ -1057,7 +1126,7 @@
 <link rel="stylesheet" href="assets/deep-sections.css?v=20260604" />
 <section class="deep-section" style="padding:80px 0">
   <div class="container">
-    <div class="deep-head reveal"><div class="eyebrow">İhracat</div><h2 data-i18n="deep_export_h2">Uluslararası Ticaret</h2></div>
+    <div class="deep-head reveal"><div class="eyebrow" data-i18n="deep_export_eyebrow">İhracat & Lojistik</div><h2 data-i18n="deep_export_h2">Uluslararası Ticaret & Sevkiyat</h2></div>
     <div class="reveal" data-i18n-html="deep_export_html"></div>
   </div>
 </section>
