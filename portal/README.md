@@ -98,27 +98,26 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
 
-### Portal'ı canlıya alma (ZIP)
+### Portal'ı canlıya alma (ZIP — standalone)
 
-Hostinger Node.js paneli ZIP yüklemesi kullanır. Build **yerelde** alınır; sunucuda sadece bağımlılık kurulumu ve start yapılır (Hostinger production `npm ci` devDependencies kurmaz — bu 503 hatasının ana nedenidir).
+1. `cd portal && npm run zip:hostinger` → repo kökünde **`portal.zip`** (~12 MB, `server.js` kökte)
+2. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım**
+3. **"Yeni dosyaları yükleyin"** seçin — **"Önceki dosyaları kullanın" DEĞİL**
+4. `portal.zip` yükleyin
+5. Ayarlar:
 
-1. `portal/.env.local` dosyasında Supabase anahtarları tanımlı olsun.
-2. `cd portal && npm run zip:hostinger`
-   - Yerelde `npm ci` + `npm run build` çalışır
-   - `.next` dahil **`portal.zip`** üretilir (repo kökünde)
-   - ZIP kökünde doğrudan `package.json` olmalı — `portal/` klasörü sarmalayıcısı **olmasın**
-3. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım** → **Yeni dosyaları yükleyin** → `portal.zip`
-4. Dağıtım ayarları (varsayılan Next.js preset yeterli):
-   - **Install:** `npm ci --omit=dev`
-   - **Build:** `npm run build` (ZIP'te `.next` varsa sunucuda otomatik atlanır)
-   - **Node.js:** 20.x
-   - Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+| Alan | Değer |
+|------|-------|
+| Framework | **Diğer / Other** (Next.js preset değil) |
+| Giriş dosyası | `server.js` |
+| Install | `true` |
+| Build | `true` |
+| Start | `node server.js` |
+| Node.js | 20.x |
 
-> MB küçülmesi normal: `node_modules` ZIP'e dahil değil (Hostinger kuruyor). `.next` build çıktısı ZIP'te kalır — silinmedi.
+6. Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
 
-> "Önceki dosyaları kullanın" eski kodu tekrar build eder — her zaman **yeni ZIP yükleyin**.
->
-> ZIP'i Finder'da elle yapmayın. Hep `npm run zip:hostinger` kullanın.
+> Loglarda port 3000 görünüp 503 alıyorsanız: Next.js preset `next start` kullanır, Hostinger'ın `$PORT` değişkenini kaçırır. **Standalone + `node server.js`** bunu düzeltir.
 
 **Netlify artık kullanılmıyor** (`portal.armaweld.com` → Hostinger). Netlify panelindeki son deploy tarihi güncellenmez; bu normaldir.
 

@@ -1,17 +1,15 @@
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { cpSync, existsSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const portalDir = dirname(dirname(fileURLToPath(import.meta.url)));
+const deployDir = join(portalDir, '.hostinger-deploy');
 const zipPath = join(portalDir, '..', 'portal.zip');
 
 function loadEnvLocal() {
   const envPath = join(portalDir, '.env.local');
-  if (!existsSync(envPath)) {
-    console.warn('Uyarı: .env.local yok — build için NEXT_PUBLIC_* değişkenlerini ortamda tanımlayın.');
-    return;
-  }
+  if (!existsSync(envPath)) return;
   for (const line of readFileSync(envPath, 'utf8').split('\n')) {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
@@ -23,42 +21,47 @@ function loadEnvLocal() {
   }
 }
 
-console.log('1/3 Bağımlılıklar yükleniyor...');
+console.log('1/4 Bağımlılıklar yükleniyor...');
 execSync('npm ci', { cwd: portalDir, stdio: 'inherit' });
 
-console.log('2/3 Production build alınıyor...');
+console.log('2/4 Production build alınıyor...');
 loadEnvLocal();
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-  console.error('Hata: NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY gerekli (.env.local veya ortam).');
+  console.error('Hata: NEXT_PUBLIC_SUPABASE_URL ve NEXT_PUBLIC_SUPABASE_ANON_KEY gerekli (.env.local).');
   process.exit(1);
 }
 execSync('npm run build:next', { cwd: portalDir, stdio: 'inherit', env: process.env });
 
-console.log('3/3 portal.zip oluşturuluyor...');
+console.log('3/4 Standalone bundle hazırlanıyor...');
+execSync('node scripts/prepare-hostinger.mjs', { cwd: portalDir, stdio: 'inherit' });
+
+writeFileSync(
+  join(deployDir, 'package.json'),
+  JSON.stringify(
+    {
+      name: 'portal',
+      private: true,
+      scripts: { start: 'node server.js' },
+      engines: { node: '20.x' },
+    },
+    null,
+    2
+  )
+);
+
+console.log('4/4 portal.zip oluşturuluyor...');
 if (existsSync(zipPath)) rmSync(zipPath);
 
-const excludes = [
-  'node_modules/*',
-  '.env',
-  '.env.*',
-  '.hostinger-deploy/*',
-  '.turbo/*',
-  '.next/cache/*',
-  '.next/trace',
-  '.next/trace-build',
-  'tsconfig.tsbuildinfo',
-  '.DS_Store',
-  '*/.DS_Store',
-]
-  .map((p) => `-x "${p}"`)
-  .join(' ');
-
-execSync(`zip -r "${zipPath}" . ${excludes}`, { cwd: portalDir, stdio: 'inherit' });
+execSync(`zip -r "${zipPath}" . -x ".DS_Store"`, { cwd: deployDir, stdio: 'inherit' });
 
 const size = (statSync(zipPath).size / 1024 / 1024).toFixed(2);
 console.log(`\nportal.zip hazır: ${zipPath} (${size} MB)`);
-console.log('\nHostinger hPanel ayarları (varsayılan Next.js preset OK):');
-console.log('  Install: npm ci --omit=dev  (veya npm ci)');
-console.log('  Build:   npm run build       (ZIP içinde .next varsa otomatik atlanır)');
-console.log('  Start:   otomatik — npm run start -- -p $PORT');
-console.log('\nhPanel → portal.armaweld.com → Dağıtımlar → Yeni dağıtım → portal.zip yükle');
+console.log('\nHostinger hPanel — ÖNEMLİ:');
+console.log('  1. "Yeni dosyaları yükleyin" seçin (Önceki dosyaları DEĞİL)');
+console.log('  2. portal.zip yükleyin');
+console.log('  3. Framework: Diğer / Other');
+console.log('  4. Giriş dosyası: server.js');
+console.log('  5. Install: true  (veya boş)');
+console.log('  6. Build: true');
+console.log('  7. Start: node server.js');
+console.log('  8. Node.js: 20.x');
