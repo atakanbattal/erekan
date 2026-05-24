@@ -98,7 +98,25 @@ Portal bir Next.js uygulamasıdır; statik FTP yerine **Hostinger Node.js Web Ap
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `SUPABASE_SERVICE_ROLE_KEY` (admin müşteri oluşturma için)
 
-Alternatif: GitHub Actions ana siteyi ve portal build çıktısını FTP ile yükler (`.github/workflows/deploy.yml`). Portal Node.js sürecinin yeni kodu alması için hPanel'den **Redeploy** gerekir — FTP dosya yükler ama uygulamayı yeniden başlatmaz.
+### Portal'ı canlıya alma (ZIP)
+
+Hostinger Node.js paneli ZIP yüklemesi kullanır. Build **yerelde** alınır; sunucuda sadece bağımlılık kurulumu ve start yapılır (Hostinger production `npm ci` devDependencies kurmaz — bu 503 hatasının ana nedenidir).
+
+1. `portal/.env.local` dosyasında Supabase anahtarları tanımlı olsun.
+2. `cd portal && npm run zip:hostinger`
+   - Yerelde `npm ci` + `npm run build` çalışır
+   - `.next` dahil **`portal.zip`** üretilir (repo kökünde)
+   - ZIP kökünde doğrudan `package.json` olmalı — `portal/` klasörü sarmalayıcısı **olmasın**
+3. hPanel → portal.armaweld.com → **Dağıtımlar** → **Yeni dağıtım** → **Yeni dosyaları yükleyin** → `portal.zip`
+4. Dağıtım ayarları:
+   - **Install:** `npm ci --omit=dev`
+   - **Build:** `true` (build ZIP içinde hazır)
+   - **Node.js:** 20.x
+   - Ortam değişkenleri: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+
+> "Önceki dosyaları kullanın" eski kodu tekrar build eder — her zaman **yeni ZIP yükleyin**.
+>
+> ZIP'i Finder'da elle yapmayın. Hep `npm run zip:hostinger` kullanın.
 
 **Netlify artık kullanılmıyor** (`portal.armaweld.com` → Hostinger). Netlify panelindeki son deploy tarihi güncellenmez; bu normaldir.
 
