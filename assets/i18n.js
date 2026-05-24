@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'armaweld-lang';
   const DEFAULT = 'tr';
   const SUPPORTED = ['tr', 'en', 'de', 'es', 'fr'];
-  const BUNDLE_V = '20260607';
+  const BUNDLE_V = '202605241';
 
   let lang = localStorage.getItem(STORAGE_KEY) || DEFAULT;
   if (!SUPPORTED.includes(lang)) lang = DEFAULT;
@@ -132,12 +132,20 @@
     return resolve(key) || key;
   }
 
+  function decodeEntities(text) {
+    if (!text || text.indexOf('&') === -1) return text;
+    var el = document.createElement('textarea');
+    el.innerHTML = text;
+    return el.value;
+  }
+
   function apply() {
     document.documentElement.lang = lang;
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var v = resolve(el.dataset.i18n);
       if (v) {
+        v = decodeEntities(v);
         if (el.tagName === 'META') el.setAttribute('content', v);
         else if (el.tagName === 'TITLE') el.textContent = v;
         else el.textContent = v;
@@ -149,25 +157,25 @@
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var v = resolve(el.dataset.i18nPlaceholder);
-      if (v) el.placeholder = v;
+      if (v) el.placeholder = decodeEntities(v);
     });
     document.querySelectorAll('[data-i18n-value]').forEach(function (el) {
       var v = resolve(el.dataset.i18nValue);
-      if (v) el.value = v;
+      if (v) el.value = decodeEntities(v);
     });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var v = resolve(el.dataset.i18nAria);
-      if (v) el.setAttribute('aria-label', v);
+      if (v) el.setAttribute('aria-label', decodeEntities(v));
     });
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
       var v = resolve(el.dataset.i18nTitle);
-      if (v) el.title = v;
+      if (v) el.title = decodeEntities(v);
     });
 
     var titleKey = document.documentElement.dataset.i18nTitle;
     if (titleKey) {
       var tv = resolve(titleKey);
-      if (tv) document.title = tv;
+      if (tv) document.title = decodeEntities(tv);
     }
 
     updateUI();
