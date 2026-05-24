@@ -9,6 +9,7 @@ const SIDEBAR_STORAGE_KEY = 'armaweld-sidebar-open';
 
 interface PortalShellProps {
   variant?: SidebarVariant;
+  customerId?: string;
   userName: string;
   companyName: string;
   unreadMessages: number;
@@ -19,6 +20,7 @@ interface PortalShellProps {
 
 export function PortalShell({
   variant = 'customer',
+  customerId,
   userName,
   companyName,
   unreadMessages,
@@ -60,6 +62,7 @@ export function PortalShell({
       <PortalSidebar
         variant={variant}
         unreadMessages={unreadMessages}
+        unreadNotifications={unreadNotifications}
         homeHref={homeHref}
         isOpen={sidebarOpen}
         onClose={closeSidebar}
@@ -68,6 +71,7 @@ export function PortalShell({
       <div className="portal-main">
         <PortalTopBar
           variant={variant}
+          customerId={customerId}
           userName={userName}
           companyName={companyName}
           unreadMessages={unreadMessages}

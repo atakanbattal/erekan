@@ -50,6 +50,7 @@ export default async function PortalLayout({
 
   return (
     <PortalShell
+      customerId={ctx.customerId}
       userName={ctx.contactName}
       companyName={ctx.companyName}
       unreadMessages={unreadMessages}

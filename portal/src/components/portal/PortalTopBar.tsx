@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { LogOut, Menu, Bell, PanelLeftOpen, Settings } from 'lucide-react';
+import { LogOut, Menu, PanelLeftOpen, Settings } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
 import { LangSwitcher } from '../LangSwitcher';
 import { AdminGlobalSearch } from '../admin/AdminGlobalSearch';
+import { NotificationBellDropdown } from './NotificationBellDropdown';
 
 interface PortalTopBarProps {
   variant?: 'customer' | 'admin';
+  customerId?: string;
   userName: string;
   companyName: string;
   unreadMessages: number;
@@ -18,6 +20,7 @@ interface PortalTopBarProps {
 
 export function PortalTopBar({
   variant = 'customer',
+  customerId,
   userName,
   companyName,
   unreadMessages,
@@ -26,8 +29,6 @@ export function PortalTopBar({
   onMenuToggle,
 }: PortalTopBarProps) {
   const { t } = useI18n();
-  const notifHref = variant === 'admin' ? '/admin/notifications' : '/notifications';
-  const totalAlerts = unreadMessages + unreadNotifications;
 
   return (
     <header className="portal-topbar">
@@ -55,18 +56,12 @@ export function PortalTopBar({
 
       <div className="portal-topbar-right">
         <LangSwitcher />
-        <Link
-          href={notifHref}
-          className="portal-topbar-bell"
-          aria-label={t('notifications.title')}
-        >
-          <Bell size={18} />
-          {totalAlerts > 0 && (
-            <span className="portal-topbar-bell-dot">
-              {totalAlerts > 9 ? '9+' : totalAlerts}
-            </span>
-          )}
-        </Link>
+        <NotificationBellDropdown
+          variant={variant}
+          customerId={customerId}
+          unreadMessages={unreadMessages}
+          unreadNotifications={unreadNotifications}
+        />
         {variant === 'customer' && (
           <Link href="/settings" className="portal-topbar-bell" aria-label={t('settingsPage.title')}>
             <Settings size={18} />

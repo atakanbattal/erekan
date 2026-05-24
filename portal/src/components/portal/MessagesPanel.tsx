@@ -11,6 +11,8 @@ import {
   FileAttachmentPicker,
   uploadMessageAttachments,
 } from '@/components/portal/FileAttachments';
+import { ActivityStatusBadge } from '@/components/portal/ActivityStatusBadge';
+import { getCustomerThreadStatus } from '@/lib/portal/activity-status';
 import type { MessageCategory, Order, PortalMessage } from '@/lib/types';
 
 interface MessageComposerProps {
@@ -261,35 +263,53 @@ export function MessageThreadList({
 
   return (
     <div className="message-thread-list">
-      {threadList.map(({ threadId, latest, unread, count }) => (
-        <button
-          key={threadId}
-          type="button"
-          onClick={() => onSelectThread?.(threadId)}
-          className={`message-thread-item ${selectedThreadId === threadId ? 'message-thread-item--active' : ''} ${unread ? 'message-thread-item--unread' : ''}`}
-        >
-          <div className="message-thread-item-top">
-            <span className="message-thread-subject">{latest.subject}</span>
-            {unread && <span className="message-thread-unread">{t('messages.unread')}</span>}
-          </div>
-          <p className="message-thread-preview">
-            {(latest.attachments?.length ?? 0) > 0 && !latest.body
-              ? t('attachments.fileAttached')
-              : latest.body.slice(0, 100)}
-          </p>
-          <div className="message-thread-meta">
-            <span>{t(`messages.categories.${latest.category}`)}</span>
-            <span>
-              {t('messages.messageCount', { count })}
-              {' · '}
-              {formatDistanceToNow(new Date(latest.created_at), {
-                addSuffix: true,
-                locale: dateLocale,
-              })}
-            </span>
-          </div>
-        </button>
-      ))}
+      {threadList.map(({ threadId, latest, unread, count }) => {
+        const status = getCustomerThreadStatus({ unread, latest });
+        const statusLabel =
+          status === 'unread'
+            ? t('messages.statusUnread')
+            : status === 'awaiting_reply'
+              ? t('messages.statusAwaitingReply')
+              : t('messages.statusAnswered');
+        const statusVariant =
+          status === 'unread' ? 'unread' : status === 'awaiting_reply' ? 'awaiting' : 'answered';
+        const lastSenderLabel =
+          latest.sender_type === 'admin' ? t('messages.lastFromAdmin') : t('messages.lastFromYou');
+
+        return (
+          <button
+            key={threadId}
+            type="button"
+            onClick={() => onSelectThread?.(threadId)}
+            className={`message-thread-item activity-list-item ${selectedThreadId === threadId ? 'message-thread-item--active' : ''} ${unread ? 'message-thread-item--unread activity-list-item--unread' : ''}`}
+          >
+            <div className="message-thread-item-top">
+              <span className={`message-thread-subject ${unread ? 'message-thread-subject--unread' : ''}`}>
+                {latest.subject}
+              </span>
+              <ActivityStatusBadge label={statusLabel} variant={statusVariant} dot={unread} />
+            </div>
+            <p className="message-thread-preview">
+              {(latest.attachments?.length ?? 0) > 0 && !latest.body
+                ? t('attachments.fileAttached')
+                : latest.body.slice(0, 100)}
+            </p>
+            <div className="message-thread-meta">
+              <span>{t(`messages.categories.${latest.category}`)}</span>
+              <span>
+                {lastSenderLabel}
+                {' · '}
+                {t('messages.messageCount', { count })}
+                {' · '}
+                {formatDistanceToNow(new Date(latest.created_at), {
+                  addSuffix: true,
+                  locale: dateLocale,
+                })}
+              </span>
+            </div>
+          </button>
+        );
+      })}
     </div>
   );
 }

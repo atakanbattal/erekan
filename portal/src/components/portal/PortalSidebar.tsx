@@ -26,6 +26,7 @@ export type SidebarVariant = 'customer' | 'admin';
 interface PortalSidebarProps {
   variant?: SidebarVariant;
   unreadMessages: number;
+  unreadNotifications?: number;
   homeHref?: string;
   isOpen: boolean;
   onClose: () => void;
@@ -35,6 +36,7 @@ interface PortalSidebarProps {
 export function PortalSidebar({
   variant = 'customer',
   unreadMessages,
+  unreadNotifications = 0,
   homeHref,
   isOpen,
   onClose,
@@ -71,9 +73,14 @@ export function PortalSidebar({
   const navItems = variant === 'admin' ? adminItems : customerItems;
   const brandHref = homeHref ?? defaultHome;
   const messagePaths = ['/messages', '/admin/messages'];
+  const notificationPaths = ['/notifications', '/admin/notifications'];
 
   function isMessageNav(href: string) {
     return messagePaths.includes(href);
+  }
+
+  function isNotificationNav(href: string) {
+    return notificationPaths.includes(href);
   }
 
   function isActive(href: string) {
@@ -129,6 +136,11 @@ export function PortalSidebar({
               {isMessageNav(href) && unreadMessages > 0 && (
                 <span className="portal-sidebar-badge">
                   {unreadMessages > 99 ? '99+' : unreadMessages}
+                </span>
+              )}
+              {isNotificationNav(href) && unreadNotifications > 0 && (
+                <span className="portal-sidebar-badge">
+                  {unreadNotifications > 99 ? '99+' : unreadNotifications}
                 </span>
               )}
             </Link>

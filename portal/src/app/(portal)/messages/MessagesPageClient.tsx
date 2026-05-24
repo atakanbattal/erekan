@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Search } from 'lucide-react';
 import {
   MessageComposer,
@@ -27,6 +28,7 @@ export function MessagesPageClient({
   orders,
 }: MessagesPageClientProps) {
   const { t } = useI18n();
+  const router = useRouter();
   const [selectedThreadId, setSelectedThreadId] = useState<string | undefined>();
   const [showComposer, setShowComposer] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,7 +39,8 @@ export function MessagesPageClient({
     setSelectedThreadId(threadId);
     setShowComposer(false);
     await markCustomerThreadRead(threadId);
-  }, []);
+    router.refresh();
+  }, [router]);
 
   useEffect(() => {
     if (initialized || messages.length === 0) return;
