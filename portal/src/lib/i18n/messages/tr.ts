@@ -360,7 +360,7 @@ export const tr = {
     dashboard: {
       subtitle: 'Operasyon özeti, bekleyen teklifler, mesaj yanıt süreleri ve üretim durumu.',
       pendingRfq: 'Bekleyen Teklif Talebi',
-      pendingRfqHint: '{open} açık talep',
+      pendingRfqHint: '{quoted} teklif müşteri yanıtında',
       awaitingMessages: 'Yanıt Bekleyen Mesaj',
       awaitingMessagesHint: '{unread} okunmamış · {support} destek',
       avgResponseTime: 'Ort. Mesaj Yanıt Süresi',

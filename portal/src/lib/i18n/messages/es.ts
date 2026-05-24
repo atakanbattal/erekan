@@ -362,7 +362,7 @@ export const es: Messages = {
     dashboard: {
       subtitle: 'Resumen operativo, cotizaciones pendientes, tiempos de respuesta y producción.',
       pendingRfq: 'Solicitudes pendientes',
-      pendingRfqHint: '{open} solicitudes abiertas',
+      pendingRfqHint: '{quoted} cotizaciones esperando cliente',
       awaitingMessages: 'Mensajes sin respuesta',
       awaitingMessagesHint: '{unread} no leídos · {support} soporte',
       avgResponseTime: 'Tiempo medio de respuesta',

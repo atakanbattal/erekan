@@ -1,6 +1,7 @@
 import type { RfqRequest } from '@/lib/portal/types-ext';
 import type { Order, PortalMessage } from '@/lib/types';
 import type { RfqStatus } from '@/lib/stages';
+import { isRfqAwaitingAdminAction, normalizeRfqStatus } from '@/lib/portal/activity-status';
 
 export interface AdminMessagePreview {
   threadId: string;
@@ -144,14 +145,18 @@ export function computeMessageMetrics(
 }
 
 export function computeRfqMetrics(rfqs: RfqRequest[], limit = 5): AdminDashboardMetrics['rfq'] {
-  const pendingStatuses: RfqStatus[] = ['submitted', 'reviewing'];
-  const openStatuses: RfqStatus[] = ['submitted', 'reviewing', 'quoted'];
+  const normalized = rfqs.map((rfq) => ({
+    ...rfq,
+    status: normalizeRfqStatus(rfq),
+  }));
 
-  const pending = rfqs.filter((rfq) => pendingStatuses.includes(rfq.status));
-  const quoted = rfqs.filter((rfq) => rfq.status === 'quoted');
-  const open = rfqs.filter((rfq) => openStatuses.includes(rfq.status));
+  const pending = normalized.filter(isRfqAwaitingAdminAction);
+  const quoted = normalized.filter((rfq) => rfq.status === 'quoted');
+  const open = normalized.filter(
+    (rfq) => isRfqAwaitingAdminAction(rfq) || rfq.status === 'quoted'
+  );
 
-  const quoteResponseHours = rfqs
+  const quoteResponseHours = normalized
     .filter(
       (rfq) =>
         rfq.quote_file_path &&

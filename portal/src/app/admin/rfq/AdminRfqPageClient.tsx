@@ -1,11 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { Download, FileUp, Save, Send, Upload } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
 import { ActivityStatusBadge } from '@/components/portal/ActivityStatusBadge';
+import { normalizeRfqStatus } from '@/lib/portal/activity-status';
 import {
   AttachmentList,
   FileAttachmentPicker,
@@ -42,7 +43,7 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
     Object.fromEntries(requests.map((r) => [r.id, r.admin_notes ?? '']))
   );
   const [statusById, setStatusById] = useState<Record<string, RfqStatus>>(() =>
-    Object.fromEntries(requests.map((r) => [r.id, r.status]))
+    Object.fromEntries(requests.map((r) => [r.id, normalizeRfqStatus(r)]))
   );
   const [quoteFileById, setQuoteFileById] = useState<Record<string, File | null>>({});
   const [extraFilesById, setExtraFilesById] = useState<Record<string, File[]>>({});
@@ -52,6 +53,11 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
   const [uploadingQuoteId, setUploadingQuoteId] = useState<string | null>(null);
   const [uploadingExtraId, setUploadingExtraId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ id: string; message: string; tone: 'success' | 'error' } | null>(null);
+
+  useEffect(() => {
+    setNotesById(Object.fromEntries(requests.map((r) => [r.id, r.admin_notes ?? ''])));
+    setStatusById(Object.fromEntries(requests.map((r) => [r.id, normalizeRfqStatus(r)])));
+  }, [requests]);
 
   function showFeedback(id: string, message: string, tone: 'success' | 'error') {
     setFeedback({ id, message, tone });
@@ -128,6 +134,7 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
     }
 
     setQuoteFileById((prev) => ({ ...prev, [id]: null }));
+    setStatusById((prev) => ({ ...prev, [id]: 'quoted' }));
     showFeedback(id, t('adminRfqPage.quoteSent'), 'success');
     router.refresh();
   }
@@ -189,8 +196,9 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
     <div className="space-y-4">
       {requests.map((rfq) => {
         const customer = rfq.customers;
+        const displayStatus = normalizeRfqStatus(rfq);
         const notesDirty = (notesById[rfq.id] ?? '') !== (rfq.admin_notes ?? '');
-        const statusDirty = statusById[rfq.id] !== rfq.status;
+        const statusDirty = statusById[rfq.id] !== displayStatus;
         const selectedQuoteFile = quoteFileById[rfq.id] ?? null;
         const extraFiles = extraFilesById[rfq.id] ?? [];
         const cardFeedback = feedback?.id === rfq.id ? feedback : null;
@@ -202,8 +210,8 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <h2 className="font-bold text-bone text-lg">{rfq.title}</h2>
                   <ActivityStatusBadge
-                    label={t(`adminRfqPage.status.${rfq.status}`)}
-                    variant={statusVariant(rfq.status)}
+                    label={t(`adminRfqPage.status.${displayStatus}`)}
+                    variant={statusVariant(displayStatus)}
                   />
                 </div>
                 <p className="text-sm text-steel-2">{rfq.description}</p>

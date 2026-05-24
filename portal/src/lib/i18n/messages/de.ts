@@ -362,7 +362,7 @@ export const de: Messages = {
     dashboard: {
       subtitle: 'Operationsübersicht, offene Angebote, Antwortzeiten und Produktionsstatus.',
       pendingRfq: 'Offene Angebotsanfragen',
-      pendingRfqHint: '{open} offene Anfragen',
+      pendingRfqHint: '{quoted} Angebote warten auf Kunden',
       awaitingMessages: 'Nachrichten ohne Antwort',
       awaitingMessagesHint: '{unread} ungelesen · {support} Support',
       avgResponseTime: 'Ø Antwortzeit',

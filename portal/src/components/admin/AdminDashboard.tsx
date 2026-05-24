@@ -54,7 +54,7 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
       tone: 'arc',
       label: t('admin.dashboard.pendingRfq'),
       value: rfq.pendingCount,
-      hint: t('admin.dashboard.pendingRfqHint', { open: rfq.openCount }),
+      hint: t('admin.dashboard.pendingRfqHint', { quoted: rfq.quotedCount }),
       alert: rfq.pendingCount > 0,
     },
     {

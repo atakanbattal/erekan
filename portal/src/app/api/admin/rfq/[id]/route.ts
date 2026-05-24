@@ -49,6 +49,14 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     admin_notes?: string | null;
   };
 
+  const admin = createAdminClient();
+
+  const { data: existing } = await admin
+    .from('rfq_requests')
+    .select('quote_file_path')
+    .eq('id', id)
+    .single();
+
   const updates: { status?: RfqStatus; admin_notes?: string | null; updated_at: string } = {
     updated_at: new Date().toISOString(),
   };
@@ -57,7 +65,14 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     if (!ALLOWED_STATUSES.includes(body.status)) {
       return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
     }
-    updates.status = body.status;
+    if (
+      existing?.quote_file_path &&
+      (body.status === 'submitted' || body.status === 'reviewing')
+    ) {
+      updates.status = 'quoted';
+    } else {
+      updates.status = body.status;
+    }
   }
 
   if (body.admin_notes !== undefined) {
@@ -68,7 +83,6 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     return NextResponse.json({ error: 'No changes' }, { status: 400 });
   }
 
-  const admin = createAdminClient();
   const { data, error } = await admin
     .from('rfq_requests')
     .update(updates)

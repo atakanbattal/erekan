@@ -39,3 +39,21 @@ export function rfqMatchesFilter(status: RfqStatus, filter: 'all' | 'pending' | 
   }
   return status === 'rejected';
 }
+
+export function isRfqAwaitingAdminAction(rfq: {
+  status: RfqStatus;
+  quote_file_path?: string | null;
+}) {
+  if (rfq.quote_file_path) return false;
+  return rfq.status === 'submitted' || rfq.status === 'reviewing';
+}
+
+export function normalizeRfqStatus(rfq: {
+  status: RfqStatus;
+  quote_file_path?: string | null;
+}): RfqStatus {
+  if (rfq.quote_file_path && (rfq.status === 'submitted' || rfq.status === 'reviewing')) {
+    return 'quoted';
+  }
+  return rfq.status;
+}

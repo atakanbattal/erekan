@@ -362,7 +362,7 @@ export const fr: Messages = {
     dashboard: {
       subtitle: 'Vue opérationnelle, devis en attente, délais de réponse et statut production.',
       pendingRfq: 'Demandes de devis en attente',
-      pendingRfqHint: '{open} demandes ouvertes',
+      pendingRfqHint: '{quoted} devis en attente client',
       awaitingMessages: 'Messages sans réponse',
       awaitingMessagesHint: '{unread} non lus · {support} support',
       avgResponseTime: 'Délai moyen de réponse',

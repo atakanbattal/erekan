@@ -86,5 +86,13 @@ export async function POST(request: Request, { params }: RouteParams) {
     link: '/rfq',
   });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    rfq: {
+      id: rfqId,
+      status: 'quoted',
+      quote_file_path: filePath,
+      quote_file_name: file.name,
+    },
+  });
 }
