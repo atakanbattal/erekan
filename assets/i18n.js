@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'armaweld-lang';
   const DEFAULT = 'tr';
   const SUPPORTED = ['tr', 'en', 'de', 'es', 'fr'];
-  const BUNDLE_V = '202605243';
+  const BUNDLE_V = '202605249';
 
   let lang = localStorage.getItem(STORAGE_KEY) || DEFAULT;
   if (!SUPPORTED.includes(lang)) lang = DEFAULT;
@@ -85,6 +85,15 @@
     }
   }
 
+  function reapplyTraceDocs() {
+    var docs = window.__AW_TRACE_DOCS__;
+    if (!docs || !window.TRANSLATIONS) return;
+    for (var code in docs) {
+      if (!window.TRANSLATIONS[code]) window.TRANSLATIONS[code] = {};
+      Object.assign(window.TRANSLATIONS[code], docs[code]);
+    }
+  }
+
   function loadDeepBundle() {
     var deepPath = location.pathname.includes('/blog/')
       ? '../assets/i18n-deep.js?v=' + BUNDLE_V
@@ -99,6 +108,13 @@
     return loadScript(extPath).catch(function () {}).then(reapplyToolsExt);
   }
 
+  function loadTraceDocsBundle() {
+    var docsPath = location.pathname.includes('/blog/')
+      ? '../assets/i18n-trace-docs.js?v=' + BUNDLE_V
+      : 'assets/i18n-trace-docs.js?v=' + BUNDLE_V;
+    return loadScript(docsPath).catch(function () {}).then(reapplyTraceDocs);
+  }
+
   function loadBundles(l, forceTarget) {
     var jobs = [loadLangBundle(DEFAULT, false)];
     if (l !== DEFAULT) jobs.push(loadLangBundle(l, !!forceTarget));
@@ -109,7 +125,7 @@
       if (l !== DEFAULT && !bundleReady(l)) {
         console.warn('[i18n] Translation bundle incomplete:', l);
       }
-      return loadDeepBundle().then(loadToolsExtBundle);
+      return loadDeepBundle().then(loadToolsExtBundle).then(loadTraceDocsBundle);
     }).then(function () {
       if (needsBlogBundle()) {
         var blogPath = location.pathname.includes('/blog/')

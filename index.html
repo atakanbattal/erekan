@@ -435,7 +435,7 @@
   .trace-head h2 .arc { color: var(--arc-2); }
 
   .trace-timeline {
-    margin-top: 80px;
+    margin-top: 48px;
     position: relative;
   }
   .trace-rail {
@@ -504,17 +504,17 @@
   }
 
   .trace-panel {
-    margin-top: 56px;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 1px;
     background: var(--ink-4);
     border: 1px solid var(--ink-4);
-    min-height: 420px;
+    align-items: stretch;
   }
   .trace-content {
     background: var(--ink-1);
-    padding: 48px;
+    padding: 32px 36px;
   }
   .trace-content .chip {
     font-family: var(--ff-mono);
@@ -533,11 +533,11 @@
     color: var(--bone);
     margin-bottom: 20px;
   }
-  .trace-content .body {
+  .trace-content .trace-body {
     font-size: 14px;
     line-height: 1.65;
     color: var(--steel-3);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     max-width: 52ch;
   }
   .trace-docs {
@@ -558,47 +558,53 @@
 
   .trace-viz {
     background: var(--ink-0);
-    padding: 36px;
+    padding: 28px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
   }
   .trace-id {
     font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--steel-2);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    background: var(--ink-1);
+    border: 1px solid var(--ink-4);
+  }
+  .trace-step-head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 2px;
+  }
+  .trace-step-head .code {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--arc-2);
+    line-height: 1;
+  }
+  .trace-step-head .phase {
+    font-family: var(--ff-mono);
     font-size: 10px;
-    color: var(--steel-1);
+    color: var(--steel-2);
     letter-spacing: .04em;
     text-transform: uppercase;
-    margin-bottom: 12px;
+  }
+  .trace-step-head .ref {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--bone);
+    letter-spacing: .03em;
   }
   .trace-qrbox { display: none; }
   .trace-qr { display: none; }
-  .trace-meta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--ink-4);
-  }
-  .trace-meta > div {
-    background: var(--ink-0);
-    padding: 14px 16px;
-  }
-  .trace-meta .k {
-    font-family: var(--ff-mono);
-    font-size: 9px;
-    color: var(--steel-1);
-    letter-spacing: .05em;
-    text-transform: uppercase;
-  }
-  .trace-meta .v {
-    font-family: var(--ff-mono);
-    font-size: 14px;
-    color: var(--bone);
-    margin-top: 4px;
-    font-weight: 600;
-  }
 
   /* ===== Weld comparator ===== */
   .compare { background: var(--ink-1); }
@@ -1001,7 +1007,6 @@
       },
       "email": "info@armaweld.com",
       "telephone": "+905438400332",
-      "foundingDate": "2026",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Üretim Hizmetleri",
@@ -1050,7 +1055,7 @@
       <div class="hero-meta">
         <span><span class="dot"></span> ArmaWeld · KAYNAKLI İMALAT</span>
         <span>EN 1090-2 · EN ISO 3834-2</span>
-        <span>EST. 2026</span>
+        <span>KONYA · TR</span>
       </div>
 
       <h1 data-i18n-html="home_hero_h1">
@@ -1366,7 +1371,7 @@
         <p class="idx mono" style="margin-top:12px; color: var(--steel-1);">SVC — 001 / 008</p>
       </div>
       <h2 class="display h2" data-i18n-html="home_svc_h2">
-        Metal işleme süreçlerini <span style="color: var(--arc-2);">mühendislik</span> disipliniyle uçtan uca yönetiyoruz.
+        Metal işleme süreçleri <span style="color: var(--arc-2);">mühendislik</span> disipliniyle uçtan uca yönetilir.
       </h2>
     </div>
 
@@ -1492,6 +1497,8 @@
   </div>
 </section>
 
+<link rel="stylesheet" href="assets/trace-doc-preview.css?v=202605245" />
+
 <!-- TRACEABILITY -->
 <section class="trace section-pad">
   <div class="container">
@@ -1527,14 +1534,9 @@
           <!-- Filled by JS -->
         </div>
         <div class="trace-viz">
-          <div class="trace-id" id="trace-id">JOB-ID / SERIAL</div>
-
-          <div class="trace-meta">
-            <div><div class="k" data-i18n="home_trace_meta_heat">Sac Şarjesi</div><div class="v" id="trace-heat">—</div></div>
-            <div><div class="k" data-i18n="home_trace_meta_wps">WPS</div><div class="v" id="trace-wps">—</div></div>
-            <div><div class="k" data-i18n="home_trace_meta_op">Operatör</div><div class="v" id="trace-op">—</div></div>
-            <div><div class="k" data-i18n="home_trace_meta_date">Tarih</div><div class="v" id="trace-date">—</div></div>
-          </div>
+          <div class="trace-id" id="trace-id">JOB-A142 / SER-0142</div>
+          <div class="trace-step-head" id="trace-step-head"></div>
+          <div class="trace-doc-sheet" id="trace-doc-sheet"></div>
         </div>
       </div>
     </div>
@@ -1704,10 +1706,7 @@
     <div class="doc-wrap">
       <div>
         <p class="lede" style="margin-bottom: 32px;" data-i18n="home_doc_lede">
-          Biz sadece parça teslim etmiyoruz — her sevkiyatın yanında
-          parçanın nasıl üretildiğini, kim tarafından kaynatıldığını,
-          hangi hammaddenin kullanıldığını ve hangi kontrolü geçtiğini
-          kanıtlayan tam bir belge dosyası teslim ediyoruz.
+          Her sevkiyatla birlikte parçanın üretim süreci, operatör kaydı, hammadde izi ve geçtiği kontrolleri belgeleyen tam bir dosya paketi teslim edilir.
         </p>
 
         <ul class="trace-docs" style="border-top: 1px solid var(--ink-4);">
@@ -2008,9 +2007,7 @@
       Teknik resminizi gönderin, <span class="arc">48 saat içinde</span> teklifiniz hazır.
     </h2>
     <p class="lede" data-i18n="home_cta_lede">
-      DWG/DXF/PDF dosyalarınızı inceleyip; kullanılacak kaynak yöntemi,
-      sac kalitesi, uygulanacak WPS ve NDT planıyla birlikte kapsamlı bir
-      fiyat teklifi sunuyoruz.
+      DWG/DXF/PDF dosyaları incelenir; kaynak yöntemi, sac kalitesi, WPS ve NDT planıyla birlikte kapsamlı fiyat teklifi hazırlanır.
     </p>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="iletisim.html" class="btn btn-primary" data-i18n="home_cta_btn1">Teklif Formu →</a>
@@ -2019,8 +2016,9 @@
   </div>
 </section>
 <script src="assets/lang/tr.js?v=20260604"></script>
-<script src="assets/i18n.js?v=202605243"></script>
+<script src="assets/i18n.js?v=202605247"></script>
 <script src="assets/chrome.js?v=20260624"></script>
+<script src="assets/sample-docs-data.js?v=202605246"></script>
 <script src="assets/analytics.js?v=20260604"></script>
 <script>
   mountChrome('index').then(function () {
@@ -2029,15 +2027,17 @@
   // Traceability interactive timeline
   // ============================================
 
-  // Static (non-translatable) data per step
+  // Örnek belge paketi (kalite.html DOCS) ile aynı referans iş emri
+  const TRACE_JOB = { id: 'JOB-A142', serial: 'SER-0142', heat: 'A41E2', grade: 'S355 J2+N', wps: 'WPS-142-A Rev.02' };
+
   const TRACE_STATIC = [
-    { idx: '01', chip_code: 'SOP.REV.ENG', docs_val: ['JOB-xxxx','DWG / PDF','EN ISO 15609','EN ISO 17635'], heat: 'HEAT-A41E2', wps: 'WPS-142-A', op: 'IWE · Ali Eren', date: '2026-03-10' },
-    { idx: '02', chip_code: 'MAT.INCOMING', docs_val: ['EN 10204 3.1','VT-01','UT-Point','HEAT-xxxxx'], heat: 'HEAT-A41E2', wps: '—', op: 'Depo · Muayene', date: '2026-03-11' },
-    { idx: '03', chip_code: 'CUT.FORM', docs_val: ['NC / DXF','EN ISO 13920','Dijital Açıölçer','QR + HEAT'], heat: 'HEAT-A41E2', wps: '—', op: 'CNC Op. · M. Yıldız', date: '2026-03-12' },
-    { idx: '04', chip_code: 'WELDING.ACTIVE', docs_val: ['EN ISO 9606-1','WPS-142-A Rev.02','JOB-xxxx.log','T ≤ 250°C'], heat: 'HEAT-A41E2', wps: 'WPS-142-A', op: 'W-07 · K. Demir', date: '2026-03-15' },
-    { idx: '05', chip_code: 'NDT.INSPECT', docs_val: ['EN ISO 17637','EN ISO 3452 / 17638','EN ISO 17640','EN ISO 5817 B'], heat: 'HEAT-A41E2', wps: 'WPS-142-A', op: 'NDT L2 · S. Kaya', date: '2026-03-18' },
-    { idx: '06', chip_code: 'SURFACE.COAT', docs_val: ['ISO 8501-1 Sa 2½','ISO 12944 C3/C4','ISO 2808','RAL xxxx'], heat: 'HEAT-A41E2', wps: 'WPS-142-A', op: 'Boya Hattı · B-02', date: '2026-03-20' },
-    { idx: '07', chip_code: 'SHIP.DOSSIER', docs_val: ['IRS-xxxx','JOB-xxxx.zip','EN 1090-1','armaweld.com/t/..'], heat: 'HEAT-A41E2', wps: 'WPS-142-A', op: 'Kalite Yön. · Onay', date: '2026-03-22' },
+    { idx: '01', chip_code: 'SOP.REV.ENG', doc_key: 'eng', doc_ref: 'WPS-142-A · Rev.02', docs_val: ['JOB-A142', 'DWG Rev.02 / PDF', 'WPS-142-A · Rev.02', 'WPQR-142'] },
+    { idx: '02', chip_code: 'MAT.INCOMING', doc_key: 'mtc', doc_ref: 'MTC-2026-4182', docs_val: ['MTC-2026-4182', 'VT-01 · Kabul', 't = 12 mm', 'A41E2'] },
+    { idx: '03', chip_code: 'CUT.FORM', doc_key: 'cut', doc_ref: 'NC · JOB-A142', docs_val: ['NC / DXF', 'EN ISO 13920 · B', 'Dijital Açıölçer', 'QR · A41E2'] },
+    { idx: '04', chip_code: 'WELDING.ACTIVE', doc_key: 'welder', doc_ref: 'ERK-WL-07-2026', docs_val: ['ERK-WL-07-2026', 'WPS-142-A Rev.02', 'LOG-A142', 'T ≤ 250 °C'] },
+    { idx: '05', chip_code: 'NDT.INSPECT', doc_key: 'ndt', doc_ref: 'NDT-2026-0248', docs_val: ['NDT-2026-0248', 'VT · %100', 'UT · W-01–03', 'EN ISO 5817 B'] },
+    { idx: '06', chip_code: 'SURFACE.COAT', doc_key: 'coat', doc_ref: 'ISO 12944 · C4', docs_val: ['ISO 8501-1 Sa 2½', 'ISO 12944 C4', 'DFT · 120 µm', 'RAL 7035'] },
+    { idx: '07', chip_code: 'SHIP.DOSSIER', doc_key: 'dop', doc_ref: 'ERK-DOP-2026-0142', docs_val: ['IRS-A142-2026', 'JOB-A142-dossier.zip', 'ERK-DOP-2026-0142', 'portal.armaweld.com/t/A142'] },
   ];
 
   const t = (key) => window.i18n ? window.i18n.get(key) : key;
@@ -2047,7 +2047,7 @@
       idx: s.idx,
       title: t(`trace_step${i+1}_title`),
       dur: t(`trace_step${i+1}_dur`),
-      chip: `${t('trace_step_label')} ${s.idx} · ${s.chip_code}`,
+      chip: `${t('trace_step_label')} ${s.idx} · ${t('trace_step' + (i + 1) + '_code')}`,
       heading: t(`trace_step${i+1}_h`),
       body: t(`trace_step${i+1}_body`),
       docs: [
@@ -2056,10 +2056,6 @@
         [t(`trace_step${i+1}_d3`), s.docs_val[2]],
         [t(`trace_step${i+1}_d4`), s.docs_val[3]],
       ],
-      heat: s.heat,
-      wps: s.wps,
-      op: s.op,
-      date: s.date,
     }));
   }
 
@@ -2093,16 +2089,24 @@
     contentEl.innerHTML = `
       <div class="chip">${s.chip}</div>
       <h3>${s.heading}</h3>
-      <p class="body">${s.body}</p>
+      <p class="trace-body">${s.body}</p>
       <ul class="trace-docs">
         ${s.docs.map(([k,v]) => `<li><span>${k}</span><span>${v}</span></li>`).join('')}
       </ul>
     `;
-    document.getElementById('trace-id').textContent = `JOB-A142 / SER-${String(1000+i).padStart(4,'0')}`;
-    document.getElementById('trace-heat').textContent = s.heat;
-    document.getElementById('trace-wps').textContent = s.wps;
-    document.getElementById('trace-op').textContent = s.op;
-    document.getElementById('trace-date').textContent = s.date;
+    document.getElementById('trace-id').textContent = `${TRACE_JOB.id} / ${TRACE_JOB.serial}`;
+    const stepHead = document.getElementById('trace-step-head');
+    if (stepHead) {
+      stepHead.innerHTML = `
+        <div class="code">${t('trace_step' + (i + 1) + '_code')}</div>
+        <div class="phase">${s.title}</div>
+        <div class="ref">${TRACE_STATIC[i].doc_ref}</div>
+      `;
+    }
+    const sheetEl = document.getElementById('trace-doc-sheet');
+    if (sheetEl && window.renderTraceMiniDoc) {
+      sheetEl.innerHTML = window.renderTraceMiniDoc(TRACE_STATIC[i].doc_key);
+    }
     railFill.style.width = ((i + 1) / TRACE_STATIC.length * 100) + '%';
 
     document.querySelectorAll('.trace-step').forEach(el => {
