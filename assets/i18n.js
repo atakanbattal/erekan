@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'armaweld-lang';
   const DEFAULT = 'tr';
   const SUPPORTED = ['tr', 'en', 'de', 'es', 'fr'];
-  const BUNDLE_V = '202605251';
+  const BUNDLE_V = '202605252';
 
   let lang = localStorage.getItem(STORAGE_KEY) || DEFAULT;
   if (!SUPPORTED.includes(lang)) lang = DEFAULT;
@@ -96,9 +96,12 @@
 
   function loadDeepBundle() {
     var deepPath = location.pathname.includes('/blog/')
-      ? '../assets/i18n-deep.js?v=' + BUNDLE_V
-      : 'assets/i18n-deep.js?v=' + BUNDLE_V;
-    return loadScript(deepPath).catch(function () {}).then(reapplyDeep);
+      ? '../assets/i18n-content.js?v=' + BUNDLE_V
+      : 'assets/i18n-content.js?v=' + BUNDLE_V;
+    document.querySelectorAll('script[src*="i18n-deep.js"], script[src*="i18n-content.js"]').forEach(function (node) {
+      node.remove();
+    });
+    return loadScript(deepPath, { force: true }).catch(function () {}).then(reapplyDeep);
   }
 
   function loadToolsExtBundle() {
