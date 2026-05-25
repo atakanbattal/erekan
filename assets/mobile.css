@@ -190,13 +190,6 @@ svg {
     grid-template-columns: 64px 1fr 28px !important;
     gap: 8px !important;
   }
-
-  .readout {
-    position: static !important;
-    margin: 12px 0 0 !important;
-    text-align: left !important;
-    max-width: none !important;
-  }
 }
 
 /* Landing / specs */

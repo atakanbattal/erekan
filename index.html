@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
-<link rel="stylesheet" href="assets/theme.css?v=20260624" />
+<link rel="stylesheet" href="assets/theme.css?v=202605255" />
 <style>
   /* ===== Hero ===== */
   .hero {
@@ -934,22 +934,27 @@
     .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px 80px; }
     .hero h1 { font-size: clamp(40px, 12vw, 72px); }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .hero-visual {
-      aspect-ratio: 1 / 0.92;
-      max-width: 100%;
-    }
-    .hero-visual::before { inset: 12px; }
-    .hv-stage { inset: 20px 16px; }
-    .hv-corner { font-size: 7px; padding: 6px 8px; }
-    .scan-sweep { left: 16px; right: 16px; }
-    .hero-visual .readout {
-      min-width: 110px;
-      padding: 8px 10px;
-      font-size: 8px;
-    }
-    .hero-visual .readout .rv { font-size: 14px; }
-    .hero-visual .readout[style*="top: 60px"] { top: 36px !important; left: 36px !important; }
-    .hero-visual .readout[style*="bottom: 60px"] { bottom: 36px !important; right: 36px !important; }
+  .hero-visual {
+    aspect-ratio: 1 / 0.92;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero-inner > .hero-visual { min-width: 0; }
+  .hero-visual::before { inset: 12px; }
+  .hv-stage { inset: 20px 16px; }
+  .hv-corner { font-size: 7px; padding: 6px 8px; max-width: 46%; line-height: 1.35; }
+  .scan-sweep { left: 16px; right: 16px; }
+  .hero-visual .readout {
+    position: absolute !important;
+    min-width: 0;
+    max-width: calc(50% - 20px);
+    padding: 8px 10px;
+    font-size: 8px;
+  }
+  .hero-visual .readout .rv { font-size: 14px; }
+  .hero-visual .readout.r-tl { top: 14px !important; left: 12px !important; right: auto !important; bottom: auto !important; }
+  .hero-visual .readout.r-br { bottom: 14px !important; right: 12px !important; left: auto !important; top: auto !important; text-align: right; }
     .svc-row { grid-template-columns: 36px 1fr 24px; gap: 0 16px; padding: 22px 16px; margin: 0 -16px; }
     .svc-pills { display: none; }
     .trace-steps { grid-template-columns: 1fr 1fr; }
@@ -1118,11 +1123,11 @@
 
       <div class="scan-sweep"></div>
 
-      <div class="readout" style="top: 60px; left: 60px;">
+      <div class="readout r-tl">
         <div>GERİLİM · VOLT</div>
         <div class="rv">28.4 V</div>
       </div>
-      <div class="readout" style="bottom: 60px; right: 60px; text-align: right;">
+      <div class="readout r-br">
         <div>TEL İLERLEMESİ</div>
         <div class="rv">7.8 m/dk</div>
       </div>
