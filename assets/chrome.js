@@ -121,19 +121,19 @@ function buildNav(activePage, base) {
   const b = base || '';
   const primaryLinks = [
     { id: 'index',       i18n: 'nav_home',        href: b + 'index.html' },
+    { id: 'hakkimizda',  i18n: 'nav_about',       href: b + 'hakkimizda.html' },
     { id: 'hizmetler',   i18n: 'nav_services',    href: b + 'hizmetler.html' },
     { id: 'muhendislik', i18n: 'nav_engineering', href: b + 'muhendislik.html' },
     { id: 'kalite',      i18n: 'nav_quality',     href: b + 'kalite.html' },
     { id: 'blog',        i18n: 'nav_blog',        href: b + 'blog/' },
-    { id: 'iletisim',    i18n: 'nav_contact',     href: b + 'iletisim.html' },
   ];
   const moreLinks = [
-    { id: 'hakkimizda',  i18n: 'nav_about',    href: b + 'hakkimizda.html' },
     { id: 'kaynak',      i18n: 'nav_welding',  href: b + 'kaynak-yontemleri.html' },
     { id: 'ndt',         i18n: 'nav_ndt',      href: b + 'ndt.html' },
     { id: 'sektorler',   i18n: 'nav_sectors',  href: b + 'sektorler.html' },
     { id: 'projeler',    i18n: 'nav_projects', href: b + 'projeler.html' },
     { id: 'sss',         i18n: 'nav_faq',      href: b + 'sss.html' },
+    { id: 'iletisim',    i18n: 'nav_contact',  href: b + 'iletisim.html' },
   ];
   const allLinks = primaryLinks.concat(moreLinks);
 
