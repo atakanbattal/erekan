@@ -4,7 +4,7 @@
   const STORAGE_KEY = 'armaweld-lang';
   const DEFAULT = 'tr';
   const SUPPORTED = ['tr', 'en', 'de', 'es', 'fr'];
-  const BUNDLE_V = '202605249';
+  const BUNDLE_V = '202605251';
 
   let lang = localStorage.getItem(STORAGE_KEY) || DEFAULT;
   if (!SUPPORTED.includes(lang)) lang = DEFAULT;
