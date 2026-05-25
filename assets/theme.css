@@ -1223,6 +1223,72 @@ body.has-cookie-banner {
   border: 0;
 }
 
+.map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.map-action {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 14px;
+  border: 1px solid var(--ink-4);
+  color: var(--steel-2);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.map-action:hover {
+  color: var(--arc-2);
+  border-color: var(--arc-2);
+}
+
+.map-action--primary {
+  background: var(--arc-2);
+  border-color: var(--arc-2);
+  color: var(--ink-0);
+}
+
+.map-action--primary:hover {
+  color: var(--ink-0);
+  opacity: 0.92;
+}
+
+.footer-addr-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.footer-addr-link:hover .footer-addr-line {
+  color: var(--arc-2);
+}
+
+.footer-map-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-bottom: 4px;
+}
+
+.footer-map-links a {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--arc-2);
+  text-decoration: none;
+}
+
+.footer-map-links a:hover {
+  text-decoration: underline;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

@@ -4,6 +4,15 @@
 
 const PORTAL_LOGIN_URL = 'https://portal.armaweld.com/login';
 
+const ARMAWELD_MAP_QUERY = 'Fevzi%C3%A7akmak+10758.+Sk.+No%3A+25%2FH+Karatay+Konya';
+const ARMAWELD_MAPS = {
+  query: ARMAWELD_MAP_QUERY,
+  place: 'https://www.google.com/maps/search/?api=1&query=' + ARMAWELD_MAP_QUERY,
+  directions: 'https://www.google.com/maps/dir/?api=1&destination=' + ARMAWELD_MAP_QUERY,
+  embed: 'https://maps.google.com/maps?q=' + ARMAWELD_MAP_QUERY + '&hl=tr&z=16&output=embed'
+};
+window.ARMAWELD_MAPS = ARMAWELD_MAPS;
+
 const NAV_LABELS = {
   nav_home: 'Ana Sayfa',
   nav_services: 'Hizmetler',
@@ -257,8 +266,14 @@ function buildFooter(base) {
         <div>
           <h5 data-i18n="footer_contact_h"></h5>
           <p class="footer-contact">
-            <span class="footer-addr-line" data-i18n="footer_addr1"></span>
-            <span class="footer-addr-line" data-i18n="footer_addr2"></span><br/><br/>
+            <a href="${ARMAWELD_MAPS.place}" class="footer-addr-link" target="_blank" rel="noopener noreferrer" data-map-place>
+              <span class="footer-addr-line" data-i18n="footer_addr1"></span>
+              <span class="footer-addr-line" data-i18n="footer_addr2"></span>
+            </a>
+            <span class="footer-map-links">
+              <a href="${ARMAWELD_MAPS.place}" target="_blank" rel="noopener noreferrer" data-map-place data-i18n="map_open_google">Google Maps'te aç →</a>
+              <a href="${ARMAWELD_MAPS.directions}" target="_blank" rel="noopener noreferrer" data-map-dir data-i18n="map_directions">Yol tarifi al →</a>
+            </span><br/><br/>
             <a href="mailto:info@armaweld.com">info@armaweld.com</a><br/>
             <a href="tel:+905438400332">+90 543 840 0332</a>
           </p>
@@ -500,6 +515,15 @@ function initMobileEnhancements() {
   wrapWideTables();
 }
 
+function initMapLinks() {
+  var m = window.ARMAWELD_MAPS;
+  if (!m) return;
+  document.querySelectorAll('[data-map-place]').forEach(function (a) { a.href = m.place; });
+  document.querySelectorAll('[data-map-dir]').forEach(function (a) { a.href = m.directions; });
+  var embed = document.querySelector('.map-embed iframe[data-map-embed]');
+  if (embed) embed.src = m.embed;
+}
+
 function mountChrome(activePage, base) {
   const doMount = function () {
   const savedTheme = localStorage.getItem('armaweld-theme') || 'light';
@@ -526,6 +550,7 @@ function mountChrome(activePage, base) {
     initNavMore();
     initBlogSchema();
     initMobileEnhancements();
+    initMapLinks();
     if (window.i18n) window.i18n.apply();
     requestAnimationFrame(initMobileEnhancements);
   });
@@ -538,6 +563,7 @@ function mountChrome(activePage, base) {
     initNavMore();
     initBlogSchema();
     initMobileEnhancements();
+    initMapLinks();
   }
   document.addEventListener('langchange', () => {
     requestAnimationFrame(initMobileEnhancements);
