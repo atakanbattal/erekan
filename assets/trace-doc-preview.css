@@ -10,12 +10,15 @@
   background: #f4f2ee;
   color: #0d0e11;
   border: 1px solid var(--ink-4);
-  padding: 14px 16px 48px;
+  padding: 14px 16px 20px;
   position: relative;
   flex: 1;
   min-height: 280px;
   max-height: 480px;
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   font-family: var(--ff-mono);
   font-size: 10px;
   line-height: 1.4;
@@ -36,10 +39,6 @@
   border-bottom: 2px solid #0d0e11;
   padding-bottom: 8px;
   margin-bottom: 10px;
-  position: sticky;
-  top: 0;
-  background: inherit;
-  z-index: 1;
 }
 
 .trace-mini-title {
@@ -66,6 +65,7 @@
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .trace-mini-logo::before {
@@ -98,6 +98,7 @@
   font-weight: 600;
   color: #0d0e11;
   line-height: 1.2;
+  word-break: break-word;
 }
 
 .trace-mini-section {
@@ -124,6 +125,7 @@
   border: 1px solid #0d0e11;
   padding: 3px 5px;
   text-align: left;
+  word-break: break-word;
 }
 
 .trace-mini-tbl th {
@@ -135,9 +137,13 @@
 }
 
 .trace-mini-stamp {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+  pointer-events: none;
+}
+
+.trace-mini-stamp-mark {
   width: 64px;
   height: 64px;
   border: 2px double var(--arc-2);
@@ -152,7 +158,6 @@
   line-height: 1.15;
   transform: rotate(-8deg);
   opacity: 0.92;
-  pointer-events: none;
 }
 
 .trace-mini-badge {
@@ -171,5 +176,32 @@
   .trace-mini-doc {
     min-height: 200px;
     max-height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trace-viz {
+    overflow: visible;
+  }
+
+  .trace-doc-sheet {
+    overflow: visible;
+  }
+
+  .trace-mini-doc {
+    max-height: none;
+    min-height: 0;
+    overflow: visible;
+    padding-bottom: 16px;
+  }
+
+  .trace-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trace-mini-tbl {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }

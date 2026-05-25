@@ -290,7 +290,7 @@
         '<div class="trace-mini-grid">' + fieldsHtml + '</div>' +
         tableHtml +
         badgeHtml +
-        '<div class="trace-mini-stamp">' + stampHtml + '</div>' +
+        '<div class="trace-mini-stamp"><div class="trace-mini-stamp-mark">' + stampHtml + '</div></div>' +
       '</div>'
     );
   }
