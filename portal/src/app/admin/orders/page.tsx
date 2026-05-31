@@ -26,7 +26,7 @@ export default async function AdminOrdersPage() {
   const { data: orders } = await supabase
     .from('orders')
     .select('*, customers(company_name, contact_name)')
-    .order('updated_at', { ascending: false });
+    .order('job_number', { ascending: false });
 
   return (
     <div className="portal-page">

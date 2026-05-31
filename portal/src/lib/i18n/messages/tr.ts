@@ -369,6 +369,7 @@ export const tr = {
       avgQuoteHint: 'Son {count} teklif örneği',
       activeOrders: 'Aktif Üretim',
       activeOrdersHint: '%{progress} ort. ilerleme · {ready} sevkiyata hazır',
+      overdueOrders: 'Geciken Siparişler',
       overdueOrdersHint: 'Bu hafta teslim: {dueWeek}',
       customers: 'Müşteri',
       customersHint: '{active} aktif hesap',

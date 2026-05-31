@@ -371,6 +371,7 @@ export const fr: Messages = {
       avgQuoteHint: 'Basé sur {count} devis',
       activeOrders: 'Production active',
       activeOrdersHint: '{progress}% progrès · {ready} prêts à expédier',
+      overdueOrders: 'Commandes en retard',
       overdueOrdersHint: 'Cette semaine : {dueWeek}',
       customers: 'Clients',
       customersHint: '{active} comptes actifs',

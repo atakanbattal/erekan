@@ -41,7 +41,7 @@ export default async function AdminPage() {
     { count: unreadNotifications },
     { data: rfqs },
   ] = await Promise.all([
-    supabase.from('orders').select('*, customers(company_name)').order('updated_at', { ascending: false }),
+    supabase.from('orders').select('*, customers(company_name)').order('job_number', { ascending: false }),
     supabase.from('customers').select('*', { count: 'exact', head: true }),
     supabase.from('customers').select('*', { count: 'exact', head: true }).eq('is_active', true),
     supabase

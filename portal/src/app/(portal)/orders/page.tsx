@@ -18,7 +18,7 @@ export default async function OrdersPage() {
     .from('orders')
     .select('*')
     .eq('customer_id', customer!.id)
-    .order('created_at', { ascending: false });
+    .order('job_number', { ascending: false });
 
   return <OrdersPageClient orders={(orders ?? []) as Order[]} />;
 }
