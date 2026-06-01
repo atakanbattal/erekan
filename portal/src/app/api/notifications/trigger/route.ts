@@ -52,6 +52,40 @@ export async function POST(request: Request) {
       body: body.body,
       link: `/orders/${orderId}`,
     });
+  } else if (type === 'shipment_updated' && orderId) {
+    const { data: order } = await supabase
+      .from('orders')
+      .select('customer_id, customers(email)')
+      .eq('id', orderId)
+      .single();
+    if (order) {
+      await notifyCustomer({
+        customerId: order.customer_id,
+        customerEmail: (order.customers as { email?: string } | null)?.email,
+        orderId,
+        type: 'shipment_updated',
+        title: body.title ?? 'Sevkiyat güncellendi',
+        body: body.body,
+        link: `/orders/${orderId}`,
+      });
+    }
+  } else if (type === 'ndt_result' && orderId) {
+    const { data: order } = await supabase
+      .from('orders')
+      .select('customer_id, customers(email)')
+      .eq('id', orderId)
+      .single();
+    if (order) {
+      await notifyCustomer({
+        customerId: order.customer_id,
+        customerEmail: (order.customers as { email?: string } | null)?.email,
+        orderId,
+        type: 'ndt_result',
+        title: body.title ?? 'NDT sonucu güncellendi',
+        body: body.body,
+        link: `/orders/${orderId}`,
+      });
+    }
   }
 
   return NextResponse.json({ ok: true });

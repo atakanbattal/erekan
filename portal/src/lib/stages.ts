@@ -96,7 +96,25 @@ export type NotificationType =
   | 'rfq_submitted'
   | 'quote_ready'
   | 'shipment_updated'
-  | 'ndt_result';
+  | 'ndt_result'
+  | 'action_required'
+  | 'rfq_approved'
+  | 'rfq_rejected'
+  | 'delivery_confirmed'
+  | 'service_case_submitted'
+  | 'service_case_updated'
+  | 'maintenance_due'
+  | 'spare_part_quoted';
+
+export type PortalActionType =
+  | 'rfq_quote_review'
+  | 'rfq_convert'
+  | 'order_delivery_confirm'
+  | 'order_delay_note'
+  | 'document_review'
+  | 'general';
+
+export type StaffRole = 'admin' | 'operations' | 'quality' | 'sales';
 
 export type NotificationAudience = 'customer' | 'admin';
 
@@ -136,6 +154,13 @@ export const RFQ_STATUS_LABELS: Record<RfqStatus, string> = {
   approved: 'Onaylandı',
   rejected: 'Reddedildi',
   converted: 'Siparişe Dönüştü',
+};
+
+export const STAFF_ROLE_LABELS: Record<StaffRole, string> = {
+  admin: 'Tam Yetki',
+  operations: 'Operasyon',
+  quality: 'Kalite',
+  sales: 'Satış',
 };
 
 export const CUSTOMER_ROLE_LABELS: Record<CustomerUserRole, string> = {

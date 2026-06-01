@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { ORDER_STATUS_LABELS, type OrderStatus } from '@/lib/stages';
 import type { Order, OrderActivity, OrderDocument, OrderStage } from '@/lib/types';
+import { OrderDelayReasonPanel } from './OrderDelayReasonPanel';
+import { OrderWarrantyPanel } from './OrderWarrantyPanel';
 import { StageManager } from './StageManager';
 import { ActivityFeed } from '../ActivityFeed';
 import { StatusBadge } from '../StatusBadge';
@@ -86,6 +88,10 @@ export function AdminOrderDetail({
         </div>
       </div>
 
+      <OrderDelayReasonPanel order={order} staffName={staffName} />
+
+      <OrderWarrantyPanel order={order} />
+
       <OrderFilesSection
         mode="admin"
         orderId={order.id}
@@ -133,6 +139,8 @@ export function AdminOrderDetail({
         shipments={shipments}
         mode="admin"
         orderId={order.id}
+        orderStatus={order.status}
+        orderShippedAt={order.shipped_at}
         staffName={staffName}
       />
     </div>

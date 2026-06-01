@@ -52,6 +52,7 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
   const [savingStatusId, setSavingStatusId] = useState<string | null>(null);
   const [uploadingQuoteId, setUploadingQuoteId] = useState<string | null>(null);
   const [uploadingExtraId, setUploadingExtraId] = useState<string | null>(null);
+  const [convertingId, setConvertingId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ id: string; message: string; tone: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
@@ -136,6 +137,28 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
     setQuoteFileById((prev) => ({ ...prev, [id]: null }));
     setStatusById((prev) => ({ ...prev, [id]: 'quoted' }));
     showFeedback(id, t('adminRfqPage.quoteSent'), 'success');
+    router.refresh();
+  }
+
+  async function convertToOrder(id: string) {
+    setConvertingId(id);
+    setFeedback(null);
+
+    const res = await fetch(`/api/admin/rfq/${id}/convert`, { method: 'POST' });
+    const data = await res.json();
+    setConvertingId(null);
+
+    if (!res.ok) {
+      showFeedback(
+        id,
+        t('adminRfqPage.convertError', { message: data.error ?? 'Unknown error' }),
+        'error'
+      );
+      return;
+    }
+
+    setStatusById((prev) => ({ ...prev, [id]: 'converted' }));
+    showFeedback(id, t('adminRfqPage.convertedSuccess', { jobNumber: data.jobNumber }), 'success');
     router.refresh();
   }
 
@@ -350,6 +373,21 @@ export function AdminRfqPageClient({ requests }: AdminRfqPageClientProps) {
                 </button>
               </div>
             </div>
+
+            {displayStatus === 'approved' && !rfq.converted_order_id && (
+              <div className="admin-rfq-action-row">
+                <button
+                  type="button"
+                  className="btn-primary admin-rfq-action-btn"
+                  disabled={convertingId === rfq.id}
+                  onClick={() => void convertToOrder(rfq.id)}
+                >
+                  {convertingId === rfq.id
+                    ? t('adminRfqPage.converting')
+                    : t('adminRfqPage.convertToOrder')}
+                </button>
+              </div>
+            )}
 
             <div className="admin-rfq-section">
               <label className="label">{t('attachments.addSupplementary')}</label>

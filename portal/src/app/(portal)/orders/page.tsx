@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { OrdersPageClient } from './OrdersPageClient';
 import type { Order } from '@/lib/types';
@@ -20,5 +21,9 @@ export default async function OrdersPage() {
     .eq('customer_id', customer!.id)
     .order('job_number', { ascending: false });
 
-  return <OrdersPageClient orders={(orders ?? []) as Order[]} />;
+  return (
+    <Suspense fallback={null}>
+      <OrdersPageClient orders={(orders ?? []) as Order[]} />
+    </Suspense>
+  );
 }

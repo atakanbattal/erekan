@@ -17,6 +17,9 @@ import {
   FileQuestion,
   Settings,
   LayoutTemplate,
+  ScrollText,
+  BarChart3,
+  Wrench,
   type LucideIcon,
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
@@ -51,9 +54,11 @@ export function PortalSidebar({
     { href: '/dashboard', label: t('sidebar.home'), icon: Home },
     { href: '/orders', label: t('sidebar.orders'), icon: Package },
     { href: '/documents', label: t('sidebar.documents'), icon: FileText },
+    { href: '/reports', label: t('sidebar.reports'), icon: BarChart3 },
     { href: '/messages', label: t('sidebar.messages'), icon: MessageSquare },
     { href: '/notifications', label: t('notifications.title'), icon: Bell },
     { href: '/rfq', label: t('rfqPage.title'), icon: FileQuestion },
+    { href: '/aftermarket', label: t('aftermarket.title'), icon: Wrench },
     { href: '/support', label: t('sidebar.support'), icon: HeadphonesIcon },
     { href: '/team', label: t('teamPage.title'), icon: Users },
     { href: '/company', label: t('sidebar.company'), icon: Building2 },
@@ -68,6 +73,8 @@ export function PortalSidebar({
     { href: '/admin/notifications', label: t('notifications.title'), icon: Bell },
     { href: '/admin/rfq', label: t('adminRfqPage.title'), icon: FileQuestion },
     { href: '/admin/templates', label: t('templatesPage.title'), icon: LayoutTemplate },
+    { href: '/admin/aftermarket', label: t('aftermarket.title'), icon: Wrench },
+    { href: '/admin/audit', label: t('auditPage.title'), icon: ScrollText },
   ];
 
   const navItems = variant === 'admin' ? adminItems : customerItems;

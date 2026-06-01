@@ -33,11 +33,11 @@ export function I18nProvider({
       setLocaleCookie(initialLocale);
       return;
     }
-    if (stored !== locale) {
+    if (stored !== initialLocale) {
       setLocaleCookie(stored);
       setLocaleState(stored);
     }
-  }, [initialLocale, locale]);
+  }, [initialLocale]);
 
   const setLocale = useCallback(
     (next: Locale) => {

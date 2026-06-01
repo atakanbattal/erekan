@@ -2,11 +2,19 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { format } from 'date-fns';
 import { ArrowRight, Search } from 'lucide-react';
 import { StatusBadge } from '@/components/StatusBadge';
+import { OrdersFilterBannerClient } from '@/components/portal/OrdersFilterBannerClient';
 import { useI18n } from '@/lib/i18n/context';
 import { getLocalizedStages } from '@/lib/i18n/helpers';
+import {
+  filterOrdersByPreset,
+  filterOrdersByStatus,
+  orderListFilterLabelKey,
+  parseOrderListQuery,
+} from '@/lib/portal/order-list-filters';
 import type { Order } from '@/lib/types';
 
 interface OrdersPageClientProps {
@@ -15,14 +23,27 @@ interface OrdersPageClientProps {
 
 export function OrdersPageClient({ orders }: OrdersPageClientProps) {
   const { t, dateLocale } = useI18n();
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const stages = getLocalizedStages(t);
 
+  const parsed = parseOrderListQuery({
+    filter: searchParams.get('filter') ?? undefined,
+    status: searchParams.get('status') ?? undefined,
+  });
+  const filterLabelKey = orderListFilterLabelKey(parsed);
+
+  const presetFiltered = useMemo(() => {
+    if (parsed.preset) return filterOrdersByPreset(orders, parsed.preset);
+    if (parsed.status) return filterOrdersByStatus(orders, parsed.status);
+    return orders;
+  }, [orders, parsed.preset, parsed.status]);
+
   const filtered = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-    if (!query) return orders;
+    if (!query) return presetFiltered;
 
-    return orders.filter((order) => {
+    return presetFiltered.filter((order) => {
       const haystack = [
         order.job_number,
         order.serial_number,
@@ -36,7 +57,7 @@ export function OrdersPageClient({ orders }: OrdersPageClientProps) {
         .toLowerCase();
       return haystack.includes(query);
     });
-  }, [orders, searchQuery, stages]);
+  }, [presetFiltered, searchQuery, stages]);
 
   return (
     <div className="portal-page">
@@ -44,6 +65,14 @@ export function OrdersPageClient({ orders }: OrdersPageClientProps) {
         <h1 className="portal-page-title">{t('dashboard.ordersPageTitle')}</h1>
         <p className="portal-page-subtitle">{t('dashboard.ordersPageSubtitle')}</p>
       </div>
+
+      {filterLabelKey && (
+        <OrdersFilterBannerClient
+          labelKey={filterLabelKey}
+          count={presetFiltered.length}
+          total={orders.length}
+        />
+      )}
 
       {orders.length > 0 && (
         <div className="orders-toolbar mb-6">
@@ -91,7 +120,7 @@ export function OrdersPageClient({ orders }: OrdersPageClientProps) {
                 {filtered.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="p-8 text-center text-steel-2">
-                      {t('dashboard.noOrderResults')}
+                      {filterLabelKey ? t('orders.filterEmpty') : t('dashboard.noOrderResults')}
                     </td>
                   </tr>
                 ) : (

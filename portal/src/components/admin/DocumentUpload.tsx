@@ -27,6 +27,8 @@ export function DocumentUpload({
   const [uploading, setUploading] = useState(false);
   const [docType, setDocType] = useState<DocumentType>(defaultDocType);
   const [visible, setVisible] = useState(true);
+  const [revisionLabel, setRevisionLabel] = useState('');
+  const [isOfficial, setIsOfficial] = useState(false);
   const supabase = createClient();
   const router = useRouter();
 
@@ -61,6 +63,9 @@ export function DocumentUpload({
       mime_type: file.type || 'application/octet-stream',
       uploaded_by: user?.id,
       is_visible_to_customer: visible,
+      revision_label: revisionLabel.trim() || null,
+      is_official: isOfficial,
+      version: 1,
     });
 
     if (dbError) {
@@ -101,6 +106,21 @@ export function DocumentUpload({
       <label className="flex items-center gap-2 text-sm text-steel-3 cursor-pointer">
         <input type="checkbox" checked={visible} onChange={(e) => setVisible(e.target.checked)} />
         Müşteriye görünür
+      </label>
+
+      <div>
+        <label className="label">Revizyon (opsiyonel)</label>
+        <input
+          className="input text-sm"
+          placeholder="Rev.01"
+          value={revisionLabel}
+          onChange={(e) => setRevisionLabel(e.target.value)}
+        />
+      </div>
+
+      <label className="flex items-center gap-2 text-sm text-steel-3 cursor-pointer">
+        <input type="checkbox" checked={isOfficial} onChange={(e) => setIsOfficial(e.target.checked)} />
+        Resmi dosya (dossier)
       </label>
 
       <label className="btn-primary flex items-center justify-center gap-2 cursor-pointer">

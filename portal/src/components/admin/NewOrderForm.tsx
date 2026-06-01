@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
@@ -27,8 +27,9 @@ export function NewOrderForm({ customers, staffName, templates = [] }: NewOrderF
   const [material, setMaterial] = useState('');
   const [standard, setStandard] = useState('');
   const [description, setDescription] = useState('');
+  const [warrantyDays, setWarrantyDays] = useState('730');
   const router = useRouter();
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
   function applyTemplate(templateId: string) {
     const tpl = templates.find((t) => t.id === templateId);
@@ -74,6 +75,7 @@ export function NewOrderForm({ customers, staffName, templates = [] }: NewOrderF
         heat_number: heatNumber,
         wps_ref: wpsRef,
         expected_delivery: (form.get('expected_delivery') as string) || null,
+        warranty_days: Number(warrantyDays) > 0 ? Number(warrantyDays) : 730,
         status: 'active',
         current_stage: 1,
       })
@@ -190,6 +192,20 @@ export function NewOrderForm({ customers, staffName, templates = [] }: NewOrderF
       <div>
         <label className="label">{t('forms.expectedDelivery')}</label>
         <input name="expected_delivery" type="date" className="input" />
+      </div>
+
+      <div className="max-w-xs">
+        <label className="label">{t('forms.warrantyDays')}</label>
+        <input
+          type="number"
+          min={1}
+          max={3650}
+          className="input"
+          value={warrantyDays}
+          onChange={(e) => setWarrantyDays(e.target.value)}
+          required
+        />
+        <p className="mt-1 text-xs text-steel-2">{t('forms.warrantyDaysHint')}</p>
       </div>
 
       <div className="flex gap-3 pt-2">

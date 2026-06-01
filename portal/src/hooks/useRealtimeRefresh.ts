@@ -5,9 +5,9 @@ import type { RealtimeChannel } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
 import { useDebouncedRouterRefresh } from '@/hooks/useDebouncedRouterRefresh';
 
-const CUSTOMER_TABLES = ['portal_messages', 'portal_notifications'] as const;
+const CUSTOMER_TABLES = ['portal_messages', 'portal_notifications', 'orders', 'order_stages'] as const;
 
-const ADMIN_TABLES = ['portal_messages', 'portal_notifications', 'rfq_requests'] as const;
+const ADMIN_TABLES = ['portal_messages', 'portal_notifications', 'rfq_requests', 'orders', 'order_stages'] as const;
 
 type Variant = 'customer' | 'admin';
 
@@ -39,7 +39,7 @@ function acquireChannel(variant: Variant, table: string, handler: () => void) {
       .channel(key)
       .on(
         'postgres_changes',
-        { event: 'INSERT', schema: 'public', table },
+        { event: '*', schema: 'public', table },
         () => notifyHandlers(key)
       )
       .subscribe();

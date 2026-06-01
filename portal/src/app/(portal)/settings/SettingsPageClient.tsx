@@ -5,10 +5,13 @@ import { Building2, Lock, Mail, User } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
 import type { CustomerContext } from '@/lib/portal/types-ext';
+import type { NotificationPreference } from '@/lib/portal/types-ext';
+import { NotificationPreferencesPanel } from '@/components/portal/NotificationPreferencesPanel';
 import type { CustomerUserRole } from '@/lib/stages';
 
 interface SettingsPageClientProps {
   context: CustomerContext;
+  notificationPrefs: NotificationPreference[];
 }
 
 function roleLabel(
@@ -19,7 +22,7 @@ function roleLabel(
   return t(`teamPage.roles.${role}`);
 }
 
-export function SettingsPageClient({ context }: SettingsPageClientProps) {
+export function SettingsPageClient({ context, notificationPrefs }: SettingsPageClientProps) {
   const { t } = useI18n();
   const supabase = createClient();
   const [newPassword, setNewPassword] = useState('');
@@ -124,6 +127,8 @@ export function SettingsPageClient({ context }: SettingsPageClientProps) {
           {updating ? t('settingsPage.updating') : t('settingsPage.updatePassword')}
         </button>
       </form>
+
+      <NotificationPreferencesPanel initialPrefs={notificationPrefs} />
     </div>
   );
 }

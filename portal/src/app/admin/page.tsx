@@ -3,7 +3,10 @@ import { redirect } from 'next/navigation';
 import { Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
+import { btnPrimary, btnSecondary } from '@/components/portal/ui';
 import { getServerI18n } from '@/lib/i18n/server';
+import { buildAdminActions } from '@/lib/portal/actions';
+import { syncAdminOperationalNotifications } from '@/lib/portal/sync-admin-notifications';
 import {
   computeMessageMetrics,
   computeOrderMetrics,
@@ -65,6 +68,22 @@ export default async function AdminPage() {
   const messageMetrics = computeMessageMetrics((messages ?? []) as PortalMessage[]);
   const rfqMetrics = computeRfqMetrics((rfqs ?? []) as RfqRequest[]);
 
+  const rfqList = (rfqs ?? []) as RfqRequest[];
+  const adminActions = buildAdminActions({ orders, rfqs: rfqList });
+
+  await syncAdminOperationalNotifications({
+    orders,
+    rfqs: rfqList,
+    messageMetrics,
+    rfqMetrics,
+  });
+
+  const { count: unreadNotificationsAfterSync } = await supabase
+    .from('portal_notifications')
+    .select('*', { count: 'exact', head: true })
+    .eq('audience', 'admin')
+    .eq('is_read', false);
+
   const metrics: AdminDashboardMetrics = {
     orders: orderMetrics,
     customers: {
@@ -74,7 +93,7 @@ export default async function AdminPage() {
     messages: messageMetrics,
     rfq: rfqMetrics,
     notifications: {
-      unreadCount: unreadNotifications ?? 0,
+      unreadCount: unreadNotificationsAfterSync ?? unreadNotifications ?? 0,
     },
   };
 
@@ -86,17 +105,23 @@ export default async function AdminPage() {
           <h1 className="text-3xl font-black text-bone">{t('admin.panelTitle')}</h1>
           <p className="text-sm text-steel-2 mt-2">{t('admin.dashboard.subtitle')}</p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/admin/orders/new" className="btn-primary flex items-center gap-2">
-            <Plus size={18} /> {t('admin.newOrder')}
+        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+          <Link href="/admin/orders/new" className={btnPrimary}>
+            <Plus size={18} className="shrink-0" aria-hidden />
+            {t('admin.newOrder')}
           </Link>
-          <Link href="/admin/customers/new" className="btn-secondary flex items-center gap-2">
-            <Plus size={18} /> {t('admin.newCustomer')}
+          <Link href="/admin/customers/new" className={btnSecondary}>
+            <Plus size={18} className="shrink-0" aria-hidden />
+            {t('admin.newCustomer')}
           </Link>
         </div>
       </div>
 
-      <AdminDashboard metrics={metrics} recentOrders={orders.slice(0, 6)} />
+      <AdminDashboard
+        metrics={metrics}
+        recentOrders={orders.slice(0, 6)}
+        actionItems={adminActions}
+      />
     </div>
   );
 }

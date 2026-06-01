@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Package, Truck, CheckCircle2, Layers } from 'lucide-react';
 import { useI18n } from '@/lib/i18n/context';
+import { buildOrdersListHref } from '@/lib/portal/order-list-filters';
 
 interface DashboardStatCardsProps {
   total: number;
@@ -12,10 +13,34 @@ interface DashboardStatCardsProps {
 }
 
 const CARD_CONFIG = [
-  { key: 'inProduction' as const, icon: Package, color: 'blue', valueKey: 'inProduction' as const },
-  { key: 'readyShipment' as const, icon: Truck, color: 'amber', valueKey: 'readyShipment' as const },
-  { key: 'completed' as const, icon: CheckCircle2, color: 'green', valueKey: 'completed' as const },
-  { key: 'total' as const, icon: Layers, color: 'purple', valueKey: 'total' as const },
+  {
+    key: 'inProduction' as const,
+    icon: Package,
+    color: 'blue',
+    valueKey: 'inProduction' as const,
+    href: buildOrdersListHref({ status: 'active', basePath: '/orders' }),
+  },
+  {
+    key: 'readyShipment' as const,
+    icon: Truck,
+    color: 'amber',
+    valueKey: 'readyShipment' as const,
+    href: buildOrdersListHref({ filter: 'ready_shipment', basePath: '/orders' }),
+  },
+  {
+    key: 'completed' as const,
+    icon: CheckCircle2,
+    color: 'green',
+    valueKey: 'completed' as const,
+    href: buildOrdersListHref({ filter: 'finished', basePath: '/orders' }),
+  },
+  {
+    key: 'total' as const,
+    icon: Layers,
+    color: 'purple',
+    valueKey: 'total' as const,
+    href: '/orders',
+  },
 ];
 
 const LABELS = {
@@ -36,8 +61,8 @@ export function DashboardStatCards({
 
   return (
     <div className="dashboard-stat-grid">
-      {CARD_CONFIG.map(({ key, icon: Icon, color, valueKey }) => (
-        <Link key={key} href="/orders" className={`dashboard-stat-card dashboard-stat-card--${color}`}>
+      {CARD_CONFIG.map(({ key, icon: Icon, color, valueKey, href }) => (
+        <Link key={key} href={href} className={`dashboard-stat-card dashboard-stat-card--${color}`}>
           <div className="dashboard-stat-card-icon">
             <Icon size={22} />
           </div>

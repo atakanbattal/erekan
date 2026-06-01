@@ -30,7 +30,11 @@ export default async function RfqPage() {
         <p className="portal-page-subtitle">{t('rfqPage.subtitle')}</p>
       </div>
 
-      <RfqPageClient customerId={ctx.customerId} requests={(requests ?? []) as RfqRequest[]} />
+      <RfqPageClient
+        customerId={ctx.customerId}
+        requests={(requests ?? []) as RfqRequest[]}
+        responderName={ctx.contactName}
+      />
     </div>
   );
 }

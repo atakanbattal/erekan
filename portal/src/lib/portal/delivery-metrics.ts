@@ -1,4 +1,7 @@
 import type { Order } from '@/lib/types';
+import { PRODUCTION_STAGES } from '@/lib/stages';
+
+const STAGE_COUNT = PRODUCTION_STAGES.length;
 
 export interface DeliveryMetrics {
   onTimeRate: number | null;
@@ -19,18 +22,18 @@ export function computeDeliveryMetrics(
   const finished = orders.filter(
     (o) => o.status === 'shipped' || o.status === 'completed'
   );
-  const finishedWithDate = finished.filter((o) => o.expected_delivery);
-  const onTimeCount = finishedWithDate.filter((o) => {
+  const onTimeCount = finished.filter((o) => {
     const actual = o.shipped_at ? new Date(o.shipped_at) : new Date(o.updated_at);
-    const expected = new Date(o.expected_delivery!);
+    if (!o.expected_delivery) return true;
+    const expected = new Date(o.expected_delivery);
     expected.setHours(23, 59, 59, 999);
     return actual <= expected;
   }).length;
 
-  const activeOrdersList = orders.filter((o) => o.status === 'active');
+  const activeOrdersList = orders.filter((o) => o.status === 'active' || o.status === 'on_hold');
   const avgProductionProgress = activeOrdersList.length
     ? Math.round(
-        (activeOrdersList.reduce((sum, o) => sum + o.current_stage / 7, 0) /
+        (activeOrdersList.reduce((sum, o) => sum + o.current_stage / STAGE_COUNT, 0) /
           activeOrdersList.length) *
           100
       )
@@ -44,11 +47,9 @@ export function computeDeliveryMetrics(
 
   return {
     onTimeRate:
-      finishedWithDate.length > 0
-        ? Math.round((onTimeCount / finishedWithDate.length) * 100)
-        : null,
+      finished.length > 0 ? Math.round((onTimeCount / finished.length) * 100) : null,
     onTimeCount,
-    finishedWithDate: finishedWithDate.length,
+    finishedWithDate: finished.length,
     avgProductionProgress,
     avgProgress: avgProductionProgress,
     activeOrders: activeOrdersList.length,

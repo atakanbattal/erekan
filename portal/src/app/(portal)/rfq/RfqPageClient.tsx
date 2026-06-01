@@ -12,6 +12,7 @@ import {
   uploadRfqAttachments,
 } from '@/components/portal/FileAttachments';
 import { ActivityStatusBadge } from '@/components/portal/ActivityStatusBadge';
+import { RfqQuoteActions } from '@/components/portal/RfqQuoteActions';
 import {
   getCustomerRfqListStatus,
   rfqMatchesFilter,
@@ -22,11 +23,12 @@ import type { RfqStatus } from '@/lib/stages';
 interface RfqPageClientProps {
   customerId: string;
   requests: RfqRequest[];
+  responderName: string;
 }
 
 type RfqFilter = 'all' | 'pending' | 'answered' | 'closed';
 
-export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
+export function RfqPageClient({ customerId, requests, responderName }: RfqPageClientProps) {
   const { t, dateLocale } = useI18n();
   const router = useRouter();
   const supabase = createClient();
@@ -291,6 +293,12 @@ export function RfqPageClient({ customerId, requests }: RfqPageClientProps) {
                           {t('rfqPage.downloadQuote')}
                           {rfq.quote_file_name ? ` — ${rfq.quote_file_name}` : ''}
                         </button>
+                      )}
+
+                      {needsAction && (
+                        <div className="mt-4">
+                          <RfqQuoteActions rfq={rfq} responderName={responderName} />
+                        </div>
                       )}
                     </div>
                   )}

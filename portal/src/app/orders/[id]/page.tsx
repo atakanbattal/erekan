@@ -10,15 +10,19 @@ import { Timeline } from '@/components/Timeline';
 import { ActivityFeed } from '@/components/ActivityFeed';
 import { OrderFilesSection } from '@/components/OrderFilesSection';
 import { MessageComposer } from '@/components/portal/MessagesPanel';
+import { OrderDelayNotice } from '@/components/portal/OrderDelayNotice';
 import { OrderStatusSummary } from '@/components/portal/OrderStatusSummary';
 import { DossierDownloadButton } from '@/components/portal/DossierDownloadButton';
 import { CustomerUploadSection } from '@/components/portal/CustomerUploadSection';
 import { NdtRecordsPanel } from '@/components/portal/NdtRecordsPanel';
 import { ShipmentPanel } from '@/components/portal/ShipmentPanel';
+import { TraceabilityPanel } from '@/components/portal/TraceabilityPanel';
 import { resolveCustomerContext } from '@/lib/portal/customer-context';
+import { buildTraceabilityChain } from '@/lib/portal/traceability';
 import { getServerI18n } from '@/lib/i18n/server';
+import { getLocalizedStages } from '@/lib/i18n/helpers';
 import type { Order, OrderActivity, OrderDocument, OrderStage } from '@/lib/types';
-import type { NdtRecord, Shipment } from '@/lib/portal/types-ext';
+import type { NdtRecord, Shipment, TraceabilityLink } from '@/lib/portal/types-ext';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -61,7 +65,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
 
   const ctx = await resolveCustomerContext(user.id);
 
-  const [{ data: stages }, { data: documents }, { data: activities }, { data: ndtRecords }, { data: shipments }, { data: latestMsg }] =
+  const [{ data: stages }, { data: documents }, { data: activities }, { data: ndtRecords }, { data: shipments }, { data: traceLinks }, { data: latestMsg }] =
     await Promise.all([
     supabase.from('order_stages').select('*').eq('order_id', id).order('stage_number'),
     supabase
@@ -76,6 +80,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
       .order('created_at', { ascending: false }),
     supabase.from('ndt_records').select('*').eq('order_id', id).order('created_at', { ascending: false }),
     supabase.from('shipments').select('*').eq('order_id', id).order('created_at', { ascending: false }),
+    supabase.from('traceability_links').select('*').eq('order_id', id),
     supabase
       .from('portal_messages')
       .select('subject')
@@ -92,6 +97,18 @@ export default async function OrderDetailPage({ params }: PageProps) {
   const isCustomerView = !staff?.is_admin;
   const customerId = ctx?.customerId ?? customer?.id;
 
+  const localizedStages = getLocalizedStages(t);
+  const stageLabels = Object.fromEntries(localizedStages.map((s) => [s.number, s.title]));
+
+  const traceNodes = buildTraceabilityChain({
+    order: typedOrder,
+    stages: (stages ?? []) as OrderStage[],
+    documents: (documents ?? []) as OrderDocument[],
+    ndtRecords: (ndtRecords ?? []) as NdtRecord[],
+    links: (traceLinks ?? []) as TraceabilityLink[],
+    shipments: (shipments ?? []) as Shipment[],
+    stageLabels,
+  });
   let unreadMessages = 0;
   if (isCustomerView && customerId) {
     const { count } = await supabase
@@ -136,6 +153,8 @@ export default async function OrderDetailPage({ params }: PageProps) {
         </div>
         <StatusBadge status={typedOrder.status} />
       </div>
+
+      <OrderDelayNotice order={typedOrder} />
 
       {isCustomerView && (
         <div className="mb-8 space-y-4">
@@ -225,6 +244,8 @@ export default async function OrderDetailPage({ params }: PageProps) {
           documents={(documents ?? []) as OrderDocument[]}
         />
 
+        <TraceabilityPanel nodes={traceNodes} />
+
         {isCustomerView && ctx?.canUpload && (
           <CustomerUploadSection orderId={id} />
         )}
@@ -242,6 +263,7 @@ export default async function OrderDetailPage({ params }: PageProps) {
             shipments={(shipments ?? []) as Shipment[]}
             mode="customer"
             orderId={id}
+            customerName={ctx?.contactName}
           />
         )}
 

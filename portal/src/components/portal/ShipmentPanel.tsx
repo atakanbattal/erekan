@@ -7,12 +7,16 @@ import { Truck, Plus } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { useI18n } from '@/lib/i18n/context';
 import type { Shipment } from '@/lib/portal/types-ext';
+import type { OrderStatus } from '@/lib/stages';
 
 interface ShipmentPanelProps {
   shipments: Shipment[];
   mode: 'admin' | 'customer';
   orderId: string;
+  orderStatus?: OrderStatus;
+  orderShippedAt?: string | null;
   staffName?: string;
+  customerName?: string;
 }
 
 const emptyForm = {
@@ -21,13 +25,19 @@ const emptyForm = {
   shipped_at: '',
   estimated_arrival: '',
   notes: '',
+  asn_number: '',
+  package_count: '',
+  total_weight_kg: '',
 };
 
 export function ShipmentPanel({
   shipments,
   mode,
   orderId,
+  orderStatus,
+  orderShippedAt,
   staffName,
+  customerName,
 }: ShipmentPanelProps) {
   const { t, dateLocale } = useI18n();
   const router = useRouter();
@@ -52,6 +62,9 @@ export function ShipmentPanel({
         ? shipment.estimated_arrival.slice(0, 10)
         : '',
       notes: shipment.notes ?? '',
+      asn_number: shipment.asn_number ?? '',
+      package_count: shipment.package_count != null ? String(shipment.package_count) : '',
+      total_weight_kg: shipment.total_weight_kg != null ? String(shipment.total_weight_kg) : '',
     });
     setShowForm(true);
     setError('');
@@ -80,6 +93,9 @@ export function ShipmentPanel({
         ? new Date(form.estimated_arrival).toISOString()
         : null,
       notes: form.notes.trim() || null,
+      asn_number: form.asn_number.trim() || null,
+      package_count: form.package_count ? Number(form.package_count) : null,
+      total_weight_kg: form.total_weight_kg ? Number(form.total_weight_kg) : null,
     };
 
     const { error: saveError } = editingId
@@ -92,18 +108,57 @@ export function ShipmentPanel({
       return;
     }
 
+    if (payload.shipped_at) {
+      const orderUpdate: { shipped_at: string; status?: OrderStatus; updated_at: string } = {
+        shipped_at: payload.shipped_at,
+        updated_at: new Date().toISOString(),
+      };
+      if (!orderShippedAt) {
+        if (orderStatus === 'active' || orderStatus === 'draft') {
+          orderUpdate.status = 'shipped';
+        }
+        await supabase.from('orders').update(orderUpdate).eq('id', orderId);
+      } else if (orderStatus === 'active') {
+        await supabase
+          .from('orders')
+          .update({ status: 'shipped', updated_at: new Date().toISOString() })
+          .eq('id', orderId);
+      }
+    }
+
     if (!editingId) {
       await supabase.from('order_activity').insert({
         order_id: orderId,
         action: 'shipment_updated',
-        description: `Sevkiyat kaydı eklendi — ${form.carrier || form.tracking_number || '—'}`,
+        description: `Sevkiyat kaydı eklendi — ${form.asn_number || form.carrier || form.tracking_number || '—'}`,
         actor_name: staffName,
+      });
+      void fetch('/api/notifications/trigger', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'shipment_updated',
+          orderId,
+          title: `Sevkiyat güncellendi`,
+        }),
       });
     }
 
     setSaving(false);
     resetForm();
     router.refresh();
+  }
+
+  async function confirmDelivery(shipmentId: string) {
+    if (!customerName) return;
+    setSaving(true);
+    const res = await fetch(`/api/shipments/${shipmentId}/confirm`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ confirmedBy: customerName }),
+    });
+    setSaving(false);
+    if (res.ok) router.refresh();
   }
 
   return (
@@ -166,6 +221,35 @@ export function ShipmentPanel({
                 onChange={(e) => setForm((f) => ({ ...f, estimated_arrival: e.target.value }))}
               />
             </div>
+            <div>
+              <label className="label">{t('shipmentPanel.asnNumber')}</label>
+              <input
+                className="input font-mono text-sm"
+                value={form.asn_number}
+                onChange={(e) => setForm((f) => ({ ...f, asn_number: e.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="label">{t('shipmentPanel.packageCount')}</label>
+              <input
+                type="number"
+                min={1}
+                className="input"
+                value={form.package_count}
+                onChange={(e) => setForm((f) => ({ ...f, package_count: e.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="label">{t('shipmentPanel.totalWeight')}</label>
+              <input
+                type="number"
+                min={0}
+                step="0.01"
+                className="input"
+                value={form.total_weight_kg}
+                onChange={(e) => setForm((f) => ({ ...f, total_weight_kg: e.target.value }))}
+              />
+            </div>
           </div>
           <div>
             <label className="label">{t('shipmentPanel.notes')}</label>
@@ -206,6 +290,22 @@ export function ShipmentPanel({
                   {shipment.tracking_number ?? '—'}
                 </div>
               </div>
+              {shipment.asn_number && (
+                <div>
+                  <div className="label">{t('shipmentPanel.asnNumber')}</div>
+                  <div className="text-sm font-mono text-bone">{shipment.asn_number}</div>
+                </div>
+              )}
+              {(shipment.package_count != null || shipment.total_weight_kg != null) && (
+                <div>
+                  <div className="label">{t('shipmentPanel.asnSummary')}</div>
+                  <div className="text-sm text-steel-2">
+                    {shipment.package_count != null && `${shipment.package_count} ${t('shipmentPanel.packages')}`}
+                    {shipment.package_count != null && shipment.total_weight_kg != null && ' · '}
+                    {shipment.total_weight_kg != null && `${shipment.total_weight_kg} kg`}
+                  </div>
+                </div>
+              )}
               <div>
                 <div className="label">{t('shipmentPanel.shippedAt')}</div>
                 <div className="text-sm text-steel-2">
@@ -230,6 +330,27 @@ export function ShipmentPanel({
                   <p className="text-sm text-steel-2">{shipment.notes}</p>
                 </div>
               )}
+              {shipment.delivery_confirmed_at ? (
+                <div className="sm:col-span-2 text-sm text-success">
+                  {t('shipmentPanel.confirmedAt', {
+                    name: shipment.delivery_confirmed_by ?? '—',
+                    date: format(new Date(shipment.delivery_confirmed_at), 'd MMM yyyy', {
+                      locale: dateLocale,
+                    }),
+                  })}
+                </div>
+              ) : mode === 'customer' ? (
+                <div className="sm:col-span-2">
+                  <button
+                    type="button"
+                    className="btn-primary text-sm"
+                    disabled={saving}
+                    onClick={() => void confirmDelivery(shipment.id)}
+                  >
+                    {t('shipmentPanel.confirmDelivery')}
+                  </button>
+                </div>
+              ) : null}
               {mode === 'admin' && (
                 <div className="sm:col-span-2">
                   <button

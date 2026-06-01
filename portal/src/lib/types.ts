@@ -34,7 +34,10 @@ export interface Order {
   heat_number: string | null;
   wps_ref: string | null;
   expected_delivery: string | null;
+  delay_reason: string | null;
+  traceability_token: string | null;
   shipped_at: string | null;
+  warranty_days: number;
   created_at: string;
   updated_at: string;
   customers?: Customer;
@@ -67,6 +70,10 @@ export interface OrderDocument {
   mime_type: string;
   description: string | null;
   is_visible_to_customer: boolean;
+  version?: number;
+  revision_label?: string | null;
+  is_official?: boolean;
+  parent_document_id?: string | null;
   created_at: string;
 }
 

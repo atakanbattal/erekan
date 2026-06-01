@@ -15,16 +15,21 @@ import {
 } from 'lucide-react';
 import { StatusBadge } from '@/components/StatusBadge';
 import { ActivityStatusBadge } from '@/components/portal/ActivityStatusBadge';
+import { ActionInboxPanel } from '@/components/portal/ActionInboxPanel';
+import { AdminKpiGrid, type AdminKpiCardItem } from '@/components/admin/AdminKpiGrid';
 import { getServerI18n } from '@/lib/i18n/server';
+import type { ActionItem } from '@/lib/portal/actions';
 import {
   formatDurationHours,
   type AdminDashboardMetrics,
 } from '@/lib/portal/admin-dashboard-metrics';
+import { buildOrdersListHref } from '@/lib/portal/order-list-filters';
 import type { Order } from '@/lib/types';
 
 interface AdminDashboardProps {
   metrics: AdminDashboardMetrics;
   recentOrders: (Order & { customers?: { company_name: string } | null })[];
+  actionItems?: ActionItem[];
 }
 
 function durationLabel(
@@ -43,11 +48,15 @@ function durationLabel(
   return t('admin.dashboard.durationDays', { value: formatted.value });
 }
 
-export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardProps) {
+export async function AdminDashboard({
+  metrics,
+  recentOrders,
+  actionItems = [],
+}: AdminDashboardProps) {
   const { t, dateLocale } = await getServerI18n();
   const { orders, customers, messages, rfq, notifications } = metrics;
 
-  const kpiCards = [
+  const kpiCards: AdminKpiCardItem[] = [
     {
       href: '/admin/rfq',
       icon: FileQuestion,
@@ -90,7 +99,7 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
       isText: true,
     },
     {
-      href: '/admin/orders',
+      href: buildOrdersListHref({ status: 'active' }),
       icon: Package,
       tone: 'blue',
       label: t('admin.dashboard.activeOrders'),
@@ -102,7 +111,7 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
       alert: false,
     },
     {
-      href: '/admin/orders',
+      href: buildOrdersListHref({ filter: 'overdue' }),
       icon: AlertTriangle,
       tone: 'danger',
       label: t('admin.dashboard.overdueOrders'),
@@ -132,58 +141,53 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
 
   return (
     <>
-      <div className="admin-dashboard-kpi-grid mb-6">
-        {kpiCards.map((card) => {
-          const Icon = card.icon;
-          return (
-            <Link
-              key={card.label}
-              href={card.href}
-              className={`admin-dashboard-kpi-card admin-dashboard-kpi-card--${card.tone} ${card.alert ? 'admin-dashboard-kpi-card--alert' : ''}`}
-            >
-              <div className="admin-dashboard-kpi-top">
-                <div className="admin-dashboard-kpi-icon">
-                  <Icon size={18} />
-                </div>
-                {card.alert && <span className="admin-dashboard-kpi-alert-dot" />}
-              </div>
-              <div className={`admin-dashboard-kpi-value ${card.isText ? 'admin-dashboard-kpi-value--text' : ''}`}>
-                {card.value}
-              </div>
-              <div className="admin-dashboard-kpi-label">{card.label}</div>
-              <div className="admin-dashboard-kpi-hint">{card.hint}</div>
-            </Link>
-          );
-        })}
-      </div>
+      {actionItems.length > 0 && (
+        <div className="mb-6">
+          <ActionInboxPanel items={actionItems} variant="admin" />
+        </div>
+      )}
 
-      <div className="grid lg:grid-cols-2 gap-4 mb-6">
-        <section className="card admin-dashboard-panel">
-          <div className="admin-dashboard-panel-header">
-            <div>
-              <h2 className="font-bold text-bone">{t('admin.dashboard.actionMessagesTitle')}</h2>
-              <p className="text-sm text-steel-2 mt-1">{t('admin.dashboard.actionMessagesDesc')}</p>
+      <AdminKpiGrid cards={kpiCards} />
+
+      <div className="mb-6 grid gap-4 lg:grid-cols-2">
+        <section className="overflow-hidden rounded-2xl border border-ink-4 bg-ink-0 shadow-[0_8px_24px_rgba(20,23,28,0.05)]">
+          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-ink-4 bg-gradient-to-r from-blue-500/10 via-ink-0 to-ink-0 px-5 py-4">
+            <div className="flex min-w-0 items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-[0_6px_16px_rgba(37,99,235,0.25)]">
+                <MessageSquare size={18} aria-hidden />
+              </span>
+              <div>
+                <h2 className="font-bold text-bone">{t('admin.dashboard.actionMessagesTitle')}</h2>
+                <p className="mt-1 text-sm text-steel-2">{t('admin.dashboard.actionMessagesDesc')}</p>
+              </div>
             </div>
-            <Link href="/admin/messages" className="text-sm text-arc-2 hover:underline shrink-0">
-              {t('admin.viewAll')} →
+            <Link
+              href="/admin/messages"
+              className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-blue-500/20 bg-blue-500/10 px-3 py-1.5 text-xs font-semibold text-blue-700 no-underline transition-colors hover:bg-blue-500/15"
+            >
+              {t('admin.viewAll')}
+              <ArrowRight size={14} aria-hidden />
             </Link>
           </div>
           {messages.recentAwaiting.length === 0 ? (
-            <p className="admin-dashboard-panel-empty">{t('admin.dashboard.noAwaitingMessages')}</p>
+            <p className="px-5 py-10 text-center text-sm text-steel-2">{t('admin.dashboard.noAwaitingMessages')}</p>
           ) : (
-            <ul className="activity-list">
+            <ul className="divide-y divide-ink-4">
               {messages.recentAwaiting.map((thread) => (
-                <li
-                  key={thread.threadId}
-                  className={`activity-list-item ${thread.unread ? 'activity-list-item--unread' : ''}`}
-                >
-                  <Link href="/admin/messages" className="activity-list-item-main activity-list-item-main--link">
-                    <div className="activity-list-item-icon">
-                      <MessageSquare size={18} />
-                    </div>
-                    <div className="activity-list-item-content min-w-0">
-                      <div className="activity-list-item-top">
-                        <span className="activity-list-item-title">{thread.subject}</span>
+                <li key={thread.threadId}>
+                  <Link
+                    href="/admin/messages"
+                    className={[
+                      'flex items-start gap-3 px-5 py-4 no-underline transition-colors hover:bg-ink-2/60',
+                      thread.unread ? 'bg-blue-500/[0.04]' : '',
+                    ].join(' ')}
+                  >
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-2 text-blue-600">
+                      <MessageSquare size={16} aria-hidden />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="truncate text-sm font-semibold text-bone">{thread.subject}</span>
                         <ActivityStatusBadge
                           label={
                             thread.unread
@@ -194,8 +198,8 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
                           dot={thread.unread}
                         />
                       </div>
-                      <p className="activity-list-item-preview">{thread.preview}</p>
-                      <div className="activity-list-item-meta">
+                      <p className="mt-1 line-clamp-1 text-xs text-steel-2">{thread.preview}</p>
+                      <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-steel-2">
                         <span>{thread.companyName}</span>
                         <span>{t(`messages.categories.${thread.category as 'general'}`)}</span>
                         <span>
@@ -213,35 +217,47 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
           )}
         </section>
 
-        <section className="card admin-dashboard-panel">
-          <div className="admin-dashboard-panel-header">
-            <div>
-              <h2 className="font-bold text-bone">{t('admin.dashboard.actionRfqTitle')}</h2>
-              <p className="text-sm text-steel-2 mt-1">{t('admin.dashboard.actionRfqDesc')}</p>
+        <section className="overflow-hidden rounded-2xl border border-ink-4 bg-ink-0 shadow-[0_8px_24px_rgba(20,23,28,0.05)]">
+          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-ink-4 bg-gradient-to-r from-arc-2/12 via-ink-0 to-ink-0 px-5 py-4">
+            <div className="flex min-w-0 items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-arc-2 text-white shadow-[0_6px_16px_rgba(255,122,26,0.28)]">
+                <FileQuestion size={18} aria-hidden />
+              </span>
+              <div>
+                <h2 className="font-bold text-bone">{t('admin.dashboard.actionRfqTitle')}</h2>
+                <p className="mt-1 text-sm text-steel-2">{t('admin.dashboard.actionRfqDesc')}</p>
+              </div>
             </div>
-            <Link href="/admin/rfq" className="text-sm text-arc-2 hover:underline shrink-0">
-              {t('admin.viewRfq')} →
+            <Link
+              href="/admin/rfq"
+              className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-arc-2/25 bg-arc-2/10 px-3 py-1.5 text-xs font-semibold text-arc-2 no-underline transition-colors hover:bg-arc-2/15"
+            >
+              {t('admin.viewRfq')}
+              <ArrowRight size={14} aria-hidden />
             </Link>
           </div>
           {rfq.recentPending.length === 0 ? (
-            <p className="admin-dashboard-panel-empty">{t('admin.dashboard.noPendingRfq')}</p>
+            <p className="px-5 py-10 text-center text-sm text-steel-2">{t('admin.dashboard.noPendingRfq')}</p>
           ) : (
-            <ul className="activity-list">
+            <ul className="divide-y divide-ink-4">
               {rfq.recentPending.map((item) => (
-                <li key={item.id} className="activity-list-item activity-list-item--action">
-                  <Link href="/admin/rfq" className="activity-list-item-main activity-list-item-main--link">
-                    <div className="activity-list-item-icon">
-                      <FileQuestion size={18} />
-                    </div>
-                    <div className="activity-list-item-content min-w-0">
-                      <div className="activity-list-item-top">
-                        <span className="activity-list-item-title">{item.title}</span>
+                <li key={item.id}>
+                  <Link
+                    href="/admin/rfq"
+                    className="flex items-start gap-3 px-5 py-4 no-underline transition-colors hover:bg-ink-2/60"
+                  >
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-2 text-arc-2">
+                      <FileQuestion size={16} aria-hidden />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="truncate text-sm font-semibold text-bone">{item.title}</span>
                         <ActivityStatusBadge
                           label={t(`adminRfqPage.status.${item.status}`)}
                           variant={item.status === 'reviewing' ? 'awaiting' : 'pending'}
                         />
                       </div>
-                      <div className="activity-list-item-meta">
+                      <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-steel-2">
                         <span>{item.companyName}</span>
                         <span>
                           {format(new Date(item.createdAt), 'd MMM yyyy HH:mm', { locale: dateLocale })}
@@ -256,53 +272,89 @@ export async function AdminDashboard({ metrics, recentOrders }: AdminDashboardPr
         </section>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-4 mb-6">
-        <div className="card p-5 border-l-4 border-l-danger">
-          <div className="flex items-center gap-2 mb-3">
-            <AlertTriangle size={18} className="text-danger" />
+      <div className="mb-6 grid gap-4 lg:grid-cols-3">
+        <Link
+          href={buildOrdersListHref({ filter: 'overdue' })}
+          className="group relative overflow-hidden rounded-2xl border border-danger/20 bg-[linear-gradient(160deg,rgba(220,38,38,0.12)_0%,#ffffff_100%)] p-5 no-underline shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-danger to-red-500" aria-hidden />
+          <div className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-danger text-white">
+              <AlertTriangle size={18} aria-hidden />
+            </span>
             <h3 className="font-bold text-bone">{t('admin.overdueOrders')}</h3>
-            <span className="ml-auto text-2xl font-black text-danger">{orders.overdue}</span>
+            <span className="ml-auto text-3xl font-black text-danger">{orders.overdue}</span>
           </div>
-          <p className="text-sm text-steel-2">{t('admin.dashboard.overdueOrdersHint', { dueWeek: orders.dueThisWeek })}</p>
-        </div>
-        <div className="card p-5 border-l-4 border-l-amber-400">
-          <div className="flex items-center gap-2 mb-3">
-            <CalendarClock size={18} className="text-amber-400" />
+          <p className="mt-3 text-sm text-steel-2">{t('admin.dashboard.overdueOrdersHint', { dueWeek: orders.dueThisWeek })}</p>
+        </Link>
+        <Link
+          href={buildOrdersListHref({ filter: 'due_this_week' })}
+          className="group relative overflow-hidden rounded-2xl border border-amber-400/25 bg-[linear-gradient(160deg,rgba(245,158,11,0.12)_0%,#ffffff_100%)] p-5 no-underline shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500" aria-hidden />
+          <div className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500 text-white">
+              <CalendarClock size={18} aria-hidden />
+            </span>
             <h3 className="font-bold text-bone">{t('admin.dueThisWeek')}</h3>
-            <span className="ml-auto text-2xl font-black text-amber-400">{orders.dueThisWeek}</span>
+            <span className="ml-auto text-3xl font-black text-amber-600">{orders.dueThisWeek}</span>
           </div>
-          <p className="text-sm text-steel-2">{t('admin.dashboard.dueThisWeekDesc')}</p>
-        </div>
-        <div className="card p-5 border-l-4 border-l-success">
-          <div className="flex items-center gap-2 mb-3">
-            <Truck size={18} className="text-success" />
+          <p className="mt-3 text-sm text-steel-2">{t('admin.dashboard.dueThisWeekDesc')}</p>
+        </Link>
+        <Link
+          href={buildOrdersListHref({ filter: 'ready_shipment' })}
+          className="group relative overflow-hidden rounded-2xl border border-success/25 bg-[linear-gradient(160deg,rgba(22,163,74,0.12)_0%,#ffffff_100%)] p-5 no-underline shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-success to-emerald-500" aria-hidden />
+          <div className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-success text-white">
+              <Truck size={18} aria-hidden />
+            </span>
             <h3 className="font-bold text-bone">{t('admin.dashboard.readyShipment')}</h3>
-            <span className="ml-auto text-2xl font-black text-success">{orders.readyShipment}</span>
+            <span className="ml-auto text-3xl font-black text-success">{orders.readyShipment}</span>
           </div>
-          <p className="text-sm text-steel-2">{t('admin.dashboard.readyShipmentDesc')}</p>
-        </div>
+          <p className="mt-3 text-sm text-steel-2">{t('admin.dashboard.readyShipmentDesc')}</p>
+        </Link>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-4 mb-6">
-        <div className="card p-5 lg:col-span-1">
-          <h3 className="font-bold text-bone mb-4">{t('admin.dashboard.orderStatusTitle')}</h3>
-          <ul className="admin-dashboard-status-list">
-            <li><span>{t('orderStatus.active')}</span><strong>{orders.active}</strong></li>
-            <li><span>{t('orderStatus.on_hold')}</span><strong>{orders.onHold}</strong></li>
-            <li><span>{t('orderStatus.shipped')}</span><strong>{orders.shipped}</strong></li>
-            <li><span>{t('orderStatus.completed')}</span><strong>{orders.completed}</strong></li>
-            <li><span>{t('orderStatus.draft')}</span><strong>{orders.draft}</strong></li>
+      <div className="mb-6 grid gap-4 lg:grid-cols-3">
+        <div className="overflow-hidden rounded-2xl border border-ink-4 bg-ink-0 p-5 shadow-sm lg:col-span-1">
+          <h3 className="mb-4 font-bold text-bone">{t('admin.dashboard.orderStatusTitle')}</h3>
+          <ul className="flex flex-col gap-2">
+            {(
+              [
+                ['active', orders.active],
+                ['on_hold', orders.onHold],
+                ['shipped', orders.shipped],
+                ['completed', orders.completed],
+                ['draft', orders.draft],
+              ] as const
+            ).map(([status, count]) => (
+              <li key={status}>
+                <Link
+                  href={buildOrdersListHref({ status })}
+                  className="flex items-center justify-between gap-3 rounded-xl border border-ink-4 bg-ink-1 px-3 py-2.5 text-sm text-steel-2 no-underline transition-colors hover:border-ink-5 hover:bg-ink-2"
+                >
+                  <span>{t(`orderStatus.${status}`)}</span>
+                  <strong className="font-black text-bone">{count}</strong>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        <div className="card lg:col-span-2">
-          <div className="p-5 border-b border-ink-4 flex items-center justify-between gap-3">
+        <div className="overflow-hidden rounded-2xl border border-ink-4 bg-ink-0 shadow-sm lg:col-span-2">
+          <div className="flex items-center justify-between gap-3 border-b border-ink-4 bg-gradient-to-r from-ink-2/80 to-ink-0 px-5 py-4">
             <div>
               <h2 className="font-bold text-bone">{t('admin.recentOrders')}</h2>
-              <p className="text-sm text-steel-2 mt-1">{t('admin.dashboard.recentOrdersDesc')}</p>
+              <p className="mt-1 text-sm text-steel-2">{t('admin.dashboard.recentOrdersDesc')}</p>
             </div>
-            <Link href="/admin/orders" className="text-sm text-arc-2 hover:underline shrink-0">
+            <Link
+              href="/admin/orders"
+              className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-ink-4 bg-ink-1 px-3 py-1.5 text-xs font-semibold text-arc-2 no-underline hover:bg-ink-2"
+            >
               {t('admin.viewAll')}
+              <ArrowRight size={14} aria-hidden />
             </Link>
           </div>
           <div className="divide-y divide-ink-4">

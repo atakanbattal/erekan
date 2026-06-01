@@ -28,13 +28,13 @@ export async function POST(request: Request, { params }: RouteParams) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  const { data: rfq } = await supabase
+  const { data: rfqFull } = await supabase
     .from('rfq_requests')
-    .select('id, customer_id, title, customers(email)')
+    .select('id, customer_id, title, quote_version, customers(email)')
     .eq('id', rfqId)
     .single();
 
-  if (!rfq) {
+  if (!rfqFull) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
 
@@ -61,12 +61,15 @@ export async function POST(request: Request, { params }: RouteParams) {
     return NextResponse.json({ error: uploadError.message }, { status: 500 });
   }
 
+  const nextVersion = (rfqFull.quote_version ?? 0) + 1;
+
   const { error: updateError } = await admin
     .from('rfq_requests')
     .update({
       quote_file_path: filePath,
       quote_file_name: file.name,
       status: 'quoted',
+      quote_version: nextVersion,
       updated_at: new Date().toISOString(),
     })
     .eq('id', rfqId);
@@ -75,15 +78,23 @@ export async function POST(request: Request, { params }: RouteParams) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
 
-  const customerEmail = (rfq.customers as { email?: string } | null)?.email;
+  const customerEmail = (rfqFull.customers as { email?: string } | null)?.email;
 
   await notifyCustomer({
-    customerId: rfq.customer_id,
+    customerId: rfqFull.customer_id,
     customerEmail,
     type: 'quote_ready',
-    title: `Teklifiniz hazır: ${rfq.title}`,
-    body: rfq.title,
+    title: `Teklifiniz hazır: ${rfqFull.title}`,
+    body: rfqFull.title,
     link: '/rfq',
+  });
+
+  await admin.from('rfq_quote_versions').insert({
+    rfq_id: rfqId,
+    version: nextVersion,
+    file_path: filePath,
+    file_name: file.name,
+    created_by_name: user.email ?? 'Admin',
   });
 
   return NextResponse.json({
@@ -93,6 +104,7 @@ export async function POST(request: Request, { params }: RouteParams) {
       status: 'quoted',
       quote_file_path: filePath,
       quote_file_name: file.name,
+      quote_version: nextVersion,
     },
   });
 }

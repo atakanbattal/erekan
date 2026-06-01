@@ -8,7 +8,10 @@ import { DashboardStatCards } from '@/components/portal/DashboardStatCards';
 import { OrderStatusChart } from '@/components/portal/OrderStatusChart';
 import { OrderTrackingList } from '@/components/portal/OrderTrackingList';
 import { DeliveryPerformancePanel } from '@/components/portal/DeliveryPerformancePanel';
+import { ActionInboxPanel } from '@/components/portal/ActionInboxPanel';
 import { computeDeliveryMetrics } from '@/lib/portal/delivery-metrics';
+import { buildCustomerActions } from '@/lib/portal/actions';
+import type { RfqRequest, Shipment } from '@/lib/portal/types-ext';
 import type { OrderStatus } from '@/lib/stages';
 import type { Order, OrderDocument, OrderStage, PortalMessage } from '@/lib/types';
 
@@ -22,7 +25,8 @@ export default async function DashboardPage() {
   const ctx = await resolveCustomerContext(user!.id);
   if (!ctx) return null;
 
-  const [{ data: orders }, { data: messages }, { data: documents }] = await Promise.all([
+  const [{ data: orders }, { data: messages }, { data: documents }, { data: rfqs }, { data: shipments }] =
+    await Promise.all([
     supabase
       .from('orders')
       .select('*')
@@ -41,6 +45,14 @@ export default async function DashboardPage() {
       .eq('is_visible_to_customer', true)
       .order('created_at', { ascending: false })
       .limit(5),
+    supabase
+      .from('rfq_requests')
+      .select('*')
+      .eq('customer_id', ctx.customerId),
+    supabase
+      .from('shipments')
+      .select('*, orders!inner(customer_id)')
+      .eq('orders.customer_id', ctx.customerId),
   ]);
 
   const orderList = (orders ?? []) as Order[];
@@ -89,6 +101,11 @@ export default async function DashboardPage() {
   }
 
   const deliveryMetrics = computeDeliveryMetrics(orderList, docCount);
+  const customerActions = buildCustomerActions({
+    orders: orderList,
+    rfqs: (rfqs ?? []) as RfqRequest[],
+    shipments: (shipments ?? []) as Shipment[],
+  });
 
   const recentMessages = (messages ?? []) as PortalMessage[];
   const threadPreviews = recentMessages.reduce((acc, msg) => {
@@ -109,6 +126,12 @@ export default async function DashboardPage() {
         readyShipment={readyCount}
         completed={completedCount + shippedCount}
       />
+
+      {customerActions.length > 0 && (
+        <div className="mb-5">
+          <ActionInboxPanel items={customerActions} />
+        </div>
+      )}
 
       <div className="portal-widget mb-5">
         <div className="portal-widget-header">

@@ -175,6 +175,14 @@ export function StageManager({
       `${def.title} → ${STAGE_STATUS_LABELS[status] ?? status}`
     );
 
+    if (status === 'completed' || status === 'in_progress') {
+      void fetch(`/api/orders/${orderId}/notify-stage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ stageTitle: def.title, stageNumber }),
+      });
+    }
+
     setSaving(null);
     busyRef.current = false;
     router.refresh();
